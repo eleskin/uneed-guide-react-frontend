@@ -18,7 +18,7 @@ development:
     - chmod 700 ~/.ssh
   script:
     - echo "Deploying application..."
-    - ssh -o StrictHostKeyChecking=no root@qppfpwydmc "cd uneed-guide-react-frontend && git pull && docker-compose down && docker-compose up -d --build"
+    - ssh -o StrictHostKeyChecking=no root@62.113.104.73 "cd uneed-guide-react-frontend && git pull && docker-compose down && docker-compose up -d --build"
     - echo "Application successfully deployed."
   when: manual
 # production:
