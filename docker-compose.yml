@@ -5,7 +5,6 @@ services:
     build:
       context: ./
     container_name: uneed_guide_react_frontend
-    env_file: .env
     restart: always
     working_dir: /usr/src/app
     ports:
