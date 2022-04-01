@@ -1,0 +1,41 @@
+@import '/styles/functions';
+
+.Header {
+	padding: rem(24px) rem(32px);
+	background: #ffffff;
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	
+	.Header__logo {
+	}
+	
+	.Header__button {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-end;
+		grid-row-gap: 8px;
+		background-color: transparent;
+		border: none;
+		padding: 4px 0;
+	}
+	
+	.Header__button::before {
+		content: '';
+		display: block;
+		width: 37px;
+		height: 0;
+		border-top: 2px solid #f0515d;
+	}
+	
+	.Header__button::after {
+		content: '';
+		display: block;
+		width: 23px;
+		height: 0;
+		border-bottom: 2px solid #f0515d;
+	}
+}
