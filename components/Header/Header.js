@@ -11,14 +11,14 @@ const Header = () => {
 	};
 	
 	return (
-		<header className={styles.Header}>
+		<header className={`${styles.Header} ${isActiveMenu ? styles.Header_active : ''}`}>
 			<Link href="/">
 				<a className={styles.Header__logo}>
 					<Image src="/assets/images/header/header-logo.svg" width={30} height={36}/>
 				</a>
 			</Link>
 			<button
-				className={`${styles.Header__button} ${isActiveMenu ? styles.Header__button_active : ''}`}
+				className={styles.Header__button}
 				onClick={handleButtonClick}
 			/>
 		</header>
