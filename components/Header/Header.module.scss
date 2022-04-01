@@ -13,29 +13,52 @@
 	}
 	
 	.Header__button {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: flex-end;
-		grid-row-gap: 8px;
+		height: 11px;
+		position: relative;
 		background-color: transparent;
 		border: none;
 		padding: 4px 0;
+		transition: var(--transition-primary);
+	}
+	
+	.Header__button_active {
+		height: 32px;
+		width: 32px;
+	}
+	
+	.Header__button::before, .Header__button::after {
+		content: '';
+		display: block;
+		position: absolute;
+		right: 0;
+		height: 0;
+		transition: var(--transition-primary);
 	}
 	
 	.Header__button::before {
-		content: '';
-		display: block;
+		top: 0;
 		width: 37px;
-		height: 0;
 		border-top: 2px solid #f0515d;
 	}
 	
 	.Header__button::after {
-		content: '';
-		display: block;
+		bottom: 0;
 		width: 23px;
-		height: 0;
 		border-bottom: 2px solid #f0515d;
+	}
+	
+	.Header__button_active::before, .Header__button_active::after {
+		width: 24px;
+		margin: auto;
+		transition: var(--transition-primary);
+	}
+	
+	.Header__button_active::before {
+		transform: rotate(45deg) translateY(13.5px) translateX(8px);
+	}
+	
+	.Header__button_active::after {
+		width: 24px;
+		transform: rotate(-45deg) translateY(-13.5px) translateX(8px);
 	}
 }

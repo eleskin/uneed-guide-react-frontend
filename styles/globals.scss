@@ -2,6 +2,10 @@
 	outline-color: rgba(#f0515d, 0.5);
 }
 
+:root {
+	--transition-primary: 1s ease;
+}
+
 html, body {
 	font-size: 100%;
 }
