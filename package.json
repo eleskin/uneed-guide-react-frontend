@@ -12,6 +12,7 @@
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
+    "react-swipeable": "^6.2.1",
     "sass": "^1.49.10"
   },
   "devDependencies": {

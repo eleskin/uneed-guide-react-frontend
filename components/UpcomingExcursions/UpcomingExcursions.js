@@ -1,4 +1,5 @@
 import {createRef, useEffect, useState} from 'react';
+import {useSwipeable} from 'react-swipeable';
 import Button from '../Button/Button';
 import styles from './UpcomingExcursions.module.scss';
 import Image from 'next/image';
@@ -14,8 +15,10 @@ const UpcomingExcursions = () => {
 		{},
 	];
 	
+	let interval;
+	
 	useEffect(() => {
-		const interval = setInterval(() => {
+		interval = setInterval(() => {
 			activeSlide < slides.length - 1 ? setActiveSlide(activeSlide + 1) : setActiveSlide(0);
 		}, 4500);
 		
@@ -30,6 +33,11 @@ const UpcomingExcursions = () => {
 			<span/>
 		</div>
 	));
+	
+	const handleCalendarButtonClick = () => {
+		clearInterval(interval);
+		console.log('Calendar')
+	};
 	
 	const cardsList = slides.map((slide, index) => (
 		<div
@@ -81,7 +89,7 @@ const UpcomingExcursions = () => {
 					<button>12:45</button>
 					<button>14:25</button>
 					<button>16:25</button>
-					<button>
+					<button onClick={handleCalendarButtonClick}>
 						<Image
 							src="/assets/images/first-screen/first-screen-calendar.svg"
 							width={16}
@@ -200,8 +208,17 @@ const UpcomingExcursions = () => {
 		});
 	}
 	
+	const handlers = useSwipeable({
+		onSwipedLeft: () => {
+			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+		},
+		onSwipedRight: () => {
+			activeSlide > 0 && setActiveSlide(activeSlide - 1);
+		},
+	});
+	
 	return (
-		<div className={styles.UpcomingExcursions}>
+		<div className={styles.UpcomingExcursions} {...handlers}>
 			<header className={styles.UpcomingExcursions__header}>
 				<span>Ближайшие экскурсии</span>
 				<div className={styles.UpcomingExcursions__loader}>{dotsList}</div>
