@@ -25,6 +25,10 @@ const FirstScreen = () => {
 					<i>(Ваш регион)</i>
 				</div>
 			</header>
+			<div className={styles.FirstScreen__title}>
+				<span>Дольше путешествие - больше открытий</span>
+				<h1>Экскурсии и туры с лучшими гидами по Москве</h1>
+			</div>
 		</div>
 	);
 };

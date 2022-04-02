@@ -71,4 +71,24 @@
 			}
 		}
 	}
+	
+	.FirstScreen__title {
+		margin-top: 32px;
+		
+		span {
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: rgba(#ffffff, 0.8);
+		}
+		
+		h1 {
+			margin: 0;
+			padding: 0;
+			font-weight: 600;
+			font-size: rem(28px);
+			line-height: rem(42px);
+			text-transform: uppercase;
+			color: #ffffff;
+		}
+	}
 }
