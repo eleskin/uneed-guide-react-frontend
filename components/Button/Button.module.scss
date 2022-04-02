@@ -6,7 +6,6 @@
 	line-height: rem(20px);
 	letter-spacing: 0.02em;
 	text-transform: uppercase;
-	padding: rem(12px) rem(24px);
 	border: none;
 }
 
@@ -14,9 +13,11 @@
 	color: #ffffff;
 	background: #f0515d;
 	border-radius: 6px;
+	padding: rem(12px) rem(24px);
 }
 
 .Button_secondary {
 	color: #f0515d;
 	background-color: transparent;
+	padding: rem(12px) 0;
 }
