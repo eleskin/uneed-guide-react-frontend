@@ -12,15 +12,12 @@ test:
   before_script:
     - apk add openssh-client
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - echo "$SSH_PRIVATE_KEY_TEST" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
   script:
     - echo "Deploying application..."
-    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com
-    - cd test/uneed-guide-react-frontend && git pull
-    - docker-compose -f ./config/docker/test.compose.yaml down --remove-orphans
-    - docker-compose -f ./config/docker/test.compose.yaml up -d --build
+    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com "cd test/uneed-guide-react-frontend && git pull && git checkout $CI_COMMIT_BRANCH && docker-compose -f ./config/docker/test.compose.yml down --remove-orphans &&  docker-compose -f ./config/docker/test.compose.yml up -d --build"
     - echo "Application successfully deployed."
   when: manual
 
@@ -31,15 +28,12 @@ demo:
   before_script:
     - apk add openssh-client
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - echo "$SSH_PRIVATE_KEY_DEMO" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
   script:
     - echo "Deploying application..."
-    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com
-    - cd demo/uneed-guide-react-frontend && git pull
-    - docker-compose -f ./config/docker/demo.compose.yaml down --remove-orphans
-    - docker-compose -f ./config/docker/demo.compose.yaml up -d --build
+    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com "cd demo/uneed-guide-react-frontend && git pull && git checkout development && docker-compose -f ./config/docker/demo.compose.yml down --remove-orphans &&  docker-compose -f ./config/docker/demo.compose.yml up -d --build"
     - echo "Application successfully deployed."
   when: manual
 # production:
