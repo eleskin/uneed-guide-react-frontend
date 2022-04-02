@@ -1,15 +1,14 @@
-import {useState} from 'react';
+import {createRef, useEffect, useState} from 'react';
+import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
 import styles from './FirstScreen.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import {Calendar} from 'react-modern-calendar-datepicker';
 
 const FirstScreen = () => {
 	const today = new Date();
-	const currentYear = today.getFullYear();
-	const currentMonth = today.getMonth().toString().length === 2 ? today.getMonth() + 1 : `0${today.getMonth() + 1}`;
-	const currentDate = today.getDate().toString().length === 2 ? today.getDate() : `0${today.getDate()}`;
-	const [date, setDate] = useState(`${currentYear}-${currentMonth}-${currentDate}`);
 	const [isVisibleRegionSelector, setIsVisibleRegionSelector] = useState(true);
 	
 	const handleButtonCloseClick = () => {
@@ -19,6 +18,40 @@ const FirstScreen = () => {
 	const handleButtonOpenClick = () => {
 		setIsVisibleRegionSelector(true);
 	};
+	
+	const defaultValue = {
+		year: today.getFullYear(),
+		month: today.getMonth() + 1,
+		day: today.getDate(),
+	};
+	
+	const [selectedDay, setSelectedDay] = useState(defaultValue);
+	
+	const [date, setDate] = useState(
+		`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`,
+	);
+	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
+	
+	const handleChangeInput = (event) => {
+		event.preventDefault();
+	};
+	
+	const handleFocusInput = () => {
+		setIsVisibleCalendar(true);
+	};
+	
+	const handleSelectData = (date) => {
+		setIsVisibleCalendar(false);
+		setSelectedDay(date);
+	};
+	
+	useEffect(() => {
+		setDate(`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`);
+	}, [selectedDay]);
+	
+	const searchRef = createRef();
+	
+	useOutsideClickHandler(searchRef, isVisibleCalendar, setIsVisibleCalendar);
 	
 	return (
 		<div className={styles.FirstScreen}>
@@ -65,9 +98,19 @@ const FirstScreen = () => {
 				<span>Дольше путешествие - больше открытий</span>
 				<h1>Экскурсии и туры с лучшими гидами по Москве</h1>
 			</div>
-			<div className={styles.FirstScreen__search}>
+			<div className={styles.FirstScreen__search} ref={searchRef}>
+				<div className={`${styles.FirstScreen__calendar} ${isVisibleCalendar ? styles.FirstScreen__calendar_active : ''}`}>
+					<Calendar value={selectedDay} onChange={handleSelectData} colorPrimary="#f0515d"/>
+				</div>
 				<label>
-					<input type="date" value={date} onChange={event => setDate(event.target.value)}/>
+					<input
+						type="text"
+						value={date}
+						onInput={handleChangeInput}
+						onChange={handleChangeInput}
+						onFocus={handleFocusInput}
+					/>
+					<Image src="/assets/images/first-screen/first-screen-calendar.svg" width={15} height={14}/>
 					<Button.Primary small={true}>Найти</Button.Primary>
 				</label>
 			</div>
