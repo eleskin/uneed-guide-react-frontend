@@ -61,6 +61,22 @@ const UpcomingExcursions = () => {
 						Каждые 30 мин.
 					</span>
 				</header>
+				<div className={styles.UpcomingExcursions__departures}>
+					<span>Ближайшие отправления:</span>
+					<div>
+						<button>12:45</button>
+						<button>14:25</button>
+						<button>16:25</button>
+						<button>
+							<Image
+								src="/assets/images/first-screen/first-screen-calendar.svg"
+								width={16}
+								height={14}
+								alt=""
+							/>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

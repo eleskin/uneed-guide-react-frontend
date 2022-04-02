@@ -58,7 +58,7 @@
 	
 	.UpcomingExcursions__card {
 		margin-top: rem(8px);
-		padding: rem(16px);
+		padding: rem(16px) 0;
 		background-color: #ffffff;
 		box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
 		border-radius: 12px;
@@ -67,6 +67,7 @@
 		.UpcomingExcursions__image {
 			position: relative;
 			overflow: hidden;
+			padding: 0 rem(16px);
 			
 			img {
 				border-radius: 8px;
@@ -78,7 +79,7 @@
 			flex-direction: column;
 			justify-content: flex-start;
 			align-items: flex-start;
-			padding-bottom: rem(8px);
+			padding: 0 rem(16px) rem(8px) rem(16px);
 			
 			h3 {
 				margin: rem(16px) 0 rem(8px) 0;
@@ -94,6 +95,37 @@
 				line-height: rem(18px);
 				color: rgba(#212121, 0.6);
 				grid-column-gap: 12px;
+			}
+		}
+		
+		.UpcomingExcursions__departures {
+			padding: rem(8px) rem(16px);
+			background-color: #fafafa;
+			
+			span {
+				font-weight: 400;
+				font-size: rem(12px);
+				line-height: rem(18px);
+				color: #666666;
+				margin-bottom: rem(4px);
+				display: block;
+			}
+			
+			div {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				grid-column-gap: 8px;
+				
+				button {
+					font-size: rem(14px);
+					line-height: rem(21px);
+					color: #212121;
+					border-radius: 3px;
+					border: none;
+					background-color: #ffffff;
+					padding: rem(4px);
+					text-align: center;
+				}
 			}
 		}
 	}
