@@ -17,10 +17,7 @@ test:
     - chmod 700 ~/.ssh
   script:
     - echo "Deploying application..."
-    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com
-    - echo $CI_COMMIT_BRANCH
-    # - docker-compose -f ./config/docker/test.compose.yml down --remove-orphans
-    # - docker-compose -f ./config/docker/test.compose.yml up -d --build
+    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com "cd test/uneed-guide-react-frontend && git pull && git checkout $CI_COMMIT_BRANCH &&  docker-compose -f ./config/docker/test.compose.yml down --remove-orphans &&  docker-compose -f ./config/docker/test.compose.yml up -d --build"
     - echo "Application successfully deployed."
   when: manual
 
