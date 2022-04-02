@@ -1,5 +1,7 @@
 import {createRef, useEffect, useState} from 'react';
+import {Calendar} from 'react-modern-calendar-datepicker';
 import {useSwipeable} from 'react-swipeable';
+import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
 import styles from './UpcomingExcursions.module.scss';
 import Image from 'next/image';
@@ -23,7 +25,7 @@ const UpcomingExcursions = () => {
 		}, 4500);
 		
 		return () => clearInterval(interval);
-	});
+	}, [activeSlide]);
 	
 	const dotsList = slides.map((slide, index) => (
 		<div
@@ -34,10 +36,38 @@ const UpcomingExcursions = () => {
 		</div>
 	));
 	
+	const handleSelectData = (date) => {
+		setIsVisibleCalendar(false);
+		setSelectedDay(date);
+	};
+	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
+	
 	const handleCalendarButtonClick = () => {
 		clearInterval(interval);
-		console.log('Calendar')
+		setIsVisibleCalendar(true);
 	};
+	
+	const today = new Date();
+	
+	const defaultValue = {
+		year: today.getFullYear(),
+		month: today.getMonth() + 1,
+		day: today.getDate(),
+	};
+	
+	const [selectedDay, setSelectedDay] = useState(defaultValue);
+	
+	const [[], setDate] = useState(
+		`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`,
+	);
+	
+	useEffect(() => {
+		setDate(`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`);
+	}, [selectedDay]);
+	
+	const cardsRef = createRef();
+	
+	useOutsideClickHandler(cardsRef, isVisibleCalendar, setIsVisibleCalendar);
 	
 	const cardsList = slides.map((slide, index) => (
 		<div
@@ -85,7 +115,7 @@ const UpcomingExcursions = () => {
 			</header>
 			<div className={styles.UpcomingExcursions__departures}>
 				<span>Ближайшие отправления:</span>
-				<div>
+				<div className={styles.UpcomingExcursions__times}>
 					<button>12:45</button>
 					<button>14:25</button>
 					<button>16:25</button>
@@ -97,6 +127,11 @@ const UpcomingExcursions = () => {
 							alt=""
 						/>
 					</button>
+				</div>
+				<div
+					className={`${styles.UpcomingExcursions__calendar} ${isVisibleCalendar ? styles.UpcomingExcursions__calendar_active : ''}`}
+				>
+					<Calendar value={selectedDay} onChange={handleSelectData} colorPrimary="#f0515d"/>
 				</div>
 			</div>
 			<div className={styles.UpcomingExcursions__discount}>
@@ -183,8 +218,6 @@ const UpcomingExcursions = () => {
 			</footer>
 		</div>
 	));
-	
-	const cardsRef = createRef();
 	
 	useEffect(() => {
 		for (const card of cardsRef.current.children) {
