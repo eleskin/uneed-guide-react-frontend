@@ -6,7 +6,7 @@
 	height: calc(100% - 87px);
 	opacity: 0;
 	transform: translateY(-100%);
-	z-index: 0;
+	z-index: 1;
 	background-color: #ffffff;
 	transition: all var(--transition-primary), z-index 0s linear 0s;
 	overflow: scroll;
@@ -106,6 +106,6 @@
 .Menu_active {
 	opacity: 1;
 	transform: translateY(-1px);
-	z-index: 0;
+	z-index: 2;
 	transition: all var(--transition-primary), z-index 0s linear 0.8s;
 }
