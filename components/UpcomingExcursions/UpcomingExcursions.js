@@ -1,3 +1,4 @@
+import Button from '../Button/Button';
 import styles from './UpcomingExcursions.module.scss';
 import Image from 'next/image';
 
@@ -134,6 +135,32 @@ const UpcomingExcursions = () => {
 						</div>
 					</div>
 				</div>
+				<footer className={styles.UpcomingExcursions__footer}>
+					<Button.Primary
+						small={true}
+						style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
+					>
+						Купить
+					</Button.Primary>
+					<Button.Outlined
+						small={true}
+						style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
+					>
+						Подробнее
+					</Button.Outlined>
+					<Button.Outlined
+						small={true}
+						style={{paddingLeft: '0.5rem', paddingRight: '0.5rem'}}
+					>
+						<Image
+							src="/assets/images/upcoming-excursions/upcoming-excursions-heart.svg"
+							width={16}
+							height={16}
+//							layout="fill"
+							alt=""
+						/>
+					</Button.Outlined>
+				</footer>
 			</div>
 		</div>
 	);

@@ -156,7 +156,7 @@
 		}
 		
 		.UpcomingExcursions__tariffs {
-			padding: rem(4px) rem(16px);
+			padding: rem(6px) rem(16px);
 			border-bottom: 1px solid #ececec;
 			
 			.UpcomingExcursions__tariff {
@@ -208,6 +208,22 @@
 			
 			.UpcomingExcursions__tariff:not(:last-child) {
 				border-bottom: 1px solid #c4c4c4;
+			}
+		}
+		
+		.UpcomingExcursions__footer {
+			display: grid;
+			grid-template-columns: auto auto auto;
+			grid-column-gap: 8px;
+			padding: rem(16px) rem(16px) 0 rem(16px);
+			
+			button {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				font-weight: 700;
+				height: 100%;
 			}
 		}
 	}
