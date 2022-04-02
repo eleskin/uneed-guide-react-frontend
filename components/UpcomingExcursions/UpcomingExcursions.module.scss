@@ -128,5 +128,31 @@
 				}
 			}
 		}
+		
+		.UpcomingExcursions__discount {
+			padding: rem(16px);
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+			grid-column-gap: 8px;
+			border-bottom: 1px solid #ececec;
+			
+			strong, span {
+				font-size: rem(12px);
+				line-height: rem(18px);
+			}
+			
+			strong {
+				font-weight: 700;
+				color: #f0515d;
+			}
+			
+			span {
+				font-weight: 400;
+				color: #999999;
+				text-decoration: line-through;
+			}
+		}
 	}
 }

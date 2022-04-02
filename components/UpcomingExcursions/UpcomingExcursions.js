@@ -77,6 +77,16 @@ const UpcomingExcursions = () => {
 						</button>
 					</div>
 				</div>
+				<div className={styles.UpcomingExcursions__discount}>
+					<Image
+						src="/assets/images/upcoming-excursions/upcoming-excursions-percent.svg"
+						width={14}
+						height={14}
+						alt=""
+					/>
+					<strong>От 350 ₽</strong>
+					<span>450 ₽</span>
+				</div>
 			</div>
 		</div>
 	);
