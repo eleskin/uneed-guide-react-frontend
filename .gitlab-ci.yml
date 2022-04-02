@@ -36,6 +36,7 @@ demo:
   script:
     - echo "Deploying application..."
     - ssh -o StrictHostKeyChecking=no root@demo.uneedguide.com
+    - cd uneed-guide-react-frontend
     - docker-compose -f ./config/docker/demo.compose.yml down --remove-orphans
     - docker-compose -f ./config/docker/demo.compose.yml up -d --build
     - echo "Application successfully deployed."
