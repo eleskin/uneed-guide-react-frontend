@@ -18,6 +18,7 @@ test:
   script:
     - echo "Deploying application..."
     - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com
+    - pwd
     - cd ~/test/uneed-guide-react-frontend
     - docker-compose -f ./config/docker/test.compose.yml down --remove-orphans
     - docker-compose -f ./config/docker/test.compose.yml up -d --build
