@@ -3,7 +3,7 @@
 .FirstScreen {
 	padding: rem(8px) rem(54px) rem(48px) rem(54px);
 	//noinspection CssUnknownTarget
-	background: url('/assets/images/first-screen/first-screen-background.png') no-repeat top center;
+	background: url('/assets/images/first-screen/first-screen-background.png') repeat-x top center;
 	background-size: contain;
 	
 	.FirstScreen__header {
