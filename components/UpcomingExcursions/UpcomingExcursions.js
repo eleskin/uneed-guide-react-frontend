@@ -1,23 +1,40 @@
+import {useEffect, useState} from 'react';
 import Button from '../Button/Button';
 import styles from './UpcomingExcursions.module.scss';
 import Image from 'next/image';
 
 const UpcomingExcursions = () => {
+	const [activeDot, setActiveDot] = useState(0);
+	
+	useEffect(() => {
+		setInterval(() => {
+			activeDot < 3 ? setActiveDot(activeDot + 1) : setActiveDot(0);
+		}, 4500);
+	});
+	
 	return (
 		<div className={styles.UpcomingExcursions}>
 			<header className={styles.UpcomingExcursions__header}>
 				<span>Ближайшие экскурсии</span>
 				<div className={styles.UpcomingExcursions__loader}>
-					<div className={`${styles.UpcomingExcursions__dot} ${styles.UpcomingExcursions__dot_active}`}>
+					<div
+						className={`${styles.UpcomingExcursions__dot} ${activeDot === 0 ? styles.UpcomingExcursions__dot_active : ''}`}
+					>
 						<span/>
 					</div>
-					<div className={styles.UpcomingExcursions__dot}>
+					<div
+						className={`${styles.UpcomingExcursions__dot} ${activeDot === 1 ? styles.UpcomingExcursions__dot_active : ''}`}
+					>
 						<span/>
 					</div>
-					<div className={styles.UpcomingExcursions__dot}>
+					<div
+						className={`${styles.UpcomingExcursions__dot} ${activeDot === 2 ? styles.UpcomingExcursions__dot_active : ''}`}
+					>
 						<span/>
 					</div>
-					<div className={styles.UpcomingExcursions__dot}>
+					<div
+						className={`${styles.UpcomingExcursions__dot} ${activeDot === 3 ? styles.UpcomingExcursions__dot_active : ''}`}
+					>
 						<span/>
 					</div>
 				</div>
@@ -156,7 +173,7 @@ const UpcomingExcursions = () => {
 							src="/assets/images/upcoming-excursions/upcoming-excursions-heart.svg"
 							width={16}
 							height={16}
-//							layout="fill"
+							//							layout="fill"
 							alt=""
 						/>
 					</Button.Outlined>

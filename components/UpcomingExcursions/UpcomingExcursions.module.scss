@@ -28,6 +28,7 @@
 				border-radius: 18px;
 				height: 5px;
 				width: 8px;
+				transition: var(--transition-primary);
 			}
 			
 			.UpcomingExcursions__dot_active {
@@ -36,10 +37,14 @@
 				span {
 					background-color: #f0515d;
 					display: block;
-					width: 100%;
+//					width: 100%;
 					height: 100%;
 					border-radius: 18px;
 					position: relative;
+					animation-name: dotAnimation;
+					animation-duration: 4s;
+					animation-timing-function: linear;
+					transition: var(--transition-primary);
 				}
 				
 				span::before {
@@ -51,6 +56,16 @@
 					transform: translate(-2px, -2px);
 					background-color: rgba(240, 81, 93, 0.35);
 					border-radius: 18px;
+					transition: var(--transition-primary);
+				}
+				
+				@keyframes dotAnimation {
+					from {
+						width: 0;
+					}
+					to {
+						width: 100%;
+					}
 				}
 			}
 		}
