@@ -5,7 +5,6 @@ services:
 stages:
   - test
   - demo
-  # - production
 
 test:
   stage: test
@@ -36,18 +35,3 @@ demo:
     - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com "cd demo/uneed-guide-react-frontend && git pull && git checkout development && docker-compose -f ./config/docker/demo.compose.yml down &&  docker-compose -f ./config/docker/demo.compose.yml up -d --build"
     - echo "Application successfully deployed."
   when: manual
-# production:
-#   stage: production
-#   only:
-#     - main
-#   before_script:
-#     - apk add openssh-client
-#     - eval $(ssh-agent -s)
-#     - echo "$SSH_PRIVATE_KEY_PROD" | tr -d '\r' | ssh-add -
-#     - mkdir -p ~/.ssh
-#     - chmod 700 ~/.ssh
-#   script:
-#     - echo "Deploying application..."
-#     - ssh -o StrictHostKeyChecking=no root@uneedguide.com "cd uneed-guide-react-frontend && git pull && docker-compose down && docker-compose up -d --build"
-#     - echo "Application successfully deployed."
-#   when: manual
