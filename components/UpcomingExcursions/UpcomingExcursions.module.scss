@@ -1,0 +1,62 @@
+@import '/styles/functions';
+
+.UpcomingExcursions {
+	margin-top: rem(32px);
+	
+	.UpcomingExcursions__header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		
+		span {
+			font-weight: 400;
+			font-size: rem(14px);
+			line-height: rem(21px);
+			color: #ffffff;
+		}
+		
+		.UpcomingExcursions__loader {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			align-items: center;
+			grid-column-gap: 8px;
+			
+			.UpcomingExcursions__dot {
+				background-color: rgba(221, 221, 221, 0.45);
+				border-radius: 18px;
+				height: 5px;
+				width: 8px;
+			}
+			
+			.UpcomingExcursions__dot_active {
+				width: 24px;
+				
+				span {
+					background-color: #f0515d;
+					display: block;
+					width: 100%;
+					height: 100%;
+					border-radius: 18px;
+					position: relative;
+				}
+				
+				span::before {
+					position: absolute;
+					content: '';
+					display: block;
+					height: calc(100% + 4px);
+					width: calc(100% + 4px);
+					transform: translate(-2px, -2px);
+					background-color: rgba(240, 81, 93, 0.35);
+					border-radius: 18px;
+				}
+			}
+		}
+	}
+	
+	.UpcomingExcursions__card {
+		margin-top: rem(8px);
+	}
+}

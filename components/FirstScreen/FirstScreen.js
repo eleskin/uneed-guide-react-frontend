@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Button from '../Button/Button';
+import UpcomingExcursions from '../UpcomingExcursions/UpcomingExcursions';
 import styles from './FirstScreen.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -71,6 +72,7 @@ const FirstScreen = () => {
 					<Button.Primary small={true}>Найти</Button.Primary>
 				</label>
 			</div>
+			<UpcomingExcursions/>
 		</div>
 	);
 };

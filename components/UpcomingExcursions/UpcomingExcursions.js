@@ -6,7 +6,18 @@ const UpcomingExcursions = () => {
 			<header className={styles.UpcomingExcursions__header}>
 				<span>Ближайшие экскурсии</span>
 				<div className={styles.UpcomingExcursions__loader}>
-					<span/><span/><span/><span/>
+					<div className={`${styles.UpcomingExcursions__dot} ${styles.UpcomingExcursions__dot_active}`}>
+						<span/>
+					</div>
+					<div className={styles.UpcomingExcursions__dot}>
+						<span/>
+					</div>
+					<div className={styles.UpcomingExcursions__dot}>
+						<span/>
+					</div>
+					<div className={styles.UpcomingExcursions__dot}>
+						<span/>
+					</div>
 				</div>
 			</header>
 			<div className={styles.UpcomingExcursions__card}>
