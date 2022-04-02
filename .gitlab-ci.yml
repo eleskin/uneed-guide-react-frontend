@@ -19,8 +19,8 @@ test:
     - echo "Deploying application..."
     - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com
     - cd test/uneed-guide-react-frontend && git pull
-    - docker-compose -f ./config/docker/test.compose.yaml down --remove-orphans
-    - docker-compose -f ./config/docker/test.compose.yaml up -d --build
+    - docker-compose -f ./config/docker/test.compose.yml down --remove-orphans
+    - docker-compose -f ./config/docker/test.compose.yml up -d --build
     - echo "Application successfully deployed."
   when: manual
 
@@ -36,10 +36,10 @@ demo:
     - chmod 700 ~/.ssh
   script:
     - echo "Deploying application..."
-    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com
+    - ssh -o StrictHostKeyChecking=no root@demo.uneedguide.com
     - cd demo/uneed-guide-react-frontend && git pull
-    - docker-compose -f ./config/docker/demo.compose.yaml down --remove-orphans
-    - docker-compose -f ./config/docker/demo.compose.yaml up -d --build
+    - docker-compose -f ./config/docker/demo.compose.yml down --remove-orphans
+    - docker-compose -f ./config/docker/demo.compose.yml up -d --build
     - echo "Application successfully deployed."
   when: manual
 # production:
