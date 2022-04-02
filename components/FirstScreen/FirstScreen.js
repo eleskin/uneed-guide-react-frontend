@@ -10,6 +10,15 @@ const FirstScreen = () => {
 	const currentMonth = today.getMonth().toString().length === 2 ? today.getMonth() + 1 : `0${today.getMonth() + 1}`;
 	const currentDate = today.getDate().toString().length === 2 ? today.getDate() : `0${today.getDate()}`;
 	const [date, setDate] = useState(`${currentYear}-${currentMonth}-${currentDate}`);
+	const [isVisibleRegionSelector, setIsVisibleRegionSelector] = useState(true);
+	
+	const handleButtonCloseClick = () => {
+		setIsVisibleRegionSelector(false);
+	};
+	
+	const handleButtonOpenClick = () => {
+		setIsVisibleRegionSelector(true);
+	};
 	
 	return (
 		<div className={styles.FirstScreen}>
@@ -23,15 +32,19 @@ const FirstScreen = () => {
 					</Link>
 				</div>
 				<div className={styles.FirstScreen__location}>
-					<Image
-						src="/assets/images/first-screen/first-screen-map-pin.svg"
-						width={15}
-						height={15}
-						alt=""
-					/>
-					<span>г. Москва</span>
-					<i>(Ваш регион)</i>
-					<div className={styles.FirstScreen__region}>
+					<div onClick={handleButtonOpenClick}>
+						<Image
+							src="/assets/images/first-screen/first-screen-map-pin.svg"
+							width={15}
+							height={15}
+							alt=""
+						/>
+						<span>г. Москва</span>
+						<i>(Ваш регион)</i>
+					</div>
+					<div
+						className={`${styles.FirstScreen__region} ${isVisibleRegionSelector ? styles.FirstScreen__region_active : ''}`}
+					>
 						<header>
 							<Image
 								src="/assets/images/first-screen/first-screen-map-pin.svg"
@@ -42,8 +55,8 @@ const FirstScreen = () => {
 							<span>Ваш регион Москва?</span>
 						</header>
 						<footer>
-							<Button.Primary small={true}>Да, верно</Button.Primary>
-							<Button.Outlined small={true}>Нет, другой</Button.Outlined>
+							<Button.Primary small={true} onClick={handleButtonCloseClick}>Да, верно</Button.Primary>
+							<Button.Outlined small={true} onClick={handleButtonCloseClick}>Нет, другой</Button.Outlined>
 						</footer>
 					</div>
 				</div>
