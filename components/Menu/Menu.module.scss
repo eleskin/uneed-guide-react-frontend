@@ -9,7 +9,7 @@
 	z-index: 998;
 	background-color: #ffffff;
 	transition: all var(--transition-primary), z-index 0s linear 0s;
-	overflow: scroll;
+	overflow-y: scroll;
 	
 	.Menu__header {
 		padding: rem(24px) rem(72px);
