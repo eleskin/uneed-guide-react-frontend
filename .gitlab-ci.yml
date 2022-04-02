@@ -21,8 +21,10 @@ test:
     - echo "Application successfully deployed."
   when: manual
   rules:
-    - if: '$CI_COMMIT_BRANCH != "development" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "development"'
-      when: manual
+    - if: '$CI_COMMIT_BRANCH == "development"'
+      when: never
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development"'
+      when: never
 
 demo:
   stage: demo
