@@ -13,3 +13,7 @@
 html, body {
 	font-size: 100%;
 }
+
+::-webkit-calendar-picker-indicator {
+	background: url('/assets/images/first-screen/first-screen-calendar.svg') no-repeat center center;
+}

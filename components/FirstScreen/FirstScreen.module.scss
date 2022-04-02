@@ -73,7 +73,7 @@
 	}
 	
 	.FirstScreen__title {
-		margin-top: 32px;
+		margin-top: rem(32px);
 		
 		span {
 			font-size: rem(12px);
@@ -89,6 +89,46 @@
 			line-height: rem(42px);
 			text-transform: uppercase;
 			color: #ffffff;
+		}
+	}
+	
+	.FirstScreen__search {
+		margin-top: rem(64px);
+		
+		label {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			background-color: #fafafa;
+			border: 1px solid #d8d8d8;
+			box-sizing: border-box;
+			border-radius: 8px;
+			
+			input {
+				width: 100%;
+				padding: rem(12px) rem(16px);
+				border: none;
+				background-color: transparent;
+				outline: none;
+				font-weight: 400;
+				font-size: rem(14px);
+				line-height: rem(21px);
+				color: #797979;
+			}
+			
+			button {
+				padding: 0 rem(32px);
+				margin: 0;
+				border: none;
+				background: #F0515D;
+				border-radius: 8px;
+				transform: translateX(1.6px) translateY(-1.6px);
+				height: calc(100% + 3.2px);
+				width: 100%;
+				font-weight: 400;
+				font-size: rem(14px);
+				line-height: rem(21px);
+				color: #FFFFFF;
+			}
 		}
 	}
 }

@@ -1,8 +1,15 @@
+import {useState} from 'react';
 import styles from './FirstScreen.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const FirstScreen = () => {
+	const today = new Date();
+	const currentYear = today.getFullYear();
+	const currentMonth = today.getMonth().toString().length === 2 ? today.getMonth() + 1 : `0${today.getMonth() + 1}`;
+	const currentDate = today.getDate().toString().length === 2 ? today.getDate() : `0${today.getDate()}`;
+	const [date, setDate] = useState(`${currentYear}-${currentMonth}-${currentDate}`);
+	
 	return (
 		<div className={styles.FirstScreen}>
 			<header className={styles.FirstScreen__header}>
@@ -28,6 +35,12 @@ const FirstScreen = () => {
 			<div className={styles.FirstScreen__title}>
 				<span>Дольше путешествие - больше открытий</span>
 				<h1>Экскурсии и туры с лучшими гидами по Москве</h1>
+			</div>
+			<div className={styles.FirstScreen__search}>
+				<label>
+					<input type="date" value={date} onChange={event => setDate(event.target.value)}/>
+					<button>Найти</button>
+				</label>
 			</div>
 		</div>
 	);
