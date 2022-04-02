@@ -169,7 +169,6 @@ const UpcomingExcursions = () => {
 						src="/assets/images/upcoming-excursions/upcoming-excursions-heart.svg"
 						width={16}
 						height={16}
-						//							layout="fill"
 						alt=""
 					/>
 				</Button.Outlined>
@@ -187,6 +186,20 @@ const UpcomingExcursions = () => {
 			}
 		}
 	}, []);
+	
+	if (typeof window !== 'undefined') {
+		window.addEventListener('resize', () => {
+			setMaxCardHeight(0);
+			if (cardsRef.current) {
+				for (const card of cardsRef.current.children) {
+					const height = parseFloat(window.getComputedStyle(card).height);
+					if (height > maxCardHeight) {
+						setMaxCardHeight(height);
+					}
+				}
+			}
+		});
+	}
 	
 	return (
 		<div className={styles.UpcomingExcursions}>
