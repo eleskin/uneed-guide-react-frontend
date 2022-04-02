@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  uneed_guide_react_frontend_demo:
+    build:
+      context: ./
+    container_name: uneed_guide_react_frontend_demo
+    restart: always
+    working_dir: /usr/src/app
+    ports:
+      - '3001:3000'
