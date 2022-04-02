@@ -58,5 +58,43 @@
 	
 	.UpcomingExcursions__card {
 		margin-top: rem(8px);
+		padding: rem(16px);
+		background-color: #ffffff;
+		box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
+		border-radius: 12px;
+		position: relative;
+		
+		.UpcomingExcursions__image {
+			position: relative;
+			overflow: hidden;
+			
+			img {
+				border-radius: 8px;
+			}
+		}
+		
+		.UpcomingExcursions__header {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			padding-bottom: rem(8px);
+			
+			h3 {
+				margin: rem(16px) 0 rem(8px) 0;
+			}
+			
+			span {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: center;
+				margin-bottom: rem(8px);
+				font-size: rem(12px);
+				line-height: rem(18px);
+				color: rgba(#212121, 0.6);
+				grid-column-gap: 12px;
+			}
+		}
 	}
 }
