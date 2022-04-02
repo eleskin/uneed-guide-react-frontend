@@ -17,6 +17,7 @@ const Menu = ({isActiveMenu, ...props}) => {
 						src="/assets/images/header/header-magnifier.svg"
 						width={16}
 						height={16}
+						alt=""
 					/>
 				</label>
 				<span>
