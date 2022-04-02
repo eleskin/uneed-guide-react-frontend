@@ -1,0 +1,23 @@
+@import '/styles/functions';
+
+.Button_primary, .Button_secondary {
+	font-weight: 600;
+	font-size: rem(13px);
+	line-height: rem(20px);
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	border: none;
+}
+
+.Button_primary {
+	color: #ffffff;
+	background: #f0515d;
+	border-radius: 6px;
+	padding: rem(12px) rem(24px);
+}
+
+.Button_secondary {
+	color: #f0515d;
+	background-color: transparent;
+	padding: rem(12px) 0;
+}
