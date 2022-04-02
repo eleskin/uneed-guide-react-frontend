@@ -13,7 +13,11 @@ const Menu = ({isActiveMenu, ...props}) => {
 			<div className={styles.Menu__search}>
 				<label>
 					<input type="text" placeholder="Например, экскурсии по Москва-реке"/>
-					<Image src="/assets/images/header/header-magnifier.svg" width={16} height={16}/>
+					<Image
+						src="/assets/images/header/header-magnifier.svg"
+						width={16}
+						height={16}
+					/>
 				</label>
 				<span>
 					Последние запросы: <b>водные экскурсии, экскурсия в музее</b>
