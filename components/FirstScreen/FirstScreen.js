@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Button from '../Button/Button';
 import styles from './FirstScreen.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -30,6 +31,21 @@ const FirstScreen = () => {
 					/>
 					<span>г. Москва</span>
 					<i>(Ваш регион)</i>
+					<div className={styles.FirstScreen__region}>
+						<header>
+							<Image
+								src="/assets/images/first-screen/first-screen-map-pin.svg"
+								width={15}
+								height={15}
+								alt=""
+							/>
+							<span>Ваш регион Москва?</span>
+						</header>
+						<footer>
+							<Button.Primary small={true}>Да, верно</Button.Primary>
+							<Button.Outlined small={true}>Нет, другой</Button.Outlined>
+						</footer>
+					</div>
 				</div>
 			</header>
 			<div className={styles.FirstScreen__title}>
@@ -39,7 +55,7 @@ const FirstScreen = () => {
 			<div className={styles.FirstScreen__search}>
 				<label>
 					<input type="date" value={date} onChange={event => setDate(event.target.value)}/>
-					<button>Найти</button>
+					<Button.Primary small={true}>Найти</Button.Primary>
 				</label>
 			</div>
 		</div>
