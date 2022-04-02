@@ -10,7 +10,7 @@
 	align-items: center;
 	border-bottom: 1px solid transparent;
 	transition: var(--transition-primary);
-	position: fixed;
+	position: sticky;
 	width: 100%;
 	
 	.Header__logo {
