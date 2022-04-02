@@ -166,7 +166,7 @@
 		
 		.FirstScreen__calendar {
 			position: absolute;
-			bottom: 46px;
+			top: 46px;
 			left: -52px;
 			right: -52px;
 			max-width: calc(100% + 104px);
@@ -174,7 +174,7 @@
 			width: fit-content;
 			opacity: 0;
 			transform: scale(0.6);
-			transform-origin: 50% 100%;
+			transform-origin: 50% 0;
 			z-index: -1;
 			transition: all var(--transition-primary), z-index 0s linear 0.8s;
 		
