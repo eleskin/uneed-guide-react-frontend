@@ -16,7 +16,7 @@ test:
     - chmod 700 ~/.ssh
   script:
     - echo "Deploying application..."
-    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com "cd test/uneed-guide-react-frontend && git pull origin $CI_COMMIT_BRANCH && git checkout $CI_COMMIT_BRANCH && docker-compose -f ./config/docker/test.compose.yml down &&  docker-compose -f ./config/docker/test.compose.yml up -d --build"
+    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com "cd test/uneed-guide-react-frontend && git pull origin $CI_COMMIT_BRANCH && git checkout $CI_COMMIT_BRANCH && docker stop uneed_guide_react_frontend_test && docker rm uneed_guide_react_frontend_test &&  docker-compose -f ./config/docker/test.compose.yml up -d --build"
     - echo "Application successfully deployed."
   when: manual
 
@@ -32,6 +32,6 @@ demo:
     - chmod 700 ~/.ssh
   script:
     - echo "Deploying application..."
-    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com "cd demo/uneed-guide-react-frontend && git pull && git checkout development && docker-compose -f ./config/docker/demo.compose.yml down &&  docker-compose -f ./config/docker/demo.compose.yml up -d --build"
+    - ssh -o StrictHostKeyChecking=no root@test.uneedguide.com "cd demo/uneed-guide-react-frontend && git pull && git checkout development && docker stop uneed_guide_react_frontend_demo && docker rm uneed_guide_react_frontend_demo &&  docker-compose -f ./config/docker/demo.compose.yml up -d --build"
     - echo "Application successfully deployed."
   when: manual
