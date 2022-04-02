@@ -87,6 +87,53 @@ const UpcomingExcursions = () => {
 					<strong>От 350 ₽</strong>
 					<span>450 ₽</span>
 				</div>
+				<div className={styles.UpcomingExcursions__tariffs}>
+					<div className={styles.UpcomingExcursions__tariff}>
+						<span>Взрослый</span>
+						<div>
+							<strong>450 ₽</strong>
+							<span>550 ₽</span>
+							<button>
+								<Image
+									src="/assets/images/upcoming-excursions/upcoming-excursions-cart.svg"
+									width={14}
+									height={14}
+									alt=""
+								/>
+							</button>
+						</div>
+					</div>
+					<div className={styles.UpcomingExcursions__tariff}>
+						<span>Детский</span>
+						<div>
+							<strong>350 ₽</strong>
+							<span>450 ₽</span>
+							<button>
+								<Image
+									src="/assets/images/upcoming-excursions/upcoming-excursions-cart.svg"
+									width={14}
+									height={14}
+									alt=""
+								/>
+							</button>
+						</div>
+					</div>
+					<div className={styles.UpcomingExcursions__tariff}>
+						<span>Взрослый (с ланчем)</span>
+						<div>
+							<strong>480 ₽</strong>
+							<span>580 ₽</span>
+							<button>
+								<Image
+									src="/assets/images/upcoming-excursions/upcoming-excursions-cart.svg"
+									width={14}
+									height={14}
+									alt=""
+								/>
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
