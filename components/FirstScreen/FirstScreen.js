@@ -15,7 +15,12 @@ const FirstScreen = () => {
 					</Link>
 				</div>
 				<div className={styles.FirstScreen__location}>
-					<Image src="/assets/images/first-screen/first-screen-map-pin.svg" width={15} height={15}/>
+					<Image
+						src="/assets/images/first-screen/first-screen-map-pin.svg"
+						width={15}
+						height={15}
+						alt=""
+					/>
 					<span>г. Москва</span>
 					<i>(Ваш регион)</i>
 				</div>
