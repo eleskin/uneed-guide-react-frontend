@@ -13,6 +13,7 @@ const App = ({Component, pageProps}) => {
 			<Head>
 				<title>Uneed Guide</title>
 			</Head>
+			<style jsx global>{`body {overflow: ${isActiveMenu ? 'hidden' : 'auto '}}`}</style>
 			<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu}/>
 			<Menu isActiveMenu={isActiveMenu}/>
 			<Component {...pageProps} />

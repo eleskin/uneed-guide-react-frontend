@@ -3,9 +3,9 @@ import styles from './Menu.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Menu = ({isActiveMenu}) => {
+const Menu = ({isActiveMenu, ...props}) => {
 	return (
-		<div className={`${styles.Menu} ${isActiveMenu ? styles.Menu_active : ''}`}>
+		<div {...props} className={`${styles.Menu} ${isActiveMenu ? styles.Menu_active : ''}`}>
 			<header className={styles.Menu__header}>
 				<Button.Secondary>Авторизация</Button.Secondary>
 				<Button.Primary>Регистрация</Button.Primary>
