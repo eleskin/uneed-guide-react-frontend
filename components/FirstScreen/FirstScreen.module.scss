@@ -53,6 +53,7 @@
 		.FirstScreen__location {
 			position: relative;
 			width: 100%;
+			
 			div {
 				display: flex;
 				flex-direction: row;
@@ -74,12 +75,14 @@
 					color: rgba(#ffffff, 0.4);
 				}
 			}
+			
 			.FirstScreen__region {
 				position: absolute;
 				background-color: rgba(#ffffff, 0.95);
 				border-radius: 6px;
 				display: flex;
 				flex-direction: column;
+				align-items: flex-start;
 				top: 30px;
 				right: 0;
 				padding: rem(16px) rem(40px) rem(16px) rem(16px);
@@ -177,7 +180,7 @@
 			transform-origin: 50% 0;
 			z-index: -1;
 			transition: all var(--transition-primary), z-index 0s linear 0.8s;
-		
+			
 			div {
 				max-width: 100%;
 			}
@@ -224,6 +227,66 @@
 				font-size: rem(14px);
 				line-height: rem(21px);
 				color: #ffffff;
+			}
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.FirstScreen {
+		padding: rem(8px) rem(32px) rem(32px) rem(32px);
+		
+		.FirstScreen__search {
+			margin-top: rem(40px);
+			
+			.FirstScreen__calendar {
+				left: -20px;
+				right: -20px;
+				max-width: calc(100% + 40px);
+			}
+		}
+	}
+}
+
+@media (max-width: 360px) {
+	.FirstScreen {
+		.FirstScreen__search {
+			.FirstScreen__calendar {
+				left: 0;
+				right: 0;
+				max-width: 100%;
+			}
+		}
+	}
+}
+
+@media (max-width: 320px) {
+	.FirstScreen {
+		padding: rem(8px) rem(20px) rem(20px) rem(20px);
+		
+		.FirstScreen__header {
+			.FirstScreen__location {
+				.FirstScreen__region {
+					padding: rem(8px);
+					grid-row-gap: rem(8px);
+				}
+			}
+		}
+		
+		.FirstScreen__search {
+			margin-top: rem(40px);
+		}
+	}
+}
+
+@media (max-width: 280px) {
+	.FirstScreen {
+		.FirstScreen__search {
+			label {
+				button {
+					transform: translateX(1.6px) translateY(-0px);
+					height: calc(100% + 1.5px);
+				}
 			}
 		}
 	}
