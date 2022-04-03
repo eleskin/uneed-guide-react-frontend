@@ -13,3 +13,9 @@
 html, body {
 	font-size: 100%;
 }
+
+@media (max-width: 428px) {
+	html, body {
+		font-size: 90%;
+	}
+}
