@@ -129,3 +129,29 @@
 		}
 	}
 }
+
+@media (max-width: 320px) {
+	.Menu {
+		.Menu__header {
+			padding: rem(16px) rem(20px);
+		}
+		
+		.Menu__search {
+			padding: rem(16px) rem(20px);
+		}
+		
+		.Menu__nav {
+			padding: 0 rem(20px) rem(4px) rem(20px);
+			
+			ul {
+				margin: 0 0 rem(20px) 0;
+				
+				li {
+					a {
+						font-size: rem(14px);
+					}
+				}
+			}
+		}
+	}
+}
