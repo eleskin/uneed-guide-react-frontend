@@ -110,7 +110,7 @@
 	transition: all var(--transition-primary), z-index 0s linear 0.8s;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 375px) {
 	.Menu {
 		.Menu__header {
 			padding: rem(20px) rem(32px);
