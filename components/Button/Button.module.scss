@@ -40,3 +40,13 @@
 .Button_secondary.Button_small {
 	padding: rem(8px) 0;
 }
+
+@media (max-width: 320px) {
+	.Button {
+		font-size: rem(12px);
+	}
+	
+	.Button_small {
+		font-size: rem(11px);
+	}
+}
