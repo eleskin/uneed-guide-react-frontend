@@ -105,12 +105,12 @@
 
 .Menu_active {
 	opacity: 1;
-	transform: translateY(-0.2px);
+	transform: translateY(0);
 	z-index: 999;
 	transition: all var(--transition-primary), z-index 0s linear 0.8s;
 }
 
-@media (max-width: 428px) {
+@media (max-width: 420px) {
 	.Menu {
 		.Menu__header {
 			padding: rem(20px) rem(32px);
