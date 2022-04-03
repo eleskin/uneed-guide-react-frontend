@@ -57,7 +57,7 @@ const UpcomingExcursions = () => {
 	
 	const [selectedDay, setSelectedDay] = useState(defaultValue);
 	
-	const [[], setDate] = useState(
+	const [, setDate] = useState(
 		`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`,
 	);
 	
