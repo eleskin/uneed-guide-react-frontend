@@ -238,8 +238,8 @@ const UpcomingExcursions = () => {
 	if (typeof window !== 'undefined') {
 		window.addEventListener('resize', () => {
 			if (cardsRef.current) {
-				for (const card of cardsRef.current.children) {
-					const height = parseFloat(window.getComputedStyle(card).height);
+				if (window.getComputedStyle(cardsRef.current.children[0])) {
+					const height = parseFloat(window.getComputedStyle(cardsRef.current.children[0]).height);
 					if (height) {
 						setMaxCardHeight(height);
 					}
