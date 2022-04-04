@@ -9,7 +9,6 @@ import Image from 'next/image';
 
 const UpcomingExcursions = () => {
 	const [activeSlide, setActiveSlide] = useState(0);
-	const [maxCardHeight, setMaxCardHeight] = useState(0);
 	const [isChangedSlide, setIsChangedSlide] = useState(true);
 	
 	const slides = [
@@ -24,7 +23,7 @@ const UpcomingExcursions = () => {
 			if (isChangedSlide) {
 				activeSlide < slides.length - 1 ? setActiveSlide(activeSlide + 1) : setActiveSlide(0);
 			}
-		}, 4500);
+		}, 5000);
 		
 		return () => clearInterval(interval);
 	}, [activeSlide, isChangedSlide]);
@@ -78,7 +77,7 @@ const UpcomingExcursions = () => {
 	
 	const cardsList = slides.map((slide, index) => (
 		<div
-			className={`${styles.UpcomingExcursions__card} ${activeSlide === index ? styles.UpcomingExcursions__card_active : ''}`}
+			className={styles.UpcomingExcursions__card}
 			key={index}
 		>
 			<div className={styles.UpcomingExcursions__image}>
@@ -226,28 +225,6 @@ const UpcomingExcursions = () => {
 		</div>
 	));
 	
-	useEffect(() => {
-		for (const card of cardsRef.current.children) {
-			const height = parseFloat(window.getComputedStyle(card).height);
-			if (height > maxCardHeight) {
-				setMaxCardHeight(height);
-			}
-		}
-	}, []);
-	
-	if (typeof window !== 'undefined') {
-		window.addEventListener('resize', () => {
-			if (cardsRef.current) {
-				if (window.getComputedStyle(cardsRef.current.children[0])) {
-					const height = parseFloat(window.getComputedStyle(cardsRef.current.children[0]).height);
-					if (height) {
-						setMaxCardHeight(height);
-					}
-				}
-			}
-		});
-	}
-	
 	const handlers = useSwipeable({
 		onSwipedLeft: () => {
 			if (!isVisibleCalendar) {
@@ -270,9 +247,10 @@ const UpcomingExcursions = () => {
 			<div
 				className={styles.UpcomingExcursions__cards}
 				ref={cardsRef}
-				style={{height: maxCardHeight + 8}}
 			>
-				{cardsList}
+				<div className={styles.UpcomingExcursions__container} style={{transform: `translateX(${-100 * activeSlide}%)`}}>
+					{cardsList}
+				</div>
 			</div>
 		</div>
 	);
