@@ -37,7 +37,8 @@ const FirstScreen = () => {
 		event.preventDefault();
 	};
 	
-	const handleFocusInput = () => {
+	const handleFocusInput = (event) => {
+		event.target.blur();
 		setIsVisibleCalendar(true);
 	};
 	
