@@ -1,5 +1,6 @@
 import {createRef, useEffect, useState} from 'react';
 import {Calendar} from 'react-modern-calendar-datepicker';
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import {useSwipeable} from 'react-swipeable';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
@@ -121,7 +122,7 @@ const UpcomingExcursions = () => {
 					<button>16:25</button>
 					<button onClick={handleCalendarButtonClick}>
 						<Image
-							src="/assets/images/first-screen/first-screen-calendar.svg"
+							src="/assets/images/upcoming-excursions/upcoming-excursions-calendar.svg"
 							width={16}
 							height={14}
 							alt=""
