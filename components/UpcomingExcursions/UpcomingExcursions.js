@@ -10,6 +10,7 @@ import Image from 'next/image';
 const UpcomingExcursions = () => {
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [maxCardHeight, setMaxCardHeight] = useState(0);
+	const [isChangedSlide, setIsChangedSlide] = useState(true);
 	
 	const slides = [
 		{},
@@ -18,15 +19,15 @@ const UpcomingExcursions = () => {
 		{},
 	];
 	
-	let interval;
-	
 	useEffect(() => {
-		interval = setInterval(() => {
-			activeSlide < slides.length - 1 ? setActiveSlide(activeSlide + 1) : setActiveSlide(0);
+		const interval = setInterval(() => {
+			if (isChangedSlide) {
+				activeSlide < slides.length - 1 ? setActiveSlide(activeSlide + 1) : setActiveSlide(0);
+			}
 		}, 4500);
 		
 		return () => clearInterval(interval);
-	}, [activeSlide]);
+	}, [activeSlide, isChangedSlide]);
 	
 	const dotsList = slides.map((slide, index) => (
 		<div
@@ -44,8 +45,13 @@ const UpcomingExcursions = () => {
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	
 	const handleCalendarButtonClick = () => {
-		clearInterval(interval);
-		setIsVisibleCalendar(true);
+		if (isVisibleCalendar) {
+			setIsChangedSlide(true);
+			setIsVisibleCalendar(false);
+		} else {
+			setIsChangedSlide(false);
+			setIsVisibleCalendar(true);
+		}
 	};
 	
 	const today = new Date();
@@ -244,10 +250,14 @@ const UpcomingExcursions = () => {
 	
 	const handlers = useSwipeable({
 		onSwipedLeft: () => {
-			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+			if (!isVisibleCalendar) {
+				activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+			}
 		},
 		onSwipedRight: () => {
-			activeSlide > 0 && setActiveSlide(activeSlide - 1);
+			if (!isVisibleCalendar) {
+				activeSlide > 0 && setActiveSlide(activeSlide - 1);
+			}
 		},
 	});
 	
