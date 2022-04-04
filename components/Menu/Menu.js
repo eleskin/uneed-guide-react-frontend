@@ -14,7 +14,7 @@ const Menu = ({isActiveMenu, ...props}) => {
 				<label>
 					<input type="text" placeholder="Например, экскурсии по Москва-реке"/>
 					<Image
-						src="/assets/images/header/header-magnifier.svg"
+						src="/assets/images/menu/menu-magnifier.svg"
 						width={16}
 						height={16}
 						alt=""
