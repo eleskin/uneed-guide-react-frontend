@@ -2,7 +2,7 @@ import '/styles/normalize.scss';
 import '/styles/globals.scss';
 import Head from 'next/head';
 import {Fragment} from 'react';
-import Navigation from '../components/Navigation/Navigation';
+import Menu from '../components/Menu/Menu';
 
 const App = ({Component, pageProps}) => {
 	return (
@@ -10,7 +10,7 @@ const App = ({Component, pageProps}) => {
 			<Head>
 				<title>Uneed Guide</title>
 			</Head>
-			<Navigation/>
+			<Menu isActiveMenu={true}/>
 			<Component {...pageProps} />
 		</Fragment>
 	);
