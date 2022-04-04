@@ -4,6 +4,7 @@ import Head from 'next/head';
 import {Fragment, useState} from 'react';
 import Header from '../components/Header/Header';
 import Menu from '../components/Menu/Menu';
+import Footer from '../components/Footer/Footer';
 
 const App = ({Component, pageProps}) => {
 	const [isActiveMenu, setIsActiveMenu] = useState(false);
@@ -18,6 +19,7 @@ const App = ({Component, pageProps}) => {
 			<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} setHeaderHeight={setHeaderHeight}/>
 			<Menu isActiveMenu={isActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
 			<Component {...pageProps} />
+			<Footer/>
 		</Fragment>
 	);
 };
