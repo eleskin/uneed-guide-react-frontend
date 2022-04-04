@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+* {
+	outline-color: rgba(#f0515d, 0.5);
+	font-family: 'Open Sans', sans-serif;
+	box-sizing: border-box;
+}
+
+:root {
+	--transition-primary: 1s ease;
+}
+
+html, body {
+	font-size: 100%;
+}
+
+@media (max-width: 420px) {
+	html, body {
+		font-size: 90%;
+	}
+}
