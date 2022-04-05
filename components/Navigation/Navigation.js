@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from './Navigation.module.scss';
 
 const Navigation = () => {
@@ -115,38 +114,6 @@ const Navigation = () => {
 							</li>
 						</ul>
 					</div>
-				</div>
-				<div className={styles.Navigation__bottom}>
-					<div className={styles.Navigation__title}>
-						<h4>Часто посещают в Москве</h4>
-						<Link href="#"><a>Изменить город</a></Link>
-					</div>
-					<ul className={styles.Navigation__places}>
-						<li>
-							<Link href="#">
-								<a>
-									<i>5.0 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
-									<span>Обзорная прогулка по Москве с личным гидом</span>
-								</a>
-							</Link>
-						</li>
-						<li>
-							<Link href="#">
-								<a>
-									<i>4.9 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
-									<span>Кронштадт — Никольский (Морской) собор и Петровский док</span>
-								</a>
-							</Link>
-						</li>
-						<li>
-							<Link href="#">
-								<a>
-									<i>4.9 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
-									<span>Билеты в Кремль и Оружейную палату</span>
-								</a>
-							</Link>
-						</li>
-					</ul>
 				</div>
 			</div>
 		</nav>
