@@ -4,7 +4,7 @@
 	background: #ffffff;
 	box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 	border-bottom: 1px solid transparent;
-	position: sticky;
+	position: relative;
 	width: 100%;
 	top: 0;
 	z-index: 999;
@@ -32,7 +32,7 @@
 			position: relative;
 			width: 100%;
 			left: 20px;
-			z-index: 1;
+			z-index: 4;
 			cursor: pointer;
 			
 			div {
@@ -361,6 +361,8 @@
 
 @media (min-width: 768px) {
 	.Header {
+		position: sticky;
+		
 		.Header__top {
 			display: flex;
 		}
