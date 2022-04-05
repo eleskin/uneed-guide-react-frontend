@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {createRef} from 'react';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
@@ -31,6 +32,38 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 				</span>
 			</div>
 			<Navigation/>
+			<footer className={styles.Menu__footer}>
+				<div className={styles.Menu__title}>
+					<h4>Часто посещают в Москве</h4>
+					<Link href="#"><a>Изменить город</a></Link>
+				</div>
+				<ul className={styles.Menu__places}>
+					<li>
+						<Link href="#">
+							<a>
+								<i>5.0 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
+								<span>Обзорная прогулка по Москве с личным гидом</span>
+							</a>
+						</Link>
+					</li>
+					<li>
+						<Link href="#">
+							<a>
+								<i>4.9 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
+								<span>Кронштадт — Никольский (Морской) собор и Петровский док</span>
+							</a>
+						</Link>
+					</li>
+					<li>
+						<Link href="#">
+							<a>
+								<i>4.9 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
+								<span>Билеты в Кремль и Оружейную палату</span>
+							</a>
+						</Link>
+					</li>
+				</ul>
+			</footer>
 		</div>
 	);
 };
