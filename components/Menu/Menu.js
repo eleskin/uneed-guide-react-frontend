@@ -41,7 +41,7 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 					<li>
 						<Link href="#">
 							<a>
-								<i>5.0 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
+								<i>5.0 <Image src="/assets/images/menu/menu-heart.svg" width={11} height={9} alt=""/></i>
 								<span>Обзорная прогулка по Москве с личным гидом</span>
 							</a>
 						</Link>
@@ -49,7 +49,7 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 					<li>
 						<Link href="#">
 							<a>
-								<i>4.9 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
+								<i>4.9 <Image src="/assets/images/menu/menu-heart.svg" width={11} height={9} alt=""/></i>
 								<span>Кронштадт — Никольский (Морской) собор и Петровский док</span>
 							</a>
 						</Link>
@@ -57,7 +57,7 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 					<li>
 						<Link href="#">
 							<a>
-								<i>4.9 <Image src="/assets/images/navigation/navigation-heart.svg" width={11} height={9} alt=""/></i>
+								<i>4.9 <Image src="/assets/images/menu/menu-heart.svg" width={11} height={9} alt=""/></i>
 								<span>Билеты в Кремль и Оружейную палату</span>
 							</a>
 						</Link>
