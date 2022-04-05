@@ -1,11 +1,17 @@
+import {createRef} from 'react';
+import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
 import Navigation from '../Navigation/Navigation';
 import styles from './Menu.module.scss';
 import Image from 'next/image';
 
-const Menu = ({isActiveMenu, ...props}) => {
+const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
+	const menuRef = createRef();
+	
+	useOutsideClickHandler(menuRef, isActiveMenu, setIsActiveMenu);
+	
 	return (
-		<div {...props} className={`${styles.Menu} ${isActiveMenu ? styles.Menu_active : ''}`}>
+		<div {...props} className={`${styles.Menu} ${isActiveMenu ? styles.Menu_active : ''}`} ref={menuRef}>
 			<header className={styles.Menu__header}>
 				<Button.Secondary>Авторизация</Button.Secondary>
 				<Button.Primary>Регистрация</Button.Primary>

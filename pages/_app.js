@@ -16,7 +16,7 @@ const App = ({Component, pageProps}) => {
 			</Head>
 			<style jsx global>{`body {overflow: ${isActiveMenu ? 'hidden' : 'auto '}}`}</style>
 			<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} setHeaderHeight={setHeaderHeight}/>
-			<Menu isActiveMenu={isActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
+			<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
 			<Component {...pageProps} />
 		</Fragment>
 	);
