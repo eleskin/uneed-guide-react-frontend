@@ -8,7 +8,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 	const [isLogin,] = useState(false);
 	
 	const handleButtonClick = () => {
-		setIsActiveMenu(!isActiveMenu);
+		setTimeout(() => setIsActiveMenu(!isActiveMenu), 0);
 	};
 	
 	const headerRef = createRef();
