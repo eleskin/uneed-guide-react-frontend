@@ -77,6 +77,7 @@
 					left: 0;
 					bottom: 0;
 					margin: auto;
+					transition: var(--transition-primary);
 				}
 				
 				button::before {
@@ -87,6 +88,10 @@
 				button::after {
 					width: 8px;
 					transform: translateY(2.5px) translateX(22px);
+				}
+				
+				button:hover::before, button:hover::after {
+					background-color: #ffffff;
 				}
 				
 				label {
