@@ -140,6 +140,9 @@
 @media (min-width: 1024px) {
 	.Footer {
 		.Footer__navigation {
+			padding-left: rem(52px);
+			padding-right: rem(52px);
+			
 			.Footer__container {
 				grid-column-gap: rem(250px);
 				
