@@ -26,24 +26,24 @@ const App = ({Component, pageProps}) => {
 	
 	return (
 		<Provider store={store}>
-		<Fragment>
-			<Head>
-				<title>Uneed Guide</title>
-			</Head>
-			<style jsx global>
-				{
-					`body {
+			<Fragment>
+				<Head>
+					<title>Uneed Guide</title>
+				</Head>
+				<style jsx global>
+					{
+						`body {
 						overflow: ${isActiveMenu && windowWidth < 768 ? 'hidden' : 'auto '}
 					}`
-				}
-			</style>
-			<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} setHeaderHeight={setHeaderHeight}/>
-			<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
-			<Component {...pageProps} />
-			<Footer/>
-			<Navbar/>
-		</Fragment>
-</Provider>
+					}
+				</style>
+				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} setHeaderHeight={setHeaderHeight}/>
+				<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
+				<Component {...pageProps} />
+				<Footer/>
+				<Navbar/>
+			</Fragment>
+		</Provider>
 	);
 };
 
