@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  uneed_guide_react_frontend_test:
+    build:
+      context: ../../
+    container_name: uneed_guide_react_frontend_test
+    restart: always
+    working_dir: /usr/src/app
+    ports:
+      - '3002:3000'
