@@ -1,6 +1,7 @@
 import {createRef, useEffect, useState} from 'react';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
+import RegionSelect from '../RegionSelect/RegionSelect';
 import UpcomingExcursions from '../UpcomingExcursions/UpcomingExcursions';
 import styles from './FirstScreen.module.scss';
 import Link from 'next/link';
@@ -10,15 +11,6 @@ import {Calendar} from 'react-modern-calendar-datepicker';
 
 const FirstScreen = () => {
 	const today = new Date();
-	const [isVisibleRegionSelector, setIsVisibleRegionSelector] = useState(true);
-	
-	const handleButtonCloseClick = () => {
-		setIsVisibleRegionSelector(false);
-	};
-	
-	const handleButtonOpenClick = () => {
-		setIsVisibleRegionSelector(true);
-	};
 	
 	const defaultValue = {
 		year: today.getFullYear(),
@@ -66,35 +58,7 @@ const FirstScreen = () => {
 						<a className={styles.FirstScreen__language}>EN</a>
 					</Link>
 				</div>
-				<div className={styles.FirstScreen__location}>
-					<div onClick={handleButtonOpenClick}>
-						<Image
-							src="/assets/images/first-screen/first-screen-map-pin.svg"
-							width={15}
-							height={15}
-							alt=""
-						/>
-						<span>г. Москва</span>
-						<i>(Ваш регион)</i>
-					</div>
-					<div
-						className={`${styles.FirstScreen__region} ${isVisibleRegionSelector ? styles.FirstScreen__region_active : ''}`}
-					>
-						<header>
-							<Image
-								src="/assets/images/first-screen/first-screen-map-pin.svg"
-								width={15}
-								height={15}
-								alt=""
-							/>
-							<span>Ваш регион Москва?</span>
-						</header>
-						<footer>
-							<Button.Primary small={true} onClick={handleButtonCloseClick}>Да, верно</Button.Primary>
-							<Button.Outlined small={true} onClick={handleButtonCloseClick}>Нет, другой</Button.Outlined>
-						</footer>
-					</div>
-				</div>
+				<RegionSelect mode="first-screen"/>
 			</header>
 			<div className={styles.FirstScreen__title}>
 				<span>Дольше путешествие - больше открытий</span>
