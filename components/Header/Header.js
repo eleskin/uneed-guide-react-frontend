@@ -17,7 +17,13 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 	};
 	
 	const handleButtonClick = () => {
-		setTimeout(() => setIsActiveMenu(!isActiveMenu), 0);
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+		setTimeout(() => {
+			setIsActiveMenu(!isActiveMenu);
+		}, 0);
 	};
 	
 	const headerRef = createRef();
@@ -27,7 +33,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 			setHeaderHeight(parseFloat(window.getComputedStyle(headerRef.current).height));
 		}
 	}, [headerRef, setHeaderHeight]);
-	
+
 	if (typeof window !== 'undefined') {
 		window.addEventListener('resize', () => {
 			if (headerRef.current instanceof Element) {
