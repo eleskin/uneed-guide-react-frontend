@@ -15,8 +15,10 @@ html, body {
 	font-size: 100%;
 }
 
-body {
-	padding-bottom: 48.9px
+@media (max-width: 768px) {
+	body {
+		padding-bottom: 48.9px
+	}
 }
 
 @media (max-width: 420px) {
