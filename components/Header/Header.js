@@ -1,20 +1,12 @@
 import {createRef, useEffect, useState} from 'react';
 import Button from '../Button/Button';
+import RegionSelect from '../RegionSelect/RegionSelect';
 import styles from './Header.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 	const [isLogin] = useState(false);
-	const [isVisibleRegionSelector, setIsVisibleRegionSelector] = useState(true);
-	
-	const handleButtonCloseClick = () => {
-		setIsVisibleRegionSelector(false);
-	};
-	
-	const handleButtonOpenClick = () => {
-		setIsVisibleRegionSelector(true);
-	};
 	
 	const handleButtonClick = () => {
 		window.scrollTo({
@@ -50,35 +42,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 		>
 			<div className={styles.Header__top}>
 				<div className={styles.Header__container}>
-					<div className={styles.Header__location}>
-						<div onClick={handleButtonOpenClick}>
-							<Image
-								src="/assets/images/first-screen/first-screen-map-pin.svg"
-								width={15}
-								height={15}
-								alt=""
-							/>
-							<span>г. Москва</span>
-							<i>(Ваш регион)</i>
-						</div>
-						<div
-							className={`${styles.Header__region} ${isVisibleRegionSelector ? styles.Header__region_active : ''}`}
-						>
-							<header>
-								<Image
-									src="/assets/images/first-screen/first-screen-map-pin.svg"
-									width={15}
-									height={15}
-									alt=""
-								/>
-								<span>Ваш регион Москва?</span>
-							</header>
-							<footer>
-								<Button.Primary small={true} onClick={handleButtonCloseClick}>Да, верно</Button.Primary>
-								<Button.Outlined small={true} onClick={handleButtonCloseClick}>Нет, другой</Button.Outlined>
-							</footer>
-						</div>
-					</div>
+					<RegionSelect/>
 					<div className={styles.Header__menu}>
 						<ul>
 							<li>
