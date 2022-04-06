@@ -1,7 +1,29 @@
 import Link from 'next/link';
+import {useEffect} from 'react';
+import {connect, useDispatch} from 'react-redux';
+import {getAll} from '../../store/slices/navigation';
 import styles from './Navigation.module.scss';
 
-const Navigation = () => {
+const Navigation = ({mainMenuElements}) => {
+	const dispatch = useDispatch();
+	
+	useEffect(() => {
+		dispatch(getAll());
+	}, [dispatch]);
+	
+	const navigationDesktopElements = mainMenuElements.map((mainMenuElement, index) => (
+		<div className={styles.Navigation__column} key={index}>
+			<h6>
+				<Link href={mainMenuElement.url}><a target={mainMenuElement.target}>{mainMenuElement.name}</a></Link>
+			</h6>
+			<ul>
+				{mainMenuElement['childs'].map((link, index) => (
+					<li key={index}><Link href={link.url}><a target={link.target}>{link.name}</a></Link></li>
+				))}
+			</ul>
+		</div>
+	));
+	
 	return (
 		<nav className={styles.Navigation}>
 			<div className={styles.Navigation__mobile}>
@@ -51,73 +73,16 @@ const Navigation = () => {
 			</div>
 			<div className={styles.Navigation__desktop}>
 				<div className={styles.Navigation__top}>
-					<div className={styles.Navigation__column}>
-						<h6>На транспорте</h6>
-						<ul>
-							<li>
-								<Link href="#"><a>Ночные экскурсии</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Экскурсии на автобусе</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Обзорные экскурсии</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Авторские прогулки</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Автобусные экскурсии</a></Link>
-							</li>
-						</ul>
-					</div>
-					<div className={styles.Navigation__column}>
-						<h6>Пешеходные</h6>
-						<ul>
-							<li>
-								<Link href="#"><a>Ночные экскурсии</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Музеи</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Прогулки по Москва-реке</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>По бункерам</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Усадьбы и парки</a></Link>
-							</li>
-						</ul>
-					</div>
-					<div className={styles.Navigation__column}>
-						<h6>Прочее</h6>
-						<ul>
-							<li>
-								<Link href="#"><a>Мистические экскурсии</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Пешеходные экскурсии</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Экскурсии на автобусе</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Обзорные экскурсии</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Авторские прогулки</a></Link>
-							</li>
-							<li>
-								<Link href="#"><a>Музеи</a></Link>
-							</li>
-						</ul>
-					</div>
+					{navigationDesktopElements}
 				</div>
 			</div>
 		</nav>
 	);
 };
 
-export default Navigation;
+export default connect(
+	(state, props) => ({
+		mainMenuElements: state.navigationSlice.mainMenuElements,
+		props: props,
+	}),
+)(Navigation);
