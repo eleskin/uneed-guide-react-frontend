@@ -4,6 +4,8 @@ import Head from 'next/head';
 import {Fragment, useEffect, useState} from 'react';
 import Header from '../components/Header/Header';
 import Menu from '../components/Menu/Menu';
+import {Provider} from 'react-redux';
+import store from '../store';
 
 const App = ({Component, pageProps}) => {
 	const [isActiveMenu, setIsActiveMenu] = useState(false);
@@ -21,6 +23,7 @@ const App = ({Component, pageProps}) => {
 	}
 	
 	return (
+		<Provider store={store}>
 		<Fragment>
 			<Head>
 				<title>Uneed Guide</title>
@@ -36,6 +39,7 @@ const App = ({Component, pageProps}) => {
 			<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
 			<Component {...pageProps} />
 		</Fragment>
+		</Provider>
 	);
 };
 
