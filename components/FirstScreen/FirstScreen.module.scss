@@ -49,98 +49,6 @@
 				grid-column-gap: 0;
 			}
 		}
-		
-		.FirstScreen__location {
-			position: relative;
-			width: 100%;
-			
-			div {
-				display: flex;
-				flex-direction: row;
-				justify-content: flex-end;
-				align-items: center;
-				grid-column-gap: 4px;
-				
-				span {
-					font-size: rem(12px);
-					line-height: rem(18px);
-					color: #ffffff;
-				}
-				
-				i {
-					font-style: normal;
-					font-weight: 400;
-					font-size: rem(10px);
-					line-height: rem(15px);
-					color: rgba(#ffffff, 0.4);
-				}
-			}
-			
-			.FirstScreen__region {
-				position: absolute;
-				background-color: rgba(#ffffff, 0.95);
-				border-radius: 6px;
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				top: 30px;
-				right: 0;
-				padding: rem(16px) rem(40px) rem(16px) rem(16px);
-				grid-row-gap: rem(16px);
-				opacity: 0;
-				transform: scale(0.6);
-				transform-origin: 100% 0;
-				z-index: -1;
-				transition: all var(--transition-primary), z-index 0s linear 0.8s;
-				
-				header, footer {
-					display: flex;
-				}
-				
-				header {
-					display: flex;
-					flex-direction: row;
-					justify-content: flex-start;
-					align-items: center;
-					grid-column-gap: 6px;
-					
-					span {
-						font-size: rem(12px);
-						line-height: rem(18px);
-						color: #212121;
-					}
-				}
-				
-				footer {
-					display: flex;
-					flex-direction: row;
-					justify-content: flex-start;
-					align-items: center;
-					grid-column-gap: 8px;
-				}
-			}
-			
-			.FirstScreen__region::after {
-				content: '';
-				position: absolute;
-				display: block;
-				top: 0;
-				right: 20px;
-				transform: rotate(45deg) translateY(-5.3px);
-				width: 0;
-				height: 0;
-				border-style: solid;
-				border-width: 4px;
-				border-color: rgba(#ffffff, 0.95) transparent transparent rgba(#ffffff, 0.95);
-			}
-			
-			.FirstScreen__region_active {
-				opacity: 1;
-				transform: scale(1);
-				z-index: 0;
-				transition: all var(--transition-primary), z-index 0s linear 0s;
-			}
-		}
 	}
 	
 	.FirstScreen__title {
@@ -265,12 +173,6 @@
 		padding: rem(8px) rem(20px) rem(20px) rem(20px);
 		
 		.FirstScreen__header {
-			.FirstScreen__location {
-				.FirstScreen__region {
-					padding: rem(8px);
-					grid-row-gap: rem(8px);
-				}
-			}
 		}
 		
 		.FirstScreen__search {
