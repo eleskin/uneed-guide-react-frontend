@@ -9,13 +9,19 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 	const [isLogin] = useState(false);
 	
 	const handleButtonClick = () => {
+		setTimeout(() => {
+			setIsActiveMenu(!isActiveMenu);
+		}, 0);
+	};
+	
+	const handleButtonClickDesktop = () => handleButtonClick();
+	
+	const handleButtonClickMobile = () => {
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth',
 		});
-		setTimeout(() => {
-			setIsActiveMenu(!isActiveMenu);
-		}, 0);
+		handleButtonClick();
 	};
 	
 	const headerRef = createRef();
@@ -42,7 +48,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 		>
 			<div className={styles.Header__top}>
 				<div className={styles.Header__container}>
-					<RegionSelect/>
+					<RegionSelect mode="header"/>
 					<div className={styles.Header__menu}>
 						<ul>
 							<li>
@@ -93,7 +99,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 					</Link>
 					<div className={styles.Header__desktop}>
 						<div className={styles.Header__center}>
-							<Button.Outlined small={true} onClick={handleButtonClick}>Каталог</Button.Outlined>
+							<Button.Outlined small={true} onClick={handleButtonClickDesktop}>Каталог</Button.Outlined>
 							<label>
 								<Image src="/assets/images/header/header-search.svg" width={18} height={18} alt=""/>
 								<input type="text" placeholder="Поиск по Москве"/>
@@ -128,7 +134,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 					</div>
 					<button
 						className={styles.Header__button}
-						onClick={handleButtonClick}
+						onClick={handleButtonClickMobile}
 					/>
 				</div>
 			</div>
