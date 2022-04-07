@@ -1,17 +1,31 @@
 import Image from 'next/image';
+import {useRouter} from 'next/router';
 import {Fragment, useEffect, useState} from 'react';
-import {connect, useDispatch} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
+import {setIsActiveRegionSelector} from '../../store/slices';
 import {getAll} from '../../store/slices/geolocation';
 import Button from '../Button/Button';
 import styles from './RegionSelect.module.scss';
 
 const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates}) => {
 	const dispatch = useDispatch();
+	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
+	const router = useRouter();
+	
 	const [isVisibleRegionSelector, setIsVisibleRegionSelector] = useState(true);
 	const [currentRegion, setCurrentRegion] = useState(citiesTranslates?.[nearestCity?.['internationalName']] || 'Москва');
 	
-	const handleButtonCloseClick = () => {
+	const handleButtonYesClick = () => {
+		router.push({
+			pathname: '/ru/[city]',
+			query: {city: selectedCity?.['internationalName'].toLowerCase() || ''},
+		}).then(r => r);
 		setIsVisibleRegionSelector(false);
+	};
+	
+	const handleButtonNoClick = () => {
+		setIsVisibleRegionSelector(false);
+		dispatch(setIsActiveRegionSelector(true));
 	};
 	
 	const handleButtonOpenClick = () => {
@@ -53,8 +67,8 @@ const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates}) => {
 							<span>Ваш регион {currentRegion}?</span>
 						</header>
 						<footer>
-							<Button.Primary small={true} onClick={handleButtonCloseClick}>Да, верно</Button.Primary>
-							<Button.Outlined small={true} onClick={handleButtonCloseClick}>Нет, другой</Button.Outlined>
+							<Button.Primary small={true} onClick={handleButtonYesClick}>Да, верно</Button.Primary>
+							<Button.Outlined small={true} onClick={handleButtonNoClick}>Нет, другой</Button.Outlined>
 						</footer>
 					</div>
 				</Fragment>

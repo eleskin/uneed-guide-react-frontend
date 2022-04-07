@@ -5,6 +5,7 @@ import {Fragment} from 'react';
 import {Provider} from 'react-redux';
 import FirstScreen from '../components/FirstScreen/FirstScreen';
 import store from '../store';
+import RegionSelector from '../components/RegionSelector/RegionSelector';
 
 const App = ({Component, pageProps}) => {
 	return (
@@ -15,6 +16,7 @@ const App = ({Component, pageProps}) => {
 				</Head>
 				<FirstScreen/>
 				<Component {...pageProps} />
+				<RegionSelector/>
 			</Fragment>
 		</Provider>
 	);
