@@ -34,16 +34,6 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 		}
 	}, [headerRef, setHeaderHeight]);
 	
-	useEffect(() => {
-		const headerResizeObserver = new ResizeObserver((entries => {
-			if (entries[0].contentRect.height !== headerHeight) setHeaderHeight(entries[0].contentRect.height);
-		}));
-		
-		if (headerRef.current instanceof Element) {
-			headerResizeObserver.observe(headerRef.current);
-		}
-	}, [headerHeight, headerRef, setHeaderHeight]);
-	
 	return (
 		<header
 			{...props}
