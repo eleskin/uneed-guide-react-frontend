@@ -2,34 +2,33 @@ import Image from 'next/image';
 import {useRouter} from 'next/router';
 import {Fragment, useEffect, useState} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
-import {setIsActiveRegionSelector} from '../../store/slices';
+import {setIsActiveRegionSelector, setIsVisibleRegionSelector} from '../../store/slices';
 import {getAll} from '../../store/slices/geolocation';
 import Button from '../Button/Button';
 import styles from './RegionSelect.module.scss';
 
-const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates}) => {
+const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates, isVisibleRegionSelector}) => {
 	const dispatch = useDispatch();
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	const router = useRouter();
 	
-	const [isVisibleRegionSelector, setIsVisibleRegionSelector] = useState(true);
-	const [currentRegion, setCurrentRegion] = useState(citiesTranslates?.[nearestCity?.['internationalName']] || 'Москва');
+	const [currentRegion, setCurrentRegion] = useState(citiesTranslates?.[nearestCity?.['internationalName'].toLowerCase()] || '');
 	
 	const handleButtonYesClick = () => {
 		router.push({
-			pathname: '/ru/[city]',
+			pathname: '/[city]',
 			query: {city: selectedCity?.['internationalName'].toLowerCase() || ''},
 		}).then(r => r);
-		setIsVisibleRegionSelector(false);
+		dispatch(setIsVisibleRegionSelector(false));
 	};
 	
 	const handleButtonNoClick = () => {
-		setIsVisibleRegionSelector(false);
+		dispatch(setIsVisibleRegionSelector(false));
 		dispatch(setIsActiveRegionSelector(true));
 	};
 	
 	const handleButtonOpenClick = () => {
-		setIsVisibleRegionSelector(true);
+		dispatch(setIsVisibleRegionSelector(true));
 	};
 	
 	useEffect(() => {
@@ -37,12 +36,12 @@ const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates}) => {
 	}, [dispatch]);
 	
 	useEffect(() => {
-		setCurrentRegion(citiesTranslates?.[nearestCity?.['internationalName']] || 'Москва');
-	}, [citiesTranslates, nearestCity]);
+		setCurrentRegion(citiesTranslates?.[selectedCity?.['internationalName'].toLowerCase()]);
+	}, [citiesTranslates, selectedCity]);
 	
 	return (
 		<div className={`${styles.RegionSelect} ${mode === 'first-screen' ? styles.RegionSelect__firstScreen : ''}`}>
-			{currentRegion !== undefined && (
+			{currentRegion && (
 				<Fragment>
 					<div onClick={handleButtonOpenClick}>
 						<Image
@@ -79,6 +78,7 @@ const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates}) => {
 
 export default connect(
 	(state, props) => ({
+		isVisibleRegionSelector: state.indexSlice.isVisibleRegionSelector,
 		nearestCity: state.geolocationSlice.nearestCity,
 		citiesTranslates: state.geolocationSlice.citiesTranslates,
 		props: props,
