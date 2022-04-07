@@ -37,7 +37,9 @@ export const getAll = createAsyncThunk(
 			if (response.status === 200) {
 				return new Promise((resolve) => {
 					_getCurrentPosition().then((result) => {
-						resolve(_getNearestCity(response.data, result));
+						const nearestCity = _getNearestCity(response.data, result);
+						const otherCities = response.data.filter((city) => city.id !== nearestCity.id);
+						resolve([nearestCity, ...otherCities]);
 					});
 				});
 			}
@@ -52,24 +54,33 @@ export const getAll = createAsyncThunk(
 
 const initialState = {
 	nearestCity: null,
+	selectedCity: null,
 	citiesTranslates: {
 		'Moscow': 'Москва',
 		'St.Petersburg': 'Санкт-Петербург',
 		'Murmansk': 'Мурманск',
-	}
+	},
+	cities: {},
 };
 
 const slice = createSlice({
 	name: 'geolocation',
 	initialState: initialState,
-	reducers: {},
+	reducers: {
+		setSelectedCity(state, {payload}) {
+			state.selectedCity = Object.values(state.cities)[payload];
+		},
+	},
 	extraReducers: {
 		[getAll.fulfilled]: (state, {payload}) => {
 			if (payload) {
-				state.nearestCity = payload;
+				state.cities = payload;
+				state.nearestCity = payload[0];
+				state.selectedCity = payload[0];
 			}
 		},
 	},
 });
 
+export const {setSelectedCity} = slice.actions;
 export default slice.reducer;

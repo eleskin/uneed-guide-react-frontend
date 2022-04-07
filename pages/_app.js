@@ -8,6 +8,7 @@ import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Navbar/Navbar';
 import {Provider} from 'react-redux';
 import store from '../store';
+import RegionSelector from '../components/RegionSelector/RegionSelector';
 
 const App = ({Component, pageProps}) => {
 	const [isActiveMenu, setIsActiveMenu] = useState(false);
@@ -44,6 +45,7 @@ const App = ({Component, pageProps}) => {
 				<Component {...pageProps} />
 				<Footer/>
 				<Navbar/>
+				<RegionSelector/>
 			</Fragment>
 		</Provider>
 	);
