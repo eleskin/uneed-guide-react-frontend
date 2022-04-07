@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
@@ -47,15 +48,25 @@ const FirstScreen = () => {
 	
 	useOutsideClickHandler(searchRef, isVisibleCalendar, setIsVisibleCalendar);
 	
+	const router = useRouter();
+	
 	return (
 		<div className={styles.FirstScreen}>
 			<header className={styles.FirstScreen__header}>
 				<div className={styles.FirstScreen__languages}>
-					<Link href="#">
-						<a className={`${styles.FirstScreen__language} ${styles.FirstScreen__language_active}`}>RU</a>
+					<Link href="#" locale="ru">
+						<a
+							className={`${styles.FirstScreen__language} ${router.locale === 'ru' ? styles.FirstScreen__language_active : ''}`}
+						>
+							RU
+						</a>
 					</Link>
-					<Link href="#">
-						<a className={styles.FirstScreen__language}>EN</a>
+					<Link href="#" locale="en">
+						<a
+							className={`${styles.FirstScreen__language} ${router.locale === 'en' ? styles.FirstScreen__language_active : ''}`}
+						>
+							EN
+						</a>
 					</Link>
 				</div>
 				<RegionSelect mode="first-screen"/>
