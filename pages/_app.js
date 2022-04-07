@@ -6,6 +6,7 @@ import Header from '../components/Header/Header';
 import Menu from '../components/Menu/Menu';
 import {Provider} from 'react-redux';
 import store from '../store';
+import RegionSelector from '../components/RegionSelector/RegionSelector';
 
 const App = ({Component, pageProps}) => {
 	const [isActiveMenu, setIsActiveMenu] = useState(false);
@@ -44,6 +45,7 @@ const App = ({Component, pageProps}) => {
 				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight}/>
 				<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
 				<Component {...pageProps} />
+				<RegionSelector/>
 			</Fragment>
 		</Provider>
 	);
