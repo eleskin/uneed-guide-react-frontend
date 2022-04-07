@@ -15,7 +15,7 @@ const RegionSelector = ({isActiveRegionSelector}) => {
 	const handleClickCity = (index) => {
 		dispatch(setSelectedCity(index));
 		router.push({
-			pathname: '/ru/[city]',
+			pathname: '[city]',
 			query: {city: cities[index]?.['internationalName'].toLowerCase() || ''},
 		}).then();
 		dispatch(setIsActiveRegionSelector(false));
