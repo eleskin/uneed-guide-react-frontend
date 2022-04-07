@@ -18,11 +18,17 @@ const App = ({Component, pageProps}) => {
 		setWindowWidth(window.innerWidth);
 	}, [setWindowWidth]);
 	
-	if (typeof window !== 'undefined') {
-		window.addEventListener('resize', () => {
-			setWindowWidth(window.innerWidth);
-		});
-	}
+	useEffect(() => {
+		const onResize = () => {
+			if ((window.innerWidth < 768 && windowWidth >= 768) || (window.innerWidth >= 768 && windowWidth < 768)) {
+				setWindowWidth(window.innerWidth);
+			}
+		};
+		
+		window.addEventListener('resize', onResize);
+		
+		return () => window.removeEventListener('resize', onResize);
+	}, [windowWidth]);
 	
 	return (
 		<Provider store={store}>
@@ -37,7 +43,7 @@ const App = ({Component, pageProps}) => {
 					}`
 					}
 				</style>
-				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} setHeaderHeight={setHeaderHeight}/>
+				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight}/>
 				<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
 				<Component {...pageProps} />
 				<Footer/>

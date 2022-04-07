@@ -6,7 +6,7 @@ import styles from './Header.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
+const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, ...props}) => {
 	const [isLogin] = useState(false);
 	const router = useRouter();
 	
@@ -33,14 +33,16 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 			setHeaderHeight(parseFloat(window.getComputedStyle(headerRef.current).height));
 		}
 	}, [headerRef, setHeaderHeight]);
-
-	if (typeof window !== 'undefined') {
-		window.addEventListener('resize', () => {
-			if (headerRef.current instanceof Element) {
-				setHeaderHeight(parseFloat(window.getComputedStyle(headerRef.current).height));
-			}
-		});
-	}
+	
+	useEffect(() => {
+		const headerResizeObserver = new ResizeObserver((entries => {
+			if (entries[0].contentRect.height !== headerHeight) setHeaderHeight(entries[0].contentRect.height);
+		}));
+		
+		if (headerRef.current instanceof Element) {
+			headerResizeObserver.observe(headerRef.current);
+		}
+	}, [headerHeight, headerRef, setHeaderHeight]);
 	
 	return (
 		<header
