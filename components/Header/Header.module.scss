@@ -274,7 +274,7 @@
 		.Header__main {
 			.Header__container {
 				display: grid;
-				grid-template-columns: 15% 85%;
+				grid-template-columns: auto auto;
 				grid-column-gap: rem(12px);
 				
 				.Header__logo {
