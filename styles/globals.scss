@@ -4,11 +4,13 @@
 	outline-color: rgba(#f0515d, 0.5);
 	font-family: 'Open Sans', sans-serif;
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
 }
 
 :root {
 	--transition-primary: 1s ease;
-	--button-transition: 0.5s ease;
+	--transition-button: 0.5s ease;
+	--transition-popup: 0.4s ease;
 }
 
 html, body {

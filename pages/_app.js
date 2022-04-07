@@ -4,6 +4,7 @@ import Head from 'next/head';
 import {Fragment} from 'react';
 import {Provider} from 'react-redux';
 import RegionSelect from '../components/RegionSelect/RegionSelect';
+import RegionSelector from '../components/RegionSelector/RegionSelector';
 import store from '../store';
 
 const App = ({Component, pageProps}) => {
@@ -15,6 +16,7 @@ const App = ({Component, pageProps}) => {
 				</Head>
 				<RegionSelect/>
 				<Component {...pageProps} />
+				<RegionSelector/>
 			</Fragment>
 		</Provider>
 	);
