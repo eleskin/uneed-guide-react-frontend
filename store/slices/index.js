@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
 	isActiveRegionSelector: false,
+	isVisibleRegionSelector: false,
 };
 
 const slice = createSlice({
@@ -10,10 +11,13 @@ const slice = createSlice({
 	reducers: {
 		setIsActiveRegionSelector(state, {payload}) {
 			state.isActiveRegionSelector = payload;
-		}
+		},
+		setIsVisibleRegionSelector(state, {payload}) {
+			state.isVisibleRegionSelector = payload;
+		},
 	},
 	extraReducers: {},
 });
 
-export const {setIsActiveRegionSelector} = slice.actions;
+export const {setIsActiveRegionSelector, setIsVisibleRegionSelector} = slice.actions;
 export default slice.reducer;
