@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
 import Button from '../Button/Button';
 import RegionSelect from '../RegionSelect/RegionSelect';
@@ -7,6 +8,7 @@ import Image from 'next/image';
 
 const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 	const [isLogin] = useState(false);
+	const router = useRouter();
 	
 	const handleButtonClick = () => {
 		setTimeout(() => {
@@ -65,11 +67,19 @@ const Header = ({isActiveMenu, setIsActiveMenu, setHeaderHeight, ...props}) => {
 							</li>
 						</ul>
 						<div className={styles.Header__languages}>
-							<Link href="#">
-								<a className={`${styles.Header__language} ${styles.Header__language_active}`}>RU</a>
+							<Link href="#" locale="ru">
+								<a
+									className={`${styles.Header__language} ${router.locale === 'ru' ? styles.Header__language_active : ''}`}
+								>
+									RU
+								</a>
 							</Link>
-							<Link href="#">
-								<a className={styles.Header__language}>EN</a>
+							<Link href="#" locale="en">
+								<a
+									className={`${styles.Header__language} ${router.locale === 'en' ? styles.Header__language_active : ''}`}
+								>
+									EN
+								</a>
 							</Link>
 						</div>
 					</div>
