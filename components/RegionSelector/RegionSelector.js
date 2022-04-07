@@ -52,11 +52,25 @@ const RegionSelector = ({isActiveRegionSelector}) => {
 			<div className={styles.RegionSelector__overlay} onClick={() => dispatch(setIsActiveRegionSelector(false))}/>
 			<div className={styles.RegionSelector__container}>
 				<header>
-					<button onClick={() => dispatch(setIsActiveRegionSelector(false))}>
+					<button
+						onClick={() => dispatch(setIsActiveRegionSelector(false))}
+						className={`${styles.RegionSelector__button} ${styles.RegionSelector__button_desktop}`}
+					>
 						<Image
 							src="/assets/images/region-selector/region-selector-close-icon.svg"
 							width={14}
 							height={14}
+							alt=""
+						/>
+					</button>
+					<button
+						onClick={() => dispatch(setIsActiveRegionSelector(false))}
+						className={`${styles.RegionSelector__button} ${styles.RegionSelector__button_mobile}`}
+					>
+						<Image
+							src="/assets/images/region-selector/region-selector-arrow-icon.svg"
+							width={20}
+							height={8}
 							alt=""
 						/>
 					</button>
