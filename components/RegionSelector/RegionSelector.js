@@ -1,4 +1,5 @@
 import {useRouter} from 'next/router';
+import {useEffect} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {setIsActiveRegionSelector} from '../../store/slices';
 import {setSelectedCity} from '../../store/slices/geolocation';
@@ -12,10 +13,22 @@ const RegionSelector = ({isActiveRegionSelector}) => {
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	const cities = useSelector((state) => state['geolocationSlice'].cities);
 	
+	useEffect(() => {
+		if (router.query['city'] && cities.length) {
+			let activeCity = null;
+			
+			cities.forEach((city, index) => {
+				if (city['internationalName'].toLowerCase() === router.query['city']) activeCity = index;
+			});
+			
+			dispatch(setSelectedCity(activeCity));
+		}
+	}, [cities, citiesTranslates, dispatch, router.query]);
+	
 	const handleClickCity = (index) => {
 		dispatch(setSelectedCity(index));
 		router.push({
-			pathname: '[city]',
+			pathname: '/[city]',
 			query: {city: cities[index]?.['internationalName'].toLowerCase() || ''},
 		}).then();
 		dispatch(setIsActiveRegionSelector(false));
