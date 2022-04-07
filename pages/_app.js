@@ -16,6 +16,18 @@ const App = ({Component, pageProps}) => {
 		setWindowWidth(window.innerWidth);
 	}, [setWindowWidth]);
 	
+	useEffect(() => {
+		const onResize = () => {
+			if ((window.innerWidth < 768 && windowWidth >= 768) || (window.innerWidth >= 768 && windowWidth < 768)) {
+				setWindowWidth(window.innerWidth);
+			}
+		};
+		
+		window.addEventListener('resize', onResize);
+		
+		return () => window.removeEventListener('resize', onResize);
+	}, [windowWidth]);
+	
 	return (
 		<Provider store={store}>
 			<Fragment>
