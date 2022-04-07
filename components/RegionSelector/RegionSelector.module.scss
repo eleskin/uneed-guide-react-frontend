@@ -9,7 +9,7 @@
 	z-index: -1;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 	opacity: 0;
 	transition: all var(--transition-popup), z-index 0s linear 0.4s;
@@ -29,43 +29,47 @@
 	.RegionSelector__container {
 		position: relative;
 		background-color: #ffffff;
-		border-radius: 6px;
-		max-width: rem(385px);
+		border-radius: 6px 6px 0 0;
+		width: 100%;
 		transform: translateY(100%);
 		transition: var(--transition-popup);
 		
 		header {
 			display: flex;
 			flex-direction: row;
-			justify-content: flex-end;
+			justify-content: center;
 			align-items: center;
-			padding: rem(16px) rem(16px) rem(8px) rem(16px);
+			padding: rem(32px) rem(16px) rem(8px) rem(16px);
 			
-			button {
+			.RegionSelector__button {
 				padding: 0;
 				margin: 0;
 				background-color: transparent;
 				border: none;
 				cursor: pointer;
 			}
+			
+			.RegionSelector__button_desktop {
+				display: none;
+			}
 		}
 		
 		h3 {
 			margin: 0;
-			padding: rem(8px) rem(24px) rem(16px) rem(24px);
+			padding: 0 rem(72px) rem(16px) rem(72px);
 			font-weight: 400;
-			font-size: rem(22px);
-			line-height: rem(33px);
 			color: rgba(#212121, 0.8);
 			border-bottom: 1px solid #c4c4c4;
+			font-size: rem(18px);
+			line-height: rem(27px);
 		}
 		
 		div {
-			padding: rem(16px) rem(24px) rem(32px) rem(24px);
+			padding: rem(24px) rem(72px) rem(72px) rem(72px);
 			
 			span {
-				font-size: rem(16px);
-				line-height: rem(24px);
+				font-size: rem(12px);
+				line-height: rem(18px);
 				color: rgba(#212632, 0.6);
 			}
 			
@@ -78,13 +82,13 @@
 				justify-content: flex-start;
 				align-items: center;
 				flex-wrap: wrap;
-				grid-gap: 16px;
+				grid-gap: 8px;
 				
 				.RegionSelector__region {
 					background-color: rgba(196, 196, 196, 0.2);
 					border-radius: 6px;
-					font-size: rem(18px);
-					line-height: rem(27px);
+					font-size: rem(14px);
+					line-height: rem(21px);
 					color: #212121;
 					padding: rem(8px) rem(24px);
 					cursor: pointer;
@@ -106,5 +110,62 @@
 	
 	.RegionSelector__container {
 		transform: translateY(0);
+	}
+}
+
+
+
+@media (min-width: 768px) {
+	.RegionSelector {
+		justify-content: center;
+		
+		.RegionSelector__container {
+			max-width: rem(385px);
+			
+			header {
+				justify-content: flex-end;
+				padding: rem(16px) rem(16px) rem(8px) rem(16px);
+				
+				.RegionSelector__button_desktop {
+					display: block;
+				}
+				
+				.RegionSelector__button_mobile {
+					display: none;
+				}
+			}
+			
+			h3 {
+				padding: rem(8px) rem(24px) rem(16px) rem(24px);
+				font-size: rem(22px);
+				line-height: rem(33px);
+			}
+			
+			div {
+				padding: rem(16px) rem(24px) rem(32px) rem(24px);
+				
+				span {
+					font-size: rem(16px);
+					line-height: rem(24px);
+				}
+				
+				ul {
+					margin: rem(8px) 0 0 0;
+					grid-gap: 16px;
+					
+					.RegionSelector__region {
+						font-size: rem(18px);
+						line-height: rem(27px);
+						padding: rem(8px) rem(24px);
+					}
+				}
+			}
+		}
+	}
+	
+	.RegionSelector_active {
+		.RegionSelector__container {
+			transform: translateY(0);
+		}
 	}
 }
