@@ -1,8 +1,10 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const _getCurrentPosition = () => new Promise((resolve) => {
-	navigator.geolocation.getCurrentPosition((geolocation) => resolve(geolocation));
+const _getCurrentPosition = () => new Promise((resolve, reject) => {
+	navigator.geolocation.getCurrentPosition((geolocation) => {
+		resolve(geolocation);
+	}, (error) => reject(error));
 });
 
 const _getNearestCity = (cities, currentPosition) => {
@@ -40,6 +42,8 @@ export const getAll = createAsyncThunk(
 						const nearestCity = _getNearestCity(response.data, result);
 						const otherCities = response.data.filter((city) => city.id !== nearestCity.id);
 						resolve([nearestCity, ...otherCities]);
+					}).catch(() => {
+						resolve(response.data);
 					});
 				});
 			}
