@@ -1,6 +1,6 @@
+import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
-import {Calendar} from 'react-modern-calendar-datepicker';
-import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import Calendar from 'react-calendar';
 import {useSwipeable} from 'react-swipeable';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
@@ -8,8 +8,17 @@ import styles from './UpcomingExcursions.module.scss';
 import Image from 'next/image';
 
 const UpcomingExcursions = () => {
+	const router = useRouter();
+	const [value, onChange] = useState(new Date());
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [isChangedSlide, setIsChangedSlide] = useState(true);
+	const [currentLocale, setCurrentLocale] = useState('ru');
+	
+	useEffect(() => {
+		if (router.locale) {
+			setCurrentLocale(router.locale);
+		}
+	}, [router.locale]);
 	
 	const slides = [
 		{},
@@ -26,7 +35,7 @@ const UpcomingExcursions = () => {
 		}, 5000);
 		
 		return () => clearInterval(interval);
-	}, [activeSlide, isChangedSlide]);
+	}, [activeSlide, isChangedSlide, slides.length]);
 	
 	const dotsList = slides.map((slide, index) => (
 		<div
@@ -37,10 +46,6 @@ const UpcomingExcursions = () => {
 		</div>
 	));
 	
-	const handleSelectData = (date) => {
-		setIsVisibleCalendar(false);
-		setSelectedDay(date);
-	};
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	
 	const handleCalendarButtonClick = () => {
@@ -52,24 +57,6 @@ const UpcomingExcursions = () => {
 			setIsVisibleCalendar(true);
 		}
 	};
-	
-	const today = new Date();
-	
-	const defaultValue = {
-		year: today.getFullYear(),
-		month: today.getMonth() + 1,
-		day: today.getDate(),
-	};
-	
-	const [selectedDay, setSelectedDay] = useState(defaultValue);
-	
-	const [, setDate] = useState(
-		`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`,
-	);
-	
-	useEffect(() => {
-		setDate(`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`);
-	}, [selectedDay]);
 	
 	const cardsRef = createRef();
 	
@@ -137,7 +124,12 @@ const UpcomingExcursions = () => {
 				<div
 					className={`${styles.UpcomingExcursions__calendar} ${isVisibleCalendar ? styles.UpcomingExcursions__calendar_active : ''}`}
 				>
-					<Calendar value={selectedDay} onChange={handleSelectData} colorPrimary="#f0515d"/>
+					<Calendar
+						locale={currentLocale}
+						value={value}
+						onChange={onChange}
+						onClickDay={() => setIsVisibleCalendar(false)}
+					/>
 				</div>
 			</div>
 			<div className={styles.UpcomingExcursions__discount}>
