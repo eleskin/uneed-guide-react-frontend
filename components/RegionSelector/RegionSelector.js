@@ -1,5 +1,4 @@
 import {useRouter} from 'next/router';
-import {useEffect} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {setIsActiveRegionSelector} from '../../store/slices';
 import {setSelectedCity} from '../../store/slices/geolocation';
@@ -13,18 +12,6 @@ const RegionSelector = ({isActiveRegionSelector}) => {
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	const cities = useSelector((state) => state['geolocationSlice'].cities);
 	
-	useEffect(() => {
-		if (router.query['city'] && cities.length) {
-			let activeCity = null;
-			
-			cities.forEach((city, index) => {
-				if (city['internationalName'].toLowerCase() === router.query['city']) activeCity = index;
-			});
-			
-			dispatch(setSelectedCity(activeCity));
-		}
-	}, [cities, citiesTranslates, dispatch, router.query]);
-	
 	const handleClickCity = (index) => {
 		dispatch(setSelectedCity(index));
 		router.push({
@@ -34,18 +21,18 @@ const RegionSelector = ({isActiveRegionSelector}) => {
 		dispatch(setIsActiveRegionSelector(false));
 	};
 	
-	const citiesList = Object.entries(citiesTranslates).map(([internationalName, city], index) => (
+	const citiesList = cities.length ? cities?.map((city, index) => (
 		<li
 			className={`
 				${styles.RegionSelector__region}
-				${internationalName.toLowerCase() === selectedCity?.['internationalName']?.toLowerCase() ? styles.RegionSelector__region_active : ''}
+				${city['internationalName'].toLowerCase() === selectedCity?.['internationalName']?.toLowerCase() ? styles.RegionSelector__region_active : ''}
 			`}
 			key={index}
 			onClick={() => handleClickCity(index)}
 		>
-			{city}
+			{citiesTranslates[city['internationalName'].toLowerCase()]}
 		</li>
-	));
+	)) : null;
 	
 	return (
 		<div className={`${styles.RegionSelector} ${isActiveRegionSelector ? styles.RegionSelector_active : ''}`}>
