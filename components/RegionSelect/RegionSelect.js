@@ -21,9 +21,13 @@ const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates, isVisible
 				if (city['internationalName'].toLowerCase() === router.query['city']) activeCity = index;
 			});
 			
+			if (activeCity === null) {
+				router.push('/').then(r => r);
+			}
+			
 			dispatch(setSelectedCity(activeCity));
 		}
-	}, [cities, citiesTranslates, dispatch, router.query, selectedCity]);
+	}, [cities, citiesTranslates, dispatch, router, router.query, selectedCity]);
 	
 	useEffect(() => {
 		if (!router.query['city']) dispatch(setIsVisibleRegionSelector(true));
