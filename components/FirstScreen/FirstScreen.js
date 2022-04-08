@@ -13,6 +13,7 @@ const FirstScreen = () => {
 	const router = useRouter();
 	const [value, onChange] = useState(new Date());
 	const [currentLocale, setCurrentLocale] = useState('ru');
+	const {asPath} = router;
 	
 	const [date, setDate] = useState(new Date(Date.parse(value.toString())));
 	const [currentDate, setCurrentDate] = useState(`${date.getDate().toString().length === 2 ? date.getDate() : `0${date.getDate()}`}-${date.getMonth().toString().length === 2 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`}-${date.getFullYear()}`);
@@ -36,6 +37,7 @@ const FirstScreen = () => {
 	
 	const handleFocusInput = (event) => {
 		event.target.blur();
+		setIsVisibleCalendar(true);
 	};
 	
 	const searchRef = createRef();
@@ -46,14 +48,14 @@ const FirstScreen = () => {
 		<div className={styles.FirstScreen}>
 			<header className={styles.FirstScreen__header}>
 				<div className={styles.FirstScreen__languages}>
-					<Link href="#" locale="ru">
+					<Link href={asPath} locale="ru">
 						<a
 							className={`${styles.FirstScreen__language} ${router.locale === 'ru' ? styles.FirstScreen__language_active : ''}`}
 						>
 							RU
 						</a>
 					</Link>
-					<Link href="#" locale="en">
+					<Link href={asPath} locale="en">
 						<a
 							className={`${styles.FirstScreen__language} ${router.locale === 'en' ? styles.FirstScreen__language_active : ''}`}
 						>
@@ -83,7 +85,6 @@ const FirstScreen = () => {
 						onInput={handleChangeInput}
 						onChange={handleChangeInput}
 						onFocus={handleFocusInput}
-						onClick={() => setIsVisibleCalendar(!isVisibleCalendar)}
 					/>
 					<Image src="/assets/images/first-screen/first-screen-calendar.svg" width={15} height={14} alt=""/>
 					<Button.Primary small={true}>Найти</Button.Primary>
