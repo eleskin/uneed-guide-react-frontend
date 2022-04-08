@@ -9,6 +9,7 @@ import Image from 'next/image';
 const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, ...props}) => {
 	const [isLogin] = useState(false);
 	const router = useRouter();
+	const {asPath} = router;
 	
 	const handleButtonClick = () => {
 		setTimeout(() => {
@@ -59,14 +60,14 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 							</li>
 						</ul>
 						<div className={styles.Header__languages}>
-							<Link href="#" locale="ru">
+							<Link href={asPath} locale="ru">
 								<a
 									className={`${styles.Header__language} ${router.locale === 'ru' ? styles.Header__language_active : ''}`}
 								>
 									RU
 								</a>
 							</Link>
-							<Link href="#" locale="en">
+							<Link href={asPath} locale="en">
 								<a
 									className={`${styles.Header__language} ${router.locale === 'en' ? styles.Header__language_active : ''}`}
 								>
@@ -137,7 +138,10 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 					<button
 						className={styles.Header__button}
 						onClick={handleButtonClickMobile}
-					/>
+					>
+						<span/>
+						<span/>
+					</button>
 				</div>
 			</div>
 		</header>
