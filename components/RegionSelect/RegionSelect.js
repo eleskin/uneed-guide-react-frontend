@@ -25,13 +25,19 @@ const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates, isVisible
 		}
 	}, [cities, citiesTranslates, dispatch, router.query, selectedCity]);
 	
+	useEffect(() => {
+		if (!router.query['city']) dispatch(setIsVisibleRegionSelector(true));
+	}, [dispatch, router.query])
+	
 	const [currentRegion, setCurrentRegion] = useState(citiesTranslates?.[nearestCity?.['internationalName'].toLowerCase()]);
 	
 	const handleButtonYesClick = () => {
 		router.push({
 			pathname: '/[city]',
 			query: {city: selectedCity?.['internationalName'].toLowerCase() || ''},
-		}).then(r => r);
+		}).then(() => {
+			dispatch(setIsVisibleRegionSelector(false));
+		});
 		dispatch(setIsVisibleRegionSelector(false));
 	};
 	
