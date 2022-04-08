@@ -7,23 +7,27 @@ import UpcomingExcursions from '../UpcomingExcursions/UpcomingExcursions';
 import styles from './FirstScreen.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-import {Calendar} from 'react-modern-calendar-datepicker';
+import Calendar from 'react-calendar';
 
 const FirstScreen = () => {
-	const today = new Date();
+	const router = useRouter();
+	const [value, onChange] = useState(new Date());
+	const [currentLocale, setCurrentLocale] = useState('ru');
 	
-	const defaultValue = {
-		year: today.getFullYear(),
-		month: today.getMonth() + 1,
-		day: today.getDate(),
-	};
+	const [date, setDate] = useState(new Date(Date.parse(value.toString())));
+	const [currentDate, setCurrentDate] = useState(`${date.getDate().toString().length === 2 ? date.getDate() : `0${date.getDate()}`}-${date.getMonth().toString().length === 2 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`}-${date.getFullYear()}`);
 	
-	const [selectedDay, setSelectedDay] = useState(defaultValue);
+	useEffect(() => {
+		setDate(new Date(Date.parse(value.toString())));
+		setCurrentDate(`${date.getDate().toString().length === 2 ? date.getDate() : `0${date.getDate()}`}-${date.getMonth().toString().length === 2 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`}-${date.getFullYear()}`);
+	}, [date, value]);
 	
-	const [date, setDate] = useState(
-		`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`,
-	);
+	useEffect(() => {
+		if (router.locale) {
+			setCurrentLocale(router.locale);
+		}
+	}, [router.locale]);
+	
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	
 	const handleChangeInput = (event) => {
@@ -32,23 +36,11 @@ const FirstScreen = () => {
 	
 	const handleFocusInput = (event) => {
 		event.target.blur();
-		setIsVisibleCalendar(true);
 	};
-	
-	const handleSelectData = (date) => {
-		setIsVisibleCalendar(false);
-		setSelectedDay(date);
-	};
-	
-	useEffect(() => {
-		setDate(`${selectedDay.day.toString().length === 2 ? selectedDay.day : `0${selectedDay.day}`}-${selectedDay.month.toString().length === 2 ? selectedDay.month : `0${selectedDay.month}`}-${selectedDay.year}`);
-	}, [selectedDay]);
 	
 	const searchRef = createRef();
 	
 	useOutsideClickHandler(searchRef, isVisibleCalendar, setIsVisibleCalendar);
-	
-	const router = useRouter();
 	
 	return (
 		<div className={styles.FirstScreen}>
@@ -77,17 +69,23 @@ const FirstScreen = () => {
 			</div>
 			<div className={styles.FirstScreen__search} ref={searchRef}>
 				<div className={`${styles.FirstScreen__calendar} ${isVisibleCalendar ? styles.FirstScreen__calendar_active : ''}`}>
-					<Calendar value={selectedDay} onChange={handleSelectData} colorPrimary="#f0515d"/>
+					<Calendar
+						locale={currentLocale}
+						value={value}
+						onChange={onChange}
+						onClickDay={() => setIsVisibleCalendar(false)}
+					/>
 				</div>
 				<label>
 					<input
 						type="text"
-						value={date}
+						value={currentDate}
 						onInput={handleChangeInput}
 						onChange={handleChangeInput}
 						onFocus={handleFocusInput}
+						onClick={() => setIsVisibleCalendar(!isVisibleCalendar)}
 					/>
-					<Image src="/assets/images/first-screen/first-screen-calendar.svg" width={15} height={14}/>
+					<Image src="/assets/images/first-screen/first-screen-calendar.svg" width={15} height={14} alt=""/>
 					<Button.Primary small={true}>Найти</Button.Primary>
 				</label>
 			</div>
