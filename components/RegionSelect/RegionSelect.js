@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import {Fragment, useEffect, useState} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {setIsActiveRegionSelector, setIsVisibleRegionSelector} from '../../store/slices';
-import {getAll} from '../../store/slices/geolocation';
+import {getAll, setSelectedCity} from '../../store/slices/geolocation';
 import Button from '../Button/Button';
 import styles from './RegionSelect.module.scss';
 
@@ -11,8 +11,21 @@ const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates, isVisible
 	const dispatch = useDispatch();
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	const router = useRouter();
+	const cities = useSelector((state) => state['geolocationSlice'].cities);
 	
-	const [currentRegion, setCurrentRegion] = useState(citiesTranslates?.[nearestCity?.['internationalName'].toLowerCase()] || '');
+	useEffect(() => {
+		if (router.query['city'] && cities.length) {
+			let activeCity = null;
+			
+			cities.forEach((city, index) => {
+				if (city['internationalName'].toLowerCase() === router.query['city']) activeCity = index;
+			});
+			
+			dispatch(setSelectedCity(activeCity));
+		}
+	}, [cities, citiesTranslates, dispatch, router.query, selectedCity]);
+	
+	const [currentRegion, setCurrentRegion] = useState(citiesTranslates?.[nearestCity?.['internationalName'].toLowerCase()]);
 	
 	const handleButtonYesClick = () => {
 		router.push({
