@@ -1,0 +1,10 @@
+{
+	"region-selector": {
+		"title": "Выберите ваш город"
+	},
+	"region-select": {
+		"your-region": "Ваш регион",
+		"yes-button": "Да, верно",
+		"no-button": "Нет, другой"
+	}
+}
