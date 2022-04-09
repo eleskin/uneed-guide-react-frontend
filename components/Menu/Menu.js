@@ -13,7 +13,7 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 	
 	useEffect(() => {
 		if (router.locale) {
-			import(`../../lang/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
 	
