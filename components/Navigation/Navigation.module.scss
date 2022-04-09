@@ -27,12 +27,9 @@
 				line-height: 145%;
 				color: #000000;
 				text-decoration: none;
-				transition: var(--button-transition);
 			}
-		}
-		
-		li:hover {
-			a {
+			
+			a:hover {
 				color: #f0515d;
 			}
 		}
