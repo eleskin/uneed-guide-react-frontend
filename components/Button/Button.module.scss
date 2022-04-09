@@ -8,8 +8,6 @@
 	text-transform: uppercase;
 	border: none;
 	padding: rem(12px) rem(24px);
-	cursor: pointer;
-	transition: var(--button-transition);
 }
 
 .Button_small {
@@ -18,8 +16,6 @@
 	line-height: rem(18px);
 	padding: rem(8px) rem(16px);
 	border: none;
-	cursor: pointer;
-	transition: var(--button-transition);
 }
 
 .Button_primary {
@@ -33,11 +29,6 @@
 	background: transparent;
 	border-radius: 6px;
 	border: 1px solid #f0515d;
-}
-
-.Button_outlined:hover {
-	background-color: #f0515d;
-	color: #ffffff;
 }
 
 .Button_secondary {
