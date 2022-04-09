@@ -6,5 +6,9 @@
 		"latest-queries": "Последние запросы",
 		"places-title": "Часто посещают в ",
 		"places-city-change": "Изменить город"
+	},
+	"navigation": {
+		"navigation-title": "Навигация",
+		"catalog-title": "Каталог экскурсий"
 	}
 }

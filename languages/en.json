@@ -6,5 +6,9 @@
 		"latest-queries": "Recent Requests",
 		"places-title": "Frequently visit in ",
 		"places-city-change": "Change city"
+	},
+	"navigation": {
+		"navigation-title": "Navigation",
+		"catalog-title": "Tours catalog"
 	}
 }
