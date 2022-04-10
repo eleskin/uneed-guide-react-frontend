@@ -235,7 +235,7 @@ const UpcomingExcursions = () => {
 	return (
 		<div className={styles.UpcomingExcursions} {...handlers}>
 			<header className={styles.UpcomingExcursions__header}>
-				<span>Ближайшие экскурсии</span>
+				<span>{languageFile?.['upcoming-excursions']?.['nearest-excursions']}</span>
 				<div className={styles.UpcomingExcursions__loader}>{dotsList}</div>
 			</header>
 			<div

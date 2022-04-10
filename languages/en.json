@@ -5,7 +5,8 @@
 		"child-ticket": "Children's",
 		"adult-lunch-ticket": "Adult (with lunch)",
 		"buy-button": "Buy",
-		"more-button": "More"
+		"more-button": "More",
+		"nearest-excursions": "Upcoming excursions"
 	},
 	"region-selector": {
 		"title": "Choose your city"

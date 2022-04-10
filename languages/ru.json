@@ -5,7 +5,8 @@
 		"child-ticket": "Детский",
 		"adult-lunch-ticket": "Взрослый (с ланчем)",
 		"buy-button": "Купить",
-		"more-button": "Подробнее"
+		"more-button": "Подробнее",
+		"nearest-excursions": "Ближайшие экскурсии"
 	},
 	"region-selector": {
 		"title": "Выберите ваш город"
