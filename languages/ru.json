@@ -1,0 +1,57 @@
+{
+	"header": {
+		"header-top": {
+			"header-help-link": "Помощь",
+			"header-terms-link": "Условия оплаты и возврата",
+			"header-cooperation-link": "Сотрудничество",
+			"header-contacts-link": "Контакты"
+		},
+		"header-main": {
+			"header-catalog-button": "Каталог",
+			"header-placeholder-input": "Поиск по",
+			"header-cart-link": "Корзина",
+			"header-favorites-link": "Избранное",
+			"header-profile-link": "Профиль",
+			"header-login-button": "Вход или регистрация"
+		}
+	},
+	"menu": {
+		"authorization-button": "Авторизация",
+		"registration-button": "Регистрация",
+		"example-input": "Например, экскурсии по Москва-реке",
+		"latest-queries": "Последние запросы",
+		"places-title": "Часто посещают в ",
+		"places-city-change": "Изменить город"
+	},
+	"navigation": {
+		"navigation-title": "Навигация",
+		"catalog-title": "Каталог экскурсий"
+	},
+	"region-selector": {
+		"title": "Выберите ваш город"
+	},
+	"region-select": {
+		"your-region": "Ваш регион",
+		"yes-button": "Да, верно",
+		"no-button": "Нет, другой"
+	},
+	"footer": {
+		"service-description": "Uneed guide - онлайн-сервис по поиску билетов на самые популярные водные прогулки и экскурсии в Санкт-Петербурге, Москве и Мурманске. Интересные маршруты, реки и каналы, Нева и разводные мосты на нашем сайте uneed.guide.ru",
+		"question-button": "Задать вопрос",
+		"terms-of-use": "Пользовательское соглашение"
+	},
+	"upcoming-excursions": {
+		"nearest-departures": "Ближайшие отправление",
+		"adult-ticket": "Взрослый",
+		"child-ticket": "Детский",
+		"adult-lunch-ticket": "Взрослый (с ланчем)",
+		"buy-button": "Купить",
+		"more-button": "Подробнее",
+		"nearest-excursions": "Ближайшие экскурсии"
+	},
+	"first-screen": {
+		"title": "Экскурсии и туры с лучшими гидами по",
+		"subtitle": "Дольше путешествие - больше открытий",
+		"search-button": "Найти"
+	}
+}

@@ -276,9 +276,11 @@
 					}
 					
 					button:last-child:hover {
-						img {
-							filter: brightness(0) invert(1);
-							transition: var(--transition-button);
+						svg {
+							path {
+								stroke: #ffffff;
+								transition: var(--transition-primary);
+							}
 						}
 					}
 				}

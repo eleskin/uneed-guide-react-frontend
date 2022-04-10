@@ -1,0 +1,57 @@
+{
+	"header": {
+		"header-top": {
+			"header-help-link": "Help",
+			"header-terms-link": "Terms of payment and return",
+			"header-cooperation-link": "Cooperation",
+			"header-contacts-link": "Contacts"
+		},
+		"header-main": {
+			"header-catalog-button": "Catalog",
+			"header-placeholder-input": "Search by",
+			"header-cart-link": "Cart",
+			"header-favorites-link": "Favorites",
+			"header-profile-link": "Profile",
+			"header-login-button": "Login or register"
+		}
+	},
+	"menu": {
+		"authorization-button": "Authorization",
+		"registration-button": "Registration",
+		"example-input": "For example, excursions along the Moscow River",
+		"latest-queries": "Recent Requests",
+		"places-title": "Frequently visit in ",
+		"places-city-change": "Change city"
+	},
+	"navigation": {
+		"navigation-title": "Navigation",
+		"catalog-title": "Tours catalog"
+	},
+	"region-selector": {
+		"title": "Choose your city"
+	},
+	"region-select": {
+		"your-region": "Your region",
+		"yes-button": "Yes, that's right",
+		"no-button": "No another"
+	},
+	"footer": {
+		"service-description": "Uneed guide is an online service for finding tickets for the most popular boat trips and excursions in St. Petersburg, Moscow and Murmansk. Interesting routes, rivers and canals, Neva and drawbridges on our website uneed.guide.ru",
+		"question-button": "Ask a Question",
+		"terms-of-use": "Terms of use"
+	},
+	"upcoming-excursions": {
+		"nearest-departures": "Nearest Departures",
+		"adult-ticket": "Adult",
+		"child-ticket": "Children's",
+		"adult-lunch-ticket": "Adult (with lunch)",
+		"buy-button": "Buy",
+		"more-button": "More",
+		"nearest-excursions": "Upcoming excursions"
+	},
+	"first-screen": {
+		"title": "Excursions and tours with the best guides in",
+		"subtitle": "Longer journey - more discoveries",
+		"search-button": "Search"
+	}
+}

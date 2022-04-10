@@ -158,7 +158,7 @@
 						left: 0;
 						bottom: 0;
 						margin: auto;
-						transition: var(--transition-button);
+						transition: var(--transition-primary);
 					}
 					
 					button::before {
@@ -187,6 +187,7 @@
 							color: #212121;
 							outline: none;
 							border: none;
+							width: 100%;
 						}
 						
 						input::placeholder {
