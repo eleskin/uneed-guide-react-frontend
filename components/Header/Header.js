@@ -1,5 +1,6 @@
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 import Button from '../Button/Button';
 import RegionSelect from '../RegionSelect/RegionSelect';
 import styles from './Header.module.scss';
@@ -10,6 +11,14 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 	const [isLogin] = useState(false);
 	const router = useRouter();
 	const {asPath} = router;
+	const [languageFile, setLanguageFile] = useState();
+	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity)
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
 	
 	const handleButtonClick = () => {
 		setTimeout(() => {
@@ -35,6 +44,40 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 		}
 	}, [headerRef, setHeaderHeight]);
 	
+	const russianCities = {
+		'moscow': 'Москве',
+		'st.petersburg': 'Санкт-Петербургу',
+		'murmansk': 'Мурманску',
+	};
+	
+	const [activeCity, setActiveCity] = useState('Москве');
+	
+	useEffect(() => {
+		if (router.locale === 'ru' && router.query['city']) {
+			setActiveCity(russianCities[router.query['city']]);
+		} else if (router.locale !== 'ru' && router.query['city']) {
+			const cityNameSplit = router.query['city'].split('.') || router.query['city'];
+
+			let capitalizedCityName = '';
+			cityNameSplit.forEach((city, index) => {
+				capitalizedCityName += `${city[0].toUpperCase()}${city.slice(1) + ((index < cityNameSplit.length - 1) ? '.' : '')}`;
+			});
+
+			setActiveCity(capitalizedCityName);
+		} else if (router.locale === 'ru' && !router.query['city']) {
+			setActiveCity(russianCities[selectedCity?.['internationalName']?.toLowerCase()]);
+		} else if (router.locale !== 'ru' && !router.query['city']) {
+			const cityNameSplit = selectedCity?.['internationalName']?.toLowerCase().split('.') ||selectedCity?.['internationalName']?.toLowerCase();
+			
+			let capitalizedCityName = '';
+			cityNameSplit?.forEach((city, index) => {
+				capitalizedCityName += `${city[0].toUpperCase()}${city.slice(1) + ((index < cityNameSplit.length - 1) ? '.' : '')}`;
+			});
+			
+			setActiveCity(capitalizedCityName);
+		}
+	}, [router.locale, router.query, setActiveCity, russianCities]);
+	
 	return (
 		<header
 			{...props}
@@ -47,16 +90,16 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 					<div className={styles.Header__menu}>
 						<ul>
 							<li>
-								<Link href="#"><a>Помощь</a></Link>
+								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-help-link']}</a></Link>
 							</li>
 							<li>
-								<Link href="#"><a>Условия оплаты и возврата</a></Link>
+								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-terms-link']}</a></Link>
 							</li>
 							<li>
-								<Link href="#"><a>Сотрудничество</a></Link>
+								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-cooperation-link']}</a></Link>
 							</li>
 							<li>
-								<Link href="#"><a>Контакты</a></Link>
+								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-contacts-link']}</a></Link>
 							</li>
 						</ul>
 						<div className={styles.Header__languages}>
@@ -102,10 +145,17 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 					</Link>
 					<div className={styles.Header__desktop}>
 						<div className={styles.Header__center}>
-							<Button.Outlined small={true} onClick={handleButtonClickDesktop}>Каталог</Button.Outlined>
+							<Button.Outlined small={true} onClick={handleButtonClickDesktop}>
+								{languageFile?.['header']?.['header-main']?.['header-catalog-button']}
+							</Button.Outlined>
 							<label>
 								<Image src="/assets/images/header/header-search.svg" width={18} height={18} alt=""/>
-								<input type="text" placeholder="Поиск по Москве"/>
+								<input
+									type="text"
+									placeholder={
+										`${languageFile?.['header']?.['header-main']?.['header-placeholder-input']} ${activeCity}`
+									}
+								/>
 							</label>
 						</div>
 						<div className={styles.Header__right}>
@@ -113,24 +163,24 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 								<Link href="#">
 									<a>
 										<Image src="/assets/images/header/header-cart.svg" width={17} height={14} alt=""/>
-										<span>Корзина</span>
+										<span>{languageFile?.['header']?.['header-main']?.['header-cart-link']}</span>
 									</a>
 								</Link>
 								<Link href="#">
 									<a>
 										<Image src="/assets/images/header/header-heart.svg" width={17} height={14} alt=""/>
-										<span>Избранное</span>
+										<span>{languageFile?.['header']?.['header-main']?.['header-favorites-link']}</span>
 									</a>
 								</Link>
 								{isLogin ? (
 									<Link href="#">
 										<a>
 											<Image src="/assets/images/header/header-profile.svg" width={17} height={14} alt=""/>
-											<span>Профиль</span>
+											<span>{languageFile?.['header']?.['header-main']?.['header-profile-link']}</span>
 										</a>
 									</Link>
 								) : (
-									<Button.Outlined small={true}>Вход или регистрация</Button.Outlined>
+									<Button.Outlined small={true}>{languageFile?.['header']?.['header-main']?.['header-login-button']}</Button.Outlined>
 								)}
 							</div>
 						</div>
