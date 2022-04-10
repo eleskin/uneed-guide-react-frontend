@@ -12,7 +12,7 @@
 	justify-content: flex-end;
 	align-items: center;
 	opacity: 0;
-	transition: all var(--transition-popup), z-index 0s linear 0.4s;
+	transition: all var(--transition-primary), z-index 0s linear 0.4s;
 	
 	.RegionSelector__overlay {
 		position: absolute;
@@ -32,7 +32,7 @@
 		border-radius: 6px 6px 0 0;
 		width: 100%;
 		transform: translateY(100%);
-		transition: var(--transition-popup);
+		transition: var(--transition-primary);
 		
 		header {
 			display: flex;
@@ -106,7 +106,7 @@
 .RegionSelector_active {
 	z-index: 100;
 	opacity: 1;
-	transition: all var(--transition-popup), z-index 0s linear 0s;
+	transition: all var(--transition-primary), z-index 0s linear 0s;
 	
 	.RegionSelector__container {
 		transform: translateY(0);

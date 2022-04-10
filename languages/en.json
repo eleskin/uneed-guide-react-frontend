@@ -10,5 +10,13 @@
 	"navigation": {
 		"navigation-title": "Navigation",
 		"catalog-title": "Tours catalog"
+	},
+	"region-selector": {
+		"title": "Choose your city"
+	},
+	"region-select": {
+		"your-region": "Your region",
+		"yes-button": "Yes, that's right",
+		"no-button": "No another"
 	}
 }
