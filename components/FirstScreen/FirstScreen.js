@@ -1,3 +1,4 @@
+import {format} from 'date-fns';
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
@@ -15,7 +16,7 @@ const FirstScreen = () => {
 	const [currentLocale, setCurrentLocale] = useState('ru');
 	const {asPath} = router;
 	const [date, setDate] = useState(new Date(Date.parse(value.toString())));
-	const [currentDate, setCurrentDate] = useState(`${date.getDate().toString().length === 2 ? date.getDate() : `0${date.getDate()}`}-${date.getMonth().toString().length === 2 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`}-${date.getFullYear()}`);
+	const [currentDate, setCurrentDate] = useState(format(date, 'dd-MM-yyyy'));
 	const [languageFile, setLanguageFile] = useState();
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	
@@ -27,7 +28,7 @@ const FirstScreen = () => {
 	
 	useEffect(() => {
 		setDate(new Date(Date.parse(value.toString())));
-		setCurrentDate(`${date.getDate().toString().length === 2 ? date.getDate() : `0${date.getDate()}`}-${date.getMonth().toString().length === 2 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`}-${date.getFullYear()}`);
+		setCurrentDate(format(date, 'dd-MM-yyyy'));
 	}, [date, value]);
 	
 	useEffect(() => {
