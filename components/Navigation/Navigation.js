@@ -1,11 +1,21 @@
 import Link from 'next/link';
-import {useEffect} from 'react';
+import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 import {connect, useDispatch} from 'react-redux';
 import {getAll} from '../../store/slices/navigation';
 import styles from './Navigation.module.scss';
 
 const Navigation = ({mainMenuElements}) => {
 	const dispatch = useDispatch();
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
+	
 	
 	useEffect(() => {
 		dispatch(getAll());
@@ -28,7 +38,7 @@ const Navigation = ({mainMenuElements}) => {
 		<nav className={styles.Navigation}>
 			<div className={styles.Navigation__mobile}>
 				<div className={styles.Navigation__row}>
-					<h6>Навигация</h6>
+					<h6>{languageFile?.['navigation']?.['navigation-title']}</h6>
 					<ul>
 						<li>
 							<Link href="#"><a>Каталог экскурсий</a></Link>
@@ -48,7 +58,7 @@ const Navigation = ({mainMenuElements}) => {
 					</ul>
 				</div>
 				<div className={styles.Navigation__row}>
-					<h6>Каталог экскурсий</h6>
+					<h6>{languageFile?.['navigation']?.['catalog-title']}</h6>
 					<ul>
 						<li>
 							<Link href="#"><a>Дневные экскурсии</a></Link>

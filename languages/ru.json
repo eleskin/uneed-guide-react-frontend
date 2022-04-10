@@ -1,0 +1,38 @@
+{
+	"header": {
+		"header-top": {
+			"header-help-link": "Помощь",
+			"header-terms-link": "Условия оплаты и возврата",
+			"header-cooperation-link": "Сотрудничество",
+			"header-contacts-link": "Контакты"
+		},
+		"header-main": {
+			"header-catalog-button": "Каталог",
+			"header-placeholder-input": "Поиск по",
+			"header-cart-link": "Корзина",
+			"header-favorites-link": "Избранное",
+			"header-profile-link": "Профиль",
+			"header-login-button": "Вход или регистрация"
+		}
+	},
+	"menu": {
+		"authorization-button": "Авторизация",
+		"registration-button": "Регистрация",
+		"example-input": "Например, экскурсии по Москва-реке",
+		"latest-queries": "Последние запросы",
+		"places-title": "Часто посещают в ",
+		"places-city-change": "Изменить город"
+	},
+	"navigation": {
+		"navigation-title": "Навигация",
+		"catalog-title": "Каталог экскурсий"
+	},
+	"region-selector": {
+		"title": "Выберите ваш город"
+	},
+	"region-select": {
+		"your-region": "Ваш регион",
+		"yes-button": "Да, верно",
+		"no-button": "Нет, другой"
+	}
+}
