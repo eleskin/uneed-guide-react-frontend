@@ -1,5 +1,6 @@
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
 import RegionSelect from '../RegionSelect/RegionSelect';
@@ -17,6 +18,7 @@ const FirstScreen = () => {
 	const [date, setDate] = useState(new Date(Date.parse(value.toString())));
 	const [currentDate, setCurrentDate] = useState(`${date.getDate().toString().length === 2 ? date.getDate() : `0${date.getDate()}`}-${date.getMonth().toString().length === 2 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`}-${date.getFullYear()}`);
 	const [languageFile, setLanguageFile] = useState();
+	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -50,6 +52,40 @@ const FirstScreen = () => {
 	
 	useOutsideClickHandler(searchRef, isVisibleCalendar, setIsVisibleCalendar);
 	
+	const russianCities = {
+		'moscow': 'Москве',
+		'st.petersburg': 'Санкт-Петербургу',
+		'murmansk': 'Мурманску',
+	};
+	
+	const [activeCity, setActiveCity] = useState('Москве');
+	
+	useEffect(() => {
+		if (router.locale === 'ru' && router.query['city']) {
+			setActiveCity(russianCities[router.query['city']]);
+		} else if (router.locale !== 'ru' && router.query['city']) {
+			const cityNameSplit = router.query['city'].split('.') || router.query['city'];
+			
+			let capitalizedCityName = '';
+			cityNameSplit.forEach((city, index) => {
+				capitalizedCityName += `${city[0].toUpperCase()}${city.slice(1) + ((index < cityNameSplit.length - 1) ? '.' : '')}`;
+			});
+			
+			setActiveCity(capitalizedCityName);
+		} else if (router.locale === 'ru' && !router.query['city']) {
+			setActiveCity(russianCities[selectedCity?.['internationalName']?.toLowerCase()]);
+		} else if (router.locale !== 'ru' && !router.query['city']) {
+			const cityNameSplit = selectedCity?.['internationalName']?.toLowerCase().split('.') || selectedCity?.['internationalName']?.toLowerCase();
+			
+			let capitalizedCityName = '';
+			cityNameSplit?.forEach((city, index) => {
+				capitalizedCityName += `${city[0].toUpperCase()}${city.slice(1) + ((index < cityNameSplit.length - 1) ? '.' : '')}`;
+			});
+			
+			setActiveCity(capitalizedCityName);
+		}
+	}, [router.locale, router.query, setActiveCity, russianCities]);
+	
 	return (
 		<div className={styles.FirstScreen}>
 			<header className={styles.FirstScreen__header}>
@@ -73,7 +109,7 @@ const FirstScreen = () => {
 			</header>
 			<div className={styles.FirstScreen__title}>
 				<span>{languageFile?.['first-screen']?.['subtitle']}</span>
-				<h1>{languageFile?.['first-screen']?.['title']} Москве</h1>
+				<h1>{languageFile?.['first-screen']?.['title']} {activeCity}</h1>
 			</div>
 			<div className={styles.FirstScreen__search} ref={searchRef}>
 				<div className={`${styles.FirstScreen__calendar} ${isVisibleCalendar ? styles.FirstScreen__calendar_active : ''}`}>
