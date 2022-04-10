@@ -48,11 +48,11 @@
 		margin-top: -100%;
 		transition: all var(--transition-primary), z-index 0s linear 1s, margin-top 0s linear 1s;
 		
-		header, footer {
+		.RegionSelect__header, .RegionSelect__footer {
 			display: flex;
 		}
 		
-		header {
+		.RegionSelect__header {
 			display: flex;
 			flex-direction: row;
 			justify-content: flex-start;
@@ -66,7 +66,7 @@
 			}
 		}
 		
-		footer {
+		.RegionSelect__footer {
 			display: flex;
 			flex-direction: row;
 			justify-content: flex-start;
