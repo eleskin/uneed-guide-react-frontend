@@ -37,7 +37,7 @@ const FirstScreen = () => {
 	
 	const handleFocusInput = (event) => {
 		event.target.blur();
-		setIsVisibleCalendar(true);
+		setTimeout(() => setIsVisibleCalendar(true), 0);
 	};
 	
 	const searchRef = createRef();
