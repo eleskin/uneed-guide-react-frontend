@@ -9,7 +9,7 @@
 	border: none;
 	padding: rem(12px) rem(24px);
 	cursor: pointer;
-	transition: var(--transition-button);
+	transition: var(--transition-primary);
 }
 
 .Button_small {
@@ -19,7 +19,7 @@
 	padding: rem(8px) rem(16px);
 	border: none;
 	cursor: pointer;
-	transition: var(--transition-button);
+	transition: var(--transition-primary);
 }
 
 .Button_primary {

@@ -1,0 +1,14 @@
+{
+	"menu": {
+		"authorization-button": "Authorization",
+		"registration-button": "Registration",
+		"example-input": "For example, excursions along the Moscow River",
+		"latest-queries": "Recent Requests",
+		"places-title": "Frequently visit in ",
+		"places-city-change": "Change city"
+	},
+	"navigation": {
+		"navigation-title": "Navigation",
+		"catalog-title": "Tours catalog"
+	}
+}
