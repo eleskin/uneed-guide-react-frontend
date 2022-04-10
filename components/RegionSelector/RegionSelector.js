@@ -1,9 +1,9 @@
 import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {setIsActiveRegionSelector} from '../../store/slices';
 import {setSelectedCity} from '../../store/slices/geolocation';
 import styles from './RegionSelector.module.scss';
-import Image from 'next/image';
 
 const RegionSelector = ({isActiveRegionSelector}) => {
 	const dispatch = useDispatch();
@@ -11,6 +11,14 @@ const RegionSelector = ({isActiveRegionSelector}) => {
 	const citiesTranslates = useSelector((state) => state['geolocationSlice'].citiesTranslates);
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	const cities = useSelector((state) => state['geolocationSlice'].cities);
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
+	
 	
 	const handleClickCity = (index) => {
 		dispatch(setSelectedCity(index));
@@ -30,7 +38,7 @@ const RegionSelector = ({isActiveRegionSelector}) => {
 			key={index}
 			onClick={() => handleClickCity(index)}
 		>
-			{citiesTranslates[city['internationalName'].toLowerCase()]}
+			{router.locale === 'ru' ? citiesTranslates[city['internationalName'].toLowerCase()] : city['internationalName']}
 		</li>
 	)) : null;
 	
@@ -43,26 +51,20 @@ const RegionSelector = ({isActiveRegionSelector}) => {
 						onClick={() => dispatch(setIsActiveRegionSelector(false))}
 						className={`${styles.RegionSelector__button} ${styles.RegionSelector__button_desktop}`}
 					>
-						<Image
-							src="/assets/images/region-selector/region-selector-close-icon.svg"
-							width={14}
-							height={14}
-							alt=""
-						/>
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M8 8L15 15M8 8L15 1M8 8L1 15M8 8L1 1" stroke="#C4C4C4" strokeWidth="2" strokeLinecap="round"/>
+						</svg>
 					</button>
 					<button
 						onClick={() => dispatch(setIsActiveRegionSelector(false))}
 						className={`${styles.RegionSelector__button} ${styles.RegionSelector__button_mobile}`}
 					>
-						<Image
-							src="/assets/images/region-selector/region-selector-arrow-icon.svg"
-							width={20}
-							height={8}
-							alt=""
-						/>
+						<svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path opacity="0.25" d="M21 1.12341L11 8.26221L1 1.12341" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+						</svg>
 					</button>
 				</header>
-				<h3>Выберите ваш город</h3>
+				<h3>{languageFile?.['region-selector']?.['title']}</h3>
 				<div>
 					<span>Россия</span>
 					<ul>{citiesList}</ul>
