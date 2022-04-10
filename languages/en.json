@@ -14,5 +14,10 @@
 		"your-region": "Your region",
 		"yes-button": "Yes, that's right",
 		"no-button": "No another"
+	},
+	"first-screen": {
+		"title": "Excursions and tours with the best guides in",
+		"subtitle": "Longer journey - more discoveries",
+		"search-button": "Search"
 	}
 }
