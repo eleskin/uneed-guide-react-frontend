@@ -102,10 +102,12 @@
 				opacity: 1;
 				padding: 8px;
 				transition: opacity var(--transition-primary);
+				cursor: pointer;
 			}
 			
 			.UpcomingExcursions__button:disabled {
 				opacity: 0.25;
+				cursor: default;
 			}
 		}
 		
