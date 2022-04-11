@@ -4,7 +4,7 @@
 	padding: rem(8px) rem(54px) rem(48px) rem(54px);
 	//noinspection CssUnknownTarget
 	background: url('/assets/images/first-screen/first-screen-background.png') repeat-x top center;
-	background-size: cover;
+	background-size: contain;
 	
 	.FirstScreen__container {
 		max-width: 1200px;
@@ -197,6 +197,13 @@
 				}
 			}
 		}
+	}
+}
+
+@media (min-width: 768px) {
+	.FirstScreen {
+		background: url('/assets/images/first-screen/first-screen-background-desktop.png') no-repeat center center;
+		background-size: cover;
 	}
 }
 
