@@ -105,13 +105,12 @@
 			}
 			
 			.Header__button {
-				height: 11px;
 				position: relative;
 				background-color: transparent;
 				border: none;
-				padding: 4px 0;
-				transition: var(--transition-primary);
-				width: 37px;
+				padding: 0;
+				height: 40px;
+				width: 40px;
 			}
 			
 			.Header__button::before, .Header__button::after {
@@ -127,12 +126,14 @@
 				top: 0;
 				width: 37px;
 				border-top: 2px solid #f0515d;
+				transform: translateY(15px);
 			}
 			
 			.Header__button::after {
 				bottom: 0;
 				width: 23px;
 				border-bottom: 2px solid #f0515d;
+				transform: translateY(-15px);
 			}
 			
 			.Header__desktop {
@@ -234,8 +235,6 @@
 	.Header__main {
 		.Header__container {
 			.Header__button {
-				height: 32px;
-				width: 32px;
 			}
 			
 			.Header__button::before, .Header__button::after {
@@ -245,12 +244,12 @@
 			}
 			
 			.Header__button::before {
-				transform: rotate(45deg) translateY(13.5px) translateX(8px);
+				transform: rotate(45deg) translateY(19px) translateX(8.5px);
 			}
 			
 			.Header__button::after {
 				width: 24px;
-				transform: rotate(-45deg) translateY(-13.5px) translateX(8px);
+				transform: rotate(-45deg) translateY(-19px) translateX(8.5px);
 			}
 		}
 	}
