@@ -1,7 +1,7 @@
 @import '/styles/functions';
 
 .UpcomingExcursions {
-	margin-top: rem(32px);
+	margin: rem(32px) auto auto auto;
 	max-width: 660px;
 	
 	.UpcomingExcursions__header {
@@ -122,13 +122,14 @@
 	}
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
 	.UpcomingExcursions {
 		margin-top: 0;
 		display: flex;
 		flex-direction: column-reverse;
 		justify-content: center;
 		align-items: center;
+		max-width: 540px;
 		
 		.UpcomingExcursions__header {
 			margin-top: 8px;
@@ -150,5 +151,11 @@
 				margin-top: rem(16px);
 			}
 		}
+	}
+}
+
+@media (min-width: 1280px) {
+	.UpcomingExcursions {
+		max-width: 660px;
 	}
 }
