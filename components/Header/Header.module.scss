@@ -119,21 +119,22 @@
 				position: absolute;
 				right: 0;
 				height: 0;
-				transition: var(--transition-primary);
+				transition: transform var(--transition-primary), width var(--transition-primary);
+				transform: translateZ(0);
 			}
 			
 			.Header__button::before {
 				top: 0;
 				width: 37px;
 				border-top: 2px solid #f0515d;
-				transform: translateY(15px);
+				transform: translateY(15px) translateZ(0);
 			}
 			
 			.Header__button::after {
 				bottom: 0;
 				width: 23px;
 				border-bottom: 2px solid #f0515d;
-				transform: translateY(-15px);
+				transform: translateY(-15px) translateZ(0);
 			}
 			
 			.Header__desktop {
@@ -240,16 +241,16 @@
 			.Header__button::before, .Header__button::after {
 				width: 24px;
 				margin: auto;
-				transition: var(--transition-primary);
+				transition: transform var(--transition-primary), width var(--transition-primary);
 			}
 			
 			.Header__button::before {
-				transform: rotate(45deg) translateY(19px) translateX(8.5px);
+				transform: rotate(45deg) translateY(19px) translateX(8.5px) translateZ(0);
 			}
 			
 			.Header__button::after {
 				width: 24px;
-				transform: rotate(-45deg) translateY(-19px) translateX(8.5px);
+				transform: rotate(-45deg) translateY(-19px) translateX(8.5px) translateZ(0);
 			}
 		}
 	}
