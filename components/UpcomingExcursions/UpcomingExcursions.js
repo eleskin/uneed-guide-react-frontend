@@ -102,6 +102,8 @@ const UpcomingExcursions = () => {
 			<div
 				className={styles.UpcomingExcursions__cards}
 				ref={cardsRef}
+				onMouseMove={() => isChangedSlide && setIsChangedSlide(false)}
+				onMouseLeave={() => !isChangedSlide && !isVisibleCalendar && setIsChangedSlide(true)}
 			>
 				<div className={styles.UpcomingExcursions__navigation}>
 					<h4>
