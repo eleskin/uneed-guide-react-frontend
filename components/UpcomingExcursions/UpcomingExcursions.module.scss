@@ -1,7 +1,7 @@
 @import '/styles/functions';
 
 .UpcomingExcursions {
-	margin-top: rem(32px);
+	margin: rem(32px) auto auto auto;
 	
 	.UpcomingExcursions__header {
 		display: flex;
@@ -41,7 +41,7 @@
 					border-radius: 18px;
 					position: relative;
 					animation-name: dotAnimation;
-					animation-duration: 4s;
+					animation-duration: 9s;
 					animation-timing-function: linear;
 					transition: var(--transition-primary);
 				}
@@ -77,6 +77,38 @@
 		margin-top: rem(8px);
 		border-radius: 12px;
 		background-color: #ffffff;
+		width: 100%;
+		
+		.UpcomingExcursions__navigation {
+			display: none;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 rem(16px);
+			
+			h4 {
+				margin: 0;
+				padding: 0;
+				font-size: rem(14px);
+				line-height: rem(21px);
+				color: rgba(#212121, 0.8);
+				font-weight: 400;
+			}
+			
+			.UpcomingExcursions__button {
+				background-color: transparent;
+				border: none;
+				opacity: 1;
+				padding: 8px;
+				transition: opacity var(--transition-primary);
+				cursor: pointer;
+			}
+			
+			.UpcomingExcursions__button:disabled {
+				opacity: 0.25;
+				cursor: default;
+			}
+		}
 		
 		.UpcomingExcursions__container {
 			display: flex;
@@ -85,206 +117,49 @@
 			align-items: center;
 			transition: var(--transition-primary);
 			width: 100%;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.UpcomingExcursions {
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+		
+		.UpcomingExcursions__header {
+			margin-top: 8px;
 			
-			.UpcomingExcursions__card {
-				flex-shrink: 0;
-				width: 100%;
-				
-				.UpcomingExcursions__image {
-					position: relative;
-					overflow: hidden;
-					padding: 0 rem(16px);
-					
-					img {
-						border-radius: 8px;
-					}
-				}
-				
-				.UpcomingExcursions__header {
-					display: flex;
-					flex-direction: column;
-					justify-content: flex-start;
-					align-items: flex-start;
-					padding: 0 rem(16px) rem(8px) rem(16px);
-					
-					h3 {
-						margin: rem(16px) 0 rem(8px) 0;
-					}
-					
-					span {
-						display: flex;
-						flex-direction: row;
-						justify-content: flex-start;
-						align-items: center;
-						margin-bottom: rem(8px);
-						font-size: rem(12px);
-						line-height: rem(18px);
-						color: rgba(#212121, 0.6);
-						grid-column-gap: 12px;
-					}
-				}
-				
-				.UpcomingExcursions__departures {
-					padding: rem(8px) rem(16px);
-					background-color: #fafafa;
-					position: relative;
-					
-					span {
-						font-weight: 400;
-						font-size: rem(12px);
-						line-height: rem(18px);
-						color: #666666;
-						margin-bottom: rem(4px);
-						display: block;
-					}
-					
-					.UpcomingExcursions__times {
-						display: grid;
-						grid-template-columns: repeat(4, 1fr);
-						grid-column-gap: 8px;
-						
-						button {
-							font-size: rem(14px);
-							line-height: rem(21px);
-							color: #212121;
-							border-radius: 3px;
-							border: none;
-							background-color: #ffffff;
-							padding: rem(4px);
-							text-align: center;
-						}
-					}
-					
-					.UpcomingExcursions__calendar {
-						position: absolute;
-						bottom: 0;
-						left: -52px;
-						right: -52px;
-						max-width: calc(100% + 104px);
-						margin: auto;
-						width: fit-content;
-						opacity: 0;
-						transform: scale(0.6) translateY(20%);
-						transform-origin: 50% 100%;
-						z-index: -1;
-						transition: all var(--transition-primary), z-index 0s linear 0.8s;
-					}
-					
-					.UpcomingExcursions__calendar_active {
-						opacity: 1;
-						transform: scale(1) translateY(20%);
-						z-index: 2;
-						transition: all var(--transition-primary), z-index 0s linear 0s;
-					}
-				}
-				
-				.UpcomingExcursions__discount {
-					padding: rem(16px);
-					display: flex;
-					flex-direction: row;
-					justify-content: flex-start;
-					align-items: center;
-					grid-column-gap: 8px;
-					border-bottom: 1px solid #ececec;
-					
-					strong, span {
-						font-size: rem(12px);
-						line-height: rem(18px);
-					}
-					
-					strong {
-						font-weight: 700;
-						color: #f0515d;
-					}
-					
-					span {
-						font-weight: 400;
-						color: #999999;
-						text-decoration: line-through;
-					}
-				}
-				
-				.UpcomingExcursions__tariffs {
-					padding: rem(6px) rem(16px);
-					border-bottom: 1px solid #ececec;
-					
-					.UpcomingExcursions__tariff {
-						width: 100%;
-						display: flex;
-						flex-direction: row;
-						justify-content: space-between;
-						align-items: center;
-						padding: rem(8px) 0;
-						
-						span {
-							font-size: rem(12px);
-							line-height: rem(18px);
-							color: #000000;
-						}
-						
-						div {
-							display: flex;
-							flex-direction: row;
-							justify-content: flex-end;
-							align-items: center;
-							grid-column-gap: 8px;
-							
-							strong, span {
-								font-weight: 400;
-								font-size: rem(12px);
-								line-height: rem(18px);
-								letter-spacing: 0.02em;
-								text-transform: uppercase;
-							}
-							
-							strong {
-								color: #f0515d;
-							}
-							
-							span {
-								color: #8a8894;
-								text-decoration: line-through;
-							}
-							
-							button {
-								padding: 0 rem(8px);
-								border: none;
-								border-left: 1px solid #c4c4c4;
-								background-color: transparent;
-							}
-						}
-					}
-					
-					.UpcomingExcursions__tariff:not(:last-child) {
-						border-bottom: 1px solid #c4c4c4;
-					}
-				}
-				
-				.UpcomingExcursions__footer {
-					display: grid;
-					grid-template-columns: auto auto auto;
-					grid-column-gap: 8px;
-					padding: rem(16px) rem(16px) 0 rem(16px);
-					
-					button {
-						display: flex;
-						flex-direction: row;
-						justify-content: center;
-						align-items: center;
-						font-weight: 700;
-						height: 100%;
-					}
-					
-					button:last-child:hover {
-						svg {
-							path {
-								stroke: #ffffff;
-								transition: var(--transition-primary);
-							}
-						}
-					}
-				}
+			span {
+				display: none;
 			}
 		}
+		
+		.UpcomingExcursions__cards {
+			margin-top: 0;
+			
+			
+			.UpcomingExcursions__navigation {
+				display: flex;
+			}
+			
+			.UpcomingExcursions__container {
+				margin-top: rem(16px);
+			}
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	.UpcomingExcursions {
+		margin-top: 0;
+		max-width: 540px;
+	}
+}
+
+@media (min-width: 1280px) {
+	.UpcomingExcursions {
+		max-width: 660px;
 	}
 }
