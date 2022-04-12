@@ -53,5 +53,14 @@
 		"title": "Excursions and tours with the best guides in",
 		"subtitle": "Longer journey - more discoveries",
 		"search-button": "Search"
+	},
+	"popular-categories": {
+		"title": "Popular categories",
+		"catalog-link": "Tours catalog"
+	},
+	"popular-categories-card": {
+		"price": "from",
+		"count-begin": "more than",
+		"count-end": "offers"
 	}
 }

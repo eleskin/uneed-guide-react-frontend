@@ -1,0 +1,18 @@
+@import '/styles/functions';
+
+.Title {
+	font-weight: 400;
+	font-size: rem(22px);
+	line-height: rem(33px);
+	color: #221818;
+	margin: 0 0 rem(24px) 0;
+	padding: 0;
+}
+
+@media (min-width: 768px) {
+	.Title {
+		font-size: rem(34px);
+		line-height: rem(51px);
+		margin-bottom: rem(32px);
+	}
+}
