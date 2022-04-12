@@ -3,7 +3,66 @@
 .SpecialOffers {
 	padding-top: rem(48px);
 	
-	.SpecialOffers__cards {
+	.SpecialOffers__wrapper {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: calc(100% + 70px);
+		transform: translateX(-35px);
+		grid-column-gap: 13px;
+		
+		& > button {
+			height: 25px;
+			min-height: 25px;
+			width: 25px;
+			min-width: 25px;
+			border: none;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+			background-color: #ffffff;
+			box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+			transition: opacity var(--transition-primary), box-shadow var(--transition-primary);
+		}
+		
+		& > button:disabled {
+			opacity: 0.25;
+			box-shadow: none;
+		}
+		
+		& > button:first-child {
+			svg {
+				transform: translateX(-1px);
+			}
+		}
+		
+		& > button:last-child {
+			svg {
+				transform: translateX(1px);
+			}
+		}
+		
+		.SpecialOffers__cards {
+			width: 100%;
+			overflow: hidden;
+			background-color: #ffffff;
+			box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
+			border-radius: 12px;
+			padding: rem(16px) 0;
+			
+			.SpecialOffers__container {
+				display: flex;
+				width: 100%;
+				transition: transform var(--transition-primary);
+				
+				& > div {
+					flex-shrink: 0;
+				}
+			}
+		}
 	}
 	
 	.SpecialOffers__footer {
