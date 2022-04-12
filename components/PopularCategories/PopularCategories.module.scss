@@ -1,0 +1,26 @@
+@import '/styles/functions';
+
+.PopularCategories {
+	.PopularCategories__cards {
+		display: grid;
+		grid-row-gap: rem(24px);
+	}
+	
+	.PopularCategories__footer {
+		margin-top: rem(28px);
+		border-top: 1px solid #c4c4c4;
+		padding-top: rem(20px);
+		
+		a {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+			grid-column-gap: rem(12px);
+			font-size: rem(14px);
+			line-height: rem(21px);
+			color: #212121;
+			text-decoration: none;
+		}
+	}
+}
