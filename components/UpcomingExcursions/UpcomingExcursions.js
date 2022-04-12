@@ -69,7 +69,6 @@ const UpcomingExcursions = () => {
 	
 	const cardsList = slides.map((slide, index) => (
 		<ExcursionCard
-			languageFile={languageFile}
 			currentLocale={currentLocale}
 			dateValue={dateValue}
 			setDateValue={setDateValue}
