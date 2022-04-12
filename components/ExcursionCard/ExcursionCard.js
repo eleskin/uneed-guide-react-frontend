@@ -7,14 +7,15 @@ import styles from './ExcursionCard.module.scss';
 
 const ExcursionCard = ({
 	                       handleCalendarButtonClick,
-	                       currentLocale,
 	                       dateValue,
 	                       setDateValue,
 	                       isVisibleCalendar,
 	                       setIsVisibleCalendar,
+	                       small = false,
                        }) => {
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
+	const [currentLocale, setCurrentLocale] = useState('ru');
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -22,9 +23,15 @@ const ExcursionCard = ({
 		}
 	}, [setLanguageFile, router.locale]);
 	
+	useEffect(() => {
+		if (router.locale) {
+			setCurrentLocale(router.locale);
+		}
+	}, [router.locale]);
+	
 	return (
 		<div
-			className={styles.ExcursionsCard}
+			className={`${styles.ExcursionsCard} ${small ? styles.ExcursionsCard_small : ''}`}
 		>
 			<div className={styles.ExcursionsCard__image}>
 				<Image
