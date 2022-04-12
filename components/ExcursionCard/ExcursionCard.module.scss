@@ -82,6 +82,7 @@
 					path {
 						transition: stroke var(--transition-primary);
 					}
+					
 					rect {
 						transition: fill var(--transition-primary);
 					}
@@ -96,6 +97,7 @@
 					path {
 						stroke: #ffffff;
 					}
+					
 					rect {
 						fill: #ffffff;
 					}
@@ -232,6 +234,13 @@
 			}
 		}
 	}
+}
+
+.ExcursionsCard_small {
+	background-color: #ffffff;
+	box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
+	border-radius: 12px;
+	padding: rem(16px) 0;
 }
 
 @media (min-width: 768px) {
