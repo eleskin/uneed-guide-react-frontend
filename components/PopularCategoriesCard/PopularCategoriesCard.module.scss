@@ -1,6 +1,8 @@
 @import '/styles/functions';
 
 .PopularCategoriesCard {
+	cursor: pointer;
+	
 	.PopularCategoriesCard__image {
 		position: relative;
 		border-radius: 8px;

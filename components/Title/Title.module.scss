@@ -8,3 +8,11 @@
 	margin: 0 0 rem(24px) 0;
 	padding: 0;
 }
+
+@media (min-width: 768px) {
+	.Title {
+		font-size: rem(34px);
+		line-height: rem(51px);
+		margin-bottom: rem(32px);
+	}
+}

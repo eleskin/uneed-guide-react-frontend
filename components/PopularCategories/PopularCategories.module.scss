@@ -4,12 +4,14 @@
 	.PopularCategories__cards {
 		display: grid;
 		grid-row-gap: rem(24px);
+		grid-column-gap: rem(16px);
 	}
 	
 	.PopularCategories__footer {
 		margin-top: rem(28px);
 		border-top: 1px solid #c4c4c4;
 		padding-top: rem(20px);
+		grid-column-gap: rem(12px);
 		
 		a {
 			display: flex;
@@ -21,6 +23,33 @@
 			line-height: rem(21px);
 			color: #212121;
 			text-decoration: none;
+		}
+	}
+}
+
+@media (min-width: 720px) {
+	.PopularCategories {
+		.PopularCategories__cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		
+		.PopularCategories__footer {
+			margin-top: rem(24px);
+			padding-top: rem(16px);
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.PopularCategories {
+		padding-top: rem(64px);
+	}
+}
+
+@media (min-width: 1080px) {
+	.PopularCategories {
+		.PopularCategories__cards {
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 }

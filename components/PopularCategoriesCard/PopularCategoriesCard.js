@@ -7,7 +7,7 @@ const PopularCategoriesCard = ({price, title, count, image}) => {
 		<Link href="#">
 			<div className={styles.PopularCategoriesCard}>
 				<div className={styles.PopularCategoriesCard__image}>
-					<Image src={image} width={320} height={150} alt="" layout="responsive"/>
+					<Image src={image} width={390} height={230} alt="" layout="responsive"/>
 					<span className={styles.PopularCategoriesCard__price}>от {price} ₽</span>
 				</div>
 				<div className={styles.PopularCategoriesCard__info}>

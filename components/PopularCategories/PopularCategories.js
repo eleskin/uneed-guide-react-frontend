@@ -17,15 +17,15 @@ const PopularCategories = () => {
 						count={13}
 					/>
 					<PopularCategoriesCard
-						price={350}
+						price={550}
 						image="/assets/images/popular-categories/popular-categories-img-2.png"
 						title="Дневные экскурсии"
 						count={32}
 					/>
 					<PopularCategoriesCard
-						price={450}
+						price={350}
 						image="/assets/images/popular-categories/popular-categories-img-3.png"
-						title="Метеоры"
+						title="Пешеходные экскурсии"
 						count={32}
 					/>
 				</div>
