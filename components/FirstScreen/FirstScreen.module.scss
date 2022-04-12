@@ -225,7 +225,7 @@
 			.FirstScreen__title {
 				transform: translateY(-13px);
 				
-				span {
+				& > span {
 					font-size: rem(18px);
 					line-height: rem(27px);
 				}
@@ -237,6 +237,19 @@
 				
 				.FirstScreen__search {
 					max-width: rem(400px);
+				}
+			}
+			
+			.FirstScreen__search {
+				.FirstScreen__calendar {
+					top: 0;
+					left: 0;
+					right: auto;
+					transform: scale(0.6) translateY(-100%);
+				}
+				
+				.FirstScreen__calendar_active {
+					transform: scale(1) translateY(-100%);
 				}
 			}
 		}
