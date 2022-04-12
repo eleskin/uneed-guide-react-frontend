@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Container from '../Container/Container';
+import ExcursionCard from '../ExcursionCard/ExcursionCard';
 import Title from '../Title/Title';
 import styles from './SpecialOffers.module.scss';
 
@@ -9,6 +10,10 @@ const SpecialOffers = () => {
 			<Container>
 				<Title>Специальные предложения</Title>
 				<div className={styles.SpecialOffers__cards}>
+					<ExcursionCard
+						small={true}
+						
+					/>
 				</div>
 				<footer className={styles.SpecialOffers__footer}>
 					<Link href="#">
