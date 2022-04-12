@@ -53,5 +53,14 @@
 		"title": "Экскурсии и туры с лучшими гидами по",
 		"subtitle": "Дольше путешествие - больше открытий",
 		"search-button": "Найти"
+	},
+	"popular-categories": {
+		"title": "Популярные категории",
+		"catalog-link": "Каталог экскурсий"
+	},
+	"popular-categories-card": {
+		"price": "от",
+		"count-begin": "более",
+		"count-end": "предложений"
 	}
 }
