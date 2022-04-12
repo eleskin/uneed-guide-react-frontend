@@ -49,8 +49,15 @@ const SpecialOffers = () => {
 						<div
 							className={styles.SpecialOffers__container}
 							style={{transform: `translateX(${-100 * activeSlide}%)`}}
-						>{slidesList}</div>
+						>
+							{slidesList}
+						</div>
 					</div>
+					<Link href="#">
+						<a className={styles.SpecialOffers__link}>
+							Смотреть все предложения
+						</a>
+					</Link>
 					<button
 						onClick={() => setActiveSlide(activeSlide + 1)}
 						disabled={activeSlide >= slides.length - 1}
