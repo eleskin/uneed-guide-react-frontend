@@ -9,6 +9,7 @@ import styles from './SpecialOffers.module.scss';
 
 const SpecialOffers = () => {
 	const [activeSlide, setActiveSlide] = useState(0);
+	const [isDisabledNextButton, setIsDisabledNextButton] = useState(false);
 	
 	const slides = [
 		{},
@@ -17,25 +18,38 @@ const SpecialOffers = () => {
 		{},
 		{},
 		{},
-//		{},
 	];
 	
 	const isThreeColumns = useMediaQuery({query: '(min-width: 1280px)'});
 	const isTwoColumns = useMediaQuery({query: '(min-width: 840px)'});
 	
+	
+	
+	const nextSlide = () => {
+		if (isThreeColumns) {
+			activeSlide < Math.ceil(slides.length / 3) - 1 && setActiveSlide(activeSlide + 1);
+			
+			activeSlide + 1 >= Math.ceil(slides.length / 3) - 1 && setIsDisabledNextButton(true);
+		} else if (isTwoColumns && !isThreeColumns) {
+			activeSlide < Math.ceil(slides.length / 2) - 1 && setActiveSlide(activeSlide + 1);
+			
+			activeSlide + 1 >= Math.ceil(slides.length / 2) - 1 && setIsDisabledNextButton(true);
+		} else if (!isTwoColumns && !isThreeColumns) {
+			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+			
+			activeSlide < slides.length - 1 && setIsDisabledNextButton(true);
+		}
+	};
+	
+	const prevSlide = () => {
+		activeSlide > 0 && setActiveSlide(activeSlide - 1);
+		
+		activeSlide < slides.length - 1 && setIsDisabledNextButton(false);
+	};
+	
 	const handlers = useSwipeable({
-		onSwipedLeft: () => {
-			if (isThreeColumns) {
-				activeSlide < Math.ceil(slides.length / 3) - 1 && setActiveSlide(activeSlide + 1);
-			} else if (isTwoColumns) {
-				activeSlide < Math.ceil(slides.length / 2) - 1 && setActiveSlide(activeSlide + 1);
-			} else {
-				activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
-			}
-		},
-		onSwipedRight: () => {
-			activeSlide > 0 && setActiveSlide(activeSlide - 1);
-		},
+		onSwipedLeft: nextSlide,
+		onSwipedRight: prevSlide,
 	});
 	
 	const slidesList = slides.map((slide, index) => (
@@ -48,10 +62,33 @@ const SpecialOffers = () => {
 	return (
 		<div className={styles.SpecialOffers}>
 			<Container>
-				<Title>Специальные предложения</Title>
+				<div className={styles.SpecialOffers__title}>
+					<div>
+						<Title style={{marginBottom: 0}}>Специальные предложения</Title>
+						<div className={styles.SpecialOffers__buttons}>
+							<button
+								onClick={prevSlide}
+								disabled={activeSlide <= 0}
+							>
+								<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fillRule="evenodd" clipRule="evenodd" d="M0 6L6.48649 12L8 10.6L3.02703 6L8 1.4L6.48649 0L0 6Z" fill="#F0515D"/>
+								</svg>
+							</button>
+							<button
+								onClick={nextSlide}
+								disabled={isDisabledNextButton}
+							>
+								<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fillRule="evenodd" clipRule="evenodd" d="M8 6L1.51351 12L4.76837e-07 10.6L4.97297 6L4.76837e-07 1.4L1.51351 0L8 6Z" fill="#F0515D"/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<div/>
+				</div>
 				<div className={styles.SpecialOffers__wrapper} {...handlers}>
 					<button
-						onClick={() => setActiveSlide(activeSlide - 1)}
+						onClick={prevSlide}
 						disabled={activeSlide <= 0}
 					>
 						<svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,8 +109,8 @@ const SpecialOffers = () => {
 						</a>
 					</Link>
 					<button
-						onClick={() => setActiveSlide(activeSlide + 1)}
-						disabled={activeSlide >= slides.length - 1}
+						onClick={nextSlide}
+						disabled={isDisabledNextButton}
 					>
 						<svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M1 13L7 7L1 1" stroke="#283140" strokeWidth="2" strokeLinecap="round"/>

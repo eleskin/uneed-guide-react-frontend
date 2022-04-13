@@ -1,8 +1,8 @@
 import styles from './Title.module.scss';
 
-const Title = ({children}) => {
+const Title = ({children, ...props}) => {
 	return (
-		<h2 className={styles.Title}>{children}</h2>
+		<h2 {...props} className={styles.Title}>{children}</h2>
 	);
 };
 
