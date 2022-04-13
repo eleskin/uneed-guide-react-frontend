@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import {useState} from 'react';
+import {useMediaQuery} from 'react-responsive';
 import {useSwipeable} from 'react-swipeable';
 import Container from '../Container/Container';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
@@ -14,15 +15,27 @@ const SpecialOffers = () => {
 		{},
 		{},
 		{},
+		{},
+		{},
+//		{},
 	];
+	
+	const isThreeColumns = useMediaQuery({query: '(min-width: 1280px)'});
+	const isTwoColumns = useMediaQuery({query: '(min-width: 840px)'});
 	
 	const handlers = useSwipeable({
 		onSwipedLeft: () => {
-			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+			if (isThreeColumns) {
+				activeSlide < Math.ceil(slides.length / 3) - 1 && setActiveSlide(activeSlide + 1);
+			} else if (isTwoColumns) {
+				activeSlide < Math.ceil(slides.length / 2) - 1 && setActiveSlide(activeSlide + 1);
+			} else {
+				activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+			}
 		},
 		onSwipedRight: () => {
 			activeSlide > 0 && setActiveSlide(activeSlide - 1);
-		}
+		},
 	});
 	
 	const slidesList = slides.map((slide, index) => (

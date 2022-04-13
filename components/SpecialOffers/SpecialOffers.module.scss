@@ -82,6 +82,7 @@
 			line-height: rem(21px);
 			color: #f0515d;
 			text-decoration: none;
+			background-color: #fafafa;
 		}
 	}
 	
@@ -143,7 +144,7 @@
 	}
 }
 
-@media (min-width: 840px) {
+@media (min-width: 960px) {
 	.SpecialOffers {
 		.SpecialOffers__wrapper {
 			grid-column-gap: 0;
@@ -151,7 +152,9 @@
 			.SpecialOffers__cards {
 				box-shadow: none;
 				border-radius: 0;
-				padding: 0;
+				padding: 16px;
+				margin: -16px;
+				width: calc(100% + 32px);
 				
 				.SpecialOffers__container {
 					grid-column-gap: 24px;
@@ -173,9 +176,6 @@
 	.SpecialOffers {
 		.SpecialOffers__wrapper {
 			.SpecialOffers__cards {
-				padding: 16px;
-				margin: -16px;
-				width: calc(100% + 32px);
 				.SpecialOffers__container {
 					& > div {
 						width: calc(100% / 3 - 24px);
