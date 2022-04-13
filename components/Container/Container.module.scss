@@ -6,3 +6,15 @@
 	margin: auto;
 	width: 100%;
 }
+
+@media (max-width: 375px) {
+	.Container {
+		padding: 0 rem(32px);
+	}
+}
+
+@media (max-width: 320px) {
+	.Container {
+		padding: 0 rem(20px);
+	}
+}
