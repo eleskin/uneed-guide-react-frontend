@@ -1,0 +1,44 @@
+@import '/styles/functions';
+
+.CatalogLink {
+	background: url('/assets/images/catalog-link/catalog-link-background.png') center center no-repeat;
+	background-size: cover;
+	padding: rem(48px) 0;
+	margin-top: rem(48px);
+	
+	.CatalogLink__text {
+		display: block;
+		font-size: rem(16px);
+		line-height: rem(24px);
+		color: #ffffff;
+		margin-bottom: rem(24px);
+	}
+	
+	.CatalogLink__link {
+		display: inline-flex;
+		background-color: #ffffff;
+		border-radius: 12px;
+		padding: rem(12px) rem(24px);
+		align-items: center;
+		grid-column-gap: 12px;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: rem(13px);
+		line-height: rem(20px);
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: #f0515d;
+	}
+}
+
+@media (min-width: 768px) {
+	.CatalogLink {
+		padding: rem(64px) 0;
+		margin-top: rem(64px);
+		
+		.CatalogLink__text {
+			font-size: rem(24px);
+			line-height: rem(36px);
+		}
+	}
+}
