@@ -7,11 +7,26 @@
 	
 	.ExcursionsCard__image {
 		position: relative;
-		overflow: hidden;
 		padding: 0 rem(16px);
+		z-index: 2;
 		
 		img {
 			border-radius: 8px;
+		}
+		
+		i {
+			display: none;
+			border-radius: 2px 0 0 2px;
+			position: absolute;
+			background-color: #f0515d;
+			font-size: rem(14px);
+			line-height: rem(21px);
+			color: #ffffff;
+			font-style: normal;
+			bottom: 0;
+			right: 0;
+			padding: rem(2px) rem(8px);
+			transform: translateY(50%);
 		}
 	}
 	
@@ -22,8 +37,16 @@
 		align-items: flex-start;
 		padding: 0 rem(16px) rem(8px) rem(16px);
 		
+		i {
+			font-style: normal;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: #f0515d;
+			margin-top: rem(16px);
+		}
+		
 		h3 {
-			margin: rem(16px) 0 rem(8px) 0;
+			margin: 0 0 rem(8px) 0;
 			font-weight: 500;
 			font-size: rem(17px);
 			line-height: rem(26px);
@@ -40,6 +63,15 @@
 			line-height: rem(18px);
 			color: rgba(#212121, 0.6);
 			grid-column-gap: 12px;
+		}
+		
+		p {
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 18px;
+			
+			color: #8A8894;
+			margin: 0 0 rem(16px) 0;
 		}
 		
 		.ExcursionsCard__tariffs {
@@ -151,6 +183,18 @@
 			font-weight: 400;
 			color: #999999;
 			text-decoration: line-through;
+		}
+		
+		.ExcursionsCard__rating {
+			display: none;
+			margin-left: auto;
+			flex-direction: row;
+			justify-content: flex-end;
+			align-items: center;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: #212121;
+			grid-column-gap: 4px;
 		}
 	}
 	
@@ -326,6 +370,51 @@
 			align-items: center;
 			justify-content: flex-start;
 			padding: rem(16px);
+		}
+	}
+}
+
+@media (min-width: 960px) {
+	.ExcursionsCard {
+		flex-shrink: 0;
+		width: 100%;
+		overflow: hidden;
+		
+		.ExcursionsCard__image {
+			i {
+				display: block;
+			}
+		}
+		
+		.ExcursionsCard__header {
+			i {
+				display: block;
+			}
+		}
+	}
+	
+	.ExcursionsCard_small {
+		.ExcursionsCard__header {
+			p {
+				padding-bottom: rem(16px);
+				border-bottom: 1px solid #ececec;
+			}
+			
+			border-bottom: 1px solid #ececec;
+		}
+		
+		.ExcursionsCard__departures {
+			display: none;
+		}
+		
+		.ExcursionsCard__discount {
+			strong {
+				font-size: rem(16px);
+			}
+			
+			.ExcursionsCard__rating {
+				display: flex;
+			}
 		}
 	}
 }

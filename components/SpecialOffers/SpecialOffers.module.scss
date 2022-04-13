@@ -236,9 +236,17 @@
 					& > div {
 						width: calc(50% - 24px);
 						border-radius: 12px;
-						padding: rem(16px) 0;
+						padding: 0 0 rem(16px) 0;
 						flex-shrink: 0;
 						box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
+						
+						& > div:first-child {
+							padding: 0;
+							
+							img {
+								border-radius: 0;
+							}
+						}
 					}
 				}
 			}
