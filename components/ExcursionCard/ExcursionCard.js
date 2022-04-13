@@ -1,20 +1,37 @@
 import Image from 'next/image';
+import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 import Button from '../Button/Button';
 import styles from './ExcursionCard.module.scss';
 
 const ExcursionCard = ({
-	                                languageFile,
-	                                handleCalendarButtonClick,
-	                                currentLocale,
-	                                dateValue,
-	                                setDateValue,
-	                                isVisibleCalendar,
-	                                setIsVisibleCalendar,
-                                }) => {
+	                       handleCalendarButtonClick,
+	                       dateValue,
+	                       setDateValue,
+	                       isVisibleCalendar,
+	                       setIsVisibleCalendar,
+	                       small = false,
+                       }) => {
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	const [currentLocale, setCurrentLocale] = useState('ru');
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
+	
+	useEffect(() => {
+		if (router.locale) {
+			setCurrentLocale(router.locale);
+		}
+	}, [router.locale]);
+	
 	return (
 		<div
-			className={styles.ExcursionsCard}
+			className={`${styles.ExcursionsCard} ${small ? styles.ExcursionsCard_small : ''}`}
 		>
 			<div className={styles.ExcursionsCard__image}>
 				<Image

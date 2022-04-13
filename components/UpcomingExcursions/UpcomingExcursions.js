@@ -10,7 +10,6 @@ const UpcomingExcursions = () => {
 	const [dateValue, setDateValue] = useState(new Date());
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [isChangedSlide, setIsChangedSlide] = useState(true);
-	const [currentLocale, setCurrentLocale] = useState('ru');
 	const [languageFile, setLanguageFile] = useState();
 	
 	useEffect(() => {
@@ -18,12 +17,6 @@ const UpcomingExcursions = () => {
 			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
-	
-	useEffect(() => {
-		if (router.locale) {
-			setCurrentLocale(router.locale);
-		}
-	}, [router.locale]);
 	
 	const slides = [
 		{},
@@ -69,8 +62,6 @@ const UpcomingExcursions = () => {
 	
 	const cardsList = slides.map((slide, index) => (
 		<ExcursionCard
-			languageFile={languageFile}
-			currentLocale={currentLocale}
 			dateValue={dateValue}
 			setDateValue={setDateValue}
 			handleCalendarButtonClick={handleCalendarButtonClick}
