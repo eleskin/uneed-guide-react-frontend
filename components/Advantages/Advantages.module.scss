@@ -1,0 +1,146 @@
+@import '/styles/functions';
+
+.Advantages {
+	padding-top: rem(48px);
+	
+	.Advantages__container {
+		.Advantages__list {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			
+			li {
+				display: flex;
+				align-items: center;
+				grid-column-gap: 12px;
+				padding: rem(16px) 0;
+				border-bottom: 1px solid #dbdbdb;
+				
+				i {
+					font-style: normal;
+					max-height: 44px;
+					height: 44px;
+					width: 48px;
+					background-color: #eff0f1;
+					border-radius: 6px;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					padding: 0 10px;
+				}
+				
+				span {
+					font-size: rem(12px);
+					line-height: 145%;
+					color: rgba(#212121, 0.8);
+				}
+			}
+			
+			li:first-child {
+				padding-top: 0;
+			}
+			
+			li:last-child {
+				padding-bottom: 0;
+				border-bottom: 0;
+			}
+		}
+		
+		.Advantages__promo {
+			width: 100%;
+			position: relative;
+			margin-top: rem(32px);
+			
+			p {
+				padding: 0;
+				font-weight: 700;
+				font-size: rem(22px);
+				line-height: rem(33px);
+				color: #ffffff;
+				position: absolute;
+				z-index: 1;
+				margin: rem(64px) rem(16px);
+				max-width: 260px;
+			}
+			
+			.Advantages__image_desktop {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (min-width: 560px) {
+	.Advantages {
+		.Advantages__container {
+			.Advantages__promo {
+				max-width: 620px;
+				margin-left: auto;
+				margin-right: auto;
+				
+				p {
+					margin: rem(32px);
+					max-width: 560px;
+				}
+				
+				.Advantages__image {
+					display: none;
+				}
+				
+				.Advantages__image_desktop {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 960px) {
+	.Advantages {
+		.Advantages__container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-column-gap: 24px;
+			
+			.Advantages__promo {
+				margin: auto;
+			}
+		}
+	}
+}
+
+@media (min-width: 1080px) {
+	.Advantages {
+		.Advantages__container {
+			.Advantages__list {
+				li {
+					grid-column-gap: 0;
+					border-bottom: none;
+					
+					i {
+						max-height: 90px;
+						height: 90px;
+						width: 112px;
+						min-width: 112px;
+						
+						svg {
+							transform: scale(1.5);
+						}
+					}
+					
+					span {
+						font-size: rem(16px);
+						padding: rem(28px) 0 rem(28px) rem(48px);
+						border-radius: 12px 0 0 12px;
+						border: 1px solid #efeff0;
+						border-right: none;
+						margin-left: -20px;
+					}
+				}
+			}
+			
+			grid-column-gap: 80px;
+		}
+	}
+}
