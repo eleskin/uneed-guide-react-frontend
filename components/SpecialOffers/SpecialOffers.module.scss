@@ -125,7 +125,7 @@
 			transform: translateX(0);
 			grid-column-gap: rem(24px);
 			display: grid;
-			grid-template-columns: 2fr 1fr;
+			grid-template-columns: 1fr auto;
 			
 			& > button {
 				display: none;
@@ -139,6 +139,49 @@
 		.SpecialOffers__footer {
 			margin-top: rem(24px);
 			padding-top: rem(16px);
+		}
+	}
+}
+
+@media (min-width: 840px) {
+	.SpecialOffers {
+		.SpecialOffers__wrapper {
+			grid-column-gap: 0;
+			
+			.SpecialOffers__cards {
+				box-shadow: none;
+				border-radius: 0;
+				padding: 0;
+				
+				.SpecialOffers__container {
+					grid-column-gap: 24px;
+					
+					& > div {
+						width: calc(50% - 24px);
+						border-radius: 12px;
+						padding: rem(16px) 0;
+						flex-shrink: 0;
+						box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 1280px) {
+	.SpecialOffers {
+		.SpecialOffers__wrapper {
+			.SpecialOffers__cards {
+				padding: 16px;
+				margin: -16px;
+				width: calc(100% + 32px);
+				.SpecialOffers__container {
+					& > div {
+						width: calc(100% / 3 - 24px);
+					}
+				}
+			}
 		}
 	}
 }

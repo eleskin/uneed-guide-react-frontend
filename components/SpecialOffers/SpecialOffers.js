@@ -55,7 +55,7 @@ const SpecialOffers = () => {
 					</div>
 					<Link href="#">
 						<a className={styles.SpecialOffers__link}>
-							Смотреть все предложения
+							Смотреть все<br/>предложения
 						</a>
 					</Link>
 					<button
