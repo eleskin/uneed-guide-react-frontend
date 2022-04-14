@@ -96,6 +96,19 @@
 	}
 }
 
+@media (min-width: 768px) {
+	.Advantages {
+		.Advantages__container {
+			.Advantages__promo {
+				p {
+					font-size: rem(28px);
+					line-height: rem(42px);
+				}
+			}
+		}
+	}
+}
+
 @media (min-width: 960px) {
 	.Advantages {
 		.Advantages__container {
@@ -131,7 +144,7 @@
 					
 					span {
 						font-size: rem(16px);
-						padding: rem(28px) 0 rem(28px) rem(48px);
+						padding: rem(16px) 0 rem(16px) rem(48px);
 						border-radius: 12px 0 0 12px;
 						border: 1px solid #efeff0;
 						border-right: none;

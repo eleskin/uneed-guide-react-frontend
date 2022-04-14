@@ -39,7 +39,7 @@ const App = ({Component, pageProps}) => {
 					<title>Uneed Guide</title>
 				</Head>
 				<style jsx global>
-					{`body {overflow: ${isActiveMenu && windowWidth < 768 ? 'hidden' : 'auto '}}`}
+					{`body {overflow-y: ${isActiveMenu && windowWidth < 768 ? 'hidden' : 'auto '}}`}
 				</style>
 				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight}/>
 				<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
