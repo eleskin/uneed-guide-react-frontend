@@ -127,10 +127,10 @@
 @media (min-width: 960px) {
 	.CardSlider:not(.CardSlider_invalid) {
 		grid-column-gap: 0;
+		grid-template-columns: 6fr 2fr;
 	}
 	
 	.CardSlider {
-		grid-template-columns: 6fr 2fr;
 		
 		.CardSlider__cards {
 			box-shadow: none;
