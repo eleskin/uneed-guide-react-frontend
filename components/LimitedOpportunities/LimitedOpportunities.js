@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import {useState} from 'react';
-import {useMediaQuery} from 'react-responsive';
 import CardSlider from '../CardSlider/CardSlider';
 import Container from '../Container/Container';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
@@ -20,23 +19,10 @@ const LimitedOpportunities = () => {
 		{},
 	];
 	
-	const isThreeColumns = useMediaQuery({query: '(min-width: 1280px)'});
-	const isTwoColumns = useMediaQuery({query: '(min-width: 840px)'});
-	
 	const nextSlide = () => {
-		if (isThreeColumns) {
-			activeSlide < Math.ceil(slides.length / 3) - 1 && setActiveSlide(activeSlide + 1);
-			
-			activeSlide + 1 >= Math.ceil(slides.length / 3) - 1 && setIsDisabledNextButton(true);
-		} else if (isTwoColumns && !isThreeColumns) {
-			activeSlide < Math.ceil(slides.length / 2) - 1 && setActiveSlide(activeSlide + 1);
-			
-			activeSlide + 1 >= Math.ceil(slides.length / 2) - 1 && setIsDisabledNextButton(true);
-		} else if (!isTwoColumns && !isThreeColumns) {
-			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
-			
-			activeSlide + 1 >= slides.length - 1 && setIsDisabledNextButton(true);
-		}
+		activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+		
+		activeSlide + 1 >= slides.length - 1 && setIsDisabledNextButton(true);
 	};
 	
 	const prevSlide = () => {
