@@ -86,14 +86,18 @@
 }
 
 @media (max-width: 375px) {
-	.LimitedOpportunities__container {
-		padding: 0 rem(32px);
+	.LimitedOpportunities {
+		.LimitedOpportunities__container {
+			padding: 0 rem(32px);
+		}
 	}
 }
 
 @media (max-width: 320px) {
-	.LimitedOpportunities__container {
-		padding: 0 rem(20px);
+	.LimitedOpportunities {
+		.LimitedOpportunities__container {
+			padding: 0 rem(20px);
+		}
 	}
 }
 
