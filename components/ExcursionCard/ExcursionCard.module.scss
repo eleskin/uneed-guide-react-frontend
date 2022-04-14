@@ -46,7 +46,7 @@
 		}
 		
 		h3 {
-			margin: 0 0 rem(8px) 0;
+			margin: rem(16px) 0 rem(8px) 0;
 			font-weight: 500;
 			font-size: rem(17px);
 			line-height: rem(26px);
@@ -276,6 +276,14 @@
 					transition: var(--transition-primary);
 				}
 			}
+		}
+	}
+}
+
+.ExcursionsCard_small {
+	.ExcursionsCard__header {
+		h3 {
+			margin: 0 0 rem(8px) 0;
 		}
 	}
 }
