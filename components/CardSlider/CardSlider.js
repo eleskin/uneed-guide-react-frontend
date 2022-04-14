@@ -19,6 +19,7 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 	useEffect(() => {
 		if (isLimitedOpportunities) {
 			setSlideWidth(parseFloat(window.getComputedStyle(sliderContainerRef.current.children[0]).width));
+			console.log(isLargeScreen)
 		}
 	}, [sliderContainerRef]);
 	
