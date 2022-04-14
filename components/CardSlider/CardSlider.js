@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import styles from './CardSlider.module.scss';
 
@@ -7,6 +9,14 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 		onSwipedLeft: nextSlide,
 		onSwipedRight: prevSlide,
 	});
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
 	
 	return (
 		<div className={styles.CardSlider} {...handlers}>
@@ -28,7 +38,7 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 			</div>
 			<Link href="#">
 				<a className={styles.SpecialOffers__link}>
-					Смотреть все<br/>предложения
+					{languageFile?.['card-slider']?.['link']}
 				</a>
 			</Link>
 			<button
