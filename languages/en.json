@@ -62,5 +62,12 @@
 		"price": "from",
 		"count-begin": "more than",
 		"count-end": "offers"
+	},
+	"special-offers": {
+		"title": "Special offers",
+		"link": "All popular excursions"
+	},
+	"card-slider": {
+		"link": "See all\nsuggestions"
 	}
 }
