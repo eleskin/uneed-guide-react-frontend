@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import {useState} from 'react';
+import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 import {useMediaQuery} from 'react-responsive';
-import {useSwipeable} from 'react-swipeable';
+import CardSlider from '../CardSlider/CardSlider';
 import Container from '../Container/Container';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
 import Title from '../Title/Title';
@@ -10,6 +11,14 @@ import styles from './SpecialOffers.module.scss';
 const SpecialOffers = () => {
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [isDisabledNextButton, setIsDisabledNextButton] = useState(false);
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
 	
 	const slides = [
 		{},
@@ -23,8 +32,6 @@ const SpecialOffers = () => {
 	const isThreeColumns = useMediaQuery({query: '(min-width: 1280px)'});
 	const isTwoColumns = useMediaQuery({query: '(min-width: 840px)'});
 	
-	
-	
 	const nextSlide = () => {
 		if (isThreeColumns) {
 			activeSlide < Math.ceil(slides.length / 3) - 1 && setActiveSlide(activeSlide + 1);
@@ -37,20 +44,15 @@ const SpecialOffers = () => {
 		} else if (!isTwoColumns && !isThreeColumns) {
 			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
 			
-			activeSlide < slides.length - 1 && setIsDisabledNextButton(true);
+			activeSlide + 1 >= slides.length - 1 && setIsDisabledNextButton(true);
 		}
 	};
 	
 	const prevSlide = () => {
 		activeSlide > 0 && setActiveSlide(activeSlide - 1);
 		
-		activeSlide < slides.length - 1 && setIsDisabledNextButton(false);
+		activeSlide < slides.length && setIsDisabledNextButton(false);
 	};
-	
-	const handlers = useSwipeable({
-		onSwipedLeft: nextSlide,
-		onSwipedRight: prevSlide,
-	});
 	
 	const slidesList = slides.map((slide, index) => (
 		<ExcursionCard
@@ -64,7 +66,7 @@ const SpecialOffers = () => {
 			<Container>
 				<div className={styles.SpecialOffers__title}>
 					<div>
-						<Title style={{marginBottom: 0}}>Специальные предложения</Title>
+						<Title style={{marginBottom: 0}}>{languageFile?.['special-offers']?.['title']}</Title>
 						<div className={styles.SpecialOffers__buttons}>
 							<button
 								onClick={prevSlide}
@@ -86,41 +88,16 @@ const SpecialOffers = () => {
 					</div>
 					<div/>
 				</div>
-				<div className={styles.SpecialOffers__wrapper} {...handlers}>
-					<button
-						onClick={prevSlide}
-						disabled={activeSlide <= 0}
-					>
-						<svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M8 13L2 7L8 1" stroke="#283140" strokeWidth="2" strokeLinecap="round"/>
-						</svg>
-					</button>
-					<div className={styles.SpecialOffers__cards}>
-						<div
-							className={styles.SpecialOffers__container}
-							style={{transform: `translateX(${-100 * activeSlide}%)`}}
-						>
-							{slidesList}
-						</div>
-					</div>
-					<Link href="#">
-						<a className={styles.SpecialOffers__link}>
-							Смотреть все<br/>предложения
-						</a>
-					</Link>
-					<button
-						onClick={nextSlide}
-						disabled={isDisabledNextButton}
-					>
-						<svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M1 13L7 7L1 1" stroke="#283140" strokeWidth="2" strokeLinecap="round"/>
-						</svg>
-					</button>
-				</div>
+				<CardSlider
+					nextSlide={nextSlide}
+					prevSlide={prevSlide}
+					activeSlide={activeSlide}
+					isDisabledNextButton={isDisabledNextButton}
+				>{slidesList}</CardSlider>
 				<footer className={styles.SpecialOffers__footer}>
 					<Link href="#">
 						<a>
-							Все популярные экскурсии
+							{languageFile?.['special-offers']?.['link']}
 							<svg width="18" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M17.3536 4.35355C17.5488 4.15829 17.5488 3.84171 17.3536 3.64645L14.1716 0.464466C13.9763 0.269204 13.6597 0.269204 13.4645 0.464466C13.2692 0.659728 13.2692 0.976311 13.4645 1.17157L16.2929 4L13.4645 6.82843C13.2692 7.02369 13.2692 7.34027 13.4645 7.53553C13.6597 7.7308 13.9763 7.7308 14.1716 7.53553L17.3536 4.35355ZM0 4.5H17V3.5H0V4.5Z" fill="#212121"/>
 							</svg>

@@ -1,0 +1,136 @@
+@import '/styles/functions';
+
+.LimitedOpportunities {
+	padding-top: rem(48px);
+	
+	.LimitedOpportunities__title {
+		grid-column-gap: rem(24px);
+		margin-bottom: rem(24px);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		
+		div:first-child {
+			width: 100%;
+			grid-column-gap: rem(12px);
+			
+			span {
+				font-size: rem(14px);
+				line-height: 145%;
+				color: rgba(#212121, 0.6);
+				margin-top: rem(8px);
+				display: block;
+			}
+		}
+		
+		.LimitedOpportunities__buttons {
+			display: none;
+			
+			button {
+				padding: rem(16px) rem(16px) rem(16px) rem(16px);
+				cursor: pointer;
+				background-color: #f5f5f5;
+				border: none;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				
+				svg {
+					transition: opacity var(--transition-primary);
+				}
+			}
+			
+			button:disabled {
+				svg {
+					opacity: 0.25;
+				}
+			}
+			
+			button:first-child {
+				padding-right: rem(8px);
+				border-radius: 12px 0 0 12px;
+			}
+			
+			button:last-child {
+				padding-left: rem(8px);
+				border-radius: 0 12px 12px 0;
+			}
+		}
+	}
+	
+	.LimitedOpportunities__container {
+		padding: 0 rem(54px);
+		max-width: 1308px;
+		margin: auto;
+		width: 100%;
+	}
+	
+	.LimitedOpportunities__footer {
+		padding-top: rem(20px);
+		grid-column-gap: rem(12px);
+		
+		a {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+			grid-column-gap: rem(12px);
+			font-size: rem(14px);
+			line-height: rem(21px);
+			color: #212121;
+			text-decoration: none;
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.LimitedOpportunities__container {
+		padding: 0 rem(32px);
+	}
+}
+
+@media (max-width: 320px) {
+	.LimitedOpportunities__container {
+		padding: 0 rem(20px);
+	}
+}
+
+@media (min-width: 720px) {
+	.LimitedOpportunities {
+		.LimitedOpportunities__title {
+			.LimitedOpportunities__buttons {
+				display: flex;
+			}
+		}
+		
+		.LimitedOpportunities__footer {
+			display: none;
+		}
+	}
+}
+
+@media (min-width: 960px) {
+	.LimitedOpportunities {
+		.LimitedOpportunities__container {
+			margin-left: auto;
+			padding-right: 0;
+			margin-right: 0;
+			max-width: 2560px;
+			width: calc(1308px + (50% - 1308px / 2));
+		}
+	}
+}
+
+@media (min-width: 2560px) {
+	.LimitedOpportunities {
+		.LimitedOpportunities__container {
+			margin-left: auto;
+			padding-right: 0;
+			margin-right: auto;
+			max-width: 1308px;
+			//			width: calc(1920px + (50% - 1920px / 2));
+		}
+	}
+}

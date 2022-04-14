@@ -37,6 +37,14 @@
 		align-items: flex-start;
 		padding: 0 rem(16px) rem(8px) rem(16px);
 		
+		.ExcursionsCard__departures {
+			display: none;
+		}
+		
+		.ExcursionsCard__discount {
+			display: none;
+		}
+		
 		i {
 			font-style: normal;
 			font-size: rem(12px);
@@ -46,7 +54,7 @@
 		}
 		
 		h3 {
-			margin: 0 0 rem(8px) 0;
+			margin: rem(16px) 0 rem(8px) 0;
 			font-weight: 500;
 			font-size: rem(17px);
 			line-height: rem(26px);
@@ -172,6 +180,7 @@
 		strong, span {
 			font-size: rem(12px);
 			line-height: rem(18px);
+			margin: 0;
 		}
 		
 		strong {
@@ -280,6 +289,55 @@
 	}
 }
 
+.ExcursionsCard_small {
+	.ExcursionsCard__header {
+		h3 {
+			margin: 0 0 rem(8px) 0;
+		}
+	}
+}
+
+.ExcursionsCard_invalid {
+	.ExcursionsCard__image {
+		border-radius: 8px;
+		
+		& > span {
+			height: 100%!important;
+		}
+		
+		b {
+			position: absolute;
+			background-color: rgba(0, 0, 0, 0.8);
+			border-radius: 6px;
+			height: 30px;
+			width: 32px;
+			top: 8px;
+			left: 8px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			margin-left: rem(16px);
+			grid-column-gap: 12px;
+			padding: rem(4px) 0;
+			
+			span {
+				display: none;
+				font-weight: 400;
+				font-size: rem(12px);
+				line-height: rem(18px);
+				color: #FFFFFF;
+			}
+		}
+	}
+	
+	.ExcursionsCard__header {
+		& > span:last-of-type {
+			color: #f0515d;
+		}
+	}
+}
+
 @media (min-width: 768px) {
 	.ExcursionsCard:not(.ExcursionsCard_small) {
 		display: grid;
@@ -328,6 +386,20 @@
 			display: none;
 		}
 		
+		.ExcursionsCard__footer {
+			background-color: #fafafa;
+			border-radius: 0 12px 12px 0;
+			width: calc(100% + 0.5px);
+			transform: translateX(-0.5px);
+			display: flex;
+			flex-direction: row-reverse;
+			align-items: center;
+			justify-content: flex-start;
+			padding: rem(16px);
+		}
+	}
+	
+	.ExcursionsCard:not(.ExcursionsCard_invalid, .ExcursionsCard_small) {
 		.ExcursionsCard__tariffs {
 			display: none;
 			width: 100%;
@@ -359,17 +431,80 @@
 				border-bottom: none;
 			}
 		}
+	}
+	
+	.ExcursionsCard.ExcursionsCard_invalid {
+		padding-top: 0;
+		padding-bottom: 0;
+		grid-template-areas:
+			'image header'
+			'tariffs tariffs'
+			'footer footer'
+		;
+		
+		
+		.ExcursionsCard__image {
+			overflow: hidden;
+			
+			b {
+				border-radius: 0;
+				height: auto;
+				width: 100%;
+				top: auto;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				flex-direction: row;
+				margin-left: 0;
+				
+				span {
+					display: block;
+				}
+			}
+		}
+		
+		.ExcursionsCard__image {
+			grid-area: image;
+		}
+		
+		.ExcursionsCard__header {
+			grid-area: header;
+			
+			.ExcursionsCard__tariffs {
+				display: none;
+			}
+			
+			.ExcursionsCard__departures {
+				display: block;
+				background-color: transparent;
+				padding: 0;
+				margin-top: rem(16px);
+			}
+			
+			.ExcursionsCard__discount {
+				display: flex;
+				border-bottom: none;
+				padding: 0;
+				margin-top: rem(32px);
+			}
+		}
+		
+		.ExcursionsCard__departures {
+			display: none;
+		}
+		
+		.ExcursionsCard__tariffs {
+			display: block;
+			grid-area: tariffs;
+			padding: 0;
+		}
 		
 		.ExcursionsCard__footer {
-			background-color: #fafafa;
-			border-radius: 0 12px 12px 0;
-			width: calc(100% + 0.5px);
-			transform: translateX(-0.5px);
 			display: flex;
-			flex-direction: row-reverse;
-			align-items: center;
-			justify-content: flex-start;
-			padding: rem(16px);
+			flex-direction: row;
+			background-color: transparent;
+			padding: 0;
+			grid-area: footer;
 		}
 	}
 }

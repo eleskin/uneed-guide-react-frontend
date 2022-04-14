@@ -62,5 +62,17 @@
 		"price": "from",
 		"count-begin": "more than",
 		"count-end": "offers"
+	},
+	"special-offers": {
+		"title": "Special offers",
+		"link": "All popular excursions"
+	},
+	"card-slider": {
+		"link": "See all\nsuggestions"
+	},
+	"limited-opportunities": {
+		"title": "With restricted abilities",
+		"subtitle": "We provide a selection of the best excursions that will be comfortable for people with disabilities",
+		"link": "All excursions in this category"
 	}
 }
