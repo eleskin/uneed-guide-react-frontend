@@ -1,13 +1,24 @@
+import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 import Container from '../Container/Container';
 import Title from '../Title/Title';
 import styles from './Advantages.module.scss';
 import Image from 'next/image';
 
 const Advantages = () => {
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
+	
 	return (
 		<div className={styles.Advantages}>
 			<Container>
-				<Title>Ваши преимущества</Title>
+				<Title>{languageFile?.['advantages']?.['title']}</Title>
 				<div className={styles.Advantages__container}>
 					<ul className={styles.Advantages__list}>
 						<li>
@@ -19,7 +30,7 @@ const Advantages = () => {
 									<rect y="15" width="6" height="1" fill="#283140"/>
 								</svg>
 							</i>
-							<span>Удобный сервис по поиску интересных экскурсий. Вы можете легко найти интересное предложение и быстро приобрести билет</span>
+							<span>{languageFile?.['advantages']?.['list']?.['first']}</span>
 						</li>
 						<li>
 							<i>
@@ -30,7 +41,7 @@ const Advantages = () => {
 									<path d="M29.2262 15.1018L21.0808 22.6654L18.6372 20.3986" stroke="#283140" strokeLinecap="round" strokeLinejoin="round"/>
 								</svg>
 							</i>
-							<span>Наши предложения выгоднее покупки у касс и причалов. Предоставляем акции и скидки на экскурсии</span>
+							<span>{languageFile?.['advantages']?.['list']?.['second']}</span>
 						</li>
 						<li>
 							<i>
@@ -38,11 +49,11 @@ const Advantages = () => {
 									<path d="M12.8802 20.5228L8.2393 24.5594C7.59209 25.1223 6.58302 24.6626 6.58302 23.8049V20.5228H5.30107C2.92565 20.5228 1 18.5972 1 16.2218V16.2218V5.33468V5.18727C1 2.8747 2.8747 1 5.18727 1V1H22.5531H22.6653C25.0593 1 27 2.9407 27 5.33468V5.33468V16.8938V16.8938C27 18.8981 25.3752 20.5228 23.371 20.5228H22.5531H15.8989" stroke="#283140"/>
 								</svg>
 							</i>
-							<span>Онлайн поддержка. Ответим на все вопросы в онлайн чате в течение 3 минут</span>
+							<span>{languageFile?.['advantages']?.['list']?.['third']}</span>
 						</li>
 					</ul>
 					<div className={styles.Advantages__promo}>
-						<p>Оплачивайте путешествия по<br/>оссии картой «МИР» и верните 20% от стоимости поездки</p>
+						<p>{languageFile?.['advantages']?.['card']}</p>
 						<div className={styles.Advantages__image}>
 							<Image
 								src="/assets/images/advantages/advantages-promo.png"
