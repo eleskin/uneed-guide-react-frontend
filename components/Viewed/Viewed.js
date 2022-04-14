@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import Container from '../Container/Container';
@@ -8,6 +9,14 @@ import styles from './Viewed.module.scss';
 const Viewed = () => {
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [widthSlide, setWidthSlide] = useState(0);
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
 	
 	const nextSlide = () => {
 		activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
@@ -45,7 +54,7 @@ const Viewed = () => {
 	return (
 		<div className={styles.Viewed}>
 			<Container>
-				<Title>Вы смотрели</Title>
+				<Title>{languageFile?.['viewed']?.['title']}</Title>
 			</Container>
 			<div className={styles.Viewed__slider} {...handlers}>
 				<div
