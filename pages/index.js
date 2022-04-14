@@ -5,6 +5,7 @@ import FirstScreen from '../components/FirstScreen/FirstScreen';
 import LimitedOpportunities from '../components/LimitedOpportunities/LimitedOpportunities';
 import PopularCategories from '../components/PopularCategories/PopularCategories';
 import SpecialOffers from '../components/SpecialOffers/SpecialOffers';
+import Viewed from '../components/Viewed/Viewed';
 
 const Home = () => {
 	return (
@@ -14,6 +15,7 @@ const Home = () => {
 			<SpecialOffers/>
 			<LimitedOpportunities/>
 			<Advantages/>
+			<Viewed/>
 			<CatalogLink/>
 		</div>
 	);
