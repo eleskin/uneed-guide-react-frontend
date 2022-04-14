@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {useState} from 'react';
 import {useMediaQuery} from 'react-responsive';
-import {useSwipeable} from 'react-swipeable';
+import CardSlider from '../CardSlider/CardSlider';
 import Container from '../Container/Container';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
 import Title from '../Title/Title';
@@ -23,8 +23,6 @@ const SpecialOffers = () => {
 	const isThreeColumns = useMediaQuery({query: '(min-width: 1280px)'});
 	const isTwoColumns = useMediaQuery({query: '(min-width: 840px)'});
 	
-	
-	
 	const nextSlide = () => {
 		if (isThreeColumns) {
 			activeSlide < Math.ceil(slides.length / 3) - 1 && setActiveSlide(activeSlide + 1);
@@ -37,20 +35,15 @@ const SpecialOffers = () => {
 		} else if (!isTwoColumns && !isThreeColumns) {
 			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
 			
-			activeSlide < slides.length - 1 && setIsDisabledNextButton(true);
+			activeSlide + 1 >= slides.length - 1 && setIsDisabledNextButton(true);
 		}
 	};
 	
 	const prevSlide = () => {
 		activeSlide > 0 && setActiveSlide(activeSlide - 1);
 		
-		activeSlide < slides.length - 1 && setIsDisabledNextButton(false);
+		activeSlide < slides.length && setIsDisabledNextButton(false);
 	};
-	
-	const handlers = useSwipeable({
-		onSwipedLeft: nextSlide,
-		onSwipedRight: prevSlide,
-	});
 	
 	const slidesList = slides.map((slide, index) => (
 		<ExcursionCard
@@ -86,37 +79,12 @@ const SpecialOffers = () => {
 					</div>
 					<div/>
 				</div>
-				<div className={styles.SpecialOffers__wrapper} {...handlers}>
-					<button
-						onClick={prevSlide}
-						disabled={activeSlide <= 0}
-					>
-						<svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M8 13L2 7L8 1" stroke="#283140" strokeWidth="2" strokeLinecap="round"/>
-						</svg>
-					</button>
-					<div className={styles.SpecialOffers__cards}>
-						<div
-							className={styles.SpecialOffers__container}
-							style={{transform: `translateX(${-100 * activeSlide}%)`}}
-						>
-							{slidesList}
-						</div>
-					</div>
-					<Link href="#">
-						<a className={styles.SpecialOffers__link}>
-							Смотреть все<br/>предложения
-						</a>
-					</Link>
-					<button
-						onClick={nextSlide}
-						disabled={isDisabledNextButton}
-					>
-						<svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M1 13L7 7L1 1" stroke="#283140" strokeWidth="2" strokeLinecap="round"/>
-						</svg>
-					</button>
-				</div>
+				<CardSlider
+					nextSlide={nextSlide}
+					prevSlide={prevSlide}
+					activeSlide={activeSlide}
+					isDisabledNextButton={isDisabledNextButton}
+				>{slidesList}</CardSlider>
 				<footer className={styles.SpecialOffers__footer}>
 					<Link href="#">
 						<a>
