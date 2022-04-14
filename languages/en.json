@@ -62,5 +62,30 @@
 		"price": "from",
 		"count-begin": "more than",
 		"count-end": "offers"
+	},
+	"special-offers": {
+		"title": "Special offers",
+		"link": "All popular excursions"
+	},
+	"card-slider": {
+		"link": "See all\nsuggestions"
+	},
+	"limited-opportunities": {
+		"title": "With restricted abilities",
+		"subtitle": "We provide a selection of the best excursions that will be comfortable for people with disabilities",
+		"link": "All excursions in this category"
+	},
+	"advantages": {
+		"title": "Your benefits",
+		"list": {
+			"first": "Convenient service for finding interesting excursions. You can easily find an interesting offer and quickly purchase a ticket",
+			"second": "Our offers are more profitable than buying at the box office and berths. We provide promotions and discounts on excursions",
+			"third": "Online support. We will answer all questions in online chat within 3 minutes"
+		},
+		"card": "Pay for travel\nRussia with a MIR card and return 20% of the cost of the trip"
+	},
+	"catalog-link": {
+		"title": "The tour you've been dreaming of starts with a search in our catalog",
+		"text-button": "To catalog"
 	}
 }

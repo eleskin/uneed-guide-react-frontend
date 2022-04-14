@@ -3,12 +3,21 @@ import {createRef, useEffect, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import styles from './CardSlider.module.scss';
 import {useMediaQuery} from 'react-responsive';
+import {useRouter} from 'next/router';
 
 const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNextButton, isLimitedOpportunities = false}) => {
 	const handlers = useSwipeable({
 		onSwipedLeft: nextSlide,
 		onSwipedRight: prevSlide,
 	});
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
 	
 	const isLargeScreen = useMediaQuery({query: '(min-width: 960px)'});
 	
@@ -19,7 +28,6 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 	useEffect(() => {
 		if (isLimitedOpportunities) {
 			setSlideWidth(parseFloat(window.getComputedStyle(sliderContainerRef.current.children[0]).width));
-			console.log(isLargeScreen)
 		}
 	}, [sliderContainerRef]);
 	
@@ -52,7 +60,7 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 			{!isLimitedOpportunities && (
 				<Link href="#">
 					<a className={styles.SpecialOffers__link}>
-						Смотреть все<br/>предложения
+						{languageFile?.['card-slider']?.['link']}
 					</a>
 				</Link>
 			)}
