@@ -11,8 +11,9 @@
 		overflow: hidden;
 		
 		.Viewed__container {
+			height: calc(100% + 16px);
 			padding: 16px;
-			margin: -16px;
+			margin: -16px -16px 0 -16px;
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			grid-column-gap: rem(16px);
@@ -28,6 +29,22 @@
 					min-width: 0;
 				}
 			}
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.Viewed {
+		.Viewed__slider {
+			padding: 0 0 0 rem(32px);
+		}
+	}
+}
+
+@media (max-width: 320px) {
+	.Viewed {
+		.Viewed__slider {
+			padding: 0 0 0 rem(20px);
 		}
 	}
 }
