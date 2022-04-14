@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import {useState} from 'react';
+import {useMediaQuery} from 'react-responsive';
 import CardSlider from '../CardSlider/CardSlider';
 import Container from '../Container/Container';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
@@ -6,6 +8,9 @@ import Title from '../Title/Title';
 import styles from './LimitedOpportunities.module.scss';
 
 const LimitedOpportunities = () => {
+	const [activeSlide, setActiveSlide] = useState(0);
+	const [isDisabledNextButton, setIsDisabledNextButton] = useState(false);
+	
 	const slides = [
 		{},
 		{},
@@ -15,9 +20,34 @@ const LimitedOpportunities = () => {
 		{},
 	];
 	
+	const isThreeColumns = useMediaQuery({query: '(min-width: 1280px)'});
+	const isTwoColumns = useMediaQuery({query: '(min-width: 840px)'});
+	
+	const nextSlide = () => {
+		if (isThreeColumns) {
+			activeSlide < Math.ceil(slides.length / 3) - 1 && setActiveSlide(activeSlide + 1);
+			
+			activeSlide + 1 >= Math.ceil(slides.length / 3) - 1 && setIsDisabledNextButton(true);
+		} else if (isTwoColumns && !isThreeColumns) {
+			activeSlide < Math.ceil(slides.length / 2) - 1 && setActiveSlide(activeSlide + 1);
+			
+			activeSlide + 1 >= Math.ceil(slides.length / 2) - 1 && setIsDisabledNextButton(true);
+		} else if (!isTwoColumns && !isThreeColumns) {
+			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+			
+			activeSlide + 1 >= slides.length - 1 && setIsDisabledNextButton(true);
+		}
+	};
+	
+	const prevSlide = () => {
+		activeSlide > 0 && setActiveSlide(activeSlide - 1);
+		
+		activeSlide < slides.length && setIsDisabledNextButton(false);
+	};
+	
 	const slidesList = slides.map((slide, index) => (
 		<ExcursionCard
-			small={true}
+			limitedOpportunities={true}
 			key={index}
 		/>
 	));
@@ -32,16 +62,16 @@ const LimitedOpportunities = () => {
 					</div>
 					<div className={styles.LimitedOpportunities__buttons}>
 						<button
-							//								onClick={prevSlide}
-							//								disabled={activeSlide <= 0}
+							onClick={prevSlide}
+							disabled={activeSlide <= 0}
 						>
 							<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fillRule="evenodd" clipRule="evenodd" d="M0 6L6.48649 12L8 10.6L3.02703 6L8 1.4L6.48649 0L0 6Z" fill="#F0515D"/>
 							</svg>
 						</button>
 						<button
-							//								onClick={nextSlide}
-							//								disabled={isDisabledNextButton}
+							onClick={nextSlide}
+							disabled={isDisabledNextButton}
 						>
 							<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fillRule="evenodd" clipRule="evenodd" d="M8 6L1.51351 12L4.76837e-07 10.6L4.97297 6L4.76837e-07 1.4L1.51351 0L8 6Z" fill="#F0515D"/>
@@ -50,10 +80,10 @@ const LimitedOpportunities = () => {
 					</div>
 				</div>
 				<CardSlider
-//					nextSlide={nextSlide}
-//					prevSlide={prevSlide}
-//					activeSlide={activeSlide}
-//					isDisabledNextButton={isDisabledNextButton}
+					nextSlide={nextSlide}
+					prevSlide={prevSlide}
+					activeSlide={activeSlide}
+					isDisabledNextButton={isDisabledNextButton}
 				>{slidesList}</CardSlider>
 				<footer className={styles.LimitedOpportunities__footer}>
 					<Link href="#">

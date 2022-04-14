@@ -46,7 +46,7 @@
 		}
 		
 		h3 {
-			margin: 0 0 rem(8px) 0;
+			margin: rem(16px) 0 rem(8px) 0;
 			font-weight: 500;
 			font-size: rem(17px);
 			line-height: rem(26px);
@@ -276,6 +276,39 @@
 					transition: var(--transition-primary);
 				}
 			}
+		}
+	}
+}
+
+.ExcursionsCard_small {
+	.ExcursionsCard__header {
+		h3 {
+			margin: 0 0 rem(8px) 0;
+		}
+	}
+}
+
+.ExcursionsCard_invalid {
+	.ExcursionsCard__image {
+		b {
+			position: absolute;
+			background-color: rgba(0, 0, 0, 0.8);
+			border-radius: 6px;
+			height: 30px;
+			width: 32px;
+			top: 8px;
+			left: 8px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			margin-left: rem(16px);
+		}
+	}
+	
+	.ExcursionsCard__header {
+		span:last-of-type {
+			color: #f0515d;
 		}
 	}
 }
