@@ -59,6 +59,13 @@
 		}
 	}
 	
+	.LimitedOpportunities__container {
+		padding: 0 rem(54px);
+		max-width: 1308px;
+		margin: auto;
+		width: 100%;
+	}
+	
 	.LimitedOpportunities__footer {
 		padding-top: rem(20px);
 		grid-column-gap: rem(12px);
@@ -73,6 +80,29 @@
 			line-height: rem(21px);
 			color: #212121;
 			text-decoration: none;
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.LimitedOpportunities__container {
+		padding: 0 rem(32px);
+	}
+}
+
+@media (max-width: 320px) {
+	.LimitedOpportunities__container {
+		padding: 0 rem(20px);
+	}
+}
+
+@media (min-width: 960px) {
+	.LimitedOpportunities {
+		.LimitedOpportunities__container {
+			margin-left: auto;
+			margin-right: 0;
+			max-width: 100%;
+			width: calc(1308px + (50% - 1308px / 2));
 		}
 	}
 }

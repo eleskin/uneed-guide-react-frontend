@@ -79,12 +79,17 @@ const LimitedOpportunities = () => {
 						</button>
 					</div>
 				</div>
+			</Container>
+			<div className={styles.LimitedOpportunities__container}>
 				<CardSlider
 					nextSlide={nextSlide}
 					prevSlide={prevSlide}
 					activeSlide={activeSlide}
 					isDisabledNextButton={isDisabledNextButton}
+					isLimitedOpportunities={true}
 				>{slidesList}</CardSlider>
+			</div>
+			<Container>
 				<footer className={styles.LimitedOpportunities__footer}>
 					<Link href="#">
 						<a>

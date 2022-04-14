@@ -2,14 +2,17 @@ import Link from 'next/link';
 import {useSwipeable} from 'react-swipeable';
 import styles from './CardSlider.module.scss';
 
-const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNextButton}) => {
+const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNextButton, isLimitedOpportunities = false}) => {
 	const handlers = useSwipeable({
 		onSwipedLeft: nextSlide,
 		onSwipedRight: prevSlide,
 	});
 	
 	return (
-		<div className={styles.CardSlider} {...handlers}>
+		<div
+			className={`${styles.CardSlider} ${isLimitedOpportunities ? styles.CardSlider_invalid : ''}`}
+			{...handlers}
+		>
 			<button
 				onClick={prevSlide}
 				disabled={activeSlide <= 0}
@@ -26,11 +29,13 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 					{children}
 				</div>
 			</div>
-			<Link href="#">
-				<a className={styles.SpecialOffers__link}>
-					Смотреть все<br/>предложения
-				</a>
-			</Link>
+			{!isLimitedOpportunities && (
+				<Link href="#">
+					<a className={styles.SpecialOffers__link}>
+						Смотреть все<br/>предложения
+					</a>
+				</Link>
+			)}
 			<button
 				onClick={nextSlide}
 				disabled={isDisabledNextButton}
