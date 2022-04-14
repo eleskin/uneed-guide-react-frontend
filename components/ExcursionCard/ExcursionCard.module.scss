@@ -291,8 +291,11 @@
 
 .ExcursionsCard_invalid {
 	.ExcursionsCard__image {
-		height: 100%;
 		border-radius: 8px;
+		
+		& > span {
+			height: 100%!important;
+		}
 		
 		b {
 			position: absolute;

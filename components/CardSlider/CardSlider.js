@@ -1,12 +1,26 @@
 import Link from 'next/link';
+import {createRef, useEffect, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import styles from './CardSlider.module.scss';
+import {useMediaQuery} from 'react-responsive';
 
 const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNextButton, isLimitedOpportunities = false}) => {
 	const handlers = useSwipeable({
 		onSwipedLeft: nextSlide,
 		onSwipedRight: prevSlide,
 	});
+	
+	const isLargeScreen = useMediaQuery({query: '(min-width: 960px)'});
+	
+	const [slideWidth, setSlideWidth] = useState(0);
+	
+	const sliderContainerRef = createRef();
+	
+	useEffect(() => {
+		if (isLimitedOpportunities) {
+			setSlideWidth(parseFloat(window.getComputedStyle(sliderContainerRef.current.children[0]).width));
+		}
+	}, [sliderContainerRef]);
 	
 	return (
 		<div
@@ -24,7 +38,12 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 			<div className={styles.CardSlider__cards}>
 				<div
 					className={styles.CardSlider__container}
-					style={{transform: `translateX(${-100 * activeSlide}%)`}}
+					style={{
+						transform: isLimitedOpportunities && isLargeScreen ?
+							`translateX(${-slideWidth * activeSlide - 24 * activeSlide}px)` :
+							`translateX(${-100 * activeSlide}%)`
+					}}
+					ref={sliderContainerRef}
 				>
 					{children}
 				</div>
