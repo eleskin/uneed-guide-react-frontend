@@ -11,8 +11,9 @@
 		overflow: hidden;
 		
 		.Viewed__container {
+			height: calc(100% + 16px);
 			padding: 16px;
-			margin: -16px;
+			margin: -16px -16px 0 -16px;
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			grid-column-gap: rem(16px);
@@ -20,8 +21,6 @@
 			
 			& > div {
 				min-width: max-content;
-				border: 0.5px solid #e1e1e1;
-				box-sizing: border-box;
 				box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
 				border-radius: 8px;
 				padding-bottom: rem(16px);
@@ -30,6 +29,22 @@
 					min-width: 0;
 				}
 			}
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.Viewed {
+		.Viewed__slider {
+			padding: 0 0 0 rem(32px);
+		}
+	}
+}
+
+@media (max-width: 320px) {
+	.Viewed {
+		.Viewed__slider {
+			padding: 0 0 0 rem(20px);
 		}
 	}
 }
