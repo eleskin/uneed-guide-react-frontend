@@ -37,6 +37,14 @@
 		align-items: flex-start;
 		padding: 0 rem(16px) rem(8px) rem(16px);
 		
+		.ExcursionsCard__departures {
+			display: none;
+		}
+		
+		.ExcursionsCard__discount {
+			display: none;
+		}
+		
 		i {
 			font-style: normal;
 			font-size: rem(12px);
@@ -330,8 +338,92 @@
 	}
 }
 
+.ExcursionsCard.ExcursionsCard_viewed {
+	.ExcursionsCard__image {
+		position: relative;
+		padding: 0;
+		z-index: 2;
+		
+		i {
+			display: block;
+		}
+		
+		img {
+			border-radius: 8px 8px 0 0;
+		}
+	}
+	
+	.ExcursionsCard__header {
+		b {
+			font-weight: 400;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: #268BC1;
+			margin-top: rem(8px);
+		}
+		
+		h3 {
+			margin: 0 0 rem(8px) 0;
+			font-size: rem(14px);
+			line-height: rem(24px);
+		}
+		
+		span {
+			display: none;
+		}
+		
+		p {
+			display: none;
+		}
+		
+		.ExcursionsCard__tariffs {
+			display: none;
+		}
+	}
+	
+	.ExcursionsCard__discount {
+		padding-top: 4px;
+		border: none;
+		padding-bottom: 0;
+		
+		strong {
+			font-weight: 400;
+			font-size: rem(18px);
+		}
+		
+		.ExcursionsCard__rating {
+			display: flex;
+		}
+	}
+	
+	.ExcursionsCard__departures {
+		display: none;
+	}
+	
+	.ExcursionsCard__tariffs {
+		display: none;
+	}
+	
+	.ExcursionsCard__more {
+		padding: rem(8px) rem(16px) 0 rem(16px);
+		font-weight: 400;
+		font-size: 8px;
+		line-height: 12px;
+		color: rgba(#212121, 0.6);
+		
+		em {
+			font-style: normal;
+			color: #5bafde;
+		}
+	}
+	
+	.ExcursionsCard__more::before {
+		content: "*"
+	}
+}
+
 @media (min-width: 768px) {
-	.ExcursionsCard:not(.ExcursionsCard_small) {
+	.ExcursionsCard:not(.ExcursionsCard_small, .ExcursionsCard_viewed) {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 2fr;
@@ -391,7 +483,7 @@
 		}
 	}
 	
-	.ExcursionsCard:not(.ExcursionsCard_invalid, .ExcursionsCard_small) {
+	.ExcursionsCard:not(.ExcursionsCard_invalid, .ExcursionsCard_small, .ExcursionsCard_viewed) {
 		.ExcursionsCard__tariffs {
 			display: none;
 			width: 100%;
@@ -502,7 +594,7 @@
 }
 
 @media (min-width: 960px) {
-	.ExcursionsCard {
+	.ExcursionsCard:not(.ExcursionsCard_viewed) {
 		flex-shrink: 0;
 		width: 100%;
 		overflow: hidden;
