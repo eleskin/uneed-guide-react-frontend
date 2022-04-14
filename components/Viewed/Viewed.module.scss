@@ -3,4 +3,28 @@
 .Viewed {
 	padding-top: rem(48px);
 	
+	.Viewed__slider {
+		padding: 0 rem(54px);
+		margin: auto;
+		max-width: 1308px;
+		width: calc(1308px + (50% - 1308px / 2));
+		
+		.Viewed__container {
+			padding: 16px;
+			margin: -16px;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			overflow: hidden;
+			grid-column-gap: rem(16px);
+			
+			& > div {
+				min-width: max-content;
+				border: 0.5px solid #e1e1e1;
+				box-sizing: border-box;
+				box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
+				border-radius: 8px;
+				padding-bottom: rem(16px);
+			}
+		}
+	}
 }
