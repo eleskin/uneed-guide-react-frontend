@@ -37,6 +37,14 @@
 		align-items: flex-start;
 		padding: 0 rem(16px) rem(8px) rem(16px);
 		
+		.ExcursionsCard__departures {
+			display: none;
+		}
+		
+		.ExcursionsCard__discount {
+			display: none;
+		}
+		
 		i {
 			font-style: normal;
 			font-size: rem(12px);
