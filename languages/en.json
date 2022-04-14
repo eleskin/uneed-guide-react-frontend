@@ -87,5 +87,8 @@
 	"catalog-link": {
 		"title": "The tour you've been dreaming of starts with a search in our catalog",
 		"text-button": "To catalog"
+	},
+	"viewed": {
+		"title": "You watched"
 	}
 }
