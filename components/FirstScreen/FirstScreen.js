@@ -1,6 +1,6 @@
 import {format} from 'date-fns';
 import {useRouter} from 'next/router';
-import {createRef, useEffect, useState} from 'react';
+import {createRef, useEffect, useMemo, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
@@ -15,8 +15,7 @@ const FirstScreen = () => {
 	const [value, onChange] = useState(new Date());
 	const [currentLocale, setCurrentLocale] = useState('ru');
 	const {asPath} = router;
-	const [date, setDate] = useState(new Date(Date.parse(value.toString())));
-	const [currentDate, setCurrentDate] = useState(format(date, 'dd-MM-yyyy'));
+	const [currentDate, setCurrentDate] = useState(format(new Date(Date.parse(value.toString())), 'dd-MM-yyyy'));
 	const [languageFile, setLanguageFile] = useState();
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	
@@ -27,9 +26,8 @@ const FirstScreen = () => {
 	}, [setLanguageFile, router.locale]);
 	
 	useEffect(() => {
-		setDate(new Date(Date.parse(value.toString())));
-		setCurrentDate(format(date, 'dd-MM-yyyy'));
-	}, [date, value]);
+		setCurrentDate(format(new Date(Date.parse(value.toString())), 'dd-MM-yyyy'));
+	}, [value]);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -52,11 +50,11 @@ const FirstScreen = () => {
 	
 	useOutsideClickHandler(searchRef, isVisibleCalendar, setIsVisibleCalendar);
 	
-	const russianCities = {
+	const russianCities = useMemo( () =>({
 		'moscow': 'Москве',
 		'st.petersburg': 'Санкт-Петербургу',
 		'murmansk': 'Мурманску',
-	};
+	}), []);
 	
 	const [activeCity, setActiveCity] = useState('Москве');
 	
@@ -84,7 +82,8 @@ const FirstScreen = () => {
 			
 			setActiveCity(capitalizedCityName);
 		}
-	}, [router.locale, router.query, setActiveCity, russianCities]);
+	}, [router.locale, router.query, setActiveCity, russianCities, selectedCity]);
+	
 	
 	return (
 		<div className={styles.FirstScreen}>
