@@ -13,7 +13,8 @@ const ExcursionCard = ({
 	                       setIsVisibleCalendar,
 	                       small = false,
 	                       limitedOpportunities = false,
-	                       viewed = false
+	                       viewed = false,
+	                       catalog = false,
                        }) => {
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
@@ -67,7 +68,7 @@ const ExcursionCard = ({
 			</svg>
 			<strong>От 350 ₽</strong>
 			<span>450 ₽</span>
-			{small || viewed && (
+			{(small || viewed) && (
 				<div className={styles.ExcursionsCard__rating}>
 					<svg width="65" height="13" viewBox="0 0 65 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M6.21468 0.878116C6.30449 0.601723 6.69551 0.601722 6.78532 0.878115L7.89199 4.28409C7.93215 4.4077 8.04734 4.49139 8.1773 4.49139H11.7586C12.0492 4.49139 12.17 4.86327 11.9349 5.03409L9.0376 7.13911C8.93245 7.2155 8.88846 7.35091 8.92862 7.47452L10.0353 10.8805C10.1251 11.1569 9.80875 11.3867 9.57364 11.2159L6.67634 9.1109C6.57119 9.0345 6.42881 9.0345 6.32366 9.1109L3.42637 11.2159C3.19125 11.3867 2.87491 11.1569 2.96471 10.8805L4.07138 7.47452C4.11154 7.35091 4.06755 7.2155 3.9624 7.13911L1.0651 5.03409C0.829989 4.86327 0.950821 4.49139 1.24144 4.49139H4.8227C4.95266 4.49139 5.06785 4.4077 5.10801 4.28409L6.21468 0.878116Z" fill="#F0515D"/>
@@ -90,6 +91,7 @@ const ExcursionCard = ({
 			${small ? styles.ExcursionsCard_small : ''}
 			${limitedOpportunities ? styles.ExcursionsCard_invalid : ''}
 			${viewed ? styles.ExcursionsCard_viewed : ''}
+			${catalog ? styles.ExcursionsCard_catalog : ''}
 			`}
 		>
 			<div className={styles.ExcursionsCard__image}>
@@ -101,7 +103,7 @@ const ExcursionCard = ({
 					objectFit="cover"
 					alt=""
 				/>
-				{small|| viewed && <i>-10%</i>}
+				{(small || viewed) && <i>-10%</i>}
 				{limitedOpportunities && (
 					<b>
 						<svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">

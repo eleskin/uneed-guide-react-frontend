@@ -422,6 +422,29 @@
 	}
 }
 
+.ExcursionsCard.ExcursionsCard_small.ExcursionsCard_catalog {
+	padding-top: 0;
+	.ExcursionsCard__image {
+		position: relative;
+		padding: 0;
+		z-index: 2;
+		
+		img {
+			border-radius: 8px 8px 0 0;
+		}
+		
+		i {
+			display: block;
+		}
+	}
+	
+	.ExcursionsCard__discount {
+		.ExcursionsCard__rating {
+			display: flex;
+		}
+	}
+}
+
 @media (min-width: 768px) {
 	.ExcursionsCard:not(.ExcursionsCard_small, .ExcursionsCard_viewed) {
 		display: grid;

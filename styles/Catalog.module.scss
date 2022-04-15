@@ -1,0 +1,18 @@
+@import '/styles/functions';
+
+.Catalog {
+	position: relative;
+	z-index: 0;
+	
+	.Catalog__list {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: rem(16px);
+		
+		& > div {
+			background-color: #ffffff;
+			box-shadow: 0 1px 24px rgba(46, 57, 69, 0.1);
+			padding: rem(16px) 0;
+		}
+	}
+}
