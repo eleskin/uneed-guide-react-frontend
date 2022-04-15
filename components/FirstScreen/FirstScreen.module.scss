@@ -202,8 +202,15 @@
 
 @media (min-width: 768px) {
 	.FirstScreen {
+		//noinspection CssUnknownTarget
 		background: url('/assets/images/first-screen/first-screen-background-desktop.png') no-repeat center center;
 		background-size: cover;
+		
+		.FirstScreen__container {
+			.FirstScreen__header {
+				display: none;
+			}
+		}
 	}
 }
 
@@ -217,10 +224,6 @@
 			justify-content: space-between;
 			align-items: flex-end;
 			grid-column-gap: rem(32px);
-			
-			.FirstScreen__header {
-				display: none;
-			}
 			
 			.FirstScreen__title {
 				transform: translateY(-13px);
