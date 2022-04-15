@@ -3,9 +3,7 @@
 .Menu {
 	position: fixed;
 	width: 100%;
-	height: calc(100% - 87px);
 	opacity: 0;
-	transform: translateY(-100%);
 	z-index: 998;
 	background-color: #ffffff;
 	transition: all var(--transition-primary), z-index 0s linear 0s;
@@ -137,7 +135,6 @@
 
 .Menu_active {
 	opacity: 1;
-	transform: translateY(0);
 	z-index: 999;
 	transition: all var(--transition-primary), z-index 0s linear 0.8s;
 }
