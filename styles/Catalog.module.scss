@@ -3,6 +3,7 @@
 .Catalog {
 	position: relative;
 	z-index: 0;
+	overflow-x: hidden;
 	
 	.Catalog__header {
 		padding: rem(20px) 0 rem(8px) 0;
@@ -52,6 +53,10 @@
 			margin: auto;
 		}
 	}
+	
+	.Catalog__viewed {
+		display: none;
+	}
 }
 
 @media (min-width: 720px) {
@@ -74,7 +79,7 @@
 		.Catalog__footer {
 			display: flex;
 			flex-direction: column-reverse;
-			padding: rem(32px) 0 rem(64px) 0;
+			padding: rem(32px) 0 0 0;
 			
 			div {
 				border-top: 1px solid #d1d1d1;
@@ -86,6 +91,10 @@
 					line-height: rem(24px);
 				}
 			}
+		}
+		
+		.Catalog__viewed {
+			display: block;
 		}
 	}
 }

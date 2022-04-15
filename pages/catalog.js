@@ -1,6 +1,7 @@
 import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
 import ExcursionCard from '../components/ExcursionCard/ExcursionCard';
+import Viewed from '../components/Viewed/Viewed';
 import styles from '../styles/Catalog.module.scss';
 import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
 import PageTitle from '../components/PageTitle/PageTitle';
@@ -27,6 +28,9 @@ const Catalog = () => {
 					<Button.Primary>Показать еще</Button.Primary>
 				</footer>
 			</Container>
+			<div className={styles.Catalog__viewed}>
+				<Viewed/>
+			</div>
 		</div>
 	);
 };
