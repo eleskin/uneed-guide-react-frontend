@@ -7,3 +7,11 @@
 	color: #000000;
 	margin: rem(4px) 0 rem(8px) 0;
 }
+
+@media (min-width: 768px) {
+	.PageTitle {
+		font-size: rem(42px);
+		line-height: rem(50px);
+		margin: 0 0 rem(8px) 0;
+	}
+}

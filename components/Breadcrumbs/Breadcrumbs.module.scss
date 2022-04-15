@@ -32,3 +32,18 @@
 		color: rgba(#000000, 0.7);
 	}
 }
+
+@media (min-width: 768px) {
+	.Breadcrumbs {
+		span {
+			font-size: rem(16px);
+		}
+		
+		span:not(:last-child)::after {
+			margin: auto 16px;
+			height: 4px;
+			width: 4px;
+			transform: translateY(1px);
+		}
+	}
+}

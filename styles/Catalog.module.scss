@@ -21,3 +21,30 @@
 		}
 	}
 }
+
+@media (min-width: 720px) {
+	.Catalog {
+		.Catalog__list {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.Catalog {
+		.Catalog__header {
+			display: flex;
+			flex-direction: column-reverse;
+			padding: rem(32px) 0;
+			border-bottom: none;
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	.Catalog {
+		.Catalog__list {
+			grid-template-columns: repeat(3, 1fr)
+		}
+	}
+}

@@ -16,7 +16,6 @@ const App = ({Component, pageProps}) => {
 	const [headerHeight, setHeaderHeight] = useState(0);
 	const [windowWidth, setWindowWidth] = useState(0);
 	
-	
 	useEffect(() => {
 		setWindowWidth(window.innerWidth);
 	}, [setWindowWidth]);
