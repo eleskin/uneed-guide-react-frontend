@@ -1,3 +1,4 @@
+import Button from '../components/Button/Button';
 import Container from '../components/Container/Container';
 import ExcursionCard from '../components/ExcursionCard/ExcursionCard';
 import styles from '../styles/Catalog.module.scss';
@@ -18,6 +19,13 @@ const Catalog = () => {
 					<ExcursionCard small={true} catalog={true}/>
 					<ExcursionCard small={true} catalog={true}/>
 				</div>
+				<footer className={styles.Catalog__footer}>
+					<div>
+						<span>16 из 56 экскурсий просмотрено</span>
+						<span>Отображать по: <select><option value="16">16</option></select></span>
+					</div>
+					<Button.Primary>Показать еще</Button.Primary>
+				</footer>
 			</Container>
 		</div>
 	);
