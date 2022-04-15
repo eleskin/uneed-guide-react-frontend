@@ -42,7 +42,14 @@ const App = ({Component, pageProps}) => {
 					{`body {overflow-y: ${isActiveMenu && windowWidth < 768 ? 'hidden' : 'auto '}}`}
 				</style>
 				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight}/>
-				<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
+				<Menu
+					isActiveMenu={isActiveMenu}
+					setIsActiveMenu={setIsActiveMenu}
+					style={{
+						height: `calc(100% - ${headerHeight}px)`,
+						transform: !isActiveMenu ? `translateY(calc(-100% - ${headerHeight}px))` : 'translateY(0)'
+					}}
+				/>
 				<Component {...pageProps} />
 				<Footer/>
 				<Navbar/>

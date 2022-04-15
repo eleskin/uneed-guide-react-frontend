@@ -28,6 +28,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		grid-column-gap: rem(12px);
 		
 		h5 {
 			margin: 0;
@@ -42,6 +43,7 @@
 			font-size: rem(12px);
 			line-height: rem(18px);
 			color: rgba(#212121, 0.4);
+			text-align: right;
 		}
 	}
 }
