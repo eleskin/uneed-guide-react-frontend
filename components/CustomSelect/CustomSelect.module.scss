@@ -1,0 +1,147 @@
+.CustomSelect {
+	display: grid;
+	grid-template-rows: auto auto;
+	user-select: none;
+	position: relative;
+	outline: none;
+}
+
+.CustomSelect_small {
+	.CustomSelect__title {
+		font-size: 8px;
+		line-height: 12px;
+		color: rgba(#000000, 0.6);
+		border: 0.5px solid #ececec;
+		box-sizing: border-box;
+		border-radius: 1px;
+		padding: 2px 6px;
+		grid-column-gap: 8px;
+	}
+	
+	.CustomSelect__options {
+		transform: translateY(17.5px);
+		border-radius: 1px;
+		border: 0.5px solid #ececec;
+		box-shadow: none;
+		padding: 1px;
+	}
+	
+	.Option {
+		font-size: 8px;
+		line-height: 12px;
+		border-radius: 1px;
+	}
+	
+	.Option_active {
+		background-color: rgba(33, 38, 50, 0.05);
+		color: #212632;
+	}
+	
+	.Option_active:hover {
+		background-color: rgba(33, 38, 50, 0.05);
+		color: #212632;
+	}
+}
+
+.CustomSelect__title {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 16px;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid #616161;
+	border-radius: 4px;
+	padding: 0 2px;
+	cursor: default;
+	font-size: 0.85rem;
+}
+
+.CustomSelect:focus .CustomSelect__title {
+	outline: 2px solid #1789e8;
+	border: 2px solid #1789e8;
+}
+
+.CustomSelect_active:hover .CustomSelect__title {
+	border: 2px solid #1789e8;
+}
+
+.CustomSelect_small.CustomSelect:focus .CustomSelect__title {
+	outline: none;
+	border: 1px solid #212632;
+}
+
+.CustomSelect_small.CustomSelect_active:hover .CustomSelect__title {
+	outline: none;
+	border: 1px solid #212632;
+}
+
+.CustomSelect__options {
+	display: none;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	border: 1px solid #616161;
+	border-radius: 4px;
+	position: absolute;
+	background-color: #ffffff;
+	width: calc(100% - 4px);
+	margin: auto;
+	left: 0;
+	right: 0;
+	transform: translateY(24px);
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+	font-size: 0.85rem;
+	padding: 2px;
+	z-index: 1;
+	grid-row-gap: 2px;
+}
+
+.CustomSelect__options_active {
+	display: flex;
+}
+
+.Option {
+	box-sizing: border-box;
+	padding: 2px;
+	width: 100%;
+	border-radius: 4px;
+}
+
+.Option_active {
+	background-color: #1789e8;
+	color: #ffffff;
+}
+
+.Option:hover {
+	background-color: #eeeeee;
+	color: #000000;
+}
+
+.Option_active:hover {
+	background-color: #1789e8;
+	color: #ffffff;
+}
+
+
+@media (min-width: 768px) {
+	.CustomSelect_small {
+		.CustomSelect__title {
+			font-size: 14px;
+			line-height: 21px;
+			padding: 4px 16px;
+		}
+		
+		.CustomSelect__options {
+			transform: translateY(32px);
+			border-radius: 1px;
+			border: 0.5px solid #ececec;
+			box-shadow: none;
+		}
+		
+		.Option {
+			font-size: 14px;
+			line-height: 21px;
+			border-radius: 1px;
+		}
+	}
+}

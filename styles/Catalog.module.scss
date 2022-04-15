@@ -27,14 +27,14 @@
 		flex-direction: column;
 		padding: rem(20px) 0 rem(48px) 0;
 		
-		div {
+		& > div {
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
 			padding-bottom: rem(24px);
 			
-			span {
+			& > span, & > .Catalog__counts {
 				font-size: rem(8px);
 				line-height: rem(12px);
 				color: rgba(#000000, 0.6);
@@ -45,7 +45,7 @@
 			}
 		}
 		
-		button {
+		& > button {
 			width: 100%;
 			background-color: rgba(33, 38, 50, 0.05);
 			color: #212632;
@@ -81,12 +81,12 @@
 			flex-direction: column-reverse;
 			padding: rem(32px) 0 0 0;
 			
-			div {
+			& > div {
 				border-top: 1px solid #d1d1d1;
 				margin-top: rem(24px);
 				padding-top: rem(24px);
 				
-				span {
+				& > span, & > .Catalog__counts {
 					font-size: rem(16px);
 					line-height: rem(24px);
 				}
