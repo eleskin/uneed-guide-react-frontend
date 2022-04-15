@@ -43,7 +43,14 @@ const App = ({Component, pageProps}) => {
 					}
 				</style>
 				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight}/>
-				<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} style={{height: `calc(100% - ${headerHeight}px)`}}/>
+				<Menu
+					isActiveMenu={isActiveMenu}
+					setIsActiveMenu={setIsActiveMenu}
+					style={{
+						height: `calc(100% - ${headerHeight}px)`,
+						transform: !isActiveMenu ? `translateY(calc(-100% - ${headerHeight}px))` : 'translateY(0)'
+					}}
+				/>
 				<Component {...pageProps} />
 				<RegionSelector/>
 			</Fragment>
