@@ -1,5 +1,6 @@
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
+import {useMediaQuery} from 'react-responsive';
 import {useSwipeable} from 'react-swipeable';
 import Container from '../Container/Container';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
@@ -18,8 +19,17 @@ const Viewed = () => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
+	const twoColumns = useMediaQuery({query: '(min-width: 640px)'});
+	const threeColumns = useMediaQuery({query: '(min-width: 940px)'});
+	
 	const nextSlide = () => {
-		activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+		if (threeColumns) {
+			activeSlide + 2 < slides.length - 1 && setActiveSlide(activeSlide + 1);
+		} else if (twoColumns) {
+			activeSlide + 1 < slides.length - 1 && setActiveSlide(activeSlide + 1);
+		} else {
+			activeSlide < slides.length - 1 && setActiveSlide(activeSlide + 1);
+		}
 	};
 	
 	const prevSlide = () => {
