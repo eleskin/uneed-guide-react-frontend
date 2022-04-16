@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import styles from './CardSlider.module.scss';
 
-const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNextButton}) => {
+const CardSlider = ({children, nextSlide, prevSlide, activeSlide, setActiveSlide, isDisabledNextButton}) => {
 	const handlers = useSwipeable({
 		onSwipedLeft: nextSlide,
 		onSwipedRight: prevSlide,
@@ -17,6 +17,12 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
+	
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setActiveSlide(0);
+		});
+	}, [setActiveSlide]);
 	
 	return (
 		<div className={styles.CardSlider} {...handlers}>
