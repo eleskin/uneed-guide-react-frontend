@@ -10,5 +10,8 @@
 	"navigation": {
 		"navigation-title": "Навигация",
 		"catalog-title": "Каталог экскурсий"
+	},
+	"region-selector": {
+		"title": "Выберите ваш город"
 	}
 }

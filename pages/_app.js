@@ -4,6 +4,7 @@ import Head from 'next/head';
 import {Fragment, useState} from 'react';
 import {Provider} from 'react-redux';
 import Menu from '../components/Menu/Menu';
+import RegionSelector from '../components/RegionSelector/RegionSelector';
 import store from '../store';
 
 const App = ({Component, pageProps}) => {
@@ -17,6 +18,7 @@ const App = ({Component, pageProps}) => {
 				</Head>
 				<Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu}/>
 				<Component {...pageProps} />
+				<RegionSelector/>
 			</Fragment>
 		</Provider>
 	);
