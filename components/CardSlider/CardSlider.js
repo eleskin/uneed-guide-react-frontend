@@ -5,7 +5,7 @@ import styles from './CardSlider.module.scss';
 import {useMediaQuery} from 'react-responsive';
 import {useRouter} from 'next/router';
 
-const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNextButton, isLimitedOpportunities = false}) => {
+const CardSlider = ({children, nextSlide, prevSlide, activeSlide, setActiveSlide, isDisabledNextButton, isLimitedOpportunities = false}) => {
 	const handlers = useSwipeable({
 		onSwipedLeft: nextSlide,
 		onSwipedRight: prevSlide,
@@ -31,6 +31,12 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 		}
 	}, [sliderContainerRef]);
 	
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setActiveSlide(0);
+		});
+	}, [setActiveSlide]);
+	
 	return (
 		<div
 			className={`${styles.CardSlider} ${isLimitedOpportunities ? styles.CardSlider_invalid : ''}`}
@@ -49,8 +55,8 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 					className={styles.CardSlider__container}
 					style={{
 						transform: isLimitedOpportunities && isLargeScreen ?
-							`translateX(${-slideWidth * activeSlide - 24 * activeSlide}px)` :
-							`translateX(${-100 * activeSlide}%)`
+							(activeSlide > 0 ? `translateX(${-slideWidth * activeSlide - 24 * activeSlide}px)` : `translateX(0)`) :
+							(activeSlide > 0 ? `translateX(${-100 * activeSlide}%)` : `translateX(0)`)
 					}}
 					ref={sliderContainerRef}
 				>

@@ -80,6 +80,7 @@ const LimitedOpportunities = () => {
 					nextSlide={nextSlide}
 					prevSlide={prevSlide}
 					activeSlide={activeSlide}
+					setActiveSlide={setActiveSlide}
 					isDisabledNextButton={isDisabledNextButton}
 					isLimitedOpportunities={true}
 				>{slidesList}</CardSlider>
