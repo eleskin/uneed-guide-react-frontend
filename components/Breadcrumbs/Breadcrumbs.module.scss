@@ -15,6 +15,10 @@
 		justify-content: flex-start;
 		align-items: center;
 		text-transform: capitalize;
+		
+		a {
+			cursor: pointer;
+		}
 	}
 	
 	span:not(:last-child)::after {
@@ -30,6 +34,10 @@
 	
 	span:last-child {
 		color: rgba(#000000, 0.7);
+		
+		a {
+			cursor: default;
+		}
 	}
 }
 
