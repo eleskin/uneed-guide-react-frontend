@@ -1,6 +1,7 @@
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
+import {getCityName} from '../../utils/functions';
 import Button from '../Button/Button';
 import RegionSelect from '../RegionSelect/RegionSelect';
 import styles from './Header.module.scss';
@@ -43,39 +44,11 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 		}
 	}, [headerRef, setHeaderHeight]);
 	
-	const russianCities = {
-		'moscow': 'Москве',
-		'st.petersburg': 'Санкт-Петербургу',
-		'murmansk': 'Мурманску',
-	};
-	
 	const [activeCity, setActiveCity] = useState('Москве');
 	
 	useEffect(() => {
-		if (router.locale === 'ru' && router.query['city']) {
-			setActiveCity(russianCities[router.query['city']]);
-		} else if (router.locale !== 'ru' && router.query['city']) {
-			const cityNameSplit = router.query['city'].split('.') || router.query['city'];
-			
-			let capitalizedCityName = '';
-			cityNameSplit.forEach((city, index) => {
-				capitalizedCityName += `${city[0].toUpperCase()}${city.slice(1) + ((index < cityNameSplit.length - 1) ? '.' : '')}`;
-			});
-			
-			setActiveCity(capitalizedCityName);
-		} else if (router.locale === 'ru' && !router.query['city']) {
-			setActiveCity(russianCities[selectedCity?.['internationalName']?.toLowerCase()]);
-		} else if (router.locale !== 'ru' && !router.query['city']) {
-			const cityNameSplit = selectedCity?.['internationalName']?.toLowerCase().split('.') || selectedCity?.['internationalName']?.toLowerCase();
-			
-			let capitalizedCityName = '';
-			cityNameSplit?.forEach((city, index) => {
-				capitalizedCityName += `${city[0].toUpperCase()}${city.slice(1) + ((index < cityNameSplit.length - 1) ? '.' : '')}`;
-			});
-			
-			setActiveCity(capitalizedCityName);
-		}
-	}, [router.locale, router.query, setActiveCity, russianCities]);
+		setActiveCity(getCityName(selectedCity, router, 'dative'));
+	}, [router, selectedCity]);
 	
 	return (
 		<header
