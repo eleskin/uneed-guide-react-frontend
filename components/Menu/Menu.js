@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {setIsActiveRegionSelector} from '../../store/slices';
+import {getAll} from '../../store/slices/geolocation';
+import {getCityName} from '../../utils/functions';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
 import Navigation from '../Navigation/Navigation';
@@ -9,7 +13,9 @@ import styles from './Menu.module.scss';
 const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 	const menuRef = createRef();
 	const router = useRouter();
+	const dispatch = useDispatch();
 	const [languageFile, setLanguageFile] = useState();
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -17,7 +23,22 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
+	useEffect(() => {
+		dispatch(getAll());
+	}, [dispatch]);
+	
 	useOutsideClickHandler(menuRef, isActiveMenu, setIsActiveMenu);
+	
+	const buttonClickHandler = () => {
+		dispatch(setIsActiveRegionSelector(true));
+		setIsActiveMenu(false);
+	};
+	
+	const [activeCity, setActiveCity] = useState('Москве');
+	
+	useEffect(() => {
+		setActiveCity(getCityName(selectedCity, router, 'prepositional'));
+	}, [router, selectedCity]);
 	
 	return (
 		<div {...props} className={`${styles.Menu} ${isActiveMenu ? styles.Menu_active : ''}`} ref={menuRef}>
@@ -40,8 +61,8 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 			<Navigation/>
 			<footer className={styles.Menu__footer}>
 				<div className={styles.Menu__title}>
-					<h4>{languageFile?.['menu']?.['places-title']}</h4>
-					<Link href="#"><a>{languageFile?.['menu']?.['places-city-change']}</a></Link>
+					<h4>{languageFile?.['menu']?.['places-title']} {activeCity}</h4>
+					<button onClick={buttonClickHandler}>{languageFile?.['menu']?.['places-city-change']}</button>
 				</div>
 				<ul className={styles.Menu__places}>
 					<li>
