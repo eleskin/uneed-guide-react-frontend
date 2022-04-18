@@ -90,5 +90,14 @@
 	},
 	"viewed": {
 		"title": "Вы смотрели"
+	},
+	"catalog-page": {
+		"title": "Каталог экскурсий",
+		"pagination": {
+			"first-part": "из",
+			"second-part": "экскурсий просмотрено"
+		},
+		"text-counts": "Отображать по:",
+		"text-button": "Показать еще"
 	}
 }

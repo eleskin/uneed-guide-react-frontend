@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import Button from '../../components/Button/Button';
 import Container from '../../components/Container/Container';
 import {CustomSelect, Option} from '../../components/CustomSelect/CustomSelect';
@@ -6,17 +7,25 @@ import Viewed from '../../components/Viewed/Viewed';
 import styles from '../../styles/Catalog.module.scss';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import PageTitle from '../../components/PageTitle/PageTitle';
-import {Fragment, useState} from 'react';
+import {Fragment, useState, useEffect} from 'react';
 
 const Catalog = () => {
 	const [selectValue, setSelectValue] = useState('');
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
 	
 	return (
 		<div className={styles.Catalog}>
 			<Container>
 				<header className={styles.Catalog__header}>
 					<Breadcrumbs/>
-					<PageTitle>Каталог экскурсий</PageTitle>
+					<PageTitle>{languageFile?.['catalog-page']?.['title']}</PageTitle>
 				</header>
 				<div className={styles.Catalog__list}>
 					<ExcursionCard small={true} catalog={true}/>
@@ -26,9 +35,11 @@ const Catalog = () => {
 				</div>
 				<footer className={styles.Catalog__footer}>
 					<div>
-						<span>16 из 56 экскурсий просмотрено</span>
+						<span>
+							16 {languageFile?.['catalog-page']?.['pagination']?.['first-part']} 56 {languageFile?.['catalog-page']?.['pagination']?.['second-part']}
+						</span>
 						<div className={styles.Catalog__counts}>
-							Отображать по:
+							{languageFile?.['catalog-page']?.['text-counts']}
 							<CustomSelect value={selectValue} callback={setSelectValue} small={true}>
 								<Fragment>
 									<Option value={16}>16</Option>
@@ -38,7 +49,7 @@ const Catalog = () => {
 							</CustomSelect>
 						</div>
 					</div>
-					<Button.Primary>Показать еще</Button.Primary>
+					<Button.Primary>{languageFile?.['catalog-page']?.['text-button']}</Button.Primary>
 				</footer>
 			</Container>
 			<div className={styles.Catalog__viewed}>
