@@ -42,7 +42,7 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, setActiveSlide
 					{children}
 				</div>
 			</div>
-			<Link href="#">
+			<Link href="/categories/catalog">
 				<a className={styles.SpecialOffers__link}>
 					{languageFile?.['card-slider']?.['link']}
 				</a>
