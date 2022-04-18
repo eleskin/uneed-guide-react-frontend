@@ -7,14 +7,14 @@
 	padding-bottom: rem(48px);
 	
 	.Catalog__header {
-		padding: rem(20px) 0 rem(8px) 0;
-		border-bottom: 1px solid #c4c4c4;
+		padding: rem(20px) 0 0 0;
 	}
 	
 	.Catalog__list {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-gap: rem(16px);
+		padding-top: rem(24px);
 		
 		& > div {
 			background-color: #ffffff;
