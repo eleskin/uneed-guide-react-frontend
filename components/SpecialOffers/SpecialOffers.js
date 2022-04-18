@@ -92,6 +92,7 @@ const SpecialOffers = () => {
 					nextSlide={nextSlide}
 					prevSlide={prevSlide}
 					activeSlide={activeSlide}
+					setActiveSlide={setActiveSlide}
 					isDisabledNextButton={isDisabledNextButton}
 				>{slidesList}</CardSlider>
 				<footer className={styles.SpecialOffers__footer}>

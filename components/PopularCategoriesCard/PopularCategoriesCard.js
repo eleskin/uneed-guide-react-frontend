@@ -4,7 +4,7 @@ import styles from './PopularCategoriesCard.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const PopularCategoriesCard = ({price, title, count, image}) => {
+const PopularCategoriesCard = ({price, title, count, image, link}) => {
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
 	
@@ -15,7 +15,7 @@ const PopularCategoriesCard = ({price, title, count, image}) => {
 	}, [setLanguageFile, router.locale]);
 	
 	return (
-		<Link href="#">
+		<Link href={link}>
 			<div className={styles.PopularCategoriesCard}>
 				<div className={styles.PopularCategoriesCard__image}>
 					<Image src={image} width={390} height={230} alt="" layout="responsive"/>

@@ -31,6 +31,12 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 		}
 	}, [sliderContainerRef]);
 	
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setActiveSlide(0);
+		});
+	}, [setActiveSlide]);
+	
 	return (
 		<div
 			className={`${styles.CardSlider} ${isLimitedOpportunities ? styles.CardSlider_invalid : ''}`}
@@ -58,7 +64,7 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNext
 				</div>
 			</div>
 			{!isLimitedOpportunities && (
-				<Link href="#">
+				<Link href="/categories/catalog">
 					<a className={styles.SpecialOffers__link}>
 						{languageFile?.['card-slider']?.['link']}
 					</a>
