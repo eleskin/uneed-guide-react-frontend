@@ -99,5 +99,9 @@
 		},
 		"text-counts": "Display by:",
 		"text-button": "Show more"
+	},
+	"categories-page": {
+		"title": "Categories",
+		"link": "Go to catalog\nexcursions"
 	}
 }
