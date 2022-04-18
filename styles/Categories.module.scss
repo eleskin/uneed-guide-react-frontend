@@ -1,0 +1,139 @@
+@import '/styles/functions';
+
+.Categories {
+	position: relative;
+	z-index: 0;
+	overflow-x: hidden;
+	padding-bottom: rem(48px);
+	
+	.Categories__header {
+		padding: rem(20px) 0 rem(8px) 0;
+	}
+	
+	.Categories__container {
+		display: flex;
+		flex-direction: column;
+		grid-gap: rem(16px);
+		
+		.Categories__grid {
+			display: grid;
+			grid-gap: rem(16px);
+		}
+		
+		.Categories__link {
+			padding: rem(56px) rem(20px);
+			background-color: #f0515d;
+			position: relative;
+			border-radius: 8px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+			div {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: center;
+				grid-column-gap: rem(28px);
+				
+				svg {
+					height: 68px;
+				}
+				
+				span {
+					font-weight: 600;
+					font-size: rem(18px);
+					line-height: rem(27px);
+					color: #ffffff;
+				}
+			}
+			
+			& > svg {
+				position: absolute;
+				top: rem(20px);
+				right: rem(20px);
+			}
+		}
+		
+		.Categories__grid:nth-child(odd) {
+			grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
+		}
+		
+		.Categories__grid:nth-child(even) {
+			grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+		}
+	}
+}
+
+@media (min-width: 640px) {
+	.Categories {
+		.Categories__container {
+			.Categories__grid:nth-child(odd) {
+				grid-template-rows: 1fr 1fr 1fr;
+				grid-template-columns: 1fr 1fr;
+				grid-auto-flow: column;
+				
+				& > *:nth-child(5) {
+					grid-column: 2;
+					grid-row: 1 / 3;
+				}
+			}
+			
+			.Categories__grid:nth-child(even) {
+				grid-template-rows: 1fr 1fr 1fr;
+				grid-template-columns: 1fr 1fr;
+				grid-auto-flow: column;
+				
+				& > *:nth-child(1) {
+					grid-column: 1;
+					grid-row: 1 / 3;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.Categories {
+		padding-bottom: rem(64px);
+		
+		.Categories__header {
+			display: flex;
+			flex-direction: column-reverse;
+			padding: rem(32px) 0;
+			border-bottom: none;
+		}
+	}
+}
+
+@media (min-width: 960px) {
+	.Categories {
+		.Categories__container {
+			display: grid;
+			grid-template-columns: 1fr;
+			
+			.Categories__grid:nth-child(odd) {
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-rows: 1fr 1fr;
+				grid-auto-flow: column;
+				
+				& > *:nth-child(5) {
+					grid-column: 3;
+					grid-row: 1 / 3;
+				}
+			}
+			
+			.Categories__grid:nth-child(even) {
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-rows: 1fr 1fr;
+				grid-auto-flow: column;
+				
+				& > *:nth-child(1) {
+					grid-column: 1;
+					grid-row: 1 / 3;
+				}
+			}
+		}
+	}
+}
