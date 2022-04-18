@@ -90,5 +90,14 @@
 	},
 	"viewed": {
 		"title": "You watched"
+	},
+	"catalog-page": {
+		"title": "Tours catalog",
+		"pagination": {
+			"first-part": "out of",
+			"second-part": "excursions viewed"
+		},
+		"text-counts": "Display by:",
+		"text-button": "Show more"
 	}
 }
