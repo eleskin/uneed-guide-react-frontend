@@ -1,11 +1,11 @@
-import Button from '../components/Button/Button';
-import Container from '../components/Container/Container';
-import {CustomSelect, Option} from '../components/CustomSelect/CustomSelect';
-import ExcursionCard from '../components/ExcursionCard/ExcursionCard';
-import Viewed from '../components/Viewed/Viewed';
-import styles from '../styles/Catalog.module.scss';
-import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
-import PageTitle from '../components/PageTitle/PageTitle';
+import Button from '../../components/Button/Button';
+import Container from '../../components/Container/Container';
+import {CustomSelect, Option} from '../../components/CustomSelect/CustomSelect';
+import ExcursionCard from '../../components/ExcursionCard/ExcursionCard';
+import Viewed from '../../components/Viewed/Viewed';
+import styles from '../../styles/Catalog.module.scss';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import PageTitle from '../../components/PageTitle/PageTitle';
 import {Fragment, useState} from 'react';
 
 const Catalog = () => {

@@ -1,0 +1,65 @@
+@import '/styles/functions';
+
+.CategoryCard {
+	min-height: 230px;
+	height: 100%;
+	width: 100%;
+	display: block;
+	padding: rem(12px);
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+	
+	.CategoryCard__header {
+		position: absolute;
+		top: rem(12px);
+		left: rem(12px);
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		grid-gap: rem(8px);
+		flex-wrap: wrap;
+		
+		.CategoryCard__price, .CategoryCard__label {
+			border-radius: 4px;
+			padding: rem(4px) rem(12px);
+			font-weight: 600;
+			font-size: rem(14px);
+			line-height: rem(21px);
+			color: #ffffff;
+		}
+		
+		.CategoryCard__price {
+			background-color: #f0515d;
+		}
+		
+		.CategoryCard__label {
+			background-color: #9941de;
+			font-style: normal;
+		}
+	}
+	
+	.PopularCategoriesCard__info {
+		position: absolute;
+		bottom: rem(12px);
+		left: rem(12px);
+		
+		.CategoryCard__title {
+			margin: 0;
+			padding: 0;
+			font-weight: 600;
+			font-size: rem(22px);
+			line-height: rem(33px);
+			letter-spacing: 0.02em;
+			color: #ffffff;
+		}
+		
+		.CategoryCard__count {
+			font-weight: 400;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: #ffffff;
+		}
+	}
+}
