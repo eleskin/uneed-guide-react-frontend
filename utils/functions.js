@@ -43,7 +43,8 @@ export const getCityName = (selectedCity, router, type = 'dative') => {
 export const getTranslatedPageName = (pageName, locale) => {
 	const russianTranslates = {
 		home: 'главная',
-		catalog: 'каталог'
+		catalog: 'каталог',
+		categories: 'категории'
 	};
 	
 	if (locale === 'en') {
