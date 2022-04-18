@@ -5,7 +5,7 @@ import styles from './CardSlider.module.scss';
 import {useMediaQuery} from 'react-responsive';
 import {useRouter} from 'next/router';
 
-const CardSlider = ({children, nextSlide, prevSlide, activeSlide, isDisabledNextButton, isLimitedOpportunities = false}) => {
+const CardSlider = ({children, nextSlide, prevSlide, activeSlide, setActiveSlide, isDisabledNextButton, isLimitedOpportunities = false}) => {
 	const handlers = useSwipeable({
 		onSwipedLeft: nextSlide,
 		onSwipedRight: prevSlide,
