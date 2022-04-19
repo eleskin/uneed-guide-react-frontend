@@ -1,6 +1,42 @@
 @import '/styles/functions';
 
 .Filter {
-	border-top: 1px solid #c4c4c4;
 	padding-top: rem(16px);
+	background-color: #fafafa;
+	height: 100vh;
+	
+	.Filter__grid {
+		display: flex;
+		flex-direction: column;
+		grid-row-gap: rem(16px);
+		
+		.Filter__group {
+			display: flex;
+			flex-direction: column;
+			grid-row-gap: rem(8px);
+			
+			.Filter__date {
+				width: 100%;
+				position: relative;
+				
+				.Filter__calendar {
+					opacity: 0;
+					z-index: -1;
+					transform-origin: 50% 0;
+					transition: all var(--transition-primary), z-index 0s linear 0.8s;
+					margin: auto;
+					width: fit-content;
+					position: absolute;
+					left: 0;
+					right: 0;
+				}
+				
+				.Filter__calendar_active {
+					opacity: 1;
+					z-index: 3;
+					transition: all var(--transition-primary), z-index 0s linear 0s;
+				}
+			}
+		}
+	}
 }

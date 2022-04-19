@@ -23,12 +23,12 @@ const Catalog = () => {
 	
 	return (
 		<div className={styles.Catalog}>
+			<Filter/>
 			<Container>
 				<header className={styles.Catalog__header}>
 					<Breadcrumbs/>
 					<PageTitle>{languageFile?.['catalog-page']?.['title']}</PageTitle>
 				</header>
-				<Filter/>
 				<div className={styles.Catalog__list}>
 					<ExcursionCard small={true} catalog={true}/>
 					<ExcursionCard small={true} catalog={true}/>

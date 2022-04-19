@@ -20,7 +20,7 @@ const Option = ({children, value, isActive, callback}) => (
 	</span>
 );
 
-const Select = ({children, value, callback, title, ...props}) => {
+const Select = ({children, value, callback, title, filter = false, ...props}) => {
 	const FIRST_ELEMENT = 0;
 	
 	const childrenList = children.props.children.filter((child) => child.type.name === 'Option');
@@ -97,7 +97,7 @@ const Select = ({children, value, callback, title, ...props}) => {
 				setIsActive(false);
 				setIsTabPressed(true);
 			} else {
-				(focusableElements[nextIndex])?.focus()
+				(focusableElements[nextIndex])?.focus();
 			}
 		}
 	};
@@ -115,7 +115,13 @@ const Select = ({children, value, callback, title, ...props}) => {
 			tabIndex={0}
 			ref={selectRef}
 		>
-			<div className={styles.Select__title}>
+			<div
+				className={styles.Select__title}
+				style={{
+					border: filter ? 'none' : '',
+					boxShadow: filter ? '0px 1px 12px rgba(46, 57, 69, 0.05)' : '',
+				}}
+			>
 				<div>
 					<i>{title}</i>
 					<span>{value}</span>
@@ -133,9 +139,40 @@ const Select = ({children, value, callback, title, ...props}) => {
 	);
 };
 
+const Input = ({title, type, filter = false, ...props}) => {
+	switch (type) {
+		case 'date':
+			return (
+				<label
+					className={`${styles.Input} ${styles.Input_date}`}
+					style={{
+						border: filter ? 'none' : '',
+						boxShadow: filter ? '0px 1px 12px rgba(46, 57, 69, 0.05)' : '',
+					}}
+				>
+					<div>
+						<i>{title}</i>
+						<input {...props} type="text"/>
+					</div>
+					<svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M15.7778 1.77783H16.8889C17.4412 1.77783 17.8889 2.22555 17.8889 2.77783V15.0001C17.8889 15.5523 17.4412 16.0001 16.8889 16.0001H2C1.44771 16.0001 1 15.5523 1 15.0001V2.77783C1 2.22555 1.44772 1.77783 2 1.77783H3.11111M11.5556 1.77783H9.44444H7.33333" stroke="#988787"/>
+						<rect x="4.55566" width="1" height="3.55556" rx="0.5" fill="#988787"/>
+						<rect x="13.4443" width="1" height="3.55556" rx="0.5" fill="#988787"/>
+					</svg>
+				</label>
+			);
+		
+		default:
+			return (
+				<input type="text"/>
+			);
+	}
+};
+
 const Form = {
 	Option,
-	Select
+	Select,
+	Input,
 };
 
 export default Form;
