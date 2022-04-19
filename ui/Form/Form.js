@@ -139,7 +139,7 @@ const Select = ({children, value, callback, title, filter = false, ...props}) =>
 	);
 };
 
-const Input = ({title, type, filter = false, ...props}) => {
+const Input = ({title, type, inputTopValue, handleInputTop, filter = false, ...props}) => {
 	switch (type) {
 		case 'date':
 			return (
@@ -162,6 +162,25 @@ const Input = ({title, type, filter = false, ...props}) => {
 				</label>
 			);
 		
+		case 'range':
+			return (
+				<div className={styles.Wrapper}>
+					<label
+						className={`${styles.Input} ${styles.Input__range}`}
+						style={{
+							border: filter ? 'none' : '',
+							boxShadow: filter ? '0px 1px 12px rgba(46, 57, 69, 0.05)' : '',
+						}}
+					>
+						<div>
+							<input {...props} type="number" placeholder="Цена, от"/>
+							<input type="number" placeholder="Цена, до" value={inputTopValue} onInput={handleInputTop}/>
+						</div>
+					</label>
+					<em>Минимальная цена - 250 руб, максимальная - 6750</em>
+				</div>
+			);
+		
 		default:
 			return (
 				<input type="text"/>
@@ -169,10 +188,20 @@ const Input = ({title, type, filter = false, ...props}) => {
 	}
 };
 
+const Checkbox = ({label}) => {
+	return (
+		<label className={styles.Checkbox}>
+			<input type="checkbox"/>
+			<span>{label}</span>
+		</label>
+	);
+};
+
 const Form = {
 	Option,
 	Select,
 	Input,
+	Checkbox,
 };
 
 export default Form;

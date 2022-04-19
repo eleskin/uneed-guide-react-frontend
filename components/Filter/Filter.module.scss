@@ -37,6 +37,27 @@
 					transition: all var(--transition-primary), z-index 0s linear 0s;
 				}
 			}
+			
+			.Filter__item {
+				background-color: #ffffff;
+				box-shadow: 0 1px 12px rgba(46, 57, 69, 0.05);
+				border-radius: 6px;
+				padding: rem(8px) rem(16px);
+				
+				& > span {
+					font-size: rem(10px);
+					line-height: rem(16px);
+					color: rgba(0, 0, 0, 0.6);
+					margin-bottom: rem(8px);
+					display: inline-block;
+				}
+				
+				div {
+					display: flex;
+					flex-direction: column;
+					grid-row-gap: rem(4px);
+				}
+			}
 		}
 	}
 }

@@ -14,6 +14,8 @@ const Filter = () => {
 	const [dateValue, setDateValue] = useState(new Date());
 	const [date, setDate] = useState(format(new Date(Date.parse(dateValue.toString())), 'dd.MM-=.yyyy'));
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
+	const [lowerPrice, setLowerPrice] = useState();
+	const [higherPrice, setHigherPrice] = useState();
 	
 	useEffect(() => {
 		setDate(format(new Date(Date.parse(dateValue.toString())), 'dd.MM.yyyy'));
@@ -68,6 +70,35 @@ const Filter = () => {
 									onChange={setDateValue}
 									onClickDay={() => setIsVisibleCalendar(false)}
 								/>
+							</div>
+						</div>
+					</div>
+					<div className={styles.Filter__group}>
+						<Form.Input
+							type="range"
+							filter={true}
+							value={lowerPrice}
+							onInput={(event) => setLowerPrice(event.target.value)}
+							inputTopValue={higherPrice}
+							handleInputTop={(event) => setHigherPrice(event.target.value)}
+						/>
+					</div>
+					<div className={styles.Filter__group}>
+						<div className={styles.Filter__item}>
+							<span>Продолжительность</span>
+						</div>
+						<div className={styles.Filter__item}>
+							<span>Тип судна</span>
+						</div>
+						<div className={styles.Filter__item}>
+							<span>Удобства на борту</span>
+							<div>
+								<Form.Checkbox label="Туалет"/>
+								<Form.Checkbox label="Экскурсовод"/>
+								<Form.Checkbox label="Пледы"/>
+								<Form.Checkbox label="Закрытая палуба"/>
+								<Form.Checkbox label="Музыка на борту"/>
+								<Form.Checkbox label="Бар"/>
 							</div>
 						</div>
 					</div>
