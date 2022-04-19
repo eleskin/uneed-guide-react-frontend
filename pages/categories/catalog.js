@@ -3,6 +3,7 @@ import Button from '../../components/Button/Button';
 import Container from '../../components/Container/Container';
 import {CustomSelect, Option} from '../../components/CustomSelect/CustomSelect';
 import ExcursionCard from '../../components/ExcursionCard/ExcursionCard';
+import Filter from '../../components/Filter/Filter';
 import Viewed from '../../components/Viewed/Viewed';
 import styles from '../../styles/Catalog.module.scss';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
@@ -27,6 +28,7 @@ const Catalog = () => {
 					<Breadcrumbs/>
 					<PageTitle>{languageFile?.['catalog-page']?.['title']}</PageTitle>
 				</header>
+				<Filter/>
 				<div className={styles.Catalog__list}>
 					<ExcursionCard small={true} catalog={true}/>
 					<ExcursionCard small={true} catalog={true}/>
