@@ -177,9 +177,9 @@
 }
 
 
-// Checkbox styles
+// Checkbox and Radio styles
 
-.Checkbox {
+.Checkbox, .Radio {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -192,8 +192,22 @@
 		font-size: rem(12px);
 		line-height: rem(20px);
 		color: rgba(#000000, 0.6);
+		transition: var(--transition-primary);
 	}
 	
+	input {
+		display: none;
+	}
+	
+	input:checked + span {
+		color: rgba(#000000, 0.8);
+	}
+}
+
+
+// Checkbox styles
+
+.Checkbox {
 	span::before {
 		content: '';
 		border-radius: 2px;
@@ -203,16 +217,37 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		border: 0.5px solid #ced0d6;
+		border: 1px solid #ced0d6;
 		transition: var(--transition-primary);
-	}
-	
-	input {
-		display: none;
 	}
 	
 	input:checked + span::before {
 		content: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEwIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xLjUwMDI3IDQuMDAwMDNMNC40OTk5IDYuNDk5OTlMOS4wNjI0IDEuNTAzODkiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+);
+		color: #ffffff;
+		background-color: #f0515d;
+		border-color: #f0515d;
+	}
+}
+
+
+// Radio styles
+
+.Radio {
+	span::before {
+		content: '';
+		border-radius: 50%;
+		width: 14px;
+		height: 14px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid #f0515d;
+		transition: var(--transition-primary);
+	}
+	
+	input:checked + span::before {
+		box-shadow: inset 0 0 0 2px #ffffff;
 		color: #ffffff;
 		background-color: #f0515d;
 		border-color: #f0515d;

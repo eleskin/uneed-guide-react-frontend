@@ -16,6 +16,8 @@ const Filter = () => {
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	const [lowerPrice, setLowerPrice] = useState();
 	const [higherPrice, setHigherPrice] = useState();
+	const [duration, setDuration] = useState('до 60 мин');
+	const [type, setType] = useState('Двухпалубные теплоходы');
 	
 	useEffect(() => {
 		setDate(format(new Date(Date.parse(dateValue.toString())), 'dd.MM.yyyy'));
@@ -86,9 +88,53 @@ const Filter = () => {
 					<div className={styles.Filter__group}>
 						<div className={styles.Filter__item}>
 							<span>Продолжительность</span>
+							<div>
+								<Form.Radio
+									value="до 60 мин"
+									onChange={(event) => setDuration(event.target.value)}
+									checked={duration === 'до 60 мин'}
+								/>
+								<Form.Radio
+									value="от 1 до 2 часов"
+									onChange={(event) => setDuration(event.target.value)}
+									checked={duration === 'от 1 до 2 часов'}
+								/>
+								<Form.Radio
+									value="от 2 до 3 часов"
+									onChange={(event) => setDuration(event.target.value)}
+									checked={duration === 'от 2 до 3 часов'}
+								/>
+								<Form.Radio
+									value="от 4 до 5 часов"
+									onChange={(event) => setDuration(event.target.value)}
+									checked={duration === 'от 4 до 5 часов'}
+								/>
+							</div>
 						</div>
 						<div className={styles.Filter__item}>
 							<span>Тип судна</span>
+							<div>
+								<Form.Radio
+									value="Двухпалубные теплоходы"
+									onChange={(event) => setType(event.target.value)}
+									checked={type === 'Двухпалубные теплоходы'}
+								/>
+								<Form.Radio
+									value="Катера"
+									onChange={(event) => setType(event.target.value)}
+									checked={type === 'Катера'}
+								/>
+								<Form.Radio
+									value="Метеоры"
+									onChange={(event) => setType(event.target.value)}
+									checked={type === 'Метеоры'}
+								/>
+								<Form.Radio
+									value="Однопалубные теплоходы"
+									onChange={(event) => setType(event.target.value)}
+									checked={type === 'Однопалубные теплоходы'}
+								/>
+							</div>
 						</div>
 						<div className={styles.Filter__item}>
 							<span>Удобства на борту</span>

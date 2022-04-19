@@ -188,11 +188,20 @@ const Input = ({title, type, inputTopValue, handleInputTop, filter = false, ...p
 	}
 };
 
-const Checkbox = ({label}) => {
+const Checkbox = ({label, ...props}) => {
 	return (
 		<label className={styles.Checkbox}>
-			<input type="checkbox"/>
+			<input {...props} type="checkbox"/>
 			<span>{label}</span>
+		</label>
+	);
+};
+
+const Radio = ({value, ...props}) => {
+	return (
+		<label className={styles.Radio}>
+			<input {...props} type="radio" value={value}/>
+			<span>{value}</span>
 		</label>
 	);
 };
@@ -202,6 +211,7 @@ const Form = {
 	Select,
 	Input,
 	Checkbox,
+	Radio,
 };
 
 export default Form;
