@@ -20,7 +20,7 @@ const Option = ({children, value, isActive, callback}) => (
 	</span>
 );
 
-const Select = ({children, value, callback, title, filter = false, ...props}) => {
+const Select = ({children, value, callback, title, filter = false, isSort = false, ...props}) => {
 	const FIRST_ELEMENT = 0;
 	
 	const childrenList = children.props.children.filter((child) => child.type.name === 'Option');
@@ -105,7 +105,9 @@ const Select = ({children, value, callback, title, filter = false, ...props}) =>
 	return (
 		<div
 			{...props}
-			className={`${styles.Select} ${isActive ? styles.Select_active : ''}`}
+			className={
+			`${styles.Select} ${isActive ? styles.Select_active : ''} ${isSort ? styles.Select_small : ''}`
+			}
 			onClick={(event) => {
 				event.target?.focus();
 				setIsActive(!isActive);
@@ -126,9 +128,15 @@ const Select = ({children, value, callback, title, filter = false, ...props}) =>
 					<i>{title}</i>
 					<span>{value}</span>
 				</div>
-				<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path fillRule="evenodd" clipRule="evenodd" d="M6 8L12 2L10.6 0.6L6 5.2L1.4 0.6L0 2L6 8Z" fill="#988787"/>
-				</svg>
+				{isSort ? (
+					<svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L4 4L7 1" stroke="#25282B" strokeLinecap="round" strokeLinejoin="round"/>
+					</svg>
+				) : (
+					<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fillRule="evenodd" clipRule="evenodd" d="M6 8L12 2L10.6 0.6L6 5.2L1.4 0.6L0 2L6 8Z" fill="#988787"/>
+					</svg>
+				)}
 			</div>
 			<div
 				className={`${styles.Select__options} ${isActive ? styles.Select__options_active : ''}`}

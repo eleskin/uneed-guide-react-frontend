@@ -2,12 +2,26 @@
 
 .Catalog {
 	position: relative;
-//	z-index: 0;
+	z-index: 0;
 	overflow-x: hidden;
 	padding-bottom: rem(48px);
 	
 	.Catalog__header {
 		padding: rem(20px) 0 0 0;
+	}
+	
+	.Catalog__filter {
+		padding-top: rem(16px);
+		border-top: 1px solid #c4c4c4;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		
+		button {
+			border: none;
+			background-color: transparent;
+		}
 	}
 	
 	.Catalog__list {
