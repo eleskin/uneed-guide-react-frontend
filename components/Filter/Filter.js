@@ -23,6 +23,13 @@ const Filter = ({headerHeight}) => {
 	const [type, setType] = useState('Двухпалубные теплоходы');
 	const isActiveFilter = useSelector((state) => state['indexSlice']['isActiveFilter']);
 	const dispatch = useDispatch();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
 	
 	useEffect(() => {
 		setDate(format(new Date(Date.parse(dateValue.toString())), 'dd.MM.yyyy'));
@@ -48,7 +55,7 @@ const Filter = ({headerHeight}) => {
 		>
 			<Container>
 				<header className={styles.Filter__header}>
-					<span>Фильтр</span>
+					<span>{languageFile?.['filter']?.['title']}</span>
 					<button onClick={() => dispatch(setIsActiveFilter(false))}></button>
 				</header>
 				<div className={styles.Filter__grid}>
@@ -161,7 +168,7 @@ const Filter = ({headerHeight}) => {
 						</div>
 					</div>
 					<div className={styles.Filter__group}>
-						<Button.Primary>Показать результат</Button.Primary>
+						<Button.Primary>{languageFile?.['filter']?.['text-button']}</Button.Primary>
 					</div>
 				</div>
 			</Container>

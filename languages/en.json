@@ -99,5 +99,9 @@
 		},
 		"text-counts": "Display by:",
 		"text-button": "Show more"
+	},
+	"filter": {
+		"title": "Filter",
+		"text-button": "Show result"
 	}
 }
