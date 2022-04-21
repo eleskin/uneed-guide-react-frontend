@@ -103,5 +103,9 @@
 	"categories-page": {
 		"title": "Categories",
 		"link": "Go to catalog\nexcursions"
+	},
+	"filter": {
+		"title": "Filter",
+		"text-button": "Show result"
 	}
 }

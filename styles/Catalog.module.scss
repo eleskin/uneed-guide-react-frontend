@@ -7,14 +7,28 @@
 	padding-bottom: rem(48px);
 	
 	.Catalog__header {
-		padding: rem(20px) 0 rem(8px) 0;
-		border-bottom: 1px solid #c4c4c4;
+		padding: rem(20px) 0 0 0;
+	}
+	
+	.Catalog__filter {
+		padding-top: rem(16px);
+		border-top: 1px solid #c4c4c4;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		
+		button {
+			border: none;
+			background-color: transparent;
+		}
 	}
 	
 	.Catalog__list {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-gap: rem(16px);
+		padding-top: rem(24px);
 		
 		& > div {
 			background-color: #ffffff;
@@ -26,7 +40,7 @@
 	.Catalog__footer {
 		display: flex;
 		flex-direction: column;
-		padding: rem(20px) 0 rem(48px) 0;
+		padding: rem(20px) 0 0 0;
 		
 		& > div {
 			display: flex;
