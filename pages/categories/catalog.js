@@ -13,7 +13,7 @@ import PageTitle from '../../components/PageTitle/PageTitle';
 import {Fragment, useState, useEffect} from 'react';
 import Form from '../../ui/Form/Form';
 
-const Catalog = () => {
+const Catalog = ({headerHeight}) => {
 	const [selectValue, setSelectValue] = useState('');
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
@@ -28,7 +28,7 @@ const Catalog = () => {
 	
 	return (
 		<div className={styles.Catalog}>
-			<Filter/>
+			<Filter headerHeight={headerHeight}/>
 			<Container>
 				<header className={styles.Catalog__header}>
 					<Breadcrumbs/>
