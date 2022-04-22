@@ -66,7 +66,7 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 								<Form.Option value="По цене">По цене</Form.Option>
 							</Fragment>
 						</Form.Select>
-						<Form.Select value={city} callback={setCity} title="Категория" filter={true}>
+						<Form.Select value={city} callback={setCity} title="Город" filter={true}>
 							<Fragment>
 								<Form.Option value="Москва">Москва</Form.Option>
 								<Form.Option value="Санкт-Петербург">Санкт-Петербург</Form.Option>
@@ -170,18 +170,20 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 				</div>
 			</Container>
 			<footer className={styles.Filter__footer}>
-				<button>
+				<button onClick={() => dispatch(setIsActiveFilter(!isActiveFilter))}>
 					<svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<rect y="2" width="19" height="1" fill="#F0515D"/>
 						<rect y="9" width="19" height="1" fill="#F0515D"/>
 						<rect x="4.5" y="0.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
 						<rect x="11.5" y="7.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
 					</svg>
-					Раскрыть фильтр
+					{!isActiveFilter ? 'Раскрыть' : 'Скрыть'} фильтр
 				</button>
-				<button>
-					Показать результат
-				</button>
+				{isActiveFilter && (
+					<button>
+						Показать результат
+					</button>
+				)}
 				<button>
 					<svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<rect y="2" width="19" height="1" fill="#F0515D"/>
