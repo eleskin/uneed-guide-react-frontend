@@ -2,7 +2,7 @@ import {format} from 'date-fns';
 import {useRouter} from 'next/router';
 import {useState, Fragment, useEffect, createRef} from 'react';
 import Calendar from 'react-calendar';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {setIsActiveFilter} from '../../store/slices';
 import Form from '../../ui/Form/Form';
 import {useOutsideClickHandler} from '../../utils/hooks';
@@ -10,7 +10,7 @@ import Button from '../Button/Button';
 import Container from '../Container/Container';
 import styles from './Filter.module.scss';
 
-const Filter = ({headerHeight}) => {
+const Filter = ({headerHeight, isActiveFilter}) => {
 	const router = useRouter();
 	const [category, setCategory] = useState();
 	const [city, setCity] = useState();
@@ -21,7 +21,6 @@ const Filter = ({headerHeight}) => {
 	const [higherPrice, setHigherPrice] = useState();
 	const [duration, setDuration] = useState('до 60 мин');
 	const [type, setType] = useState('Двухпалубные теплоходы');
-	const isActiveFilter = useSelector((state) => state['indexSlice']['isActiveFilter']);
 	const dispatch = useDispatch();
 	const [languageFile, setLanguageFile] = useState();
 	
@@ -93,8 +92,6 @@ const Filter = ({headerHeight}) => {
 								/>
 							</div>
 						</div>
-					</div>
-					<div className={styles.Filter__group}>
 						<Form.Input
 							type="range"
 							filter={true}
@@ -172,6 +169,29 @@ const Filter = ({headerHeight}) => {
 					</div>
 				</div>
 			</Container>
+			<footer className={styles.Filter__footer}>
+				<button>
+					<svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect y="2" width="19" height="1" fill="#F0515D"/>
+						<rect y="9" width="19" height="1" fill="#F0515D"/>
+						<rect x="4.5" y="0.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
+						<rect x="11.5" y="7.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
+					</svg>
+					Раскрыть фильтр
+				</button>
+				<button>
+					Показать результат
+				</button>
+				<button>
+					<svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect y="2" width="19" height="1" fill="#F0515D"/>
+						<rect y="9" width="19" height="1" fill="#F0515D"/>
+						<rect x="4.5" y="0.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
+						<rect x="11.5" y="7.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
+					</svg>
+					Раскрыть фильтр
+				</button>
+			</footer>
 		</div>
 	);
 };

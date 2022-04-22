@@ -106,7 +106,7 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 		<div
 			{...props}
 			className={
-			`${styles.Select} ${isActive ? styles.Select_active : ''} ${isSort ? styles.Select_small : ''}`
+				`${styles.Select} ${isActive ? styles.Select_active : ''} ${isSort ? styles.Select_small : ''}`
 			}
 			onClick={(event) => {
 				event.target?.focus();
@@ -119,10 +119,10 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 		>
 			<div
 				className={styles.Select__title}
-				style={{
+				style={filter ? {
 					border: filter ? 'none' : '',
 					boxShadow: filter ? '0px 1px 12px rgba(46, 57, 69, 0.05)' : '',
-				}}
+				} : {}}
 			>
 				<div>
 					<i>{title}</i>
