@@ -106,7 +106,7 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 		<div
 			{...props}
 			className={
-			`${styles.Select} ${isActive ? styles.Select_active : ''} ${isSort ? styles.Select_small : ''}`
+				`${styles.Select} ${isActive ? styles.Select_active : ''} ${isSort ? styles.Select_small : ''}`
 			}
 			onClick={(event) => {
 				event.target?.focus();
@@ -116,13 +116,10 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 			onBlur={setIsActive.bind(this, false)}
 			tabIndex={0}
 			ref={selectRef}
+			style={{overflow: isActive ? 'visible' : 'hidden'}}
 		>
 			<div
-				className={styles.Select__title}
-				style={{
-					border: filter ? 'none' : '',
-					boxShadow: filter ? '0px 1px 12px rgba(46, 57, 69, 0.05)' : '',
-				}}
+				className={`${styles.Select__title} ${filter ? styles.Select__title_filter : ''}`}
 			>
 				<div>
 					<i>{title}</i>
@@ -152,11 +149,7 @@ const Input = ({title, type, inputTopValue, handleInputTop, filter = false, ...p
 		case 'date':
 			return (
 				<label
-					className={`${styles.Input} ${styles.Input_date}`}
-					style={{
-						border: filter ? 'none' : '',
-						boxShadow: filter ? '0px 1px 12px rgba(46, 57, 69, 0.05)' : '',
-					}}
+					className={`${styles.Input} ${styles.Input_date} ${filter ? styles.Input_filter : ''}`}
 				>
 					<div>
 						<i>{title}</i>
@@ -174,11 +167,7 @@ const Input = ({title, type, inputTopValue, handleInputTop, filter = false, ...p
 			return (
 				<div className={styles.Wrapper}>
 					<label
-						className={`${styles.Input} ${styles.Input__range}`}
-						style={{
-							border: filter ? 'none' : '',
-							boxShadow: filter ? '0px 1px 12px rgba(46, 57, 69, 0.05)' : '',
-						}}
+						className={`${styles.Input} ${styles.Input__range} ${filter ? styles.Input_filter : ''}`}
 					>
 						<div>
 							<input {...props} type="number" placeholder="Цена, от"/>

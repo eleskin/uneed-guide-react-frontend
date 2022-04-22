@@ -46,6 +46,11 @@
 	}
 }
 
+.Select__title_filter {
+	border: none;
+	box-shadow: 0 1px 12px rgba(46, 57, 69, 0.05);
+}
+
 .Select__options {
 	display: flex;
 	flex-direction: column;
@@ -172,6 +177,11 @@
 	}
 }
 
+.Input_filter {
+	border: none;
+	box-shadow: 0 1px 12px rgba(46, 57, 69, 0.05);
+}
+
 .Input__range {
 	padding: rem(16px);
 	
@@ -227,6 +237,8 @@
 // Checkbox styles
 
 .Checkbox {
+	cursor: pointer;
+	
 	span::before {
 		content: '';
 		border-radius: 2px;
@@ -252,6 +264,8 @@
 // Radio styles
 
 .Radio {
+	cursor: pointer;
+	
 	span::before {
 		content: '';
 		border-radius: 50%;
@@ -270,5 +284,21 @@
 		color: #ffffff;
 		background-color: #f0515d;
 		border-color: #f0515d;
+	}
+}
+
+
+@media (min-width: 768px) {
+	.Select {
+		height: fit-content;
+		
+		.Select__options {
+			transform: translateY(49px);
+		}
+	}
+	
+	.Select__title_filter, .Input_filter {
+		border: 1px solid #e8e6f8;
+		box-shadow: none;
 	}
 }
