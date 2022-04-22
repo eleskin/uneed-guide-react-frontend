@@ -116,6 +116,7 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 			onBlur={setIsActive.bind(this, false)}
 			tabIndex={0}
 			ref={selectRef}
+			style={{overflow: isActive ? 'visible' : 'hidden'}}
 		>
 			<div
 				className={`${styles.Select__title} ${filter ? styles.Select__title_filter : ''}`}
