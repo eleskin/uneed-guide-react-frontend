@@ -98,10 +98,13 @@
 			"second-part": "экскурсий просмотрено"
 		},
 		"text-counts": "Отображать по:",
-		"text-button": "Показать еще"
+		"text-button": "Показать еще",
+		"text-sort": "Сортировать по:"
 	},
 	"filter": {
 		"title": "Фильтр",
-		"text-button": "Показать результат"
+		"text-button": "Показать результат",
+		"text-closed-button": "Раскрыть фильтр",
+		"text-opened-button": "Скрыть фильтр"
 	}
 }

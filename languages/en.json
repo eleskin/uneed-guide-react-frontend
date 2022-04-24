@@ -98,10 +98,13 @@
 			"second-part": "excursions viewed"
 		},
 		"text-counts": "Display by:",
-		"text-button": "Show more"
+		"text-button": "Show more",
+		"text-sort": "Sort by:"
 	},
 	"filter": {
 		"title": "Filter",
-		"text-button": "Show result"
+		"text-button": "Show result",
+		"text-closed-button": "Open filter",
+		"text-opened-button": "Close filter"
 	}
 }
