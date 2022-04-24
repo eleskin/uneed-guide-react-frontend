@@ -23,7 +23,7 @@ const Categories = () => {
 			title: 'Водные экскурсии',
 			count: 26,
 			image: '/assets/images/categories/categories-image-1.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: [],
 		},
 		{
@@ -31,7 +31,7 @@ const Categories = () => {
 			title: 'Дневные экскурсии',
 			count: 26,
 			image: '/assets/images/categories/categories-image-2.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: [],
 		},
 		{
@@ -39,7 +39,7 @@ const Categories = () => {
 			title: 'Автотуры',
 			count: 23,
 			image: '/assets/images/categories/categories-image-3.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: ['together'],
 		},
 		{
@@ -47,7 +47,7 @@ const Categories = () => {
 			title: 'Дневные экскурсии',
 			count: 26,
 			image: '/assets/images/categories/categories-image-4.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: [],
 		},
 		{
@@ -55,7 +55,7 @@ const Categories = () => {
 			title: 'Москва-сити',
 			count: 3,
 			image: '/assets/images/categories/categories-image-5.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: ['popular'],
 		},
 		{
@@ -63,7 +63,7 @@ const Categories = () => {
 			title: 'Ночные прогулки',
 			count: 5,
 			image: '/assets/images/categories/categories-image-6.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: [],
 		},
 		{
@@ -71,7 +71,7 @@ const Categories = () => {
 			title: 'Водные экскурсии',
 			count: 44,
 			image: '/assets/images/categories/categories-image-7.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: [],
 		},
 		{
@@ -79,7 +79,7 @@ const Categories = () => {
 			title: 'Праздники',
 			count: 32,
 			image: '/assets/images/categories/categories-image-8.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: [],
 		},
 		{
@@ -87,14 +87,14 @@ const Categories = () => {
 			title: 'По бункерам',
 			count: 12,
 			image: '/assets/images/categories/categories-image-9.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: [],
 		},{
 			price: 350,
 			title: 'По бункерам',
 			count: 12,
 			image: '/assets/images/categories/categories-image-9.png',
-			link: '/categories/catalog',
+			link: '/categories/product',
 			labels: [],
 		},
 	];
