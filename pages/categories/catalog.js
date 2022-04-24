@@ -60,7 +60,7 @@ const Catalog = ({headerHeight}) => {
 						</Form.Select>
 					</div>
 					<div className={styles.Catalog__sort}>
-						<span>Сортировать по:</span>
+						<span>{languageFile?.['catalog-page']?.['text-sort']}</span>
 						<ul>{optionsList}</ul>
 					</div>
 					<button onClick={() => dispatch(setIsActiveFilter(true))}>

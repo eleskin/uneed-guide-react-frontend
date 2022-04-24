@@ -177,11 +177,14 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 						<rect x="4.5" y="0.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
 						<rect x="11.5" y="7.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
 					</svg>
-					{!isActiveFilter ? 'Раскрыть' : 'Скрыть'} фильтр
+					{!isActiveFilter ?
+						languageFile?.['filter']?.['text-closed-button'] :
+						languageFile?.['filter']?.['text-opened-button']
+					}
 				</button>
 				{isActiveFilter && (
 					<button>
-						Показать результат
+						{languageFile?.['filter']?.['text-button']}
 					</button>
 				)}
 				<button>
@@ -191,7 +194,10 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 						<rect x="4.5" y="0.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
 						<rect x="11.5" y="7.5" width="4" height="4" rx="2" fill="white" stroke="#F0515D"/>
 					</svg>
-					Раскрыть фильтр
+					{!isActiveFilter ?
+						languageFile?.['filter']?.['text-closed-button'] :
+						languageFile?.['filter']?.['text-opened-button']
+					}
 				</button>
 			</footer>
 		</div>
