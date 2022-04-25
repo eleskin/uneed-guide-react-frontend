@@ -18,7 +18,7 @@ const PopularCategories = () => {
 	
 	return (
 		<div className={styles.PopularCategories}>
-			<Container>
+			<Container isMainPage={true}>
 				<Title>{languageFile?.['popular-categories']?.['title']}</Title>
 				<div className={styles.PopularCategories__cards}>
 					<PopularCategoriesCard

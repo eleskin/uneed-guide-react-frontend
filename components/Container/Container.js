@@ -1,8 +1,8 @@
 import styles from './Container.module.scss';
 
-const Container = ({children}) => {
+const Container = ({children, isMainPage = false}) => {
 	return (
-		<div className={styles.Container}>{children}</div>
+		<div className={`${styles.Container} ${isMainPage ? styles.Container_main : ''}`}>{children}</div>
 	);
 };
 

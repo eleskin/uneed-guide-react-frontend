@@ -17,7 +17,7 @@ const Advantages = () => {
 	
 	return (
 		<div className={styles.Advantages}>
-			<Container>
+			<Container isMainPage={true}>
 				<Title>{languageFile?.['advantages']?.['title']}</Title>
 				<div className={styles.Advantages__container}>
 					<ul className={styles.Advantages__list}>

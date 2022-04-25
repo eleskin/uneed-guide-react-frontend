@@ -63,7 +63,7 @@ const Viewed = () => {
 	
 	return (
 		<div className={styles.Viewed}>
-			<Container>
+			<Container isMainPage={true}>
 				<Title>{languageFile?.['viewed']?.['title']}</Title>
 			</Container>
 			<div className={styles.Viewed__slider} {...handlers}>

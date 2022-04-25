@@ -1,10 +1,14 @@
 @import '/styles/functions';
 
 .Container {
-	padding: 0 rem(54px);
+	padding: 0 rem(24px);
 	max-width: 1308px;
 	margin: auto;
 	width: 100%;
+}
+
+.Container_main {
+	padding: 0 rem(54px);
 }
 
 @media (max-width: 375px) {
