@@ -16,7 +16,7 @@ const CatalogLink = () => {
 	
 	return (
 		<div className={styles.CatalogLink}>
-			<Container>
+			<Container isMainPage={true}>
 			<span className={styles.CatalogLink__text}>
 				{languageFile?.['catalog-link']?.['title']}
 			</span>

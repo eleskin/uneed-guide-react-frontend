@@ -63,7 +63,7 @@ const SpecialOffers = () => {
 	
 	return (
 		<div className={styles.SpecialOffers}>
-			<Container>
+			<Container isMainPage={true}>
 				<div className={styles.SpecialOffers__title}>
 					<div>
 						<Title style={{marginBottom: 0}}>{languageFile?.['special-offers']?.['title']}</Title>
