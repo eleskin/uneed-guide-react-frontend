@@ -49,7 +49,7 @@ const LimitedOpportunities = () => {
 	
 	return (
 		<div className={styles.LimitedOpportunities}>
-			<Container>
+			<Container isMainPage={true}>
 				<div className={styles.LimitedOpportunities__title}>
 					<div>
 						<Title style={{marginBottom: 0}}>{languageFile?.['limited-opportunities']?.['title']}</Title>
@@ -85,7 +85,7 @@ const LimitedOpportunities = () => {
 					isLimitedOpportunities={true}
 				>{slidesList}</CardSlider>
 			</div>
-			<Container>
+			<Container isMainPage={true}>
 				<footer className={styles.LimitedOpportunities__footer}>
 					<Link href="#">
 						<a>
