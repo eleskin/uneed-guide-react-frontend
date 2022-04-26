@@ -215,6 +215,18 @@ const Product = () => {
 								)}
 							</div>
 						</CardContainer>
+						<CardContainer>
+							<h2>Маршрут экскурсии</h2>
+							<div className={styles.Product__map}>
+								<Image
+									src="/assets/images/product/product-map.png"
+									width={294}
+									height={244}
+									layout="responsive"
+									alt=""
+								/>
+							</div>
+						</CardContainer>
 					</div>
 				</Container>
 			</div>
