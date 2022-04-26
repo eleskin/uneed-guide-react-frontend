@@ -279,7 +279,7 @@
 					font-weight: 400;
 					font-size: rem(12px);
 					line-height: rem(18px);
-					color: #F0515D;
+					color: #f0515d;
 					padding: rem(12px);
 					background-color: rgba(196, 196, 196, 0.1);
 					border-radius: 12px;
@@ -292,6 +292,55 @@
 				border-radius: 6px;
 				margin-top: rem(8px);
 				overflow: hidden;
+			}
+		}
+		
+		.Product__discounts {
+			padding: 0 0 0 rem(24px);
+			width: calc(100% - 1.5rem);
+			
+			& > div {
+				display: flex;
+				grid-column-gap: rem(12px);
+				width: 100%;
+				transition: transform var(--transition-primary);
+				
+				.Product__discount {
+					width: 100%;
+					flex-shrink: 0;
+					box-shadow: 0 0 12px rgba(0, 0, 0, 0.07);
+					border-radius: 6px;
+					padding: rem(36px) rem(32px) rem(36px) rem(106px);
+					background-repeat: no-repeat;
+					background-position: center center;
+					background-size: cover;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: flex-start;
+					position: relative;
+					overflow: hidden;
+					
+					span {
+						font-weight: 600;
+						font-size: rem(14px);
+						line-height: 135%;
+						color: #ffffff;
+					}
+					
+					i {
+						position: absolute;
+						top: 0;
+						right: 0;
+						padding: rem(2px) rem(12px);
+						background-color: #ffffff;
+						font-style: normal;
+						border-radius: 0 0 0 6px;
+						font-size: rem(14px);
+						line-height: rem(21px);
+						color: #212632;
+					}
+				}
 			}
 		}
 	}

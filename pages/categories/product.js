@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import {Fragment, useState} from 'react';
+import {useSwipeable} from 'react-swipeable';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import CardContainer from '../../components/CardContainer/CardContainer';
 import Container from '../../components/Container/Container';
@@ -11,6 +12,7 @@ const Product = () => {
 	const [isExpandedText, setIsExpandedText] = useState(false);
 	const [isVisibleHiddenPlaces, setIsVisibleHiddenPlaces] = useState(false);
 	const [isVisibleHiddenEvents, setIsVisibleHiddenEvents] = useState(false);
+	const [activeDiscount, setActiveDiscount] = useState(0);
 	
 	const places = [
 		'Красная площадь',
@@ -127,6 +129,43 @@ const Product = () => {
 		);
 	});
 	
+	const discounts = [
+		{
+			title: 'Вернем до 20% от цены билета при оплате картой системой “МИР”',
+			background: '/assets/images/discounts/discount-background-1.png',
+			label: 'Покупайте с выгодой',
+		},
+		{
+			title: 'Скидка 10% для первой поездки на любую экскурсию',
+			background: '/assets/images/discounts/discount-background-2.png',
+			label: '',
+		},
+	];
+	
+	const discountsList = discounts.map((discount, index) => (
+		<div
+			className={styles.Product__discount}
+			style={{backgroundImage: `url(${discount.background})`}}
+			key={index}
+		>
+			{discount.label && <i>{discount.label}</i>}
+			<span>{discount.title}</span>
+		</div>
+	));
+	
+	const nextDiscount = () => {
+		activeDiscount < discounts.length - 1 && setActiveDiscount(activeDiscount + 1);
+	};
+	
+	const prevDiscount = () => {
+		activeDiscount > 0 && setActiveDiscount(activeDiscount - 1);
+	};
+	
+	const handlers = useSwipeable({
+		onSwipedLeft: nextDiscount,
+		onSwipedRight: prevDiscount,
+	});
+	
 	return (
 		<div className={styles.Product}>
 			<ProductSlider/>
@@ -229,6 +268,11 @@ const Product = () => {
 						</CardContainer>
 					</div>
 				</Container>
+				<div className={styles.Product__discounts} {...handlers}>
+					<div style={{transform: `translateX(calc(${-100 * activeDiscount}% - ${0.75 * activeDiscount}rem))`}}>
+						{discountsList}
+					</div>
+				</div>
 			</div>
 			<Viewed/>
 		</div>
