@@ -10,6 +10,7 @@ import Viewed from '../../components/Viewed/Viewed';
 const Product = () => {
 	const [isExpandedText, setIsExpandedText] = useState(false);
 	const [isVisibleHiddenPlaces, setIsVisibleHiddenPlaces] = useState(false);
+	const [isVisibleHiddenEvents, setIsVisibleHiddenEvents] = useState(false);
 	
 	const places = [
 		'Красная площадь',
@@ -61,6 +62,69 @@ const Product = () => {
 				</li>
 			);
 		}
+	});
+	
+	const events = [
+		{
+			title: '“Салют с борта теплохода на 9 мая',
+			info: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			date: '09 мая',
+			time: '14:00 - 19:00',
+		},
+		{
+			title: '“Салют с борта теплохода на 9 мая',
+			info: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			date: '09 мая',
+			time: '14:00 - 19:00',
+		},
+		{
+			title: '“Салют с борта теплохода на 9 мая',
+			info: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			date: '09 мая',
+			time: '14:00 - 19:00',
+		},
+		{
+			title: '“Салют с борта теплохода на 9 мая',
+			info: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			date: '09 мая',
+			time: '14:00 - 19:00',
+		},
+		{
+			title: '“Салют с борта теплохода на 9 мая',
+			info: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			date: '09 мая',
+			time: '14:00 - 19:00',
+		},
+	];
+	
+	const eventsList = events.map((event, index) => {
+		return (
+			<div
+				className={`${styles.Product__event} ${(index >= 2 && !isVisibleHiddenEvents) ? styles.Product__event_hidden : ''}`}
+				key={index}
+			>
+				<header>
+					<span>{event.title}</span>
+					<i>
+						<svg width="4" height="9" viewBox="0 0 4 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="3" cy="1" r="1" fill="white"/>
+							<path d="M2 3H4V9H2V5L0 3H2Z" fill="white"/>
+						</svg>
+					</i>
+					<p className={styles.Product__paragraph_light}>{event.info}</p>
+				</header>
+				<div>
+					<div>
+						<h5>Доступная дата</h5>
+						<span>{event.date}</span>
+					</div>
+					<div>
+						<h5>Интервал события</h5>
+						<span>{event.time}</span>
+					</div>
+				</div>
+			</div>
+		);
 	});
 	
 	return (
@@ -137,6 +201,19 @@ const Product = () => {
 							<ul className={styles.Product__places}>
 								{placesList}
 							</ul>
+						</CardContainer>
+						<CardContainer>
+							<h2>События</h2>
+							<div className={styles.Product__events}>
+								{eventsList}
+								{(events.length > 2 && !isVisibleHiddenEvents) && (
+									<button
+										onClick={() => setIsVisibleHiddenEvents(true)}
+									>
+										И еще {events.length - 2} события
+									</button>
+								)}
+							</div>
 						</CardContainer>
 					</div>
 				</Container>
