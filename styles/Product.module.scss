@@ -26,7 +26,7 @@
 			li {
 				font-size: rem(12px);
 				line-height: 145%;
-				color: #F0515D;
+				color: #f0515d;
 			}
 		}
 		
@@ -58,7 +58,7 @@
 				font-weight: 400;
 			}
 			
-			.Product__paragraph {
+			.Product__paragraph, .Product__paragraph_light {
 				font-weight: 400;
 				font-size: rem(12px);
 				line-height: rem(18px);
@@ -67,12 +67,26 @@
 				margin: rem(8px) 0;
 			}
 			
+			.Product__paragraph_light {
+				color: rgba(#000000, 0.6);
+				margin-top: rem(4px);
+			}
+			
 			.Product__button_expand {
 				background-color: transparent;
 				border: none;
 				font-size: rem(12px);
 				line-height: rem(18px);
-				color: #F0515D;
+				color: #f0515d;
+				padding: 0;
+			}
+			
+			h3 {
+				font-weight: 400;
+				font-size: rem(15px);
+				line-height: rem(22px);
+				color: #221818;
+				margin: 0;
 				padding: 0;
 			}
 			
@@ -85,16 +99,78 @@
 				margin: 0;
 			}
 			
-			span {
+			h5 {
+				font-weight: 400;
+				font-size: rem(12px);
+				line-height: rem(18px);
+				color: #9a9a9a;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.Product__span, .Product__span_small {
 				font-size: rem(14px);
 				line-height: rem(21px);
 				color: #221818;
 				display: inline-block;
 			}
 			
+			.Product__span_small {
+				font-size: rem(12px);
+				line-height: rem(18px);
+			}
+			
 			.Product__survey {
 				span:not(:last-child) {
 					margin-bottom: rem(16px);
+				}
+			}
+			
+			.Product__illustration {
+				height: 130px !important;
+				position: relative;
+				border-radius: 6px;
+				overflow: hidden;
+				box-shadow: 0 0 12px rgba(0, 0, 0, 0.07);
+				margin: rem(8px) 0;
+			}
+			
+			.Product__places {
+				margin: rem(16px) 0 0 0;
+				padding: 0;
+				list-style: none;
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: center;
+				flex-wrap: wrap;
+				grid-gap: rem(8px);
+				
+				.Product__place {
+					font-weight: 400;
+					font-size: rem(12px);
+					line-height: rem(18px);
+					color: #000000;
+					background-color: rgba(196, 196, 196, 0.1);
+					padding: rem(6px) rem(16px);
+					border-radius: 12px;
+				}
+				
+				.Product__place_more {
+					padding: 0;
+					
+					button {
+						border-radius: 12px;
+						background-color: transparent;
+						border: none;
+						margin: 0;
+						color: #f0515d;
+						padding: rem(6px) rem(16px);
+					}
+				}
+				
+				.Product__place_hidden {
+					display: none;
 				}
 			}
 		}
