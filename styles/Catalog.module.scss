@@ -7,14 +7,42 @@
 	padding-bottom: rem(48px);
 	
 	.Catalog__header {
-		padding: rem(20px) 0 rem(8px) 0;
-		border-bottom: 1px solid #c4c4c4;
+		padding: rem(20px) 0 0 0;
+	}
+	
+	.Catalog__header_hidden {
+		display: none;
+	}
+	
+	.Catalog__filter {
+		padding-top: rem(16px);
+		border-top: 1px solid #c4c4c4;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		
+		.Catalog__select {
+			span::before {
+				content: 'По ';
+			}
+		}
+		
+		.Catalog__sort {
+			display: none;
+		}
+		
+		button {
+			border: none;
+			background-color: transparent;
+		}
 	}
 	
 	.Catalog__list {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-gap: rem(16px);
+		padding-top: rem(24px);
 		
 		& > div {
 			background-color: #ffffff;
@@ -26,7 +54,7 @@
 	.Catalog__footer {
 		display: flex;
 		flex-direction: column;
-		padding: rem(20px) 0 rem(48px) 0;
+		padding: rem(20px) 0 0 0;
 		
 		& > div {
 			display: flex;
@@ -77,6 +105,51 @@
 			flex-direction: column-reverse;
 			padding: rem(32px) 0;
 			border-bottom: none;
+		}
+		
+		.Catalog__header_hidden {
+			display: flex;
+		}
+		
+		.Catalog__filter {
+			padding-top: 0;
+			border-top: none;
+			
+			.Catalog__select {
+				display: none;
+			}
+			
+			.Catalog__sort {
+				display: flex;
+				align-items: center;
+				grid-column-gap: rem(24px);
+				
+				ul {
+					padding: 0;
+					margin: 0;
+					list-style: none;
+					display: flex;
+					align-items: center;
+					grid-column-gap: rem(24px);
+					
+					li {
+						.Catalog__option {
+							text-decoration: none;
+							font-size: rem(15px);
+							line-height: rem(16px);
+							color: #3d3d3d;
+						}
+						
+						.Catalog__option_active {
+							color: #f0515d;
+						}
+					}
+				}
+			}
+			
+			button {
+				display: none;
+			}
 		}
 		
 		.Catalog__footer {

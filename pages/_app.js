@@ -15,6 +15,15 @@ const App = ({Component, pageProps}) => {
 	const [isActiveMenu, setIsActiveMenu] = useState(false);
 	const [headerHeight, setHeaderHeight] = useState(0);
 	const [windowWidth, setWindowWidth] = useState(0);
+	const [isActiveFilter, setIsActiveFilter] = useState(store.getState()['indexSlice']['isActiveFilter']);
+	
+	useEffect(() => {
+		const unsubscribe = store.subscribe(() => {
+			setIsActiveFilter(store.getState()['indexSlice']['isActiveFilter'])
+			
+			return unsubscribe;
+		});
+	}, [setIsActiveFilter, store]);
 	
 	useEffect(() => {
 		setWindowWidth(window.innerWidth);
@@ -39,7 +48,7 @@ const App = ({Component, pageProps}) => {
 					<title>Uneed Guide</title>
 				</Head>
 				<style jsx global>
-					{`body {overflow-y: ${isActiveMenu && windowWidth < 768 ? 'hidden' : 'auto '}}`}
+					{`body {overflow-y: ${(isActiveMenu || isActiveFilter) && windowWidth < 768 ? 'hidden' : 'auto '}}`}
 				</style>
 				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight}/>
 				<Menu
@@ -47,10 +56,10 @@ const App = ({Component, pageProps}) => {
 					setIsActiveMenu={setIsActiveMenu}
 					style={{
 						height: `calc(100% - ${headerHeight}px)`,
-						transform: !isActiveMenu ? `translateY(calc(-100% - ${headerHeight}px))` : 'translateY(0)'
+						transform: !isActiveMenu ? `translateY(calc(-100% - ${headerHeight}px))` : 'translateY(0)',
 					}}
 				/>
-				<Component {...pageProps} />
+				<Component {...pageProps} headerHeight={headerHeight} />
 				<Footer/>
 				<Navbar/>
 				<RegionSelector/>

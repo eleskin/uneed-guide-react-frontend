@@ -2,13 +2,12 @@
 
 .react-calendar {
 	max-width: 260px;
-	//	max-width: 100%;
 	background-color: #ffffff;
-	box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
-	border-radius: 6px;
 	padding: rem(16px) rem(24px);
 	display: flex;
 	flex-direction: column-reverse;
+	border-radius: 6px;
+	border: 1px solid #e8e6f8;
 }
 
 .react-calendar--doubleView {

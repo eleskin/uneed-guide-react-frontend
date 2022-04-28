@@ -14,9 +14,20 @@
 
 html, body {
 	font-size: 100%;
+	background-color: #fafafa;
 }
 
-@media (max-width: 768px) {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+@media (max-width: 767px) {
 	body {
 		padding-bottom: 48.9px
 	}
