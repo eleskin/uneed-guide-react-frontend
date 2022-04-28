@@ -2,7 +2,7 @@
 
 .Footer {
 	.Footer__about {
-		padding: rem(32px) rem(52px);
+		padding: rem(32px) rem(24px);
 		border-bottom: 1px solid #d1d1d1;
 		
 		p {
@@ -30,11 +30,11 @@
 	}
 	
 	.Footer__button {
-		padding: rem(32px) 0 rem(48px) rem(52px);
+		padding: rem(32px) 0 rem(48px) rem(24px);
 	}
 	
 	.Footer__info {
-		padding: rem(8px) rem(52px);
+		padding: rem(8px) rem(24px);
 		border-top: 1px solid #d1d1d1;
 		
 		.Footer__container {
@@ -56,6 +56,30 @@
 	.Footer__container {
 		max-width: 1200px;
 		margin: auto;
+	}
+}
+
+.Footer__main {
+	.Footer__about {
+		padding: rem(32px) rem(52px);
+	}
+	
+	.Footer__button {
+		padding: rem(32px) 0 rem(48px) rem(52px);
+	}
+	
+	.Footer__info {
+		padding: rem(8px) rem(52px);
+	}
+}
+
+.Footer:not(.Footer__main) {
+	.Footer__navigation {
+		.Footer__container {
+			& > nav > div {
+				padding-left: 24px;
+			}
+		}
 	}
 }
 
