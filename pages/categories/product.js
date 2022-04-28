@@ -7,12 +7,14 @@ import Container from '../../components/Container/Container';
 import ProductSlider from '../../components/ProductSlider/ProductSlider';
 import styles from '../../styles/Product.module.scss';
 import Viewed from '../../components/Viewed/Viewed';
+import Form from '../../ui/Form/Form';
 
 const Product = () => {
 	const [isExpandedText, setIsExpandedText] = useState(false);
 	const [isVisibleHiddenPlaces, setIsVisibleHiddenPlaces] = useState(false);
 	const [isVisibleHiddenEvents, setIsVisibleHiddenEvents] = useState(false);
 	const [activeDiscount, setActiveDiscount] = useState(0);
+	const [currentJetty, setCurrentJetty] = useState('Сенатская пристань 1');
 	
 	const places = [
 		'Красная площадь',
@@ -273,6 +275,25 @@ const Product = () => {
 						{discountsList}
 					</div>
 				</div>
+				<Container>
+					<div className={styles.Product__description}>
+						<CardContainer theme="dark">
+							<h2 style={{color: '#ffffff'}}>Приобрести билет</h2>
+							<Form.Select
+								value={currentJetty}
+								callback={setCurrentJetty}
+								title="Выберите причал"
+								theme="dark"
+							>
+								<Fragment>
+									<Form.Option value="Сенатская пристань 1">Сенатская пристань 1</Form.Option>
+									<Form.Option value="Сенатская пристань 2">Сенатская пристань 2</Form.Option>
+									<Form.Option value="Сенатская пристань 3">Сенатская пристань 3</Form.Option>
+								</Fragment>
+							</Form.Select>
+						</CardContainer>
+					</div>
+				</Container>
 			</div>
 			<Viewed/>
 		</div>
