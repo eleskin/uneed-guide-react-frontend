@@ -1,0 +1,59 @@
+@import '/styles/functions';
+
+.BuyTicket {
+	.BuyTicket__jetty {
+		margin-top: rem(24px);
+	}
+	
+	.BuyTicket__dates {
+		margin-top: rem(16px);
+		
+		span {
+			font-size: rem(10px);
+			line-height: rem(15px);
+			color: #ffffff;
+		}
+	}
+	
+	.BuyTicket__date {
+		position: relative;
+		
+		.BuyTicket__button {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: #212632;
+			padding: rem(10px);
+			grid-column-gap: rem(12px);
+			background-color: #f6f6f6;
+			border-radius: 6px;
+			border: none;
+		}
+		
+		.BuyTicket__calendar {
+			position: absolute;
+			top: 0;
+			left: -52px;
+			right: -52px;
+			max-width: calc(100% + 104px);
+			margin: auto;
+			width: fit-content;
+			opacity: 0;
+			transform: scale(0.6) translateY(35px);
+			transform-origin: 50% 0;
+			z-index: -1;
+			transition: all var(--transition-primary), z-index 0s linear 0.8s;
+		}
+		
+		.BuyTicket__calendar_active {
+			opacity: 1;
+			transform: scale(1) translateY(35px);
+			z-index: 2;
+			transition: all var(--transition-primary), z-index 0s linear 0s;
+		}
+	}
+}
