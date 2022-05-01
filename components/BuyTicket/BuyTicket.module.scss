@@ -17,6 +17,23 @@
 		border: none;
 	}
 	
+	.BuyTicket__button_active {
+		background-color: #f0515d;
+		color: #ffffff;
+		
+		svg {
+			stroke: #ffffff;
+			
+			path, rect {
+				stroke: #ffffff;
+			}
+			
+			rect {
+				fill: #ffffff;
+			}
+		}
+	}
+	
 	.BuyTicket__jetty {
 		margin-top: rem(24px);
 	}
@@ -193,7 +210,7 @@
 			i {
 				width: 8px;
 				height: 8px;
-				background: #FFFFFF;
+				background: #ffffff;
 				border-radius: 50%;
 				box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 			}

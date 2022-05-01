@@ -1,15 +1,100 @@
+import {format} from 'date-fns';
 import {useRouter} from 'next/router';
 import Calendar from 'react-calendar';
+import {useOutsideClickHandler} from '../../utils/hooks';
 import WeekCalendar from '../WeekCalendar/WeekCalendar';
 import styles from './BuyTicket.module.scss';
-import {Fragment, useState} from 'react';
+import {createRef, Fragment, useEffect, useState} from 'react';
 import Form from '../../ui/Form/Form';
 import CardContainer from '../CardContainer/CardContainer';
+import {ru as ruLocale, enUS as enLocale} from 'date-fns/locale';
+
+const ticketsCountInitial = [];
 
 const BuyTicket = () => {
 	const router = useRouter();
 	const [currentJetty, setCurrentJetty] = useState('Сенатская пристань 1');
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
+	const [dateValue, setDateValue] = useState();
+	const [currentLocale, setCurrentLocale] = useState(ruLocale);
+	const [timeValue, setTimeValue] = useState();
+	const [ticketsCount, setTicketsCount] = useState(ticketsCountInitial);
+	const [total, setTotal] = useState(0);
+	
+	const times = ['12:45', '14:25', '16:25'];
+	
+	const timesList = times.map((time, index) => (
+		<div
+			className={`${styles.BuyTicket__time} ${time === timeValue ? styles.BuyTicket__time_active : ''}`}
+			onClick={() => setTimeValue(times[index])}
+			key={index}
+		>
+			{time}
+		</div>
+	));
+	
+	useEffect(() => {
+		if (router.locale === 'ru') setCurrentLocale(ruLocale);
+		if (router.locale === 'en') setCurrentLocale(enLocale);
+	}, [setCurrentLocale, router.locale]);
+	
+	const calendarRef = createRef();
+	
+	useOutsideClickHandler(calendarRef, isVisibleCalendar, setIsVisibleCalendar);
+	
+	const tickets = [
+		{title: 'Взрослый билет', price: 350},
+		{title: 'Детский билет', price: 250},
+		{title: 'Льготный билет', price: 480},
+	];
+	
+	const getTotal = (total, ticketsCount, tickets) => {
+		return tickets.reduce((accumulator, ticket, index) => {
+			return accumulator + ticket.price * (ticketsCount[index] || 0);
+		}, 0);
+	};
+	
+	const ticketsList = tickets.map((ticket, index) => {
+		return (
+			<div className={styles.BuyTicket__type} key={index}>
+				<div>
+					<em>{ticket.price} ₽</em>
+					<span>{ticket.title}</span>
+				</div>
+				<div>
+					<button
+						onClick={() => {
+							ticketsCountInitial[index] = ticketsCountInitial[index] - 1;
+							setTicketsCount([...ticketsCountInitial]);
+							
+							setTotal(getTotal(total, ticketsCountInitial, tickets));
+						}}
+						disabled={ticketsCount[index] <= 0}
+					>
+						<svg width="11" height="1" viewBox="0 0 11 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect y="1" width="1" height="11" rx="0.5" transform="rotate(-90 0 1)" fill="white"/>
+						</svg>
+					</button>
+					<span>{ticketsCount[index] || 0}</span>
+					<button onClick={() => {
+						if (!ticketsCountInitial[index]) {
+							ticketsCountInitial[index] = 0;
+						}
+						
+						ticketsCountInitial[index] = ticketsCountInitial[index] + 1;
+						setTicketsCount([...ticketsCountInitial]);
+						
+						setTotal(getTotal(total, ticketsCountInitial, tickets));
+					}}>
+						<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect x="5" width="1" height="11" rx="0.5" fill="white"/>
+							<rect y="6" width="1" height="11" rx="0.5" transform="rotate(-90 0 6)" fill="white"/>
+						</svg>
+					</button>
+				</div>
+			</div>
+		);
+	});
 	
 	return (
 		<div className={styles.BuyTicket}>
@@ -31,93 +116,42 @@ const BuyTicket = () => {
 				</div>
 				<div className={styles.BuyTicket__dates}>
 					<span>Выберите дату и время экскурсии</span>
-					<WeekCalendar/>
+					<WeekCalendar dateValue={dateValue} setDateValue={setDateValue} currentLocale={currentLocale}/>
 					<div className={styles.BuyTicket__date}>
-						<button className={styles.BuyTicket__button} onClick={() => setIsVisibleCalendar(!isVisibleCalendar)}>
+						<button
+							className={`${styles.BuyTicket__button} ${dateValue ? styles.BuyTicket__button_active : ''}`}
+							onClick={() => {
+								setTimeout(() => setIsVisibleCalendar(!isVisibleCalendar), 0);
+							}}
+						>
 							<svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M15.7778 1.77734H16.8889C17.4412 1.77734 17.8889 2.22506 17.8889 2.77734V14.9996C17.8889 15.5519 17.4412 15.9996 16.8889 15.9996H2C1.44771 15.9996 1 15.5519 1 14.9996V2.77734C1 2.22506 1.44772 1.77734 2 1.77734H3.11111M11.5556 1.77734H9.44444H7.33333" stroke="#362929"/>
 								<rect x="4.55566" width="1" height="3.55556" rx="0.5" fill="#362929"/>
 								<rect x="13.4443" width="1" height="3.55556" rx="0.5" fill="#362929"/>
 							</svg>
-							Выбрать другую дату
+							{!dateValue ?
+								'Выбрать другую дату' :
+								`${format(dateValue, 'EEEE', {locale: currentLocale})}, ${format(dateValue, 'd', {locale: currentLocale})} ${format(dateValue, 'MMMM', {locale: currentLocale})}`}
 						</button>
-						<div className={`${styles.BuyTicket__calendar} ${isVisibleCalendar ? styles.BuyTicket__calendar_active : ''}`}>
-							<Calendar locale={router.locale}/>
+						<div className={`${styles.BuyTicket__calendar} ${isVisibleCalendar ? styles.BuyTicket__calendar_active : ''}`} ref={calendarRef}>
+							<Calendar
+								locale={router.locale}
+								value={dateValue}
+								onChange={setDateValue}
+								onClickDay={() => setIsVisibleCalendar(false)}
+							/>
 						</div>
 					</div>
 				</div>
 				<div className={styles.BuyTicket__times}>
 					<span>Время отправления</span>
 					<div>
-						<div className={`${styles.BuyTicket__time} ${styles.BuyTicket__time_active}`}>12:45</div>
-						<div className={styles.BuyTicket__time}>14:25</div>
-						<div className={styles.BuyTicket__time}>16:25</div>
+						{timesList}
 					</div>
 				</div>
-				<div className={styles.BuyTicket__types}>
-					<div className={styles.BuyTicket__type}>
-						<div>
-							<em>350 ₽</em>
-							<span>Взрослый билет</span>
-						</div>
-						<div>
-							<button>
-								<svg width="11" height="1" viewBox="0 0 11 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect y="1" width="1" height="11" rx="0.5" transform="rotate(-90 0 1)" fill="white"/>
-								</svg>
-							</button>
-							<span>1</span>
-							<button>
-								<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect x="5" width="1" height="11" rx="0.5" fill="white"/>
-									<rect y="6" width="1" height="11" rx="0.5" transform="rotate(-90 0 6)" fill="white"/>
-								</svg>
-							</button>
-						</div>
-					</div>
-					<div className={styles.BuyTicket__type}>
-						<div>
-							<em>250 ₽</em>
-							<span>Детский билет</span>
-						</div>
-						<div>
-							<button>
-								<svg width="11" height="1" viewBox="0 0 11 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect y="1" width="1" height="11" rx="0.5" transform="rotate(-90 0 1)" fill="white"/>
-								</svg>
-							</button>
-							<span>1</span>
-							<button>
-								<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect x="5" width="1" height="11" rx="0.5" fill="white"/>
-									<rect y="6" width="1" height="11" rx="0.5" transform="rotate(-90 0 6)" fill="white"/>
-								</svg>
-							</button>
-						</div>
-					</div>
-					<div className={styles.BuyTicket__type}>
-						<div>
-							<em>480 ₽</em>
-							<span>Льготный билет</span>
-						</div>
-						<div>
-							<button>
-								<svg width="11" height="1" viewBox="0 0 11 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect y="1" width="1" height="11" rx="0.5" transform="rotate(-90 0 1)" fill="white"/>
-								</svg>
-							</button>
-							<span>1</span>
-							<button>
-								<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect x="5" width="1" height="11" rx="0.5" fill="white"/>
-									<rect y="6" width="1" height="11" rx="0.5" transform="rotate(-90 0 6)" fill="white"/>
-								</svg>
-							</button>
-						</div>
-					</div>
-				</div>
+				<div className={styles.BuyTicket__types}>{ticketsList}</div>
 				<div className={styles.BuyTicket__total}>
-					<strong>830 ₽</strong>
+					<strong>{total} ₽</strong>
 					<span>Итого</span>
 				</div>
 				<div className={styles.BuyTicket__duration}>

@@ -216,8 +216,6 @@ const Product = () => {
 							<div className={styles.Product__illustration}>
 								<Image
 									src="/assets/images/product/product-image-1.png"
-									width={340}
-									height={300}
 									layout="fill"
 									objectFit="cover"
 									alt=""

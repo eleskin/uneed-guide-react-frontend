@@ -40,11 +40,12 @@
 		}
 	}
 	
-	.WeekCalendar__days, .WeekCalendar__dates {
+	.WeekCalendar__days, .WeekCalendar__row {
 		width: 100%;
 		display: grid;
 		grid-template-columns: repeat(7, 1fr);
 		grid-column-gap: rem(12px);
+		flex-shrink: 0;
 	}
 	
 	.WeekCalendar__days {
@@ -58,6 +59,16 @@
 	}
 	
 	.WeekCalendar__dates {
+		display: flex;
+		
+		.WeekCalendar__row {
+			display: none;
+		}
+		
+		.WeekCalendar__row_active {
+			display: grid;
+		}
+		
 		.WeekCalendar__date {
 			font-weight: 400;
 			font-size: rem(12px);
