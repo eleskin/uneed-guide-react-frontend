@@ -1,11 +1,14 @@
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {useSwipeable} from 'react-swipeable';
+import {getUpcoming} from '../../store/slices/mainPage';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
 import styles from './UpcomingExcursions.module.scss';
 
 const UpcomingExcursions = () => {
+	const dispatch = useDispatch();
 	const router = useRouter();
 	const [dateValue, setDateValue] = useState(new Date());
 	const [activeSlide, setActiveSlide] = useState(0);
@@ -83,6 +86,10 @@ const UpcomingExcursions = () => {
 			}
 		},
 	});
+	
+	useEffect(() => {
+		dispatch(getUpcoming());
+	}, []);
 	
 	return (
 		<div className={styles.UpcomingExcursions} {...handlers}>
