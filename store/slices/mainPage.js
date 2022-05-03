@@ -19,6 +19,24 @@ export const getUpcoming = createAsyncThunk(
 	{},
 );
 
+export const getAll = createAsyncThunk(
+	'mainPage/all',
+	async () => {
+		try {
+			const response = await axios.get('https://test-api.uneedguide.com/v1/tour/find-all');
+			
+			if (response.status === 200) {
+				return response.data;
+			}
+			
+			return undefined;
+		} catch (error) {
+			throw new Error(error);
+		}
+	},
+	{},
+);
+
 const initialState = {
 	upcoming: []
 };

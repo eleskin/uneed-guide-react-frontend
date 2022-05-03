@@ -1,7 +1,8 @@
 import {format} from 'date-fns';
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {getAll} from '../../store/slices/mainPage';
 import {getCityName} from '../../utils/functions';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
@@ -12,13 +13,14 @@ import Link from 'next/link';
 import Calendar from 'react-calendar';
 
 const FirstScreen = () => {
+	const dispatch = useDispatch();
 	const router = useRouter();
 	const [value, onChange] = useState(new Date());
 	const [currentLocale, setCurrentLocale] = useState('ru');
 	const {asPath} = router;
 	const [currentDate, setCurrentDate] = useState(format(new Date(Date.parse(value.toString())), 'dd-MM-yyyy'));
 	const [languageFile, setLanguageFile] = useState();
-	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -56,6 +58,10 @@ const FirstScreen = () => {
 	useEffect(() => {
 		setActiveCity(getCityName(selectedCity, router, 'dative'));
 	}, [router, selectedCity]);
+	
+	useEffect(() => {
+		dispatch(getAll());
+	}, []);
 	
 	return (
 		<div className={styles.FirstScreen}>
