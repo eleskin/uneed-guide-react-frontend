@@ -223,28 +223,40 @@ const Product = () => {
 							</div>
 						</CardContainer>
 						<CardContainer>
-							<h2>Транспорт</h2>
-							<div className={styles.Product__illustration}>
-								<Image
-									src="/assets/images/product/product-image-1.png"
-									width={340}
-									height={300}
-									layout="fill"
-									objectFit="cover"
-									alt=""
-								/>
-							</div>
-							<div className={styles.Product__survey}>
-								<h3>Теплоход</h3>
-								<p className={styles.Product__paragraph_light}>Теплоходы с двумя палубами: нижней и верхней. На нижней
-								                                               располагается закрытая часть и бар, на верхней - открытая
-								                                               и закрытая части.</p>
-								<h5>Удобства</h5>
-								<span className={styles.Product__span_small}>Туалет, панорамные окна</span>
-								<h5>Количества мест</h5>
-								<span className={styles.Product__span_small}>72</span>
-								<h5>Тип теплохода</h5>
-								<span className={styles.Product__span_small}>Двухпалубный</span>
+							<div className={styles.Product__transport}>
+								<h2>Транспорт</h2>
+								<div className={styles.Product__illustration}>
+									<Image
+										src="/assets/images/product/product-image-1.png"
+										width={340}
+										height={300}
+										layout="fill"
+										objectFit="cover"
+										alt=""
+									/>
+								</div>
+								<div className={styles.Product__survey}>
+									<div>
+										<h3>Теплоход</h3>
+										<p className={styles.Product__paragraph_light}>Теплоходы с двумя палубами: нижней и верхней. На
+										                                               нижней
+										                                               располагается закрытая часть и бар, на верхней -
+										                                               открытая
+										                                               и закрытая части.</p>
+									</div>
+									<div>
+										<h5>Удобства</h5>
+										<span className={styles.Product__span_small}>Туалет, панорамные окна</span>
+									</div>
+									<div>
+										<h5>Количества мест</h5>
+										<span className={styles.Product__span_small}>72</span>
+									</div>
+									<div>
+										<h5>Тип теплохода</h5>
+										<span className={styles.Product__span_small}>Двухпалубный</span>
+									</div>
+								</div>
 							</div>
 						</CardContainer>
 						<CardContainer>

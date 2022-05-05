@@ -588,6 +588,26 @@
 					}
 				}
 			}
+			
+			.Product__transport {
+				display: grid;
+				grid-auto-flow: row;
+				grid-template-rows: auto 1fr;
+				grid-template-columns: 1fr 1fr;
+				grid-column-gap: rem(32px);
+				
+				.Product__illustration {
+					grid-column:  1;
+					width: 100%;
+					height: auto!important;
+					margin-bottom: 0;
+				}
+				
+				.Product__survey {
+					display: flex;
+					flex-direction: column;
+				}
+			}
 		}
 	}
 }
