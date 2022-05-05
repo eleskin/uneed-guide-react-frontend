@@ -43,7 +43,6 @@
 	padding: rem(4px);
 	font-size: rem(12px);
 	line-height: rem(12px);
-	color: #b7b7b7;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -155,13 +154,15 @@
 .react-calendar__tile {
 	max-width: 100%;
 	padding: 10px 6.6667px;
-	background: none;
 	text-align: center;
 	line-height: 16px;
+	background-color: rgba(33, 38, 50, 0.1);
+	color: rgba(#000000, 0.8);
 }
 
 .react-calendar__tile:disabled {
-	background-color: #f0f0f0;
+	background-color: transparent;
+	color: #b7b7b7;
 }
 
 .react-calendar__tile:enabled:hover,

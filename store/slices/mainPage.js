@@ -46,19 +46,11 @@ const slice = createSlice({
 	initialState: initialState,
 	reducers: {},
 	extraReducers: {
-//		[getAll.fulfilled]: (state, {payload}) => {
-//			if (payload) {
-//				payload.forEach((menu) => {
-//					if (menu.name === 'Главное меню') {
-//						state.mainMenuElements = menu.links.filter((link) => {
-//							if (link['childs']?.length) {
-//								return link;
-//							}
-//						});
-//					}
-//				});
-//			}
-//		},
+		[getUpcoming.fulfilled]: (state, {payload}) => {
+			if (payload) {
+				state.upcoming = payload;
+			}
+		},
 	},
 });
 
