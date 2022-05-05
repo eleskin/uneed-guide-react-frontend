@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import {Fragment, useState} from 'react';
+import {useMediaQuery} from 'react-responsive';
 import {useSwipeable} from 'react-swipeable';
+import Container from '../Container/Container';
 import styles from './ProductSlider.module.scss';
 
 const ProductSlider = () => {
@@ -18,6 +20,9 @@ const ProductSlider = () => {
 	const imagesList = slides.map((image, index) => (
 		<span
 			className={`${styles.ProductSlider__image} ${activeSlide === index ? styles.ProductSlider__image_active : ''}`}
+			style={{
+				transform: `translateX(calc(-${100 * activeSlide}% - ${16 * activeSlide}px))`
+			}}
 			key={index}
 		>
 			<Image
@@ -92,11 +97,24 @@ const ProductSlider = () => {
 		}
 	});
 	
+	let isDisabledButton = activeSlide >= slides.length - 2;
+	
+	const threePhotos = useMediaQuery({query: '(min-width: 1600px)'});
+	const fourPhotos = useMediaQuery({query: '(min-width: 2540px)'});
+	
+	if (fourPhotos) {
+		isDisabledButton = activeSlide >= slides.length - 4;
+	}
+	
+	if (threePhotos) {
+		isDisabledButton = activeSlide >= slides.length - 3;
+	}
+	
 	const nextSlide = () => {
-		if (activeSlide < slides.length - 1) {
+		if (!isDisabledButton) {
 			setActiveSlide(activeSlide + 1);
 			
-			activeSlide > 1 && setIsVisibleHiddenSlides(true);
+			isDisabledButton && setIsVisibleHiddenSlides(true);
 		}
 	};
 	
@@ -111,11 +129,31 @@ const ProductSlider = () => {
 	
 	return (
 		<div className={styles.ProductSlider}>
+			<Container>
+				<div className={styles.ProductSlider__control}>
+					<span>{slides.length} фотографий</span>
+					<button
+						onClick={() => {setActiveSlide(activeSlide - 1)}}
+						disabled={activeSlide <= 0}
+					>
+						<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fillRule="evenodd" clipRule="evenodd" d="M0 6L6.48649 12L8 10.6L3.02703 6L8 1.4L6.48649 0L0 6Z" fill="white"/>
+						</svg>
+					</button>
+					<button
+						onClick={() => {setActiveSlide(activeSlide + 1)}}
+						disabled={isDisabledButton}
+					>
+						<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fillRule="evenodd" clipRule="evenodd" d="M8 6L1.51351 12L2.54528e-07 10.6L4.97297 6L2.54528e-07 1.4L1.51351 0L8 6Z" fill="white"/>
+						</svg>
+					</button>
+				</div>
+			</Container>
 			<div className={styles.ProductSlider__images} {...handlers}>
 				{imagesList}
 			</div>
-			{/* <div className={styles.ProductSlider__control}> */}
-			<header>
+			<header className={styles.ProductSlider__header}>
 				<button>
 					<svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M9 15L2 8L9 1" stroke="#F0515D" strokeWidth="2" strokeLinecap="round"/>
