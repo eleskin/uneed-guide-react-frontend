@@ -200,16 +200,26 @@ const Product = () => {
 						</CardContainer>
 						<CardContainer>
 							<div className={styles.Product__survey}>
-								<h4>Место встречи</h4>
-								<span className={styles.Product__span}>Пресненская набережная, 2, причал №2</span>
-								<h4>Продолжительность</h4>
-								<span className={styles.Product__span}>1 час 30 минут</span>
-								<h4>Возраст</h4>
-								<span className={styles.Product__span}>8+</span>
-								<h4>Туроператор</h4>
-								<span className={styles.Product__span}>Нева Тревел</span>
-								<h4>Возрастная категория</h4>
-								<span className={styles.Product__span}>От 3х лет</span>
+								<div>
+									<h4>Место встречи</h4>
+									<span className={styles.Product__span}>Пресненская набережная, 2, причал №2</span>
+								</div>
+								<div>
+									<h4>Продолжительность</h4>
+									<span className={styles.Product__span}>1 час 30 минут</span>
+								</div>
+								<div>
+									<h4>Возраст</h4>
+									<span className={styles.Product__span}>8+</span>
+								</div>
+								<div>
+									<h4>Туроператор</h4>
+									<span className={styles.Product__span}>Нева Тревел</span>
+								</div>
+								<div>
+									<h4>Возрастная категория</h4>
+									<span className={styles.Product__span}>От 3х лет</span>
+								</div>
 							</div>
 						</CardContainer>
 						<CardContainer>
@@ -333,7 +343,8 @@ const Product = () => {
 											<em>5.0</em>
 										</span>
 									</header>
-									<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты. Рыбатекст используется</p>
+									<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить
+									   макеты. Рыбатекст используется</p>
 									<button>Читать далее</button>
 								</div>
 								<div className={styles.Product__review}>
@@ -356,7 +367,8 @@ const Product = () => {
 											<em>4.0</em>
 										</span>
 									</header>
-									<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты. Рыбатекст используется</p>
+									<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить
+									   макеты. Рыбатекст используется</p>
 								</div>
 								<div className={styles.Product__review}>
 									<header>
@@ -378,7 +390,8 @@ const Product = () => {
 											<em>4.0</em>
 										</span>
 									</header>
-									<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты. Рыбатекст используется</p>
+									<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить
+									   макеты. Рыбатекст используется</p>
 								</div>
 								<button>Смотреть все 53 отзыва</button>
 							</div>
