@@ -167,6 +167,12 @@ const Product = () => {
 		onSwipedRight: prevDiscount,
 	});
 	
+	const tickets = [
+		{title: 'Взрослый билет', price: 350, priceDiscount: 450},
+		{title: 'Детский билет', price: 250, priceDiscount: 250},
+		{title: 'Льготный билет', price: 480, priceDiscount: 480},
+	];
+	
 	return (
 		<div className={styles.Product}>
 			<ProductSlider/>
@@ -274,7 +280,7 @@ const Product = () => {
 				</div>
 				<Container>
 					<div className={styles.Product__description}>
-						<BuyTicket/>
+						<BuyTicket tickets={tickets}/>
 					</div>
 				</Container>
 			</div>

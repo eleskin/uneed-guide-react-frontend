@@ -11,7 +11,7 @@ import {ru as ruLocale, enUS as enLocale} from 'date-fns/locale';
 
 const ticketsCountInitial = [];
 
-const BuyTicket = () => {
+const BuyTicket = ({tickets}) => {
 	const router = useRouter();
 	const [currentJetty, setCurrentJetty] = useState('Сенатская пристань 1');
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
@@ -41,12 +41,6 @@ const BuyTicket = () => {
 	const calendarRef = createRef();
 	
 	useOutsideClickHandler(calendarRef, isVisibleCalendar, setIsVisibleCalendar);
-	
-	const tickets = [
-		{title: 'Взрослый билет', price: 350, priceDiscount: 450},
-		{title: 'Детский билет', price: 250, priceDiscount: 250},
-		{title: 'Льготный билет', price: 480, priceDiscount: 480},
-	];
 	
 	const getTotal = (total, ticketsCount, tickets) => {
 		return tickets.reduce((accumulator, ticket, index) => {
