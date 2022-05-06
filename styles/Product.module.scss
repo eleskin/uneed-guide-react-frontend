@@ -475,6 +475,16 @@
 					}
 				}
 				
+				.Product__review_hidden {
+					display: none;
+				}
+				
+				.Product__review_opened {
+						p:not(:first-of-type) {
+							display: block;
+						}
+				}
+				
 				.Product__review::before {
 					top: 0;
 					left: -24px;
@@ -791,7 +801,7 @@
 						}
 						
 						li::before {
-							content: "- ";
+							content: '- ';
 						}
 					}
 				}
