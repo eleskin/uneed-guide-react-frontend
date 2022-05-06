@@ -24,13 +24,13 @@ const BuyTicket = () => {
 	const times = ['12:45', '14:25', '16:25'];
 	
 	const timesList = times.map((time, index) => (
-		<div
+		<button
 			className={`${styles.BuyTicket__time} ${time === timeValue ? styles.BuyTicket__time_active : ''}`}
 			onClick={() => setTimeValue(times[index])}
 			key={index}
 		>
 			{time}
-		</div>
+		</button>
 	));
 	
 	useEffect(() => {

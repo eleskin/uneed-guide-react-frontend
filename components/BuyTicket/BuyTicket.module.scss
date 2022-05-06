@@ -1,6 +1,10 @@
 @import '/styles/functions';
 
 .BuyTicket {
+	button {
+		cursor: pointer;
+	}
+	
 	.BuyTicket__button {
 		width: 100%;
 		display: flex;
@@ -130,6 +134,7 @@
 				height: 100%;
 				color: #ffffff;
 				background: rgba(192, 192, 192, 0.15);
+				border: none;
 			}
 			
 			.BuyTicket__time_active {
