@@ -548,8 +548,8 @@
 				margin: auto;
 				width: fit-content;
 				height: fit-content;
-				display: flex;
 				grid-column-gap: rem(8px);
+				display: none;
 				
 				span {
 					width: 8px;
@@ -786,6 +786,10 @@
 							}
 						}
 					}
+				}
+				
+				& > div:last-child {
+					display: flex;
 				}
 			}
 		}
