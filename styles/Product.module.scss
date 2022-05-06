@@ -347,12 +347,18 @@
 					}
 				}
 				
-				span {
-					margin-top: rem(8px);
-					display: block;
-					font-size: rem(14px);
-					line-height: rem(21px);
-					color: #535972;
+				ul {
+					list-style: none;
+					padding: 0;
+					margin: 0;
+					
+					li {
+						margin-top: rem(8px);
+						display: block;
+						font-size: rem(14px);
+						line-height: rem(21px);
+						color: #535972;
+					}
 				}
 			}
 			
@@ -457,6 +463,10 @@
 						color: #221818;
 					}
 					
+					p:not(:first-of-type) {
+						display: none;
+					}
+					
 					button {
 						margin-left: 0;
 						font-size: rem(12px);
@@ -487,6 +497,7 @@
 					margin: auto;
 					display: block;
 					padding: 0;
+					max-width: 290px;
 				}
 			}
 		}
@@ -757,6 +768,106 @@
 					.Product__survey {
 						display: flex;
 						flex-direction: column;
+					}
+				}
+				
+				.Product__warning {
+					header {
+						padding-bottom: rem(8px);
+
+						strong {
+							font-size: rem(22px);
+							line-height: rem(20px);
+						}
+					}
+
+					ul {
+						li {
+							margin-top: rem(8px);
+							display: block;
+							font-size: rem(16px);
+							line-height: rem(24px);
+							color: #535972;
+						}
+						
+						li::before {
+							content: "- ";
+						}
+					}
+				}
+				
+				.Product__reviews {
+					.Product__rating {
+						em {
+							font-size: rem(14px);
+							line-height: rem(21px);
+						}
+					}
+					
+					header {
+						div {
+							span {
+								font-size: rem(14px);
+								line-height: rem(21px);
+								padding-bottom: rem(8px);
+							}
+						}
+					}
+					
+					.Product__review {
+						padding: rem(24px) 0;
+						
+						& > header {
+							padding-bottom: rem(12px);
+							
+							& > div {
+								grid-column-gap: rem(24px);
+								
+								img {
+									width: 44px!important;
+									height: 44px!important;
+								}
+								
+								& > i {
+									width: 44px;
+									height: 44px;
+									font-size: rem(16px);
+									line-height: rem(24px);
+								}
+								
+								div {
+									span {
+										font-size: rem(18px);
+										line-height: rem(27px);
+									}
+									
+									i {
+										font-size: rem(14px);
+										line-height: rem(21px);
+									}
+								}
+							}
+						}
+						
+						p {
+							font-size: rem(16px);
+							line-height: rem(24px);
+						}
+						
+						button {
+							margin-left: 0;
+							font-size: rem(14px);
+							line-height: rem(21px);
+							margin-top: rem(16px);
+						}
+					}
+					
+					& > button {
+						font-size: rem(18px);
+						line-height: rem(27px);
+						padding: rem(12px);
+						background-color: rgba(240, 81, 93, 0.05);
+						border-radius: 12px;
 					}
 				}
 			}
