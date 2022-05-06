@@ -2,6 +2,7 @@ import Image from 'next/image';
 import {Fragment, useEffect, useRef, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import Button from '../../components/Button/Button';
 import BuyTicket from '../../components/BuyTicket/BuyTicket';
 import CardContainer from '../../components/CardContainer/CardContainer';
 import Container from '../../components/Container/Container';
@@ -291,9 +292,9 @@ const Product = () => {
 	return (
 		<div className={styles.Product}>
 			<ProductSlider/>
-			<Container>
-				<div className={styles.Product__container}>
-					<div>
+			<div className={styles.Product__container}>
+				<div>
+					<Container>
 						<Breadcrumbs/>
 						<h1 className={styles.Product__title}>По москва-реке на теплоходе</h1>
 						<ul className={styles.Product__info}>
@@ -411,53 +412,54 @@ const Product = () => {
 								</div>
 							</CardContainer>
 						</div>
-						<div className={styles.Product__discounts} {...handlers}>
-							<div>
-								<div style={{transform: `translateX(calc(${-100 * activeDiscount}% - ${0.75 * activeDiscount}rem))`}}>
-									{discountsList}
-								</div>
-							</div>
-							<div>
-								{discounts.map((discount, index) => (
-									<span
-										key={index}
-										style={activeDiscount === index ? {backgroundColor: 'rgba(33, 38, 50, 0.5)'} : null}
-										onClick={() => setActiveDiscount(index)}
-									/>
-								))}
+					</Container>
+					<div className={styles.Product__discounts} {...handlers}>
+						<div>
+							<div style={{transform: `translateX(calc(${-100 * activeDiscount}% - ${0.75 * activeDiscount}rem))`}}>
+								{discountsList}
 							</div>
 						</div>
-						<Container>
-							<div className={styles.Product__description}>
-								<div ref={buyTicketRef}>
-									<BuyTicket/>
+						<div>
+							{discounts.map((discount, index) => (
+								<span
+									key={index}
+									style={activeDiscount === index ? {backgroundColor: 'rgba(33, 38, 50, 0.5)'} : null}
+									onClick={() => setActiveDiscount(index)}
+								/>
+							))}
+						</div>
+					</div>
+					<Container>
+						<div className={styles.Product__description}>
+							<div ref={buyTicketRef}>
+								<BuyTicket/>
+							</div>
+							<CardContainer>
+								<div className={styles.Product__warning}>
+									<header>
+										<strong>Внимание!</strong>
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M12 0C5.36705 0 0 5.36752 0 12C0 18.633 5.36752 24 12 24C18.633 24 24 18.6325 24 12C24 5.36705 18.6325 0 12 0ZM12 22.125C6.40345 22.125 1.875 17.5962 1.875 12C1.875 6.40345 6.40383 1.875 12 1.875C17.5965 1.875 22.125 6.40383 22.125 12C22.125 17.5965 17.5962 22.125 12 22.125Z" fill="#51ADF0"/>
+											<path d="M12 6.04109C11.4822 6.04109 11.0625 6.46081 11.0625 6.97859V13.0158C11.0625 13.5335 11.4822 13.9533 12 13.9533C12.5178 13.9533 12.9375 13.5335 12.9375 13.0158V6.97859C12.9375 6.46081 12.5178 6.04109 12 6.04109Z" fill="#51ADF0"/>
+											<path d="M12 17.6325C12.699 17.6325 13.2656 17.0658 13.2656 16.3668C13.2656 15.6679 12.699 15.1012 12 15.1012C11.301 15.1012 10.7344 15.6679 10.7344 16.3668C10.7344 17.0658 11.301 17.6325 12 17.6325Z" fill="#51ADF0"/>
+										</svg>
+										<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро
+										   заполнить
+										   макеты.</p>
+									</header>
+									<ul>
+										<li>Дети до 6-ти лет не допускаются на данный вид экскурсии.</li>
+										<li>На экскурсию нельзя брать животных</li>
+									</ul>
 								</div>
-								<CardContainer>
-									<div className={styles.Product__warning}>
-										<header>
-											<strong>Внимание!</strong>
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M12 0C5.36705 0 0 5.36752 0 12C0 18.633 5.36752 24 12 24C18.633 24 24 18.6325 24 12C24 5.36705 18.6325 0 12 0ZM12 22.125C6.40345 22.125 1.875 17.5962 1.875 12C1.875 6.40345 6.40383 1.875 12 1.875C17.5965 1.875 22.125 6.40383 22.125 12C22.125 17.5965 17.5962 22.125 12 22.125Z" fill="#51ADF0"/>
-												<path d="M12 6.04109C11.4822 6.04109 11.0625 6.46081 11.0625 6.97859V13.0158C11.0625 13.5335 11.4822 13.9533 12 13.9533C12.5178 13.9533 12.9375 13.5335 12.9375 13.0158V6.97859C12.9375 6.46081 12.5178 6.04109 12 6.04109Z" fill="#51ADF0"/>
-												<path d="M12 17.6325C12.699 17.6325 13.2656 17.0658 13.2656 16.3668C13.2656 15.6679 12.699 15.1012 12 15.1012C11.301 15.1012 10.7344 15.6679 10.7344 16.3668C10.7344 17.0658 11.301 17.6325 12 17.6325Z" fill="#51ADF0"/>
-											</svg>
-											<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро
-											   заполнить
-											   макеты.</p>
-										</header>
-										<ul>
-											<li>Дети до 6-ти лет не допускаются на данный вид экскурсии.</li>
-											<li>На экскурсию нельзя брать животных</li>
-										</ul>
-									</div>
-								</CardContainer>
-								<CardContainer>
-									<div className={styles.Product__reviews}>
-										<header>
-											<h2>Отзывы</h2>
-											<div>
-												<span>Общая оценка</span>
-												<span className={styles.Product__rating}>
+							</CardContainer>
+							<CardContainer>
+								<div className={styles.Product__reviews}>
+									<header>
+										<h2>Отзывы</h2>
+										<div>
+											<span>Общая оценка</span>
+											<span className={styles.Product__rating}>
 											<svg width="61" height="12" viewBox="0 0 61 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<path d="M6.18188 0.883924C6.18188 0.724495 5.958 0.689037 5.90874 0.840662L4.7899 4.28409C4.74974 4.4077 4.63455 4.49139 4.50458 4.49139H0.92332C0.632703 4.49139 0.511871 4.86327 0.746985 5.03409L3.64429 7.13911C3.74943 7.2155 3.79343 7.35091 3.75327 7.47452L2.6466 10.8805C2.55679 11.1569 2.87314 11.3867 3.10825 11.2159L6.05822 9.07263C6.13591 9.01618 6.18188 8.92595 6.18188 8.82992V0.883924Z" fill={rating[0] ? '#f0515d' : '#e0deda'}/>
 												<path d="M6 0.883924C6 0.724495 6.22388 0.689037 6.27315 0.840662L7.39199 4.28409C7.43215 4.4077 7.54734 4.49139 7.6773 4.49139H11.2586C11.5492 4.49139 11.67 4.86327 11.4349 5.03409L8.5376 7.13911C8.43245 7.2155 8.38846 7.35091 8.42862 7.47452L9.53529 10.8805C9.62509 11.1569 9.30875 11.3867 9.07364 11.2159L6.12366 9.07263C6.04597 9.01618 6 8.92595 6 8.82992V0.883924Z" fill={rating[1] ? '#f0515d' : '#e0deda'}/>
@@ -472,32 +474,40 @@ const Product = () => {
 											</svg>
 											<em>{totalRating / reviews.length}</em>
 										</span>
-											</div>
-										</header>
-										{reviewsList}
-										{reviews.length > 3 && !isOpenedReviews && (
-											<button onClick={() => setIsOpenedReviews(true)}>Смотреть все {reviews.length} отзыва</button>)}
-									</div>
-								</CardContainer>
+										</div>
+									</header>
+									{reviewsList}
+									{reviews.length > 3 && !isOpenedReviews && (
+										<button onClick={() => setIsOpenedReviews(true)}>Смотреть все {reviews.length} отзыва</button>)}
+								</div>
+							</CardContainer>
+						</div>
+					</Container>
+				</div>
+				<div>
+					<div className={styles.Product__price}>
+						<div className={styles.Product__card}>
+							<header>
+								<span>Стоимость билетов</span>
+							</header>
+							<div>
+							
 							</div>
-						</Container>
-					</div>
-					<div>
-						<div className={styles.Product__price}>
-							<div className={styles.Product__card}>
-								<header>
-									<span>Стоимость билетов</span>
-								</header>
-							</div>
+							<footer>
+								<Button.Primary>Приобрести билет</Button.Primary>
+							</footer>
 						</div>
 					</div>
 				</div>
-			</Container>
+			</div>
 			<Viewed/>
-			<button
+			<div
 				className={`${styles.Product__button_fixed} ${isIntersecting ? styles.Product__button_hidden : ''}`}
-			>Купить билет
-			</button>
+			>
+				<Button.Primary>
+					Купить билет
+				</Button.Primary>
+			</div>
 		</div>
 	);
 };
