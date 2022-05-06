@@ -94,3 +94,53 @@
 		}
 	}
 }
+
+@media (min-width: 768px) {
+	.WeekCalendar {
+		margin-bottom: 0;
+		
+		& > .WeekCalendar__header {
+			i {
+				font-style: normal;
+				font-size: rem(14px);
+				line-height: rem(21px);
+				color: #ffffff;
+			}
+			
+			div {
+				button {
+					svg {
+						width: 13px;
+						height: 9px;
+					}
+				}
+			}
+		}
+		
+		.WeekCalendar__days, .WeekCalendar__row {
+			grid-template-columns: repeat(7, 1fr);
+			grid-column-gap: rem(28px);
+		}
+		
+		& > .WeekCalendar__days {
+			color: #ffffff;
+			
+			& > span {
+				margin: rem(24px) 0;
+				font-size: rem(18px);
+				line-height: rem(12px);
+				color: #ffffff;
+			}
+		}
+		
+		.WeekCalendar__dates {
+			grid-column-gap: rem(28px);
+			
+			.WeekCalendar__date {
+				font-size: rem(14px);
+				line-height: rem(12px);
+				padding: rem(28px) 0;
+			}
+		}
+	}
+}

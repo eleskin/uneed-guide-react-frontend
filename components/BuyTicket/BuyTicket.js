@@ -43,9 +43,9 @@ const BuyTicket = () => {
 	useOutsideClickHandler(calendarRef, isVisibleCalendar, setIsVisibleCalendar);
 	
 	const tickets = [
-		{title: 'Взрослый билет', price: 350},
-		{title: 'Детский билет', price: 250},
-		{title: 'Льготный билет', price: 480},
+		{title: 'Взрослый билет', price: 350, priceDiscount: 450},
+		{title: 'Детский билет', price: 250, priceDiscount: 250},
+		{title: 'Льготный билет', price: 480, priceDiscount: 480},
 	];
 	
 	const getTotal = (total, ticketsCount, tickets) => {
@@ -59,6 +59,7 @@ const BuyTicket = () => {
 			<div className={styles.BuyTicket__type} key={index}>
 				<div>
 					<em>{ticket.price} ₽</em>
+					<i>{ticket.priceDiscount} ₽</i>
 					<span>{ticket.title}</span>
 				</div>
 				<div>
@@ -101,18 +102,38 @@ const BuyTicket = () => {
 			<CardContainer theme="dark">
 				<h2 style={{color: '#ffffff'}}>Приобрести билет</h2>
 				<div className={styles.BuyTicket__jetty}>
-					<Form.Select
-						value={currentJetty}
-						callback={setCurrentJetty}
-						title="Выберите причал"
-						theme="dark"
-					>
-						<Fragment>
-							<Form.Option value="Сенатская пристань 1">Сенатская пристань 1</Form.Option>
-							<Form.Option value="Сенатская пристань 2">Сенатская пристань 2</Form.Option>
-							<Form.Option value="Сенатская пристань 3">Сенатская пристань 3</Form.Option>
-						</Fragment>
-					</Form.Select>
+					<span>Выберите причал</span>
+					<div>
+						<Form.Select
+							value={currentJetty}
+							callback={setCurrentJetty}
+							title="Выберите причал"
+							theme="dark"
+						>
+							<Fragment>
+								<Form.Option value="Сенатская пристань">Сенатская пристань</Form.Option>
+								<Form.Option value="ст. м. Маяковская, театр сатиры">ст. м. Маяковская, театр сатиры</Form.Option>
+								<Form.Option value="ст. м. Таганская, у 3 входа метро">ст. м. Таганская, у 3 входа метро</Form.Option>
+							</Fragment>
+						</Form.Select>
+					</div>
+					<div>
+						<Form.Radio
+							value="Сенатская пристань"
+							checked={currentJetty === 'Сенатская пристань'}
+							onChange={(event) => setCurrentJetty(event.target.value)}
+						/>
+						<Form.Radio
+							value="ст. м. Маяковская, театр сатиры"
+							checked={currentJetty === 'ст. м. Маяковская, театр сатиры'}
+							onChange={(event) => setCurrentJetty(event.target.value)}
+						/>
+						<Form.Radio
+							value="ст. м. Таганская, у 3 входа метро"
+							checked={currentJetty === 'ст. м. Таганская, у 3 входа метро'}
+							onChange={(event) => setCurrentJetty(event.target.value)}
+						/>
+					</div>
 				</div>
 				<div className={styles.BuyTicket__dates}>
 					<span>Выберите дату и время экскурсии</span>
@@ -149,7 +170,10 @@ const BuyTicket = () => {
 						{timesList}
 					</div>
 				</div>
-				<div className={styles.BuyTicket__types}>{ticketsList}</div>
+				<div className={styles.BuyTicket__types}>
+					<span>Выберите билеты</span>
+					{ticketsList}
+				</div>
 				<div className={styles.BuyTicket__total}>
 					<strong>{total} ₽</strong>
 					<span>Итого</span>
