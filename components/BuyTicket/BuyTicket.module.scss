@@ -311,6 +311,11 @@
 
 @media (min-width: 768px) {
 	.BuyTicket {
+		.BuyTicket__button {
+			font-size: rem(18px);
+			line-height: rem(27px);
+		}
+		
 		.BuyTicket__jetty {
 			& > span {
 				display: block;
