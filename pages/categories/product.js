@@ -140,12 +140,12 @@ const Product = () => {
 	
 	const discounts = [
 		{
-			title: 'Вернем до 20% от цены билета при оплате картой системой “МИР”',
-			background: '/assets/images/discounts/discount-background-1.png',
+			title: 'Вернем до 20% от цены билета\nпри оплате картой системой\n“МИР”',
+			background: '/assets/images/discounts/discount-background-1.svg',
 			label: 'Покупайте с выгодой',
 		},
 		{
-			title: 'Скидка 10% для первой поездки на любую экскурсию',
+			title: 'Скидка 10% для первой\nпоездки на любую экскурсию',
 			background: '/assets/images/discounts/discount-background-2.png',
 			label: '',
 		},
@@ -299,8 +299,19 @@ const Product = () => {
 					</div>
 				</Container>
 				<div className={styles.Product__discounts} {...handlers}>
-					<div style={{transform: `translateX(calc(${-100 * activeDiscount}% - ${0.75 * activeDiscount}rem))`}}>
-						{discountsList}
+					<div>
+						<div style={{transform: `translateX(calc(${-100 * activeDiscount}% - ${0.75 * activeDiscount}rem))`}}>
+							{discountsList}
+						</div>
+					</div>
+					<div>
+						{discounts.map((discount, index) => (
+							<span
+								key={index}
+								style={{backgroundColor: activeDiscount === index ? 'rgba(33, 38, 50, 0.5)' : ''}}
+								onClick={() => setActiveDiscount(index)}
+							/>
+						))}
 					</div>
 				</div>
 				<Container>
