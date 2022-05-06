@@ -343,5 +343,28 @@
 				}
 			}
 		}
+		
+		.Product__advantages {
+			margin-top: rem(8px);
+			
+			.Product__advantage {
+				display: grid;
+				grid-template-columns: auto 1fr;
+				grid-column-gap: rem(16px);
+				align-items: center;
+				padding: rem(16px) 0;
+				
+				span {
+					font-size: rem(12px);
+					line-height: rem(18px);
+					color: rgba(#FFFFFF, 0.6);
+					width: 75%;
+				}
+			}
+			
+			.Product__advantage:not(:last-child) {
+				border-bottom: 1px solid rgba(192, 192, 192, 0.15);
+			}
+		}
 	}
 }
