@@ -2,6 +2,7 @@
 
 .ProductSlider {
 	position: relative;
+	overflow-x: hidden;
 	
 	.ProductSlider__control {
 		display: none;
