@@ -5,9 +5,9 @@ const CardContainer = ({children, theme = 'light', padding = 24}) => {
 		<div
 			className={styles.CardContainer}
 			style={{
-				padding: `24px ${padding}px`,
-				backgroundColor: theme === 'dark' ? '#212632' : ''
-		}}
+				padding: padding ? `24px ${padding}px` : '24px',
+				backgroundColor: theme === 'dark' ? '#212632' : '#ffffff',
+			}}
 		>
 			{children}
 		</div>
