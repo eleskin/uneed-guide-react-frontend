@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import {Fragment, useEffect, useState} from 'react';
+import {Fragment, useEffect, useRef, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import BuyTicket from '../../components/BuyTicket/BuyTicket';
@@ -273,6 +273,21 @@ const Product = () => {
 		}
 	}, [setRating, totalRating, reviews.length]);
 	
+	const buyTicketRef = useRef(null);
+	const [isIntersecting, setIsIntersecting] = useState(false);
+	
+	useEffect(() => {
+		const observer = new IntersectionObserver((entries) => {
+			const [entry] = entries;
+			setIsIntersecting(entry.isIntersecting);
+		}, {
+			root: null,
+			threshold: 0
+		});
+		
+		observer.observe(buyTicketRef.current)
+	}, []);
+	
 	return (
 		<div className={styles.Product}>
 			<ProductSlider/>
@@ -414,7 +429,9 @@ const Product = () => {
 				</div>
 				<Container>
 					<div className={styles.Product__description}>
-						<BuyTicket/>
+						<div ref={buyTicketRef}>
+							<BuyTicket/>
+						</div>
 						<CardContainer>
 							<div className={styles.Product__warning}>
 								<header>
@@ -464,6 +481,9 @@ const Product = () => {
 				</Container>
 			</div>
 			<Viewed/>
+			<button
+				className={`${styles.Product__button_fixed} ${isIntersecting ? styles.Product__button_hidden : ''}`}
+			>Купить билет</button>
 		</div>
 	);
 };
