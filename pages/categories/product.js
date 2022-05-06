@@ -126,6 +126,13 @@ const Product = () => {
 						<h5>Интервал события</h5>
 						<span>{event.time}</span>
 					</div>
+					<i>
+						<svg width="4" height="9" viewBox="0 0 4 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="3" cy="1" r="1" fill="white"/>
+							<path d="M2 3H4V9H2V5L0 3H2Z" fill="white"/>
+						</svg>
+					</i>
+					<p className={styles.Product__paragraph_light}>{event.info}</p>
 				</div>
 			</div>
 		);
@@ -283,9 +290,8 @@ const Product = () => {
 							<div className={styles.Product__map}>
 								<Image
 									src="/assets/images/product/product-map.png"
-									width={294}
-									height={244}
-									layout="responsive"
+									layout="fill"
+									objectFit="cover"
 									alt=""
 								/>
 							</div>
