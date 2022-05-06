@@ -3,6 +3,10 @@
 .Product {
 	overflow-x: hidden;
 	
+	button {
+		cursor: pointer;
+	}
+	
 	.Product__container {
 		padding-top: rem(16px);
 		
