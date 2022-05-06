@@ -15,7 +15,6 @@
 		background-color: #f6f6f6;
 		border-radius: 6px;
 		border: none;
-		max-width: 300px;
 		margin: 0 auto;
 	}
 	
@@ -143,7 +142,7 @@
 	.BuyTicket__types {
 		margin-top: rem(12px);
 		
-		span {
+		& > span {
 			display: none;
 		}
 		
@@ -314,6 +313,7 @@
 		.BuyTicket__button {
 			font-size: rem(18px);
 			line-height: rem(27px);
+			max-width: 300px;
 		}
 		
 		.BuyTicket__jetty {
