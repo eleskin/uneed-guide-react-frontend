@@ -142,7 +142,7 @@
 	.BuyTicket__types {
 		margin-top: rem(12px);
 		
-		span {
+		& > span {
 			display: none;
 		}
 		
