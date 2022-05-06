@@ -289,6 +289,12 @@ const Product = () => {
 		observer.observe(buyTicketRef.current);
 	}, []);
 	
+	const tickets = [
+		{title: 'Взрослый билет', price: 350, priceDiscount: 450},
+		{title: 'Детский билет', price: 250, priceDiscount: 250},
+		{title: 'Льготный билет', price: 480, priceDiscount: 480},
+	];
+	
 	return (
 		<div className={styles.Product}>
 			<ProductSlider/>
@@ -432,7 +438,7 @@ const Product = () => {
 					<Container>
 						<div className={styles.Product__description}>
 							<div ref={buyTicketRef}>
-								<BuyTicket/>
+								<BuyTicket tickets={tickets}/>
 							</div>
 							<CardContainer>
 								<div className={styles.Product__warning}>
