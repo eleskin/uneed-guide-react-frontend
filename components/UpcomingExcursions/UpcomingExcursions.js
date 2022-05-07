@@ -2,7 +2,7 @@ import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import {useOutsideClickHandler} from '../../utils/hooks';
-import ExcursionCard from '../ExcursionCard/ExcursionCard';
+import ExcursionsCard from '../ExcursionsCard/ExcursionsCard';
 import styles from './UpcomingExcursions.module.scss';
 
 const UpcomingExcursions = () => {
@@ -61,7 +61,7 @@ const UpcomingExcursions = () => {
 	useOutsideClickHandler(cardsRef, isVisibleCalendar, setIsVisibleCalendar);
 	
 	const cardsList = slides.map((slide, index) => (
-		<ExcursionCard
+		<ExcursionsCard
 			dateValue={dateValue}
 			setDateValue={setDateValue}
 			handleCalendarButtonClick={handleCalendarButtonClick}

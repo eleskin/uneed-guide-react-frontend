@@ -3,9 +3,9 @@ import {useRouter} from 'next/router';
 import {useEffect, useMemo, useState} from 'react';
 import Calendar from 'react-calendar';
 import Button from '../Button/Button';
-import styles from './ExcursionCard.module.scss';
+import styles from './ExcursionsCard.module.scss';
 
-const ExcursionCard = ({
+const ExcursionsCard = ({
 	                       handleCalendarButtonClick,
 	                       dateValue,
 	                       setDateValue,
@@ -274,4 +274,4 @@ const ExcursionCard = ({
 	);
 };
 
-export default ExcursionCard;
+export default ExcursionsCard;
