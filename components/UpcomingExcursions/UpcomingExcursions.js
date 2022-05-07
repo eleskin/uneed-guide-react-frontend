@@ -1,16 +1,20 @@
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {useSwipeable} from 'react-swipeable';
+import {getUpcoming} from '../../store/slices/mainPage';
 import {useOutsideClickHandler} from '../../utils/hooks';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
 import styles from './UpcomingExcursions.module.scss';
 
 const UpcomingExcursions = () => {
+	const dispatch = useDispatch();
 	const router = useRouter();
 	const [dateValue, setDateValue] = useState(new Date());
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [isChangedSlide, setIsChangedSlide] = useState(true);
 	const [languageFile, setLanguageFile] = useState();
+	const slides = useSelector((state) => state['mainPageSlice']['upcoming']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -18,12 +22,12 @@ const UpcomingExcursions = () => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
-	const slides = [
-		{},
-		{},
-		{},
-		{},
-	];
+//	const slides = [
+//		{},
+//		{},
+//		{},
+//		{},
+//	];
 	
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -60,16 +64,18 @@ const UpcomingExcursions = () => {
 	
 	useOutsideClickHandler(cardsRef, isVisibleCalendar, setIsVisibleCalendar);
 	
-	const cardsList = slides.map((slide, index) => (
-		<ExcursionCard
-			dateValue={dateValue}
-			setDateValue={setDateValue}
-			handleCalendarButtonClick={handleCalendarButtonClick}
-			isVisibleCalendar={isVisibleCalendar}
-			setIsVisibleCalendar={setIsVisibleCalendar}
-			key={index}
-		/>
-	));
+	const cardsList = slides.map((slide, index) => {
+		return (
+			<ExcursionCard
+				slide={slide}
+				dateValue={dateValue}
+				setDateValue={setDateValue}
+				handleCalendarButtonClick={handleCalendarButtonClick}
+				isVisibleCalendar={isVisibleCalendar}
+				setIsVisibleCalendar={setIsVisibleCalendar}
+				key={index}
+			/>
+	)});
 	
 	const handlers = useSwipeable({
 		onSwipedLeft: () => {
@@ -83,6 +89,10 @@ const UpcomingExcursions = () => {
 			}
 		},
 	});
+	
+	useEffect(() => {
+		dispatch(getUpcoming());
+	}, [dispatch]);
 	
 	return (
 		<div className={styles.UpcomingExcursions} {...handlers}>

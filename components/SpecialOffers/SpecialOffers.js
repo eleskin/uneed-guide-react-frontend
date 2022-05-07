@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import {useMediaQuery} from 'react-responsive';
 import CardSlider from '../CardSlider/CardSlider';
 import Container from '../Container/Container';
-import ExcursionCard from '../ExcursionCard/ExcursionCard';
+import ExcursionsCard from '../ExcursionsCard/ExcursionsCard';
 import Title from '../Title/Title';
 import styles from './SpecialOffers.module.scss';
 
@@ -55,7 +55,7 @@ const SpecialOffers = () => {
 	};
 	
 	const slidesList = slides.map((slide, index) => (
-		<ExcursionCard
+		<ExcursionsCard
 			small={true}
 			key={index}
 		/>
