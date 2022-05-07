@@ -3,18 +3,18 @@ import {useRouter} from 'next/router';
 import {useEffect, useMemo, useState} from 'react';
 import Calendar from 'react-calendar';
 import Button from '../Button/Button';
-import styles from './ExcursionCard.module.scss';
+import styles from './ExcursionsCard.module.scss';
 
-const ExcursionCard = ({
-	                        handleCalendarButtonClick,
-	                        dateValue,
-	                        setDateValue,
-	                        isVisibleCalendar,
-	                        setIsVisibleCalendar,
-	                        small = false,
-	                        limitedOpportunities = false,
-	                        viewed = false
-                        }) => {
+const ExcursionsCard = ({
+	                       handleCalendarButtonClick,
+	                       dateValue,
+	                       setDateValue,
+	                       isVisibleCalendar,
+	                       setIsVisibleCalendar,
+	                       small = false,
+	                       limitedOpportunities = false,
+	                       viewed = false
+                       }) => {
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
 	const [currentLocale, setCurrentLocale] = useState('ru');
@@ -32,9 +32,9 @@ const ExcursionCard = ({
 	}, [router.locale]);
 	
 	const ExcursionCardDepartures = useMemo(() => (
-		<div className={styles.ExcursionCard__departures}>
+		<div className={styles.ExcursionsCard__departures}>
 			<span>{languageFile?.['upcoming-excursions']?.['nearest-departures']}:</span>
-			<div className={styles.ExcursionCard__times}>
+			<div className={styles.ExcursionsCard__times}>
 				<button>12:45</button>
 				<button>14:25</button>
 				<button>16:25</button>
@@ -47,7 +47,7 @@ const ExcursionCard = ({
 				</button>
 			</div>
 			<div
-				className={`${styles.ExcursionCard__calendar} ${isVisibleCalendar ? styles.ExcursionCard__calendar_active : ''}`}
+				className={`${styles.ExcursionsCard__calendar} ${isVisibleCalendar ? styles.ExcursionsCard__calendar_active : ''}`}
 			>
 				<Calendar
 					locale={currentLocale}
@@ -60,7 +60,7 @@ const ExcursionCard = ({
 	), [languageFile, handleCalendarButtonClick, currentLocale, dateValue, setDateValue, isVisibleCalendar, setIsVisibleCalendar]);
 	
 	const ExcursionCardDiscount = useMemo(() => (
-		<div className={styles.ExcursionCard__discount}>
+		<div className={styles.ExcursionsCard__discount}>
 			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15" stroke="#F0515D" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round"/>
 				<path d="M5.59766 8.71387C5.41536 8.71387 5.25911 8.7041 5.12891 8.68457C4.9987 8.66504 4.86686 8.63086 4.7334 8.58203C4.60319 8.52995 4.47624 8.45833 4.35254 8.36719C4.22884 8.27604 4.11979 8.15723 4.02539 8.01074C3.81706 7.68848 3.71289 7.26855 3.71289 6.75098C3.71289 5.7972 4.05957 5.17708 4.75293 4.89062C4.9873 4.79297 5.19889 4.74414 5.3877 4.74414C5.5765 4.74414 5.736 4.75391 5.86621 4.77344C5.99967 4.78971 6.13151 4.82389 6.26172 4.87598C6.39518 4.9248 6.52376 4.99479 6.64746 5.08594C6.77116 5.17708 6.88184 5.29753 6.97949 5.44727C7.18783 5.76953 7.29199 6.2041 7.29199 6.75098C7.29199 7.65592 6.94368 8.25651 6.24707 8.55273C5.99967 8.66016 5.7832 8.71387 5.59766 8.71387ZM6.32031 6.75098C6.32031 5.84928 6.04688 5.39844 5.5 5.39844C4.95638 5.39844 4.68457 5.84928 4.68457 6.75098C4.68457 7.42155 4.84733 7.83659 5.17285 7.99609C5.27376 8.04492 5.38281 8.06934 5.5 8.06934C5.62044 8.06934 5.72949 8.04492 5.82715 7.99609C5.92806 7.94727 6.01595 7.86914 6.09082 7.76172C6.24382 7.54036 6.32031 7.20345 6.32031 6.75098ZM8.78613 10.9307C8.73079 10.7256 8.70312 10.4831 8.70312 10.2031C8.70312 9.91992 8.73242 9.67415 8.79102 9.46582C8.84961 9.25749 8.92773 9.08008 9.02539 8.93359C9.12305 8.78385 9.23372 8.66178 9.35742 8.56738C9.48438 8.46973 9.61296 8.39323 9.74316 8.33789C9.97754 8.24023 10.1891 8.19141 10.3779 8.19141C10.57 8.19141 10.7311 8.20117 10.8613 8.2207C10.9948 8.23698 11.1266 8.27116 11.2568 8.32324C11.3903 8.37207 11.5173 8.44206 11.6377 8.5332C11.7614 8.62435 11.8721 8.74479 11.9697 8.89453C12.1781 9.22331 12.2822 9.65788 12.2822 10.1982C12.2822 11.1064 11.9355 11.707 11.2422 12C10.9948 12.1074 10.7409 12.1611 10.4805 12.1611C9.57878 12.1611 9.014 11.751 8.78613 10.9307ZM11.3154 10.1982C11.3154 9.29655 11.042 8.8457 10.4951 8.8457C9.94824 8.8457 9.6748 9.29655 9.6748 10.1982C9.6748 10.8688 9.83919 11.2839 10.168 11.4434C10.2689 11.4922 10.3779 11.5166 10.4951 11.5166C10.6156 11.5166 10.7246 11.4922 10.8223 11.4434C10.9232 11.3945 11.0094 11.3164 11.0811 11.209C11.2373 10.9876 11.3154 10.6507 11.3154 10.1982ZM9.75781 4.92969C9.91406 4.91341 10.0508 4.94922 10.168 5.03711C10.3861 5.19987 10.4593 5.33659 10.3877 5.44727L6.16895 11.9854C5.99316 11.9788 5.85156 11.9333 5.74414 11.8486C5.54232 11.6989 5.47233 11.5719 5.53418 11.4678L9.75781 4.92969Z" fill="#F0515D"/>
@@ -68,7 +68,7 @@ const ExcursionCard = ({
 			<strong>От 350 ₽</strong>
 			<span>450 ₽</span>
 			{small || viewed && (
-				<div className={styles.ExcursionCard__rating}>
+				<div className={styles.ExcursionsCard__rating}>
 					<svg width="65" height="13" viewBox="0 0 65 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M6.21468 0.878116C6.30449 0.601723 6.69551 0.601722 6.78532 0.878115L7.89199 4.28409C7.93215 4.4077 8.04734 4.49139 8.1773 4.49139H11.7586C12.0492 4.49139 12.17 4.86327 11.9349 5.03409L9.0376 7.13911C8.93245 7.2155 8.88846 7.35091 8.92862 7.47452L10.0353 10.8805C10.1251 11.1569 9.80875 11.3867 9.57364 11.2159L6.67634 9.1109C6.57119 9.0345 6.42881 9.0345 6.32366 9.1109L3.42637 11.2159C3.19125 11.3867 2.87491 11.1569 2.96471 10.8805L4.07138 7.47452C4.11154 7.35091 4.06755 7.2155 3.9624 7.13911L1.0651 5.03409C0.829989 4.86327 0.950821 4.49139 1.24144 4.49139H4.8227C4.95266 4.49139 5.06785 4.4077 5.10801 4.28409L6.21468 0.878116Z" fill="#F0515D"/>
 						<path d="M19.2147 0.878116C19.3045 0.601723 19.6955 0.601722 19.7853 0.878115L20.892 4.28409C20.9321 4.4077 21.0473 4.49139 21.1773 4.49139H24.7586C25.0492 4.49139 25.17 4.86327 24.9349 5.03409L22.0376 7.13911C21.9325 7.2155 21.8885 7.35091 21.9286 7.47452L23.0353 10.8805C23.1251 11.1569 22.8087 11.3867 22.5736 11.2159L19.6763 9.1109C19.5712 9.0345 19.4288 9.0345 19.3237 9.1109L16.4264 11.2159C16.1913 11.3867 15.8749 11.1569 15.9647 10.8805L17.0714 7.47452C17.1115 7.35091 17.0675 7.2155 16.9624 7.13911L14.0651 5.03409C13.83 4.86327 13.9508 4.49139 14.2414 4.49139H17.8227C17.9527 4.49139 18.0679 4.4077 18.108 4.28409L19.2147 0.878116Z" fill="#F0515D"/>
@@ -86,13 +86,13 @@ const ExcursionCard = ({
 	return (
 		<div
 			className={`
-				${styles.ExcursionCard}
-				${small ? styles.ExcursionCard_small : ''}
-				${limitedOpportunities ? styles.ExcursionCard_invalid : ''}
-				${viewed ? styles.ExcursionCard_viewed : ''}
+				${styles.ExcursionsCard}
+				${small ? styles.ExcursionsCard_small : ''}
+				${limitedOpportunities ? styles.ExcursionsCard_invalid : ''}
+				${viewed ? styles.ExcursionsCard_viewed : ''}
 			`}
 		>
-			<div className={styles.ExcursionCard__image}>
+			<div className={styles.ExcursionsCard__image}>
 				<Image
 					src="/assets/images/upcoming-excursions/upcoming-excursions-image-1.png"
 					width={300}
@@ -111,7 +111,7 @@ const ExcursionCard = ({
 					</b>
 				)}
 			</div>
-			<header className={styles.ExcursionCard__header}>
+			<header className={styles.ExcursionsCard__header}>
 				{viewed && <b>Neva Trevel</b>}
 				{small && <i>Москва</i>}
 				<h3>Экскурсия по Москва-реке</h3>
@@ -159,8 +159,8 @@ const ExcursionCard = ({
 				)}
 				{limitedOpportunities && ExcursionCardDepartures}
 				{limitedOpportunities && ExcursionCardDiscount}
-				<div className={styles.ExcursionCard__tariffs}>
-					<div className={styles.ExcursionCard__tariff}>
+				<div className={styles.ExcursionsCard__tariffs}>
+					<div className={styles.ExcursionsCard__tariff}>
 						<span>{languageFile?.['upcoming-excursions']?.['adult-ticket']}</span>
 						<div>
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -171,7 +171,7 @@ const ExcursionCard = ({
 							<span>550 ₽</span>
 						</div>
 					</div>
-					<div className={styles.ExcursionCard__tariff}>
+					<div className={styles.ExcursionsCard__tariff}>
 						<span>{languageFile?.['upcoming-excursions']?.['child-ticket']}</span>
 						<div>
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,7 +182,7 @@ const ExcursionCard = ({
 							<span>450 ₽</span>
 						</div>
 					</div>
-					<div className={styles.ExcursionCard__tariff}>
+					<div className={styles.ExcursionsCard__tariff}>
 						<span>{languageFile?.['upcoming-excursions']?.['adult-lunch-ticket']}</span>
 						<div>
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,8 +197,8 @@ const ExcursionCard = ({
 			</header>
 			{ExcursionCardDepartures}
 			{ExcursionCardDiscount}
-			<div className={styles.ExcursionCard__tariffs}>
-				<div className={styles.ExcursionCard__tariff}>
+			<div className={styles.ExcursionsCard__tariffs}>
+				<div className={styles.ExcursionsCard__tariff}>
 					<span>{languageFile?.['upcoming-excursions']?.['adult-ticket']}</span>
 					<div>
 						<strong>450 ₽</strong>
@@ -212,7 +212,7 @@ const ExcursionCard = ({
 						</button>
 					</div>
 				</div>
-				<div className={styles.ExcursionCard__tariff}>
+				<div className={styles.ExcursionsCard__tariff}>
 					<span>{languageFile?.['upcoming-excursions']?.['child-ticket']}</span>
 					<div>
 						<strong>350 ₽</strong>
@@ -226,7 +226,7 @@ const ExcursionCard = ({
 						</button>
 					</div>
 				</div>
-				<div className={styles.ExcursionCard__tariff}>
+				<div className={styles.ExcursionsCard__tariff}>
 					<span>{languageFile?.['upcoming-excursions']?.['adult-lunch-ticket']}</span>
 					<div>
 						<strong>480 ₽</strong>
@@ -241,7 +241,7 @@ const ExcursionCard = ({
 					</div>
 				</div>
 			</div>
-			<footer className={styles.ExcursionCard__footer}>
+			<footer className={styles.ExcursionsCard__footer}>
 				<Button.Primary
 					small={true}
 					style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
@@ -264,7 +264,7 @@ const ExcursionCard = ({
 				</Button.Outlined>
 			</footer>
 			{viewed && (
-				<div className={styles.ExcursionCard__more}>
+				<div className={styles.ExcursionsCard__more}>
 					<em>Нева Тревел</em> предлагает еще 3 варианта цен на этот продукт
 				</div>
 			)}
@@ -272,4 +272,4 @@ const ExcursionCard = ({
 	);
 };
 
-export default ExcursionCard;
+export default ExcursionsCard;
