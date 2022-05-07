@@ -20,7 +20,7 @@ const Option = ({children, value, isActive, callback}) => (
 	</span>
 );
 
-const Select = ({children, value, callback, title, filter = false, isSort = false, ...props}) => {
+const Select = ({children, value, callback, title, filter = false, isSort = false, theme = 'light', ...props}) => {
 	const FIRST_ELEMENT = 0;
 	
 	const childrenList = children.props.children.filter((child) => child.type.name === 'Option');
@@ -105,9 +105,12 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 	return (
 		<div
 			{...props}
-			className={
-				`${styles.Select} ${isActive ? styles.Select_active : ''} ${isSort ? styles.Select_small : ''}`
-			}
+			className={`
+				${styles.Select}
+				${isActive ? styles.Select_active : ''}
+				${isSort ? styles.Select_small : ''}
+				${theme === 'dark' ? styles.Select_dark : ''}
+			`}
 			onClick={(event) => {
 				event.target?.focus();
 				setIsActive(!isActive);

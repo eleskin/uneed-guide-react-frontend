@@ -63,7 +63,7 @@ const Viewed = () => {
 	
 	return (
 		<div className={styles.Viewed}>
-			<Container isMainPage={true}>
+			<Container isMainPage={router.asPath === '/'}>
 				<Title>{languageFile?.['viewed']?.['title']}</Title>
 			</Container>
 			<div className={styles.Viewed__slider} {...handlers}>

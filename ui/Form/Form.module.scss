@@ -96,6 +96,23 @@
 	}
 }
 
+.Select_dark {
+	.Select__title {
+		background-color: #212632;
+		color: #ffffff;
+		
+		div {
+			i {
+				color: rgba(255, 255, 255, 0.6);
+			}
+		}
+	}
+	
+	.Select__options {
+		background-color: #212632;
+		color: #ffffff;
+	}
+}
 
 // Option styles
 
