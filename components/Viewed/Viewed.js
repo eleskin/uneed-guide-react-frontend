@@ -3,7 +3,7 @@ import {createRef, useEffect, useState} from 'react';
 import {useMediaQuery} from 'react-responsive';
 import {useSwipeable} from 'react-swipeable';
 import Container from '../Container/Container';
-import ExcursionCard from '../ExcursionCard/ExcursionCard';
+import ExcursionsCard from '../ExcursionsCard/ExcursionsCard';
 import Title from '../Title/Title';
 import styles from './Viewed.module.scss';
 
@@ -49,7 +49,7 @@ const Viewed = () => {
 	];
 	
 	const slidesList = slides.map((slide, index) => (
-		<ExcursionCard
+		<ExcursionsCard
 			viewed={true}
 			key={index}
 		/>
