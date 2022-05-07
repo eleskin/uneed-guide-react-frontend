@@ -483,40 +483,6 @@
 		}
 	}
 	
-	.ExcursionsCard:not(.ExcursionsCard_invalid, .ExcursionsCard_small, .ExcursionsCard_viewed) {
-		.ExcursionsCard__tariffs {
-			display: none;
-			width: 100%;
-			padding: 0;
-			margin-top: rem(12px);
-			border-bottom: none;
-			
-			.ExcursionsCard__tariff {
-				border-bottom: none;
-				margin: 0;
-				padding: 0;
-				
-				span {
-					color: #f0515d;
-				}
-				
-				div {
-					strong {
-						font-weight: 700;
-					}
-					
-					span {
-						margin: 0;
-					}
-				}
-			}
-			
-			.ExcursionsCard__tariff:not(:last-child) {
-				border-bottom: none;
-			}
-		}
-	}
-	
 	.ExcursionsCard.ExcursionsCard_invalid {
 		padding-top: 0;
 		padding-bottom: 0;
