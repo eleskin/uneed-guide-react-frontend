@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Button from '../../components/Button/Button';
 import Container from '../../components/Container/Container';
 import {CustomSelect, Option} from '../../components/CustomSelect/CustomSelect';
-import ExcursionCard from '../../components/ExcursionCard/ExcursionCard';
+import ExcursionsCard from '../../components/ExcursionsCard/ExcursionsCard';
 import Filter from '../../components/Filter/Filter';
 import Viewed from '../../components/Viewed/Viewed';
 import {setIsActiveFilter} from '../../store/slices';
@@ -73,10 +73,10 @@ const Catalog = ({headerHeight}) => {
 					</button>
 				</div>
 				<div className={styles.Catalog__list}>
-					<ExcursionCard small={true} catalog={true}/>
-					<ExcursionCard small={true} catalog={true}/>
-					<ExcursionCard small={true} catalog={true}/>
-					<ExcursionCard small={true} catalog={true}/>
+					<ExcursionsCard small={true} catalog={true}/>
+					<ExcursionsCard small={true} catalog={true}/>
+					<ExcursionsCard small={true} catalog={true}/>
+					<ExcursionsCard small={true} catalog={true}/>
 				</div>
 				<footer className={styles.Catalog__footer}>
 					<div>

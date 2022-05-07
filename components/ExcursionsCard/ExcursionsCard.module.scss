@@ -422,6 +422,31 @@
 	}
 }
 
+.ExcursionsCard.ExcursionsCard_small.ExcursionsCard_catalog {
+	padding-top: 0;
+	border-radius: 8px;
+	
+	.ExcursionsCard__image {
+		position: relative;
+		padding: 0;
+		z-index: 2;
+		
+		img {
+			border-radius: 8px 8px 0 0;
+		}
+		
+		i {
+			display: block;
+		}
+	}
+	
+	.ExcursionsCard__discount {
+		.ExcursionsCard__rating {
+			display: flex;
+		}
+	}
+}
+
 @media (min-width: 768px) {
 	.ExcursionsCard:not(.ExcursionsCard_small, .ExcursionsCard_viewed) {
 		display: grid;
@@ -483,6 +508,40 @@
 		}
 	}
 	
+	.ExcursionsCard:not(.ExcursionsCard_invalid, .ExcursionsCard_small, .ExcursionsCard_viewed) {
+		.ExcursionsCard__tariffs {
+			display: none;
+			width: 100%;
+			padding: 0;
+			margin-top: rem(12px);
+			border-bottom: none;
+			
+			.ExcursionsCard__tariff {
+				border-bottom: none;
+				margin: 0;
+				padding: 0;
+				
+				span {
+					color: #f0515d;
+				}
+				
+				div {
+					strong {
+						font-weight: 700;
+					}
+					
+					span {
+						margin: 0;
+					}
+				}
+			}
+			
+			.ExcursionsCard__tariff:not(:last-child) {
+				border-bottom: none;
+			}
+		}
+	}
+	
 	.ExcursionsCard.ExcursionsCard_invalid {
 		padding-top: 0;
 		padding-bottom: 0;
@@ -490,7 +549,7 @@
 			'image header'
 			'tariffs tariffs'
 			'footer footer'
-		;
+	;
 		
 		
 		.ExcursionsCard__image {
