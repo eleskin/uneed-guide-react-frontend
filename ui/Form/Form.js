@@ -181,6 +181,31 @@ const Input = ({title, type, inputTopValue, handleInputTop, filter = false, ...p
 				</div>
 			);
 		
+		case 'tel':
+			return (
+				<label
+					className={`${styles.Input} ${styles.Input_tel}`}
+				>
+					<svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect y="-6.10352e-05" width="14" height="3.66667" fill="white"/>
+						<rect y="3.66644" width="14" height="3.66667" fill="#0131A7"/>
+						<rect y="7.33344" width="14" height="3.66667" fill="#D6261A"/>
+					</svg>
+					<div>
+						<i>{title}</i>
+						<input {...props} type="text"/>
+					</div>
+					<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="7" cy="6.99994" r="7" fill="#212121"/>
+						<circle cx="7" cy="3.99994" r="1" fill="white"/>
+						<path d="M6 5.99994H8V11.9999H6V7.99994L4 5.99994H6Z" fill="white"/>
+					</svg>
+					<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро
+					   заполнить
+					   макеты.</p>
+				</label>
+			);
+		
 		default:
 			return (
 				<input type="text"/>

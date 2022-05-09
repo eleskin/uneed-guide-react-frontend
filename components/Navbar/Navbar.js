@@ -1,12 +1,17 @@
+import {useRouter} from 'next/router';
 import styles from './Navbar.module.scss';
 import Link from 'next/link';
 
 const Navbar = () => {
+	const router = useRouter();
+	
 	return (
 		<nav className={styles.Navbar}>
 			<div className={styles.Navbar__container}>
-				<Link href="#">
-					<a className={`${styles.Navbar__link} ${styles.Navbar__link_active}`}>
+				<Link href="/">
+					<a
+						className={`${styles.Navbar__link} ${router.pathname === '/' ? styles.Navbar__link_active : ''}`}
+					>
 						<svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M14.5769 9.0184V16.2503H12.1896H11.371V12.6473C11.371 12.0674 10.9009 11.5973 10.321 11.5973H7.78371C7.20382 11.5973 6.73371 12.0674 6.73371 12.6473V16.2503H5.91509H3.52783V8.866L9.04508 4.26845L14.5769 9.0184ZM3.09338 8.67385L3.07785 8.65522L3.09338 8.67385Z" stroke="#D3D3D3" strokeWidth="1.5"/>
 							<path d="M1 7.8571C1 7.8571 8.53778 1 8.82222 1C9.10667 1 14.3926 5.5714 17 7.8571" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round"/>
@@ -41,8 +46,8 @@ const Navbar = () => {
 						<span>Избранное</span>
 					</a>
 				</Link>
-				<Link href="#">
-					<a className={styles.Navbar__link}>
+				<Link href="/profile">
+					<a className={`${styles.Navbar__link} ${router.pathname === '/profile' ? styles.Navbar__link_active : ''}`}>
 						<svg width="18" height="17" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M1.7998 17V14.9804C1.7998 14.0535 2.1791 13.1644 2.85422 12.509C3.52936 11.8536 4.44502 11.4854 5.39981 11.4854H8.9998H12.5998C13.5546 11.4854 14.4702 11.8536 15.1454 12.509C15.8205 13.1644 16.1998 14.0535 16.1998 14.9804V17" stroke="#D3D3D3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 							<path d="M8.9999 7.99013C10.9881 7.99013 12.5999 6.42552 12.5999 4.49507C12.5999 2.56461 10.9881 1 8.9999 1C7.01168 1 5.3999 2.56461 5.3999 4.49507C5.3999 6.42552 7.01168 7.99013 8.9999 7.99013Z" stroke="#D3D3D3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

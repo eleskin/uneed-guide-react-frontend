@@ -3,7 +3,8 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
 	isActiveRegionSelector: false,
 	isVisibleRegionSelector: false,
-	isActiveFilter: false
+	isActiveFilter: false,
+	isActiveAuthorizationModal: false,
 };
 
 const slice = createSlice({
@@ -18,10 +19,18 @@ const slice = createSlice({
 		},
 		setIsActiveFilter(state, {payload}) {
 			state.isActiveFilter = payload;
-		}
+		},
+		setIsActiveAuthorizationModal(state, {payload}) {
+			state.isActiveAuthorizationModal = payload;
+		},
 	},
 	extraReducers: {},
 });
 
-export const {setIsActiveRegionSelector, setIsVisibleRegionSelector, setIsActiveFilter} = slice.actions;
+export const {
+	setIsActiveRegionSelector,
+	setIsVisibleRegionSelector,
+	setIsActiveFilter,
+	setIsActiveAuthorizationModal,
+} = slice.actions;
 export default slice.reducer;

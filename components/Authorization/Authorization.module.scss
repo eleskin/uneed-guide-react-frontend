@@ -1,0 +1,73 @@
+@import '/styles/functions';
+
+.Authorization {
+	position: sticky;
+	inset: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: #ffffff;
+	z-index: -1;
+	opacity: 0;
+	overflow-y: scroll;
+	padding-top: rem(48px);
+	
+	.Authorization__header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		
+		button {
+			background-color: transparent;
+			border: none;
+		}
+	}
+	
+	.Authorization__container {
+		margin-top: rem(48px);
+		display: flex;
+		flex-direction: column;
+		grid-row-gap: rem(16px);
+		
+		.Authorization__card {
+			display: flex;
+			flex-direction: column;
+			
+			.Authorization__title {
+				padding: 0;
+				margin: 0;
+				font-weight: 700;
+				font-size: rem(22px);
+				line-height: rem(33px);
+				text-align: center;
+				color: #212121;
+			}
+			
+			.Authorization__subtitle {
+				font-style: normal;
+				font-size: rem(14px);
+				line-height: rem(21px);
+				text-align: center;
+				color: rgba(#212121, 0.6);
+				margin-bottom: rem(24px);
+			}
+			
+			.Authorization__terms {
+				font-size: rem(11px);
+				line-height: rem(16px);
+				color: #212121;
+				margin-top: rem(8px);
+				
+				a {
+					color: #f0515d;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+.Authorization_active {
+	z-index: 0;
+	opacity: 1;
+}

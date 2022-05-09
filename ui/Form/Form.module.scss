@@ -222,6 +222,46 @@
 	}
 }
 
+.Input_tel {
+	padding: rem(16px);
+	grid-column-gap: rem(12px);
+	position: relative;
+	
+	div {
+		input {
+			font-size: rem(14px);
+		}
+	}
+	
+	p {
+		position: absolute;
+		background-color: #ffffff;
+		border: 1px solid #e8e6f8;
+		border-radius: 6px;
+		padding: rem(8px);
+		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+		top: 43px;
+		opacity: 0;
+		z-index: -1;
+		transition: all var(--transition-primary), z-index 0s linear 0.5s;
+		max-width: 320px;
+		margin: auto;
+		right: 0;
+		font-size: rem(14px);
+		line-height: rem(21px);
+	}
+	
+	svg:hover + p {
+		opacity: 1;
+		z-index: 0;
+		transition: all var(--transition-primary), z-index 0s linear 0s;
+	}
+	
+	svg:first-child {
+		box-shadow: 0 0 2px rgba(0, 0, 0, 0.08);
+	}
+}
+
 
 // Checkbox and Radio styles
 

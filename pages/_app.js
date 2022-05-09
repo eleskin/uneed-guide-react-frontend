@@ -1,29 +1,30 @@
-import '/styles/normalize.scss';
-import '/styles/globals.scss';
 import '/styles/calendar.scss';
+import '/styles/globals.scss';
+import '/styles/normalize.scss';
 import Head from 'next/head';
 import {Fragment, useEffect, useState} from 'react';
+import {Provider} from 'react-redux';
+import Authorization from '../components/Authorization/Authorization';
+import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import Menu from '../components/Menu/Menu';
-import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Navbar/Navbar';
-import {Provider} from 'react-redux';
-import store from '../store';
 import RegionSelector from '../components/RegionSelector/RegionSelector';
+import store from '../store';
 
 const App = ({Component, pageProps}) => {
 	const [isActiveMenu, setIsActiveMenu] = useState(false);
 	const [headerHeight, setHeaderHeight] = useState(0);
 	const [windowWidth, setWindowWidth] = useState(0);
 	const [isActiveFilter, setIsActiveFilter] = useState(store.getState()['indexSlice']['isActiveFilter']);
+	const [isActiveAuthorizationModal, setIsActiveAuthorizationModal] = useState(store.getState()['indexSlice']['isActiveAuthorizationModal']);
 	
 	useEffect(() => {
-		const unsubscribe = store.subscribe(() => {
-			setIsActiveFilter(store.getState()['indexSlice']['isActiveFilter'])
-			
-			return unsubscribe;
+		return store.subscribe(() => {
+			setIsActiveFilter(store.getState()['indexSlice']['isActiveFilter']);
+			setIsActiveAuthorizationModal(store.getState()['indexSlice']['isActiveAuthorizationModal']);
 		});
-	}, [setIsActiveFilter, store]);
+	}, [setIsActiveFilter, setIsActiveAuthorizationModal, store]);
 	
 	useEffect(() => {
 		setWindowWidth(window.innerWidth);
@@ -48,7 +49,11 @@ const App = ({Component, pageProps}) => {
 					<title>Uneed Guide</title>
 				</Head>
 				<style jsx global>
-					{`body {overflow-y: ${(isActiveMenu || isActiveFilter) && windowWidth < 768 ? 'hidden' : 'auto '}}`}
+					{`
+						body {
+							overflow-y: ${(isActiveMenu || isActiveFilter || isActiveAuthorizationModal) && windowWidth < 768 ? 'hidden' : 'auto '}
+						}
+					`}
 				</style>
 				<Header isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} headerHeight={headerHeight} setHeaderHeight={setHeaderHeight}/>
 				<Menu
@@ -63,6 +68,7 @@ const App = ({Component, pageProps}) => {
 				<Footer/>
 				<Navbar/>
 				<RegionSelector/>
+				<Authorization headerHeight={headerHeight}/>
 			</Fragment>
 		</Provider>
 	);
