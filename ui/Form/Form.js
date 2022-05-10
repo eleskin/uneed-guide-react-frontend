@@ -148,7 +148,7 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 	);
 };
 
-const Input = ({title, type, inputTopValue, handleInputTop, error = '', filter = false, ...props}) => {
+const Input = ({title, type, inputTopValue, handleInputTop, htmlType = 'text', error = '', filter = false, ...props}) => {
 	switch (type) {
 		case 'date':
 			return (
@@ -237,7 +237,7 @@ const Input = ({title, type, inputTopValue, handleInputTop, error = '', filter =
 					>
 						<div>
 							<i>{title}</i>
-							<input {...props} type="text"/>
+							<input {...props} type={htmlType}/>
 						</div>
 					</label>
 					{error && <em className={styles.Form__error}>{error}</em>}
@@ -251,9 +251,9 @@ const Input = ({title, type, inputTopValue, handleInputTop, error = '', filter =
 	}
 };
 
-const Checkbox = ({label, ...props}) => {
+const Checkbox = ({label, alt = false, ...props}) => {
 	return (
-		<label className={styles.Checkbox}>
+		<label className={`${styles.Checkbox} ${alt ? styles.Checkbox_alt : ''}`}>
 			<input {...props} type="checkbox"/>
 			<span>{label}</span>
 		</label>

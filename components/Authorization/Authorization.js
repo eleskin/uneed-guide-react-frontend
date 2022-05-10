@@ -12,7 +12,7 @@ const Authorization = ({headerHeight}) => {
 	const router = useRouter();
 	const isActiveAuthorizationModal = useSelector((state) => state['indexSlice']['isActiveAuthorizationModal']);
 	const [selectedWay, setSelectedWay] = useState(0);
-	const [currentPhoneStep, setCurrentPhoneStep] = useState(0);
+	const [currentPhoneStep, setCurrentPhoneStep] = useState(2);
 	const [codeTimeValue, setCodeTimeValue] = useState(10);
 	const [confirmationCode] = useState('1111');
 	const [phoneNumberValue, setPhoneNumberValue] = useState('');
@@ -150,7 +150,49 @@ const Authorization = ({headerHeight}) => {
 								<div className={styles.Authorization__card}>
 									<h2 className={styles.Authorization__title}>Ваш профиль создан</h2>
 									<em className={styles.Authorization__subtitle}>Заполните Ваши персональные данные</em>
-									
+									<div className={styles.Authorization__row}>
+										<Form.Input type="text" placeholder="Имя" style={{padding: '8px 0'}}/>
+										<Form.Input type="text" placeholder="Фамилия" style={{padding: '8px 0'}}/>
+									</div>
+									<div className={styles.Authorization__row}>
+										<Form.Input
+											type="text"
+											htmlType="email"
+											placeholder="Ваша электронная почта"
+											style={{padding: '8px 0'}}
+										/>
+									</div>
+									<div className={styles.Authorization__row}>
+										<Form.Input type="date" placeholder="Дата рождения" style={{padding: '8px 0'}}/>
+									</div>
+									<div className={styles.Authorization__row}>
+										<Form.Input
+											type="text"
+											placeholder="Город"
+											style={{padding: '8px 0'}}
+										/>
+									</div>
+									<div className={styles.Authorization__row}>
+										<Form.Checkbox
+											value="Согласен получать рассылку на новые экскурсии и другие рекламные материалы"
+											label="Согласен получать рассылку на новые экскурсии и другие рекламные материалы"
+											alt={true}
+										/>
+									</div>
+									<div className={styles.Authorization__row}>
+										<Button.Primary>Продолжить</Button.Primary>
+									</div>
+									<div className={styles.Authorization__row}>
+										<Button.Secondary
+											style={{
+												padding: '0.75rem 1.5rem',
+												backgroundColor: 'rgba(240, 81, 93, 0.05)',
+												borderRadius: '6px'
+										}}
+										>
+											Пропустить
+										</Button.Secondary>
+									</div>
 								</div>
 							</CardContainer>
 						)}
