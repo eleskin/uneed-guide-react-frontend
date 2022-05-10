@@ -15,7 +15,7 @@ const Home = () => {
 			<SpecialOffers/>
 			<LimitedOpportunities/>
 			<Advantages/>
-			<Viewed/>
+			<Viewed isMainPage={true}/>
 			<CatalogLink/>
 		</div>
 	);
