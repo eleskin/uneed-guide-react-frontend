@@ -2,9 +2,10 @@
 
 .Viewed {
 	padding-top: rem(48px);
+	overflow-x: hidden;
 	
 	.Viewed__slider {
-		padding: 0 rem(54px);
+		padding: 0 rem(24px);
 		margin: auto;
 		max-width: 1308px;
 		width: calc(1308px + (50% - 1308px / 2));
@@ -33,6 +34,13 @@
 		}
 	}
 }
+
+.Viewed_main {
+	.Viewed__slider {
+		padding: 0 rem(54px);
+	}
+}
+
 
 @media (max-width: 375px) {
 	.Viewed {

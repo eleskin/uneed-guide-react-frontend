@@ -7,7 +7,7 @@ import ExcursionsCard from '../ExcursionsCard/ExcursionsCard';
 import Title from '../Title/Title';
 import styles from './Viewed.module.scss';
 
-const Viewed = () => {
+const Viewed = ({isMainPage = false}) => {
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [widthSlide, setWidthSlide] = useState(0);
 	const router = useRouter();
@@ -62,7 +62,7 @@ const Viewed = () => {
 	}, [viewedContainerRef]);
 	
 	return (
-		<div className={styles.Viewed}>
+		<div className={`${styles.Viewed} ${isMainPage ? styles.Viewed_main : ''}`}>
 			<Container isMainPage={true}>
 				<Title>{languageFile?.['viewed']?.['title']}</Title>
 			</Container>
