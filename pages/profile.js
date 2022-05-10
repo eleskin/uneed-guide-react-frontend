@@ -11,7 +11,7 @@ const Profile = () => {
 		!isAuth && dispatch(setIsActiveAuthorizationModal(true));
 		
 		return () => dispatch(setIsActiveAuthorizationModal(false));
-	}, []);
+	}, [isAuth, dispatch]);
 	
 	return (
 		<div>

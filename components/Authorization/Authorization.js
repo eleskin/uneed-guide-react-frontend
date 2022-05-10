@@ -10,6 +10,11 @@ import styles from './Authorization.module.scss';
 const Authorization = ({headerHeight}) => {
 	const router = useRouter();
 	const isActiveAuthorizationModal = useSelector((state) => state['indexSlice']['isActiveAuthorizationModal']);
+
+	const handleClickBack = () => {
+		const isExistPreviousPage = !localStorage.getItem('previous_page') || localStorage.getItem('previous_page') === '/profile';
+		router.push(isExistPreviousPage ? '/' : localStorage.getItem('previous_page'));
+	};
 	
 	return (
 		<div
@@ -33,7 +38,7 @@ const Authorization = ({headerHeight}) => {
 						<path d="M186.509 22.807C186.509 27.4783 189.663 30.6935 193.64 30.6935C196.109 30.6935 197.919 29.5393 198.879 28.1652V30.4459H202.034V10.1118H198.879V17.4209C197.727 15.992 195.643 15.0578 193.668 15.0578C189.663 15.0578 186.509 18.1353 186.509 22.807ZM198.879 22.8617C198.879 26.132 196.658 27.973 194.299 27.973C191.967 27.973 189.718 26.0769 189.718 22.807C189.718 19.537 191.967 17.7783 194.299 17.7783C196.658 17.7783 198.879 19.6193 198.879 22.8617Z" fill="#F0515D"/>
 						<path d="M212.511 17.696C214.843 17.696 216.681 19.1796 216.736 21.5154H208.37C208.699 19.1249 210.399 17.696 212.511 17.696ZM219.588 25.9395H216.215C215.639 27.1212 214.569 28.0553 212.649 28.0553C210.345 28.0553 208.562 26.5441 208.342 24.0434H219.89C219.972 23.5214 220 23.0266 220 22.5047C220 18.053 216.955 15.0578 212.649 15.0578C208.178 15.0578 205.105 18.1081 205.105 22.8617C205.105 27.6156 208.315 30.6935 212.649 30.6935C216.352 30.6935 218.738 28.5773 219.588 25.9395Z" fill="#F0515D"/>
 					</svg>
-					<button onClick={() => router.back()}>
+					<button onClick={handleClickBack}>
 						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M8 7.99994L15 14.9999M8 7.99994L15 0.999939M8 7.99994L1 14.9999M8 7.99994L1 0.999939" stroke="#AAA6A6" strokeWidth="1.5" strokeLinecap="round"/>
 						</svg>

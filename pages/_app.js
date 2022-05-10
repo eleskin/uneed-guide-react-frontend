@@ -2,6 +2,7 @@ import '/styles/calendar.scss';
 import '/styles/globals.scss';
 import '/styles/normalize.scss';
 import Head from 'next/head';
+import {useRouter} from 'next/router';
 import {Fragment, useEffect, useState} from 'react';
 import {Provider} from 'react-redux';
 import Authorization from '../components/Authorization/Authorization';
@@ -13,6 +14,7 @@ import RegionSelector from '../components/RegionSelector/RegionSelector';
 import store from '../store';
 
 const App = ({Component, pageProps}) => {
+	const router = useRouter();
 	const [isActiveMenu, setIsActiveMenu] = useState(false);
 	const [headerHeight, setHeaderHeight] = useState(0);
 	const [windowWidth, setWindowWidth] = useState(0);
@@ -41,6 +43,12 @@ const App = ({Component, pageProps}) => {
 		
 		return () => window.removeEventListener('resize', onResize);
 	}, [windowWidth]);
+	
+	useEffect(() => {
+		const previousPage = localStorage.getItem('current_page');
+		localStorage.setItem('previous_page', previousPage);
+		localStorage.setItem('current_page', router.pathname);
+	}, [router.pathname]);
 	
 	return (
 		<Provider store={store}>
