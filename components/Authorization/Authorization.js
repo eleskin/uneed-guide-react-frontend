@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import Form from '../../ui/Form/Form';
 import Button from '../Button/Button';
@@ -10,11 +11,30 @@ import styles from './Authorization.module.scss';
 const Authorization = ({headerHeight}) => {
 	const router = useRouter();
 	const isActiveAuthorizationModal = useSelector((state) => state['indexSlice']['isActiveAuthorizationModal']);
-
+	const [selectedWay, setSelectedWay] = useState(0);
+	const [currentPhoneStep, setCurrentPhoneStep] = useState(0);
+	const [codeTimeValue, setCodeTimeValue] = useState(10);
+	const [confirmationCode] = useState('1111');
+	const [phoneNumberValue, setPhoneNumberValue] = useState('');
+	const [confirmationCodeValue, setConfirmationCodeValue] = useState('');
+	
+	const [phoneNumberErrorValue, setPhoneNumberErrorValue] = useState('');
+	const [confirmationCodeErrorValue, setConfirmationCodeErrorValue] = useState('');
+	
 	const handleClickBack = () => {
 		const isExistPreviousPage = !localStorage.getItem('previous_page') || localStorage.getItem('previous_page') === '/profile';
 		router.push(isExistPreviousPage ? '/' : localStorage.getItem('previous_page'));
 	};
+	
+	useEffect(() => {
+		if (currentPhoneStep === 1) {
+			const interval = setInterval(() => {
+				setCodeTimeValue((prevState) => prevState - 1);
+			}, 1000);
+			
+			return () => clearTimeout(interval);
+		}
+	}, [currentPhoneStep, setCurrentPhoneStep]);
 	
 	return (
 		<div
@@ -44,29 +64,142 @@ const Authorization = ({headerHeight}) => {
 						</svg>
 					</button>
 				</header>
-				<div className={styles.Authorization__container}>
-					<CardContainer padding={16}>
-						<div className={styles.Authorization__card}>
-							<h2 className={styles.Authorization__title}>Вход</h2>
-							<em className={styles.Authorization__subtitle}>или регистрация</em>
-							<Form.Input type="tel" placeholder="+7 (999) 999-99-99"/>
-							<Button.Primary style={{marginTop: '1.5rem', padding: '1rem'}}>
-								Получить код
-							</Button.Primary>
-							<span className={styles.Authorization__terms}>
+				{selectedWay === 0 && (
+					<div className={styles.Authorization__container}>
+						{currentPhoneStep === 0 && (
+							<CardContainer padding={16}>
+								<div className={styles.Authorization__card}>
+									<h2 className={styles.Authorization__title}>Вход</h2>
+									<em className={styles.Authorization__subtitle}>или регистрация</em>
+									<Form.Input
+										type="tel"
+										placeholder="+7 (999) 999-99-99"
+										value={phoneNumberValue}
+										onInput={(event) => {
+											setPhoneNumberValue(event.target.value);
+											phoneNumberErrorValue && setPhoneNumberErrorValue('');
+										}}
+										error={phoneNumberErrorValue}
+									/>
+									<Button.Primary
+										style={{marginTop: '1.5rem', padding: '1rem'}}
+										onClick={() => {
+											if (phoneNumberValue.length === 15 || phoneNumberValue.length === 16) {
+												setCurrentPhoneStep((prevState) => prevState + 1);
+												setCodeTimeValue(45);
+											} else {
+												setPhoneNumberErrorValue('Введите корректный номер телефона');
+											}
+										}}
+									>
+										Получить код
+									</Button.Primary>
+									<span className={styles.Authorization__terms}>
+										Нажимая на кнопку, Вы соглашаетесь с <Link href="#"><a>условиями обработки данных </a></Link>
+									</span>
+								</div>
+							</CardContainer>
+						)}
+						{currentPhoneStep === 1 && (
+							<CardContainer padding={16}>
+								<div className={styles.Authorization__card}>
+									<h2 className={styles.Authorization__title}>Подтверждение</h2>
+									<div className={styles.Authorization__confirmation}>
+										<span>Мы отправили код на номер</span>
+										<strong>+7 (999) 999-99-99</strong>
+										<Button.Secondary
+											small={true}
+											onClick={() => {
+												setCurrentPhoneStep((prevState) => prevState - 1);
+											}}
+										>
+											Изменить
+										</Button.Secondary>
+									</div>
+									<Form.Input
+										type="text"
+										placeholder="Введите код"
+										style={{padding: '8px 0'}}
+										maxlength={4}
+										value={confirmationCodeValue}
+										onInput={(event) => {
+											setConfirmationCodeValue(event.target.value);
+											setConfirmationCodeErrorValue('');
+											
+											if (event.target.value.length === 4 && confirmationCode !== event.target.value) {
+												setConfirmationCodeErrorValue('Неверно указан код');
+											} else if (event.target.value.length === 4) {
+												setCurrentPhoneStep((prevState) => prevState + 1);
+											}
+										}}
+										error={confirmationCodeErrorValue}
+									/>
+									<Button.Secondary
+										small={true}
+										disabled={codeTimeValue > 0}
+										style={{marginTop: '1rem'}}
+										onClick={() => setCodeTimeValue(45)}
+									>
+										{codeTimeValue > 0 ? `Отправить повторно через ${codeTimeValue} сек.` : 'Отправить повторно'}
+									</Button.Secondary>
+								</div>
+							</CardContainer>
+						)}
+						{currentPhoneStep === 2 && (
+							<CardContainer padding={16}>
+								<div className={styles.Authorization__card}>
+									<h2 className={styles.Authorization__title}>Ваш профиль создан</h2>
+									<em className={styles.Authorization__subtitle}>Заполните Ваши персональные данные</em>
+									
+								</div>
+							</CardContainer>
+						)}
+						<CardContainer padding={16}>
+							<div className={styles.Authorization__card}>
+								<h3>Другие способы входа</h3>
+								<Button.Outlined small={true} style={{padding: '1rem'}} onClick={() => setSelectedWay(1)}>
+									Вход по электронной почте
+								</Button.Outlined>
+							</div>
+						</CardContainer>
+						{currentPhoneStep > 0 && (
+							<CardContainer padding={16}>
+								<div className={styles.Authorization__card}>
+									<h3>Помощь</h3>
+									<ul className={styles.Authorization__help}>
+										<li><Link href="#"><a>Возникли проблемы со входом?</a></Link></li>
+										<li><Link href="#"><a>Не приходит СМС?</a></Link></li>
+									</ul>
+								</div>
+							</CardContainer>
+						)}
+					</div>
+				)}
+				{selectedWay === 1 && (
+					<div className={styles.Authorization__container}>
+						<CardContainer padding={16}>
+							<div className={styles.Authorization__card}>
+								<h2 className={styles.Authorization__title}>Вход</h2>
+								<em className={styles.Authorization__subtitle}>или регистрация</em>
+								<Form.Input type="tel" placeholder="+7 (999) 999-99-99"/>
+								<Button.Primary style={{marginTop: '1.5rem', padding: '1rem'}}>
+									Получить код
+								</Button.Primary>
+								<span className={styles.Authorization__terms}>
 								Нажимая на кнопку, Вы соглашаетесь с <Link href="#"><a>условиями обработки данных </a></Link>
 							</span>
-						</div>
-					</CardContainer>
-					<CardContainer padding={16}>
-						<div className={styles.Authorization__card}>
-							<h3>Другие способы входа</h3>
-							<Button.Outlined small={true} style={{padding: '1rem'}}>
-								Вход по электронной почте
-							</Button.Outlined>
-						</div>
-					</CardContainer>
-				</div>
+							</div>
+						</CardContainer>
+						<CardContainer padding={16}>
+							<div className={styles.Authorization__card}>
+								<h3>Другие способы входа</h3>
+								<Button.Outlined small={true} style={{padding: '1rem'}} onClick={() => setSelectedWay(0)}>
+									Вход по номеру телефона
+								</Button.Outlined>
+							</div>
+						</CardContainer>
+					</div>
+				)}
 			</Container>
 		</div>
 	);

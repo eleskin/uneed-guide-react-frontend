@@ -1,5 +1,13 @@
 @import '/styles/functions';
 
+.Form__error {
+	font-style: normal;
+	font-weight: 500;
+	font-size: rem(12px);
+	line-height: rem(18px);
+	color: #f0515d;
+}
+
 .Select__title, .Input {
 	background-color: #ffffff;
 	border-radius: 6px;
@@ -284,6 +292,13 @@
 	}
 }
 
+.Input_text {
+	padding: rem(8px) rem(16px);
+}
+
+.Input__error {
+	border: 1px solid #f0515d;
+}
 
 // Checkbox and Radio styles
 

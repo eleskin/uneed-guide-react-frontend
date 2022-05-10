@@ -50,6 +50,10 @@
 	padding: rem(8px) 0;
 }
 
+.Button_secondary:disabled {
+	color: #c8bdbd;
+}
+
 @media (max-width: 320px) {
 	.Button {
 		font-size: rem(12px);

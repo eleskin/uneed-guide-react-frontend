@@ -33,6 +33,37 @@
 			display: flex;
 			flex-direction: column;
 			
+			h3 {
+				font-weight: 500;
+				font-size: rem(14px);
+				line-height: rem(21px);
+				color: #212121;
+				margin: 0 0 rem(16px) 0;
+				padding: 0;
+			}
+			
+			.Authorization__help {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				grid-row-gap: rem(8px);
+				
+				li {
+					padding: 0;
+					margin: 0;
+					
+					a {
+						font-weight: 500;
+						font-size: rem(12px);
+						line-height: rem(18px);
+						text-decoration: none;
+						color: #f0515d;
+					}
+				}
+			}
+			
 			.Authorization__title {
 				padding: 0;
 				margin: 0;
@@ -61,6 +92,28 @@
 				a {
 					color: #f0515d;
 					text-decoration: none;
+				}
+			}
+			
+			.Authorization__confirmation {
+				margin: rem(4px) 0 rem(16px) 0;
+				font-size: rem(12px);
+				line-height: rem(18px);
+				
+				span {
+					display: block;
+					font-weight: 500;
+					color: #7A7A7A;
+				}
+				
+				strong {
+					font-weight: 600;
+					color: #000000;
+					margin-right: rem(4px);
+				}
+				
+				button {
+					padding: 0;
 				}
 			}
 		}
