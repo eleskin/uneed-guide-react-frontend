@@ -148,7 +148,18 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 	);
 };
 
-const Input = ({title, type, inputTopValue, handleInputTop, htmlType = 'text', error = '', filter = false, ...props}) => {
+const Input = ({
+	               title,
+	               type,
+	               inputTopValue,
+	               handleInputTop,
+	               icon,
+	               help,
+	               htmlType = 'text',
+	               error = '',
+	               filter = false,
+	               ...props
+               }) => {
 	switch (type) {
 		case 'date':
 			return (
@@ -239,6 +250,8 @@ const Input = ({title, type, inputTopValue, handleInputTop, htmlType = 'text', e
 							<i>{title}</i>
 							<input {...props} type={htmlType}/>
 						</div>
+						{icon && icon}
+						{help && <p>{help}</p>}
 					</label>
 					{error && <em className={styles.Form__error}>{error}</em>}
 				</Fragment>
