@@ -49,7 +49,7 @@ const Authorization = ({headerHeight}) => {
 						<div className={styles.Authorization__card}>
 							<h2 className={styles.Authorization__title}>Вход</h2>
 							<em className={styles.Authorization__subtitle}>или регистрация</em>
-							<Form.Input type="tel"/>
+							<Form.Input type="tel" placeholder="+7 (999) 999-99-99"/>
 							<Button.Primary style={{marginTop: '1.5rem', padding: '1rem'}}>
 								Получить код
 							</Button.Primary>

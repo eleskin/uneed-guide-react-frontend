@@ -257,8 +257,30 @@
 		transition: all var(--transition-primary), z-index 0s linear 0s;
 	}
 	
-	svg:first-child {
-		box-shadow: 0 0 2px rgba(0, 0, 0, 0.08);
+	.Input__select {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		grid-row-gap: 4px;
+		width: fit-content;
+		
+		
+		.Input__country {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+			grid-column-gap: 4px;
+		}
+		
+		svg:first-child {
+			box-shadow: 0 0 2px rgba(0, 0, 0, 0.08);
+		}
+		
+		svg:last-child {
+			transform: translateY(1px);
+		}
 	}
 }
 

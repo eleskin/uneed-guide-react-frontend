@@ -1,5 +1,6 @@
 import styles from './Form.module.scss';
 import {cloneElement, createRef, useEffect, useState} from 'react';
+import InputMask from 'react-input-mask';
 
 const useOutsideAlerter = (ref, action) => {
 	useEffect(() => {
@@ -186,14 +187,21 @@ const Input = ({title, type, inputTopValue, handleInputTop, filter = false, ...p
 				<label
 					className={`${styles.Input} ${styles.Input_tel}`}
 				>
-					<svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect y="-6.10352e-05" width="14" height="3.66667" fill="white"/>
-						<rect y="3.66644" width="14" height="3.66667" fill="#0131A7"/>
-						<rect y="7.33344" width="14" height="3.66667" fill="#D6261A"/>
-					</svg>
+					<div className={styles.Input__select}>
+						<div className={styles.Input__country}>
+							<svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect y="-6.10352e-05" width="14" height="3.66667" fill="#FFFFFF"/>
+								<rect y="3.66644" width="14" height="3.66667" fill="#0131A7"/>
+								<rect y="7.33344" width="14" height="3.66667" fill="#D6261A"/>
+							</svg>
+							<svg width="5" height="2" viewBox="0 0 5 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M0.222609 0.178026C0.148795 0.118975 0.19055 -6.10352e-05 0.285078 -6.10352e-05H4.71492C4.80945 -6.10352e-05 4.8512 0.118975 4.77739 0.178026L2.56247 1.94996C2.52595 1.97918 2.47405 1.97918 2.43753 1.94996L0.222609 0.178026Z" fill="#C4C4C4" fillOpacity="0.5"/>
+							</svg>
+						</div>
+					</div>
 					<div>
 						<i>{title}</i>
-						<input {...props} type="text"/>
+						<InputMask {...props} mask="+7 999 999 9999" maskChar=" " type="tel" alwaysShowMask={false} />
 					</div>
 					<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<circle cx="7" cy="6.99994" r="7" fill="#212121"/>
