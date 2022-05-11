@@ -1,5 +1,5 @@
 import styles from './Form.module.scss';
-import {cloneElement, createRef, Fragment, useEffect, useState} from 'react';
+import {cloneElement, createRef, forwardRef, Fragment, useEffect, useState} from 'react';
 import InputMask from 'react-input-mask';
 
 const useOutsideAlerter = (ref, action) => {
@@ -282,14 +282,14 @@ const Radio = ({value, ...props}) => {
 	);
 };
 
-const File = ({}) => {
+const File = forwardRef(({...props}, ref) => {
 	return (
 		<label className={styles.File}>
-			<input type="file"/>
+			<input {...props} type="file" ref={ref}/>
 			<span>Загрузить изображение в профиль</span>
 		</label>
 	);
-};
+});
 
 const Form = {
 	Option,

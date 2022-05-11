@@ -1,6 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-import {Fragment, useEffect, useMemo, useState} from 'react';
+import {createRef, Fragment, useEffect, useMemo, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useMediaQuery} from 'react-responsive';
 import {setIsActiveAuthorizationModal} from '../../store/slices';
@@ -19,6 +20,7 @@ const Authorization = ({headerHeight}) => {
 	const [currentEmailStep, setCurrentEmailStep] = useState(0);
 	const [codeTimeValue, setCodeTimeValue] = useState(10);
 	const [confirmationCode] = useState('1111');
+	const [selectedPhotoURL, setSelectedPhotoURL] = useState('');
 	
 	const [phoneNumberValue, setPhoneNumberValue] = useState('');
 	const [confirmationCodeValue, setConfirmationCodeValue] = useState('');
@@ -49,6 +51,13 @@ const Authorization = ({headerHeight}) => {
 			return () => clearTimeout(interval);
 		}
 	}, [currentPhoneStep, setCurrentPhoneStep]);
+	
+	const imageInputRef = createRef();
+	
+	const handleUploadImage = (event) => {
+		setSelectedPhotoURL(URL.createObjectURL(imageInputRef.current.files[0]));
+		event.target.value = null;
+	};
 	
 	const userForm = useMemo(() => (
 		<Fragment>
@@ -96,8 +105,19 @@ const Authorization = ({headerHeight}) => {
 					/>
 				</div>
 			</div>
-			<div className={styles.Authorization__row}>
-				<Form.File/>
+			<div className={styles.Authorization__row} style={{alignItems: 'center'}}>
+				{selectedPhotoURL && (
+					<div className={styles.Authorization__image}>
+						<Image
+							src={selectedPhotoURL}
+							width={84}
+							height={84}
+							alt=""
+							objectFit="cover"
+						/>
+					</div>
+				)}
+				<Form.File onInput={handleUploadImage} ref={imageInputRef}/>
 			</div>
 			<div className={styles.Authorization__row}>
 				<Form.Checkbox
@@ -120,7 +140,7 @@ const Authorization = ({headerHeight}) => {
 				</Button.Secondary>
 			</div>
 		</Fragment>
-	), []);
+	), [selectedPhotoURL]);
 	
 	return (
 		<div

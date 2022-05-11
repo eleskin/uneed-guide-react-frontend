@@ -82,12 +82,6 @@
 					color: #212121;
 				}
 				
-				.Authorization__title:last-of-type {
-					text-align: left;
-					font-size: rem(28px);
-					line-height: rem(42px);
-				}
-				
 				.Authorization__subtitle {
 					font-style: normal;
 					font-size: rem(14px);
@@ -95,12 +89,6 @@
 					text-align: center;
 					color: rgba(#212121, 0.6);
 					margin-bottom: rem(24px);
-				}
-				
-				.Authorization__subtitle:last-of-type {
-					text-align: left;
-					font-size: rem(16px);
-					line-height: rem(24px);
 				}
 				
 				.Authorization__terms {
@@ -145,6 +133,12 @@
 					display: flex;
 					grid-column-gap: rem(16px);
 					margin-bottom: rem(16px);
+					
+					.Authorization__image {
+						position: relative;
+						border-radius: 50%;
+						overflow: hidden;
+					}
 					
 					button {
 						width: 100%;
@@ -215,6 +209,18 @@
 				margin-top: rem(8px);
 				padding: 0 rem(20px) rem(0px) rem(20px);
 				grid-row-gap: rem(24px);
+				
+				.Authorization__title:last-of-type {
+					text-align: left;
+					font-size: rem(28px);
+					line-height: rem(42px);
+				}
+				
+				.Authorization__subtitle:last-of-type {
+					text-align: left;
+					font-size: rem(16px);
+					line-height: rem(24px);
+				}
 				
 				& > div {
 					background-color: transparent !important;
