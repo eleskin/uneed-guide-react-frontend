@@ -1,3 +1,5 @@
+import Calendar from 'react-calendar';
+import {useOutsideClickHandler} from '../../utils/hooks';
 import styles from './Form.module.scss';
 import {cloneElement, createRef, forwardRef, Fragment, useEffect, useState} from 'react';
 import InputMask from 'react-input-mask';
@@ -155,11 +157,19 @@ const Input = ({
 	               handleInputTop,
 	               icon,
 	               help,
+	               inputValue,
+	               currentLocale = 'ru',
 	               htmlType = 'text',
 	               error = '',
 	               filter = false,
 	               ...props
                }) => {
+	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
+	
+	const calendarRef = createRef();
+	
+	useOutsideClickHandler(calendarRef, isVisibleCalendar, setIsVisibleCalendar);
+	
 	switch (type) {
 		case 'date':
 			return (
@@ -169,7 +179,26 @@ const Input = ({
 					>
 						<div>
 							<i>{title}</i>
-							<input {...props} type="text"/>
+							<input
+								{...props}
+								value={inputValue}
+								type="text"
+								onFocus={() => setTimeout(() => setIsVisibleCalendar(true), 0)}
+								onChange={(event) => event.preventDefault()}
+								onInput={(event) => event.preventDefault()}
+							/>
+						</div>
+						<div
+							className={`${styles.Input__calendar} ${isVisibleCalendar ? styles.Input__calendar_active : ''}`}
+							ref={calendarRef}
+						>
+							<Calendar
+								minDetail="decade"
+								locale={currentLocale}
+								value={props.value}
+								onChange={props.onChange}
+								onClickDay={() => setIsVisibleCalendar(false)}
+							/>
 						</div>
 						<svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M15.7778 1.77783H16.8889C17.4412 1.77783 17.8889 2.22555 17.8889 2.77783V15.0001C17.8889 15.5523 17.4412 16.0001 16.8889 16.0001H2C1.44771 16.0001 1 15.5523 1 15.0001V2.77783C1 2.22555 1.44772 1.77783 2 1.77783H3.11111M11.5556 1.77783H9.44444H7.33333" stroke="#988787"/>

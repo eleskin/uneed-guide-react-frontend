@@ -174,7 +174,7 @@
 	padding: rem(8px) rem(16px);
 	position: relative;
 	
-	div {
+	& > div {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -223,6 +223,40 @@
 	svg:hover + p {
 		opacity: 1;
 		z-index: 0;
+		transition: all var(--transition-primary), z-index 0s linear 0s;
+	}
+}
+
+.Input_date {
+	position: relative;
+	
+	input {
+		pointer-events: none;
+		user-select: none;
+	}
+	
+	.Input__calendar {
+		position: absolute;
+		flex-direction: column-reverse;
+		width: 260px;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		left: auto;
+		opacity: 0;
+		z-index: -1;
+		transform-origin: 50% 0;
+		transition: all var(--transition-primary), z-index 0s linear 0.5s;
+		
+		& > div {
+			width: 100%;
+		}
+	}
+	
+	.Input__calendar_active {
+		opacity: 1;
+		transform: scale(1) translateY(35px);
+		z-index: 1;
 		transition: all var(--transition-primary), z-index 0s linear 0s;
 	}
 }

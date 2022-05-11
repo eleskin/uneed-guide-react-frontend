@@ -1,3 +1,4 @@
+import {format} from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
@@ -33,6 +34,8 @@ const Authorization = ({headerHeight}) => {
 	const [emailErrorValue, setEmailErrorValue] = useState('');
 	
 	const isDesktop = useMediaQuery({query: '(min-width: 768px)'});
+	
+	const [activeDate, setActiveDate] = useState(new Date());
 	
 	const handleClickBack = () => {
 		if (!isDesktop) {
@@ -75,7 +78,17 @@ const Authorization = ({headerHeight}) => {
 					/>
 				</div>
 				<div className={styles.Authorization__row}>
-					<Form.Input type="date" placeholder="Дата рождения" style={{padding: '8px 0'}}/>
+					<Form.Input
+						type="date"
+						placeholder="Дата рождения"
+						style={{padding: '8px 0'}}
+						currentLocale={router.locale}
+						inputValue={format(activeDate, 'dd.MM.yyyy')}
+						value={activeDate}
+						onChange={(date) => {
+							setActiveDate(date);
+						}}
+					/>
 				</div>
 				<div className={styles.Authorization__row}>
 					<Form.Input
@@ -89,7 +102,17 @@ const Authorization = ({headerHeight}) => {
 				<div className={styles.Authorization__row}>
 					<Form.Input type="text" placeholder="Имя" style={{padding: '8px 0'}}/>
 					<Form.Input type="text" placeholder="Фамилия" style={{padding: '8px 0'}}/>
-					<Form.Input type="date" placeholder="Дата рождения" style={{padding: '8px 0'}}/>
+					<Form.Input
+						type="date"
+						placeholder="Дата рождения"
+						style={{padding: '8px 0'}}
+						currentLocale={router.locale}
+						inputValue={format(activeDate, 'dd.MM.yyyy')}
+						value={activeDate}
+						onChange={(date) => {
+							setActiveDate(date);
+						}}
+					/>
 				</div>
 				<div className={styles.Authorization__row}>
 					<Form.Input
@@ -140,7 +163,7 @@ const Authorization = ({headerHeight}) => {
 				</Button.Secondary>
 			</div>
 		</Fragment>
-	), [selectedPhotoURL]);
+	), [selectedPhotoURL, activeDate]);
 	
 	return (
 		<div

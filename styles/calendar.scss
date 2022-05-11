@@ -2,12 +2,12 @@
 
 .react-calendar {
 	max-width: 260px;
-	background-color: #ffffff;
-	padding: rem(16px) rem(24px);
-	display: flex;
-	flex-direction: column-reverse;
-	border-radius: 6px;
-	border: 1px solid #e8e6f8;
+	background-color: #ffffff!important;
+	padding: rem(16px) rem(24px) !important;
+	display: flex!important;
+	flex-direction: column-reverse!important;
+	border-radius: 6px!important;
+	border: 1px solid #e8e6f8!important;
 }
 
 .react-calendar--doubleView {
@@ -59,9 +59,11 @@
 }
 .react-calendar__navigation__label {
 	order: 4;
-	pointer-events: none;
+	width: fit-content;
+//	pointer-events: none;
 	padding: 0 !important;
 	align-items: flex-start !important;
+	background-color: transparent!important;
 	
 	span {
 		font-size: rem(12px);
@@ -157,6 +159,7 @@
 	line-height: 16px;
 	background-color: rgba(33, 38, 50, 0.1);
 	color: rgba(#000000, 0.8);
+	border-radius: 3px;
 }
 
 .react-calendar__tile:disabled {
@@ -246,6 +249,18 @@
 	//noinspection CssUnknownTarget
 	background: url('/assets/images/calendar/calendar-next-icon.svg') no-repeat center center !important;
 	background-size: contain;
+}
+
+.react-calendar__decade-view__years, .react-calendar__year-view__months {
+	width: 100%;
+	display: grid!important;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: rem(8px);
+	
+	
+	button {
+		flex: none;
+	}
 }
 
 @media (max-width: 320px) {
