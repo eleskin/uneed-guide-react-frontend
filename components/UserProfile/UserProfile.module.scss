@@ -26,6 +26,58 @@
 			margin: 0 0 rem(12px) 0;
 			padding: 0;
 		}
+		
+		.UserProfile__profile {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+			grid-column-gap: rem(24px);
+			
+			.UserProfile__image {
+				border-radius: 50%;
+				overflow: hidden;
+				height: 84px;
+				width: 84px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			div {
+				display: flex;
+				flex-direction: column;
+				
+				strong {
+					font-weight: 400;
+					font-size: rem(20px);
+					line-height: rem(30px);
+					color: #221818;
+				}
+				
+				span {
+					font-size: rem(12px);
+					line-height: rem(18px);
+					color: rgba(#221818, 0.6);
+				}
+			}
+		}
+		
+		.UserProfile__info {
+			display: flex;
+			flex-direction: column;
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			grid-row-gap: rem(12px);
+			
+			li {
+				font-size: rem(12px);
+				line-height: rem(18px);
+				color: #838383;
+			}
+		}
 	}
 	
 	button {

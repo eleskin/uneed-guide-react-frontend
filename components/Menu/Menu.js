@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
@@ -16,6 +17,7 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 	const dispatch = useDispatch();
 	const [languageFile, setLanguageFile] = useState();
 	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
+	const isAuth = useSelector((state) => state['userSlice']['isAuth']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -42,10 +44,22 @@ const Menu = ({isActiveMenu, setIsActiveMenu, ...props}) => {
 	
 	return (
 		<div {...props} className={`${styles.Menu} ${isActiveMenu ? styles.Menu_active : ''}`} ref={menuRef}>
-			<header className={styles.Menu__header}>
-				<Button.Secondary>{languageFile?.['menu']?.['authorization-button']}</Button.Secondary>
-				<Button.Primary>{languageFile?.['menu']?.['registration-button']}</Button.Primary>
-			</header>
+			{isAuth ? (
+				<div className={styles.Menu__profile}>
+					<div className={styles.Menu__image}>
+						<Image src="/assets/images/profile/profile-image.png" width={50} height={50} alt=""/>
+					</div>
+					<div>
+						<strong>Ангелина С.</strong>
+						<em>Москва (ваш регион)</em>
+					</div>
+				</div>
+			) : (
+				<header className={styles.Menu__header}>
+					<Button.Secondary>{languageFile?.['menu']?.['authorization-button']}</Button.Secondary>
+					<Button.Primary>{languageFile?.['menu']?.['registration-button']}</Button.Primary>
+				</header>
+			)}
 			<div className={styles.Menu__search}>
 				<label>
 					<input type="text" placeholder={languageFile?.['menu']?.['example-input']}/>
