@@ -1,0 +1,23 @@
+@import '/styles/functions';
+
+.Help {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	grid-row-gap: rem(8px);
+	
+	li {
+		padding: 0;
+		margin: 0;
+		
+		a {
+			font-weight: 500;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			text-decoration: none;
+			color: #f0515d;
+		}
+	}
+}

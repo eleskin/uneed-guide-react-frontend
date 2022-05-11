@@ -10,6 +10,7 @@ import Form from '../../ui/Form/Form';
 import Button from '../Button/Button';
 import CardContainer from '../CardContainer/CardContainer';
 import Container from '../Container/Container';
+import Help from '../Help/Help';
 import styles from './Authorization.module.scss';
 
 const Authorization = ({headerHeight}) => {
@@ -305,10 +306,12 @@ const Authorization = ({headerHeight}) => {
 								<CardContainer padding={16}>
 									<div className={styles.Authorization__card}>
 										<h3>Помощь</h3>
-										<ul className={styles.Authorization__help}>
-											<li><Link href="#"><a>Возникли проблемы со входом?</a></Link></li>
-											<li><Link href="#"><a>Не приходит СМС?</a></Link></li>
-										</ul>
+										<Help
+											links={[
+												{text: 'Возникли проблемы со входом?', href: '#'},
+												{text: 'Не приходит СМС?', href: '#'},
+											]}
+										/>
 									</div>
 								</CardContainer>
 							)}
@@ -431,10 +434,12 @@ const Authorization = ({headerHeight}) => {
 								<CardContainer padding={16}>
 									<div className={styles.Authorization__card}>
 										<h3>Помощь</h3>
-										<ul className={styles.Authorization__help}>
-											<li><Link href="#"><a>Возникли проблемы со входом?</a></Link></li>
-											<li><Link href="#"><a>Не приходит код?</a></Link></li>
-										</ul>
+										<Help
+											links={[
+												{text: 'Возникли проблемы со входом?', href: '#'},
+												{text: 'Не приходит код?', href: '#'},
+											]}
+										/>
 									</div>
 								</CardContainer>
 							)}
