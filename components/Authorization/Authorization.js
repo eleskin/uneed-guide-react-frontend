@@ -124,7 +124,7 @@ const Authorization = ({headerHeight}) => {
 										<h2 className={styles.Authorization__title}>Подтверждение</h2>
 										<div className={styles.Authorization__confirmation}>
 											<span>Мы отправили код на номер</span>
-											<strong>+7 (999) 999-99-99</strong>
+											<strong>{phoneNumberValue}</strong>
 											<Button.Secondary
 												small={true}
 												onClick={() => {
@@ -251,6 +251,7 @@ const Authorization = ({headerHeight}) => {
 											event.preventDefault();
 											
 											setCurrentEmailStep((prevState) => prevState + 1);
+											setCodeTimeValue(45);
 										}}
 									>
 										<h2 className={styles.Authorization__title}>Вход</h2>
@@ -280,8 +281,8 @@ const Authorization = ({headerHeight}) => {
 											Получить код
 										</Button.Primary>
 										<span className={styles.Authorization__terms}>
-										Нажимая на кнопку, Вы соглашаетесь с <Link href="#"><a>условиями обработки данных </a></Link>
-									</span>
+											Нажимая на кнопку, Вы соглашаетесь с <Link href="#"><a>условиями обработки данных </a></Link>
+										</span>
 									</form>
 								</CardContainer>
 							)}
@@ -291,7 +292,7 @@ const Authorization = ({headerHeight}) => {
 										<h2 className={styles.Authorization__title}>Подтверждение</h2>
 										<div className={styles.Authorization__confirmation}>
 											<span>Мы отправили код на</span>
-											<strong>+7 (999) 999-99-99</strong>
+											<strong>{emailValue}</strong>
 											<Button.Secondary
 												small={true}
 												onClick={() => {

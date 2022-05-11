@@ -14,7 +14,7 @@
 	padding-bottom: calc(48.9px + 1rem);
 	
 	.Authorization__wrapper {
-		max-width: rem(360px);
+		margin: auto;
 		
 		.Authorization__header {
 			display: flex;
@@ -172,10 +172,12 @@
 			border-radius: 12px;
 			padding: rem(16px) rem(16px) rem(8px) rem(16px);
 			margin: auto;
+			width: fit-content;
 			
 			.Authorization__header {
 				justify-content: flex-end;
 				margin-top: 0;
+				width: 100%;
 				
 				& > svg {
 					display: none;
@@ -190,18 +192,28 @@
 			.Authorization__container {
 				margin-top: rem(8px);
 				padding: 0 rem(20px) rem(0px) rem(20px);
+				grid-row-gap: rem(24px);
+				width: rem(360px);
 				
 				& > div {
 					background-color: transparent !important;
 					box-shadow: none;
-					padding: 0 0 rem(16px) 0 !important;
+					padding: 0 0 rem(24px) 0 !important;
 					border-bottom: 1px solid #c4c4c4;
 					border-radius: 0;
+				}
+				
+				& > div:first-child {
+					padding-bottom: rem(16px)!important;
 				}
 				
 				& > div:last-child {
 					border-bottom: none;
 				}
+			}
+			
+			.Authorization__container:last-child {
+				width: rem(640px);
 			}
 		}
 	}
