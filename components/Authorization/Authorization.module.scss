@@ -82,6 +82,12 @@
 					color: #212121;
 				}
 				
+				.Authorization__title:last-of-type {
+					text-align: left;
+					font-size: rem(28px);
+					line-height: rem(42px);
+				}
+				
 				.Authorization__subtitle {
 					font-style: normal;
 					font-size: rem(14px);
@@ -89,6 +95,12 @@
 					text-align: center;
 					color: rgba(#212121, 0.6);
 					margin-bottom: rem(24px);
+				}
+				
+				.Authorization__subtitle:last-of-type {
+					text-align: left;
+					font-size: rem(16px);
+					line-height: rem(24px);
 				}
 				
 				.Authorization__terms {
