@@ -125,6 +125,10 @@
 					}
 				}
 				
+				.Authorization__form_desktop {
+					display: none;
+				}
+				
 				.Authorization__row {
 					display: flex;
 					grid-column-gap: rem(16px);
@@ -133,6 +137,12 @@
 					button {
 						width: 100%;
 					}
+				}
+				
+				.Authorization__row:last-child {
+					display: flex;
+					flex-direction: column;
+					grid-row-gap: rem(16px);
 				}
 			}
 			
@@ -201,6 +211,20 @@
 					padding: 0 0 rem(24px) 0 !important;
 					border-bottom: 1px solid #c4c4c4;
 					border-radius: 0;
+					
+					.Authorization__card {
+						.Authorization__form_mobile {
+							display: none;
+						}
+						
+						.Authorization__form_desktop {
+							display: block;
+						}
+						
+						.Authorization__row:last-child {
+							flex-direction: row;
+						}
+					}
 				}
 				
 				& > div:first-child {

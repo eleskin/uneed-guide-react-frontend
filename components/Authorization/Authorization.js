@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-import {useEffect, useState} from 'react';
+import {Fragment, useEffect, useMemo, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useMediaQuery} from 'react-responsive';
 import {setIsActiveAuthorizationModal} from '../../store/slices';
@@ -49,6 +49,74 @@ const Authorization = ({headerHeight}) => {
 			return () => clearTimeout(interval);
 		}
 	}, [currentPhoneStep, setCurrentPhoneStep]);
+	
+	const userForm = useMemo(() => (
+		<Fragment>
+			<div className={styles.Authorization__form_mobile}>
+				<div className={styles.Authorization__row}>
+					<Form.Input type="text" placeholder="Имя" style={{padding: '8px 0'}}/>
+					<Form.Input type="text" placeholder="Фамилия" style={{padding: '8px 0'}}/>
+				</div>
+				<div className={styles.Authorization__row}>
+					<Form.Input
+						type="text"
+						htmlType="email"
+						placeholder="Ваша электронная почта"
+						style={{padding: '8px 0'}}
+					/>
+				</div>
+				<div className={styles.Authorization__row}>
+					<Form.Input type="date" placeholder="Дата рождения" style={{padding: '8px 0'}}/>
+				</div>
+				<div className={styles.Authorization__row}>
+					<Form.Input
+						type="text"
+						placeholder="Город"
+						style={{padding: '8px 0'}}
+					/>
+				</div>
+			</div>
+			<div className={styles.Authorization__form_desktop}>
+				<div className={styles.Authorization__row}>
+					<Form.Input type="text" placeholder="Имя" style={{padding: '8px 0'}}/>
+					<Form.Input type="text" placeholder="Фамилия" style={{padding: '8px 0'}}/>
+					<Form.Input type="date" placeholder="Дата рождения" style={{padding: '8px 0'}}/>
+				</div>
+				<div className={styles.Authorization__row}>
+					<Form.Input
+						type="text"
+						htmlType="email"
+						placeholder="Ваша электронная почта"
+						style={{padding: '8px 0'}}
+					/>
+					<Form.Input
+						type="text"
+						placeholder="Город"
+						style={{padding: '8px 0'}}
+					/>
+				</div>
+			</div>
+			<div className={styles.Authorization__row}>
+				<Form.Checkbox
+					value="Согласен получать рассылку на новые экскурсии и другие рекламные материалы"
+					label={<>Согласен получать рассылку на новые<br/>экскурсии и другие рекламные материалы</>}
+					alt={true}
+				/>
+			</div>
+			<div className={styles.Authorization__row}>
+				<Button.Primary>Продолжить</Button.Primary>
+				<Button.Secondary
+					style={{
+						padding: '0.75rem 1.5rem',
+						backgroundColor: 'rgba(240, 81, 93, 0.05)',
+						borderRadius: '6px',
+					}}
+				>
+					Пропустить
+				</Button.Secondary>
+			</div>
+		</Fragment>
+	), []);
 	
 	return (
 		<div
@@ -168,49 +236,7 @@ const Authorization = ({headerHeight}) => {
 									<div className={styles.Authorization__card}>
 										<h2 className={styles.Authorization__title}>Ваш профиль создан</h2>
 										<em className={styles.Authorization__subtitle}>Заполните Ваши персональные данные</em>
-										<div className={styles.Authorization__row}>
-											<Form.Input type="text" placeholder="Имя" style={{padding: '8px 0'}}/>
-											<Form.Input type="text" placeholder="Фамилия" style={{padding: '8px 0'}}/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Form.Input
-												type="text"
-												htmlType="email"
-												placeholder="Ваша электронная почта"
-												style={{padding: '8px 0'}}
-											/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Form.Input type="date" placeholder="Дата рождения" style={{padding: '8px 0'}}/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Form.Input
-												type="text"
-												placeholder="Город"
-												style={{padding: '8px 0'}}
-											/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Form.Checkbox
-												value="Согласен получать рассылку на новые экскурсии и другие рекламные материалы"
-												label="Согласен получать рассылку на новые экскурсии и другие рекламные материалы"
-												alt={true}
-											/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Button.Primary>Продолжить</Button.Primary>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Button.Secondary
-												style={{
-													padding: '0.75rem 1.5rem',
-													backgroundColor: 'rgba(240, 81, 93, 0.05)',
-													borderRadius: '6px',
-												}}
-											>
-												Пропустить
-											</Button.Secondary>
-										</div>
+										{userForm}
 									</div>
 								</CardContainer>
 							)}
@@ -336,49 +362,7 @@ const Authorization = ({headerHeight}) => {
 									<div className={styles.Authorization__card}>
 										<h2 className={styles.Authorization__title}>Ваш профиль создан</h2>
 										<em className={styles.Authorization__subtitle}>Заполните Ваши персональные данные</em>
-										<div className={styles.Authorization__row}>
-											<Form.Input type="text" placeholder="Имя" style={{padding: '8px 0'}}/>
-											<Form.Input type="text" placeholder="Фамилия" style={{padding: '8px 0'}}/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Form.Input
-												type="text"
-												htmlType="email"
-												placeholder="Ваша электронная почта"
-												style={{padding: '8px 0'}}
-											/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Form.Input type="date" placeholder="Дата рождения" style={{padding: '8px 0'}}/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Form.Input
-												type="text"
-												placeholder="Город"
-												style={{padding: '8px 0'}}
-											/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Form.Checkbox
-												value="Согласен получать рассылку на новые экскурсии и другие рекламные материалы"
-												label="Согласен получать рассылку на новые экскурсии и другие рекламные материалы"
-												alt={true}
-											/>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Button.Primary>Продолжить</Button.Primary>
-										</div>
-										<div className={styles.Authorization__row}>
-											<Button.Secondary
-												style={{
-													padding: '0.75rem 1.5rem',
-													backgroundColor: 'rgba(240, 81, 93, 0.05)',
-													borderRadius: '6px',
-												}}
-											>
-												Пропустить
-											</Button.Secondary>
-										</div>
+										{userForm}
 									</div>
 								</CardContainer>
 							)}
