@@ -59,14 +59,24 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 				</header>
 				<div className={styles.Filter__grid}>
 					<div className={styles.Filter__group}>
-						<Form.Select value={category} callback={setCategory} title="Категория" filter={true}>
+						<Form.Select
+							value={category}
+							callback={setCategory}
+							title={languageFile?.['filter']?.['sort-title']}
+							filter={true}
+						>
 							<Fragment>
 								<Form.Option value="По рейтингу">По рейтингу</Form.Option>
 								<Form.Option value="По популярности">По популярности</Form.Option>
 								<Form.Option value="По цене">По цене</Form.Option>
 							</Fragment>
 						</Form.Select>
-						<Form.Select value={city} callback={setCity} title="Город" filter={true}>
+						<Form.Select
+							value={city}
+							callback={setCity}
+							title={languageFile?.['filter']?.['city-title']}
+							filter={true}
+						>
 							<Fragment>
 								<Form.Option value="Москва">Москва</Form.Option>
 								<Form.Option value="Санкт-Петербург">Санкт-Петербург</Form.Option>
@@ -75,7 +85,7 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 						</Form.Select>
 						<div className={styles.Filter__date} ref={calendarRef}>
 							<Form.Input
-								title="Дата"
+								title={languageFile?.['filter']?.['date-title']}
 								type="date"
 								value={date}
 								onInput={handleChangeDateInput}
@@ -103,64 +113,64 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 					</div>
 					<div className={styles.Filter__group}>
 						<div className={styles.Filter__item}>
-							<span>Продолжительность</span>
+							<span>{languageFile?.['filter']?.['duration-title']}</span>
 							<div>
 								<Form.Radio
-									value="до 60 мин"
+									value={languageFile?.['filter']?.['durations']?.['under-60-min']}
 									onChange={(event) => setDuration(event.target.value)}
-									checked={duration === 'до 60 мин'}
+									checked={duration === languageFile?.['filter']?.['durations']?.['under-60-min']}
 								/>
 								<Form.Radio
-									value="от 1 до 2 часов"
+									value={languageFile?.['filter']?.['durations']?.['under-2-hours']}
 									onChange={(event) => setDuration(event.target.value)}
-									checked={duration === 'от 1 до 2 часов'}
+									checked={duration === languageFile?.['filter']?.['durations']?.['under-2-hours']}
 								/>
 								<Form.Radio
-									value="от 2 до 3 часов"
+									value={languageFile?.['filter']?.['durations']?.['under-3-hours']}
 									onChange={(event) => setDuration(event.target.value)}
-									checked={duration === 'от 2 до 3 часов'}
+									checked={duration === languageFile?.['filter']?.['durations']?.['under-3-hours']}
 								/>
 								<Form.Radio
-									value="от 4 до 5 часов"
+									value={languageFile?.['filter']?.['durations']?.['under-5-hours']}
 									onChange={(event) => setDuration(event.target.value)}
-									checked={duration === 'от 4 до 5 часов'}
+									checked={duration === languageFile?.['filter']?.['durations']?.['under-5-hours']}
 								/>
 							</div>
 						</div>
 						<div className={styles.Filter__item}>
-							<span>Тип судна</span>
+							<span>{languageFile?.['filter']?.['type-title']}</span>
 							<div>
 								<Form.Radio
-									value="Двухпалубные теплоходы"
+									value={languageFile?.['filter']?.['types']?.['double-deck']}
 									onChange={(event) => setType(event.target.value)}
-									checked={type === 'Двухпалубные теплоходы'}
+									checked={type === languageFile?.['filter']?.['types']?.['double-deck']}
 								/>
 								<Form.Radio
-									value="Катера"
+									value={languageFile?.['filter']?.['types']?.['boats']}
 									onChange={(event) => setType(event.target.value)}
-									checked={type === 'Катера'}
+									checked={type === languageFile?.['filter']?.['types']?.['boats']}
 								/>
 								<Form.Radio
-									value="Метеоры"
+									value={languageFile?.['filter']?.['types']?.['meteor']}
 									onChange={(event) => setType(event.target.value)}
-									checked={type === 'Метеоры'}
+									checked={type === languageFile?.['filter']?.['types']?.['meteor']}
 								/>
 								<Form.Radio
-									value="Однопалубные теплоходы"
+									value={languageFile?.['filter']?.['types']?.['single-deck']}
 									onChange={(event) => setType(event.target.value)}
-									checked={type === 'Однопалубные теплоходы'}
+									checked={type === languageFile?.['filter']?.['types']?.['single-deck']}
 								/>
 							</div>
 						</div>
 						<div className={styles.Filter__item}>
-							<span>Удобства на борту</span>
+							<span>{languageFile?.['filter']?.['facilities-title']}</span>
 							<div>
-								<Form.Checkbox label="Туалет"/>
-								<Form.Checkbox label="Экскурсовод"/>
-								<Form.Checkbox label="Пледы"/>
-								<Form.Checkbox label="Закрытая палуба"/>
-								<Form.Checkbox label="Музыка на борту"/>
-								<Form.Checkbox label="Бар"/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['toilet']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['guide']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['plaids']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['closed-deck']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['music']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['bar']}/>
 							</div>
 						</div>
 					</div>
