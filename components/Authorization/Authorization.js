@@ -97,6 +97,9 @@ const Authorization = ({headerHeight}) => {
 				</div>
 			</div>
 			<div className={styles.Authorization__row}>
+				<Form.File/>
+			</div>
+			<div className={styles.Authorization__row}>
 				<Form.Checkbox
 					value="Согласен получать рассылку на новые экскурсии и другие рекламные материалы"
 					label={<>Согласен получать рассылку на новые<br/>экскурсии и другие рекламные материалы</>}
@@ -104,13 +107,14 @@ const Authorization = ({headerHeight}) => {
 				/>
 			</div>
 			<div className={styles.Authorization__row}>
-				<Button.Primary>Продолжить</Button.Primary>
+				<Button.Primary onClick={() => dispatch(setIsActiveAuthorizationModal(false))}>Продолжить</Button.Primary>
 				<Button.Secondary
 					style={{
 						padding: '0.75rem 1.5rem',
 						backgroundColor: 'rgba(240, 81, 93, 0.05)',
 						borderRadius: '6px',
 					}}
+					onClick={() => dispatch(setIsActiveAuthorizationModal(false))}
 				>
 					Пропустить
 				</Button.Secondary>
@@ -206,7 +210,7 @@ const Authorization = ({headerHeight}) => {
 											type="text"
 											placeholder="Введите код"
 											style={{padding: '8px 0'}}
-											maxlength={4}
+											maxLength={4}
 											value={confirmationCodeValue}
 											onInput={(event) => {
 												setConfirmationCodeValue(event.target.value);
@@ -332,7 +336,7 @@ const Authorization = ({headerHeight}) => {
 											type="text"
 											placeholder="Введите код"
 											style={{padding: '8px 0'}}
-											maxlength={4}
+											maxLength={4}
 											value={confirmationCodeValue}
 											onInput={(event) => {
 												setConfirmationCodeValue(event.target.value);

@@ -425,6 +425,37 @@
 }
 
 
+// File styles
+
+.File {
+	width: 100%;
+	padding: rem(40px) rem(4px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(240, 81, 93, 0.05);
+	border: 1px dashed #f0515d;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color var(--transition-primary);
+	
+	input {
+		display: none;
+	}
+	
+	span {
+		font-size: rem(12px);
+		line-height: rem(24px);
+		color: #9d99ac;
+	}
+}
+
+.File:hover {
+	background-color: rgba(240, 81, 93, 0.1);
+}
+
+
 @media (min-width: 768px) {
 	.Select {
 		height: fit-content;
@@ -437,5 +468,11 @@
 	.Select__title_filter, .Input_filter {
 		border: 1px solid #e8e6f8;
 		box-shadow: none;
+	}
+	
+	.File {
+		span {
+			font-size: rem(14px);
+		}
 	}
 }

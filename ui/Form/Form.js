@@ -282,12 +282,22 @@ const Radio = ({value, ...props}) => {
 	);
 };
 
+const File = ({}) => {
+	return (
+		<label className={styles.File}>
+			<input type="file"/>
+			<span>Загрузить изображение в профиль</span>
+		</label>
+	);
+};
+
 const Form = {
 	Option,
 	Select,
 	Input,
 	Checkbox,
 	Radio,
+	File,
 };
 
 export default Form;
