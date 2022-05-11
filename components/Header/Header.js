@@ -1,6 +1,7 @@
 import {useRouter} from 'next/router';
 import {createRef, useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {setIsActiveAuthorizationModal} from '../../store/slices';
 import {getCityName} from '../../utils/functions';
 import Button from '../Button/Button';
 import RegionSelect from '../RegionSelect/RegionSelect';
@@ -10,6 +11,7 @@ import Link from 'next/link';
 const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, ...props}) => {
 	const [isLogin] = useState(false);
 	const router = useRouter();
+	const dispatch = useDispatch();
 	const {asPath} = router;
 	const [languageFile, setLanguageFile] = useState();
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
@@ -171,7 +173,12 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 										</a>
 									</Link>
 								) : (
-									<Button.Outlined small={true}>{languageFile?.['header']?.['header-main']?.['header-login-button']}</Button.Outlined>
+									<Button.Outlined
+										small={true}
+										onClick={() => dispatch(setIsActiveAuthorizationModal(true))}
+									>
+										{languageFile?.['header']?.['header-main']?.['header-login-button']}
+									</Button.Outlined>
 								)}
 							</div>
 						</div>

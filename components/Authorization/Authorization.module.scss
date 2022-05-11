@@ -9,121 +9,141 @@
 	z-index: -1;
 	opacity: 0;
 	overflow-y: scroll;
-	padding-top: rem(48px);
+	transition: all var(--transition-primary), z-index 0s linear 0.5s, position 0s linear 0.5s;
+	margin: auto;
+	padding-bottom: calc(48.9px + 1rem);
 	
-	.Authorization__header {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
+	.Authorization__wrapper {
+		max-width: rem(360px);
 		
-		button {
-			background-color: transparent;
-			border: none;
-		}
-	}
-	
-	.Authorization__container {
-		margin-top: rem(48px);
-		display: flex;
-		flex-direction: column;
-		grid-row-gap: rem(16px);
-		
-		.Authorization__card {
+		.Authorization__header {
 			display: flex;
-			flex-direction: column;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: rem(16px);
 			
-			h3 {
-				font-weight: 500;
-				font-size: rem(14px);
-				line-height: rem(21px);
-				color: #212121;
-				margin: 0 0 rem(16px) 0;
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
 				padding: 0;
 			}
+		}
+		
+		.Authorization__container {
+			margin-top: rem(48px);
+			display: flex;
+			flex-direction: column;
+			grid-row-gap: rem(16px);
 			
-			.Authorization__help {
-				margin: 0;
-				padding: 0;
-				list-style: none;
+			.Authorization__card {
 				display: flex;
 				flex-direction: column;
-				grid-row-gap: rem(8px);
 				
-				li {
+				h3 {
+					font-weight: 500;
+					font-size: rem(14px);
+					line-height: rem(21px);
+					color: #212121;
+					margin: 0 0 rem(8px) 0;
+					padding: 0;
+				}
+				
+				.Authorization__help {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+					display: flex;
+					flex-direction: column;
+					grid-row-gap: rem(8px);
+					
+					li {
+						padding: 0;
+						margin: 0;
+						
+						a {
+							font-weight: 500;
+							font-size: rem(12px);
+							line-height: rem(18px);
+							text-decoration: none;
+							color: #f0515d;
+						}
+					}
+				}
+				
+				.Authorization__title {
 					padding: 0;
 					margin: 0;
+					font-weight: 700;
+					font-size: rem(22px);
+					line-height: rem(33px);
+					text-align: center;
+					color: #212121;
+				}
+				
+				.Authorization__subtitle {
+					font-style: normal;
+					font-size: rem(14px);
+					line-height: rem(21px);
+					text-align: center;
+					color: rgba(#212121, 0.6);
+					margin-bottom: rem(24px);
+				}
+				
+				.Authorization__terms {
+					font-size: rem(11px);
+					line-height: rem(16px);
+					color: #212121;
+					margin-top: rem(8px);
 					
 					a {
-						font-weight: 500;
-						font-size: rem(12px);
-						line-height: rem(18px);
-						text-decoration: none;
 						color: #f0515d;
+						text-decoration: none;
+					}
+				}
+				
+				.Authorization__confirmation {
+					margin: rem(4px) 0 rem(16px) 0;
+					font-size: rem(12px);
+					line-height: rem(18px);
+					
+					span {
+						display: block;
+						font-weight: 500;
+						color: #7a7a7a;
+					}
+					
+					strong {
+						font-weight: 600;
+						color: #000000;
+						margin-right: rem(4px);
+					}
+					
+					button {
+						padding: 0;
+					}
+				}
+				
+				.Authorization__row {
+					display: flex;
+					grid-column-gap: rem(16px);
+					margin-bottom: rem(16px);
+					
+					button {
+						width: 100%;
 					}
 				}
 			}
 			
-			.Authorization__title {
-				padding: 0;
-				margin: 0;
-				font-weight: 700;
-				font-size: rem(22px);
-				line-height: rem(33px);
-				text-align: center;
-				color: #212121;
-			}
-			
-			.Authorization__subtitle {
-				font-style: normal;
-				font-size: rem(14px);
-				line-height: rem(21px);
-				text-align: center;
-				color: rgba(#212121, 0.6);
-				margin-bottom: rem(24px);
-			}
-			
-			.Authorization__terms {
-				font-size: rem(11px);
-				line-height: rem(16px);
-				color: #212121;
-				margin-top: rem(8px);
-				
-				a {
-					color: #f0515d;
-					text-decoration: none;
-				}
-			}
-			
-			.Authorization__confirmation {
-				margin: rem(4px) 0 rem(16px) 0;
-				font-size: rem(12px);
-				line-height: rem(18px);
-				
-				span {
-					display: block;
-					font-weight: 500;
-					color: #7A7A7A;
+			div.Authorization__card {
+				h3 + button {
+					margin-top: rem(8px);
+					background-color: rgba(240, 81, 93, 0.05);
 				}
 				
-				strong {
-					font-weight: 600;
-					color: #000000;
-					margin-right: rem(4px);
-				}
-				
-				button {
-					padding: 0;
-				}
-			}
-			
-			.Authorization__row {
-				display: flex;
-				grid-column-gap: rem(16px);
-				margin-bottom: rem(16px);
-				
-				button {
-					width: 100%;
+				h3 + button:hover {
+					background-color: #f0515d;
 				}
 			}
 		}
@@ -131,7 +151,63 @@
 }
 
 .Authorization_active {
-	position: sticky;
-	z-index: 0;
+	z-index: 4;
 	opacity: 1;
+	transition: all var(--transition-primary), z-index 0s linear 0s;
+}
+
+@media (min-width: 768px) {
+	.Authorization {
+		background-color: rgba(0, 0, 0, 0.15);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 48.9px;
+		margin-top: 1rem;
+		
+		.Authorization__wrapper {
+			background-color: #ffffff;
+			box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+			border-radius: 12px;
+			padding: rem(16px) rem(16px) rem(8px) rem(16px);
+			margin: auto;
+			
+			.Authorization__header {
+				justify-content: flex-end;
+				margin-top: 0;
+				
+				& > svg {
+					display: none;
+				}
+				
+				button {
+					background-color: transparent;
+					border: none;
+				}
+			}
+			
+			.Authorization__container {
+				margin-top: rem(8px);
+				padding: 0 rem(20px) rem(0px) rem(20px);
+				
+				& > div {
+					background-color: transparent !important;
+					box-shadow: none;
+					padding: 0 0 rem(16px) 0 !important;
+					border-bottom: 1px solid #c4c4c4;
+					border-radius: 0;
+				}
+				
+				& > div:last-child {
+					border-bottom: none;
+				}
+			}
+		}
+	}
+	
+	.Authorization_active {
+		height: 100%;
+		inset: 0;
+	}
 }

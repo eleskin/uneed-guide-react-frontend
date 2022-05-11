@@ -59,7 +59,7 @@ const App = ({Component, pageProps}) => {
 				<style jsx global>
 					{`
 						body {
-							overflow-y: ${(isActiveMenu || isActiveFilter || isActiveAuthorizationModal) && windowWidth < 768 ? 'hidden' : 'auto '}
+							overflow-y: ${((isActiveMenu || isActiveFilter) && windowWidth < 768) || isActiveAuthorizationModal ? 'hidden' : 'auto '}
 						}
 					`}
 				</style>
