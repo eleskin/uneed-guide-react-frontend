@@ -447,6 +447,7 @@ const Authorization = ({headerHeight}) => {
 					)}
 				</div>
 			</Container>
+			<div className={styles.Authorization__overlay} onClick={() => dispatch(setIsActiveAuthorizationModal(false))}/>
 		</div>
 	);
 };
