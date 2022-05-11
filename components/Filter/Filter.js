@@ -2,7 +2,7 @@ import {format} from 'date-fns';
 import {useRouter} from 'next/router';
 import {useState, Fragment, useEffect, createRef} from 'react';
 import Calendar from 'react-calendar';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setIsActiveFilter} from '../../store/slices';
 import Form from '../../ui/Form/Form';
 import {useOutsideClickHandler} from '../../utils/hooks';
@@ -10,25 +10,39 @@ import Button from '../Button/Button';
 import Container from '../Container/Container';
 import styles from './Filter.module.scss';
 
-const Filter = ({headerHeight, isActiveFilter}) => {
+const Filter = ({headerHeight, isActiveFilter, optionsSelectList, sortBy, setSortBy}) => {
 	const router = useRouter();
-	const [category, setCategory] = useState();
 	const [city, setCity] = useState();
 	const [dateValue, setDateValue] = useState(new Date());
-	const [date, setDate] = useState(format(new Date(Date.parse(dateValue.toString())), 'dd.MM-=.yyyy'));
+	const [date, setDate] = useState(format(new Date(Date.parse(dateValue.toString())), 'dd.MM-yyyy'));
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	const [lowerPrice, setLowerPrice] = useState();
 	const [higherPrice, setHigherPrice] = useState();
-	const [duration, setDuration] = useState('до 60 мин');
-	const [type, setType] = useState('Двухпалубные теплоходы');
-	const dispatch = useDispatch();
 	const [languageFile, setLanguageFile] = useState();
+	const [duration, setDuration] = useState(languageFile?.['filter']?.['durations']?.['under-60-min']);
+	const [type, setType] = useState(languageFile?.['filter']?.['types']?.['double-deck']);
+	const dispatch = useDispatch();
+	const cities = useSelector((state) => state['geolocationSlice']['cities']);
+	const citiesTranslates = useSelector((state) => state['geolocationSlice']['citiesTranslates']);
+	
+	const citiesList = Array.from(cities)?.map((city, index) => (
+		<Form.Option
+			value={router.locale === 'ru' ? citiesTranslates[city['internationalName'].toLowerCase()] : city['internationalName']}
+			key={index}
+		>
+			{router.locale === 'ru' ? citiesTranslates[city['internationalName'].toLowerCase()] : city['internationalName']}
+		</Form.Option>
+	));
 	
 	useEffect(() => {
 		if (router.locale) {
 			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
+	
+	useEffect(() => {
+		setCity(router.locale === 'ru' ? citiesTranslates[Array.from(cities)[0]?.['internationalName'].toLowerCase()] : Array.from(cities)[0]?.['internationalName']);
+	}, [setCity, cities, router.locale]);
 	
 	useEffect(() => {
 		setDate(format(new Date(Date.parse(dateValue.toString())), 'dd.MM.yyyy'));
@@ -60,15 +74,13 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 				<div className={styles.Filter__grid}>
 					<div className={styles.Filter__group}>
 						<Form.Select
-							value={category}
-							callback={setCategory}
+							value={sortBy}
+							callback={setSortBy}
 							title={languageFile?.['filter']?.['sort-title']}
 							filter={true}
 						>
 							<Fragment>
-								<Form.Option value="По рейтингу">По рейтингу</Form.Option>
-								<Form.Option value="По популярности">По популярности</Form.Option>
-								<Form.Option value="По цене">По цене</Form.Option>
+								{optionsSelectList}
 							</Fragment>
 						</Form.Select>
 						<Form.Select
@@ -78,9 +90,7 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 							filter={true}
 						>
 							<Fragment>
-								<Form.Option value="Москва">Москва</Form.Option>
-								<Form.Option value="Санкт-Петербург">Санкт-Петербург</Form.Option>
-								<Form.Option value="Мурманск">Мурманск</Form.Option>
+								{citiesList}
 							</Fragment>
 						</Form.Select>
 						<div className={styles.Filter__date} ref={calendarRef}>

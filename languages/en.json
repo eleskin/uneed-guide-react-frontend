@@ -143,5 +143,11 @@
 				"currency": "rub"
 			}
 		}
+	},
+	"sorting": {
+		"rating": "rating",
+		"popularity": "popularity",
+		"price": "price",
+		"discount": "discount amount"
 	}
 }

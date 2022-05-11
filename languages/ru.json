@@ -106,7 +106,7 @@
 		"text-button": "Показать результат",
 		"text-closed-button": "Раскрыть фильтр",
 		"text-opened-button": "Скрыть фильтр",
-		"sort-title": "Сортировка",
+		"sort-title": "Сортировать по",
 		"city-title": "Город",
 		"date-title": "Дата",
 		"duration-title": "Продолжительность",
@@ -143,5 +143,11 @@
 				"currency": "руб"
 			}
 		}
+	},
+	"sorting": {
+		"rating": "рейтингу",
+		"popularity": "популярности",
+		"price": "цене",
+		"discount": "размеру скидки"
 	}
 }
