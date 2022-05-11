@@ -233,7 +233,7 @@ const Authorization = ({headerHeight}) => {
 							)}
 							{currentPhoneStep === 2 && (
 								<CardContainer padding={16}>
-									<div className={styles.Authorization__card}>
+									<div className={`${styles.Authorization__card} ${styles.Authorization__card_wide}`}>
 										<h2 className={styles.Authorization__title}>Ваш профиль создан</h2>
 										<em className={styles.Authorization__subtitle}>Заполните Ваши персональные данные</em>
 										{userForm}
@@ -359,7 +359,7 @@ const Authorization = ({headerHeight}) => {
 							)}
 							{currentEmailStep === 2 && (
 								<CardContainer padding={16}>
-									<div className={styles.Authorization__card}>
+									<div className={`${styles.Authorization__card} ${styles.Authorization__card_wide}`}>
 										<h2 className={styles.Authorization__title}>Ваш профиль создан</h2>
 										<em className={styles.Authorization__subtitle}>Заполните Ваши персональные данные</em>
 										{userForm}
