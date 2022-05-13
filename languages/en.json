@@ -153,5 +153,9 @@
 		"popularity": "popularity",
 		"price": "price",
 		"discount": "discount amount"
+	},
+	"labels": {
+		"popular": "Popular",
+		"together": "Ideal for two"
 	}
 }

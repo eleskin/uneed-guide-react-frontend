@@ -1,7 +1,11 @@
 import Link from 'next/link';
+import {useRouter} from 'next/router';
+import {getNoun} from '../../utils/functions';
 import styles from './CategoryCard.module.scss';
 
 const CategoryCard = ({price, link, image, title, count, labels = []}) => {
+	const router = useRouter();
+	
 	const labelsList = {
 		popular: 'Популярное',
 		together: 'Идеально для двоих',
@@ -24,7 +28,9 @@ const CategoryCard = ({price, link, image, title, count, labels = []}) => {
 				</header>
 				<div className={styles.PopularCategoriesCard__info}>
 					<h4 className={styles.CategoryCard__title}>{title}</h4>
-					<span className={styles.CategoryCard__count}>{count} предложений</span>
+					<span className={styles.CategoryCard__count}>
+						{count} {router.locale === 'ru' ? getNoun(count, 'предложение', 'предложения', 'предложений') : (count > 1 ? 'offers' : 'offer')}
+					</span>
 				</div>
 			</a>
 		</Link>
