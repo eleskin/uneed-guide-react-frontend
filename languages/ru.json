@@ -109,6 +109,49 @@
 		"title": "Фильтр",
 		"text-button": "Показать результат",
 		"text-closed-button": "Раскрыть фильтр",
-		"text-opened-button": "Скрыть фильтр"
+		"text-opened-button": "Скрыть фильтр",
+		"sort-title": "Сортировать по",
+		"city-title": "Город",
+		"date-title": "Дата",
+		"duration-title": "Продолжительность",
+		"type-title": "Тип судна",
+		"facilities-title": "Удобства на борту",
+		"durations": {
+			"under-60-min": "до 60 мин",
+			"under-2-hours": "от 1 до 2 часов",
+			"under-3-hours": "от 2 до 3 часов",
+			"under-5-hours": "от 3 до 5 часов"
+		},
+		"types": {
+			"double-deck": "Двухпалубные теплоходы",
+			"boats": "Катера",
+			"meteor": "Метеоры",
+			"single-deck": "Однопалубные теплоходы"
+		},
+		"facilities": {
+			"toilet": "Туалет",
+			"guide": "Экскурсовод",
+			"plaids": "Пледы",
+			"closed-deck": "Закрытая палуба",
+			"music": "Музыка на борту",
+			"bar": "Бар"
+		}
+	},
+	"form": {
+		"input": {
+			"range": {
+				"price-placeholder-before": "Цена, от",
+				"price-placeholder-after": "Цена, до",
+				"min-price-text": "Минимальная цена",
+				"max-price-text": "максимальная",
+				"currency": "руб"
+			}
+		}
+	},
+	"sorting": {
+		"rating": "рейтингу",
+		"popularity": "популярности",
+		"price": "цене",
+		"discount": "размеру скидки"
 	}
 }

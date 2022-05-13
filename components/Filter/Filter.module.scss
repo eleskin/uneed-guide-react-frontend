@@ -80,12 +80,13 @@
 					width: fit-content;
 					position: absolute;
 					left: 0;
-					right: 0;
+					visibility: hidden;
 				}
 				
 				.Filter__calendar_active {
+					visibility: visible;
 					opacity: 1;
-					z-index: 3;
+					z-index: 6;
 					transition: all var(--transition-primary), z-index 0s linear 0s;
 				}
 			}

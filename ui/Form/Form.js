@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import styles from './Form.module.scss';
 import {cloneElement, createRef, useEffect, useState} from 'react';
 
@@ -148,6 +149,15 @@ const Select = ({children, value, callback, title, filter = false, isSort = fals
 };
 
 const Input = ({title, type, inputTopValue, handleInputTop, filter = false, ...props}) => {
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
+	
 	switch (type) {
 		case 'date':
 			return (
@@ -173,11 +183,20 @@ const Input = ({title, type, inputTopValue, handleInputTop, filter = false, ...p
 						className={`${styles.Input} ${styles.Input__range} ${filter ? styles.Input_filter : ''}`}
 					>
 						<div>
-							<input {...props} type="number" placeholder="Цена, от"/>
-							<input type="number" placeholder="Цена, до" value={inputTopValue} onInput={handleInputTop}/>
+							<input
+								{...props}
+								type="number"
+								placeholder={languageFile?.['form']?.['input']?.['range']?.['price-placeholder-before']}
+							/>
+							<input
+								type="number"
+								placeholder={languageFile?.['form']?.['input']?.['range']?.['price-placeholder-after']}
+								value={inputTopValue}
+								onInput={handleInputTop}
+							/>
 						</div>
 					</label>
-					<em>Минимальная цена - 250 руб, максимальная - 6750</em>
+					<em>{languageFile?.['form']?.['input']?.['range']?.['min-price-text']} - 250 {languageFile?.['form']?.['input']?.['range']?.['currency']}, {languageFile?.['form']?.['input']?.['range']?.['max-price-text']} - 6750</em>
 				</div>
 			);
 		

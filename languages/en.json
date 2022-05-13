@@ -109,6 +109,49 @@
 		"title": "Filter",
 		"text-button": "Show result",
 		"text-closed-button": "Open filter",
-		"text-opened-button": "Close filter"
+		"text-opened-button": "Close filter",
+		"sort-title": "Sort by",
+		"city-title": "City",
+		"date-title": "Date",
+		"duration-title": "Duration",
+		"type-title": "Vessel type",
+		"facilities-title": "Amenities on board",
+		"durations": {
+			"under-60-min": "up to 60 min",
+			"under-2-hours": "1 to 2 hours",
+			"under-3-hours": "2 to 3 hours",
+			"under-5-hours": "3 to 5 hours"
+		},
+		"types": {
+			"double-deck": "Double-deck motor ships",
+			"boats": "Boats",
+			"meteor": "Meteors",
+			"single-deck": "Single-deck motor ships"
+		},
+		"facilities": {
+			"toilet": "Toiler",
+			"guide": "Guide",
+			"plaids": "Plaids",
+			"closed-deck": "Closed deck",
+			"music": "Music on board",
+			"bar": "Bar"
+		}
+	},
+	"form": {
+		"input": {
+			"range": {
+				"price-placeholder-before": "Price from",
+				"price-placeholder-after": "Price, up to",
+				"min-price-text": "Minimum price",
+				"max-price-text": "maximum",
+				"currency": "rub"
+			}
+		}
+	},
+	"sorting": {
+		"rating": "rating",
+		"popularity": "popularity",
+		"price": "price",
+		"discount": "discount amount"
 	}
 }

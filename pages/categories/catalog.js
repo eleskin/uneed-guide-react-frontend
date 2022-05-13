@@ -20,11 +20,35 @@ const Catalog = ({headerHeight}) => {
 	const [languageFile, setLanguageFile] = useState();
 	const dispatch = useDispatch();
 	const [sortBy, setSortBy] = useState();
-	const options = ['рейтингу', 'популярности', 'цене', 'размеру скидки'];
+	const [options, setOptions] = useState([
+		languageFile?.['sorting']?.['rating'],
+		languageFile?.['sorting']?.['popularity'],
+		languageFile?.['sorting']?.['price'],
+		languageFile?.['sorting']?.['discount'],
+	]);
 	const isActiveFilter = useSelector((state) => state['indexSlice']['isActiveFilter']);
 	
+	useEffect(() => {
+		setOptions([
+			languageFile?.['sorting']?.['rating'],
+			languageFile?.['sorting']?.['popularity'],
+			languageFile?.['sorting']?.['price'],
+			languageFile?.['sorting']?.['discount'],
+		])
+	}, [languageFile, setOptions]);
+	
+	useEffect(() => {
+		setSortBy(options[0]);
+	}, [options, router.locale]);
+	
 	const optionsSelectList = options.map((option, index) => (
-		<Form.Option value={`${option}`} key={index}>{option}</Form.Option>
+		<Form.Option
+			value={`${option}`}
+			onClick={() => setSortBy(option)}
+			key={index}
+		>
+			{option}
+		</Form.Option>
 	));
 	
 	const optionsList = options.map((option, index) => (
@@ -52,7 +76,13 @@ const Catalog = ({headerHeight}) => {
 					<Breadcrumbs/>
 					<PageTitle>{languageFile?.['catalog-page']?.['title']}</PageTitle>
 				</header>
-				<Filter headerHeight={headerHeight} isActiveFilter={isActiveFilter}/>
+				<Filter
+					headerHeight={headerHeight}
+					isActiveFilter={isActiveFilter}
+					sortBy={sortBy}
+					setSortBy={setSortBy}
+					optionsSelectList={optionsSelectList}
+				/>
 				<div className={styles.Catalog__filter}>
 					<div className={styles.Catalog__select}>
 						<Form.Select value={sortBy} callback={setSortBy} isSort={true}>
