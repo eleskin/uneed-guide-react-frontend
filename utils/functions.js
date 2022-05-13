@@ -1,3 +1,19 @@
+export const getNoun = (number, one, two, five) => {
+	let n = Math.abs(number);
+	n %= 100;
+	if (n >= 5 && n <= 20) {
+		return five;
+	}
+	n %= 10;
+	if (n === 1) {
+		return one;
+	}
+	if (n >= 2 && n <= 4) {
+		return two;
+	}
+	return five;
+};
+
 const _getCityNameByCase = (selectedCity, router, russianCities) => {
 	if (router.locale === 'ru' && router.query['city']) {
 		return russianCities[router.query['city']];
@@ -44,7 +60,7 @@ export const getTranslatedPageName = (pageName, locale) => {
 	const russianTranslates = {
 		home: 'главная',
 		catalog: 'каталог',
-		categories: 'категории'
+		categories: 'категории',
 	};
 	
 	if (locale === 'en') {
