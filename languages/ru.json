@@ -157,5 +157,58 @@
 	"labels": {
 		"popular": "Популярное",
 		"together": "Идеально для двоих"
+	},
+	"product": {
+		"about-event": {
+			"title": "О событии",
+			"read-more": "Читать полностью",
+			"collapse": "Свернуть",
+			"meeting-point": "Место встречи",
+			"duration": "Продолжительность",
+			"age": "Возраст",
+			"tour-operator": "Туроператор",
+			"age-category": "Возрастная категория",
+			"before-age-category": "От",
+			"after-age-category": "лет"
+		},
+		"transport": {
+			"title": "Транспорт",
+			"facilities": "Удобства",
+			"seats": "Количества мест",
+			"type-of-ship": "Тип теплохода"
+		},
+		"attractions": {
+			"title": "Список достопримечательностей"
+		},
+		"events": {
+			"title": "События",
+			"available-date": "Доступная дата",
+			"event-interval": "Интервал события",
+			"before-more-events": "И еще"
+		},
+		"route": {
+			"title": "Маршрут экскурсии"
+		},
+		"warning": {
+			"title": "Внимание!",
+			"first-list-item": "Дети до 6-ти лет не допускаются на данный вид экскурсии.",
+			"second-list-item": "На экскурсию нельзя брать животных"
+		},
+		"reviews": {
+			"title": "Отзывы",
+			"total": "Общая оценка",
+			"read-more": "Читать далее",
+			"before-show-all": "Смотреть все"
+		},
+		"price": {
+			"title": "Стоимость билетов",
+			"tickets": {
+				"adult": "Взрослый билет",
+				"child": "Детский билет",
+				"invalid": "Льготный билет"
+			},
+			"buy-ticket": "Приобрести билет"
+		},
+		"buy-ticket": "Купить билет"
 	}
 }

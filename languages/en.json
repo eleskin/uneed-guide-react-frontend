@@ -157,5 +157,57 @@
 	"labels": {
 		"popular": "Popular",
 		"together": "Ideal for two"
+	},
+	"product": {
+		"about-event": {
+			"title": "About the event",
+			"read-more": "Read completely",
+			"collapse": "Сollapse",
+			"meeting-point": "Meeting point",
+			"duration": "Duration",
+			"age": "Age",
+			"tour-operator": "Tour operator",
+			"age-category": "Age category",
+			"before-age-category": "From",
+			"after-age-category": "years"
+		},
+		"transport": {
+			"title": "Transport",
+			"facilities": "Facilities",
+			"seats": "Seats",
+			"type-of-ship": "Type of ship"
+		},
+		"attractions": {
+			"title": "List of attractions"
+		},
+		"events": {
+			"title": "Events",
+			"available-date": "Available date",
+			"event-interval": "Event Interval"
+		},
+		"route": {
+			"title": "Excursion route"
+		},
+		"warning": {
+			"title": "Attention!",
+			"first-list-item": "Children under 6 years of age are not allowed on this type of tour",
+			"second-list-item": "Pets are not allowed on the tour"
+		},
+		"reviews": {
+			"title": "Reviews",
+			"total": "Overall rating",
+			"read-more": "Read more",
+			"before-show-all": "See all"
+		},
+		"price": {
+			"title": "Ticket price",
+			"tickets": {
+				"adult": "Adult ticket",
+				"child": "Child ticket",
+				"invalid": "Reduced ticket"
+			},
+			"buy-ticket": "Buy a ticket"
+		},
+		"buy-ticket": "To buy a ticket"
 	}
 }
