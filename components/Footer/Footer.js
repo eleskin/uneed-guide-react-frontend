@@ -16,8 +16,10 @@ const Footer = () => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
+	const isWideFooter = router.asPath === '/' || router.asPath === '/order/';
+	
 	return (
-		<footer className={`${styles.Footer} ${router.asPath === '/' ? styles.Footer__main : ''}`}>
+		<footer className={`${styles.Footer} ${isWideFooter ? styles.Footer__main : ''}`}>
 			<div className={styles.Footer__about}>
 				<div className={styles.Footer__container}>
 					<Link href="/">
