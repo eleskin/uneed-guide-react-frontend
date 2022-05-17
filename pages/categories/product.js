@@ -1,4 +1,6 @@
+import {format} from 'date-fns';
 import Image from 'next/image';
+import {useRouter} from 'next/router';
 import {Fragment, useEffect, useMemo, useRef, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
@@ -9,12 +11,28 @@ import Container from '../../components/Container/Container';
 import ProductSlider from '../../components/ProductSlider/ProductSlider';
 import styles from '../../styles/Product.module.scss';
 import Viewed from '../../components/Viewed/Viewed';
+import {ru as ruLocale, enUS as enLocale} from 'date-fns/locale';
+import {getNoun} from '../../utils/functions';
 
 const Product = () => {
+	const router = useRouter();
+	const [languageFile, setLanguageFile] = useState();
 	const [isExpandedText, setIsExpandedText] = useState(false);
 	const [isVisibleHiddenPlaces, setIsVisibleHiddenPlaces] = useState(false);
 	const [isVisibleHiddenEvents, setIsVisibleHiddenEvents] = useState(false);
 	const [activeDiscount, setActiveDiscount] = useState(0);
+	const eventDate = new Date();
+	const duration = 90;
+	
+	useEffect(() => {
+		if (router.locale) {
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+		}
+	}, [setLanguageFile, router.locale]);
+	
+	eventDate.setDate(15);
+	eventDate.setMonth(2);
+	eventDate.setFullYear(2022);
 	
 	const places = [
 		'Красная площадь',
@@ -344,13 +362,13 @@ const Product = () => {
 						<Breadcrumbs/>
 						<h1 className={styles.Product__title}>По москва-реке на теплоходе</h1>
 						<ul className={styles.Product__info}>
-							<li>вт 15 мар</li>
+							<li>{router.locale === 'ru' ? format(eventDate, 'E', {locale: ruLocale}).slice(0, -1) : format(eventDate, 'E', {locale: enLocale})} {eventDate.getDate()} {format(eventDate, 'MMM', {locale: router.locale === 'ru' ? ruLocale : enLocale})}</li>
 							<li>08:00 - 19:30</li>
-							<li>6 причалов</li>
+							<li>6 {router.locale === 'ru' ? getNoun(6, 'причал', 'причала', 'причалов') : 'berths'}</li>
 						</ul>
 						<div className={styles.Product__description}>
 							<CardContainer>
-								<h2>О событии</h2>
+								<h2>{languageFile?.['product']?.['about-event']?.['title']}</h2>
 								<div className={styles.Product__text}>
 									<p className={styles.Product__paragraph}>Рыбатекст используется дизайнерами, проектировщиками и
 									                                         фронтендерами, когда нужно быстро заполнить макеты. Рыбатекст
@@ -363,36 +381,40 @@ const Product = () => {
 									</p>
 								</div>
 								<button className={styles.Product__button_expand} onClick={() => setIsExpandedText(!isExpandedText)}>
-									{!isExpandedText ? 'Читать полностью' : 'Свернуть'}
+									{!isExpandedText ? languageFile?.['product']?.['about-event']?.['read-more'] : languageFile?.['product']?.['about-event']?.['collapse']}
 								</button>
 							</CardContainer>
 							<CardContainer>
 								<div className={styles.Product__survey}>
 									<div>
-										<h4>Место встречи</h4>
+										<h4>{languageFile?.['product']?.['about-event']?.['meeting-point']}</h4>
 										<span className={styles.Product__span}>Пресненская набережная, 2, причал №2</span>
 									</div>
 									<div>
-										<h4>Продолжительность</h4>
-										<span className={styles.Product__span}>1 час 30 минут</span>
+										<h4>{languageFile?.['product']?.['about-event']?.['duration']}</h4>
+										<span className={styles.Product__span}>
+											{Math.floor(duration / 60)} {router.locale === 'ru' ? getNoun(Math.floor(duration / 60), 'час', 'часа', 'часов') : (Math.floor(duration / 60) > 1 ? 'hours' : 'hour')} {duration % 60} {router.locale === 'ru' ? getNoun(Math.floor(duration % 60), 'минута', 'минуты', 'минут') : 'minutes'}
+										</span>
 									</div>
 									<div>
-										<h4>Возраст</h4>
+										<h4>{languageFile?.['product']?.['about-event']?.['age']}</h4>
 										<span className={styles.Product__span}>8+</span>
 									</div>
 									<div>
-										<h4>Туроператор</h4>
+										<h4>{languageFile?.['product']?.['about-event']?.['tour-operator']}</h4>
 										<span className={styles.Product__span}>Нева Тревел</span>
 									</div>
 									<div>
-										<h4>Возрастная категория</h4>
-										<span className={styles.Product__span}>От 3х лет</span>
+										<h4>{languageFile?.['product']?.['about-event']?.['age-category']}</h4>
+										<span className={styles.Product__span}>
+											{languageFile?.['product']?.['about-event']?.['before-age-category']} 3 {languageFile?.['product']?.['about-event']?.['after-age-category']}
+										</span>
 									</div>
 								</div>
 							</CardContainer>
 							<CardContainer>
 								<div className={styles.Product__transport}>
-									<h2>Транспорт</h2>
+									<h2>{languageFile?.['product']?.['transport']?.['title']}</h2>
 									<div className={styles.Product__illustration}>
 										<Image
 											src="/assets/images/product/product-image-1.png"
@@ -413,41 +435,41 @@ const Product = () => {
 											                                               и закрытая части.</p>
 										</div>
 										<div>
-											<h5>Удобства</h5>
+											<h5>{languageFile?.['product']?.['transport']?.['facilities']}</h5>
 											<span className={styles.Product__span_small}>Туалет, панорамные окна</span>
 										</div>
 										<div>
-											<h5>Количества мест</h5>
+											<h5>{languageFile?.['product']?.['transport']?.['seats']}</h5>
 											<span className={styles.Product__span_small}>72</span>
 										</div>
 										<div>
-											<h5>Тип теплохода</h5>
+											<h5>{languageFile?.['product']?.['transport']?.['type-of-ship']}</h5>
 											<span className={styles.Product__span_small}>Двухпалубный</span>
 										</div>
 									</div>
 								</div>
 							</CardContainer>
 							<CardContainer>
-								<h2>Список достопримечательностей</h2>
+								<h2>{languageFile?.['product']?.['attractions']?.['title']}</h2>
 								<ul className={styles.Product__places}>
 									{placesList}
 								</ul>
 							</CardContainer>
 							<CardContainer>
-								<h2>События</h2>
+								<h2>{languageFile?.['product']?.['events']?.['title']}</h2>
 								<div className={styles.Product__events}>
 									{eventsList}
 									{(events.length > 2 && !isVisibleHiddenEvents) && (
 										<button
 											onClick={() => setIsVisibleHiddenEvents(true)}
 										>
-											И еще {events.length - 2} события
+											{languageFile?.['product']?.['events']?.['before-more-events']} {events.length - 2} {router.locale === 'ru' ? getNoun(events.length - 2, 'событие', 'события', 'событий') : (events.length - 2 > 1 ? 'event' : 'events')}
 										</button>
 									)}
 								</div>
 							</CardContainer>
 							<CardContainer>
-								<h2>Маршрут экскурсии</h2>
+								<h2>{languageFile?.['product']?.['route']?.['title']}</h2>
 								<div className={styles.Product__map}>
 									<Image
 										src="/assets/images/product/product-map.png"
@@ -485,7 +507,7 @@ const Product = () => {
 							<CardContainer>
 								<div className={styles.Product__warning}>
 									<header>
-										<strong>Внимание!</strong>
+										<strong>{languageFile?.['product']?.['warning']?.['title']}</strong>
 										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M12 0C5.36705 0 0 5.36752 0 12C0 18.633 5.36752 24 12 24C18.633 24 24 18.6325 24 12C24 5.36705 18.6325 0 12 0ZM12 22.125C6.40345 22.125 1.875 17.5962 1.875 12C1.875 6.40345 6.40383 1.875 12 1.875C17.5965 1.875 22.125 6.40383 22.125 12C22.125 17.5965 17.5962 22.125 12 22.125Z" fill="#51ADF0"/>
 											<path d="M12 6.04109C11.4822 6.04109 11.0625 6.46081 11.0625 6.97859V13.0158C11.0625 13.5335 11.4822 13.9533 12 13.9533C12.5178 13.9533 12.9375 13.5335 12.9375 13.0158V6.97859C12.9375 6.46081 12.5178 6.04109 12 6.04109Z" fill="#51ADF0"/>
@@ -496,17 +518,17 @@ const Product = () => {
 										   макеты.</p>
 									</header>
 									<ul>
-										<li>Дети до 6-ти лет не допускаются на данный вид экскурсии.</li>
-										<li>На экскурсию нельзя брать животных</li>
+										<li>{languageFile?.['product']?.['warning']?.['first-list-item']}</li>
+										<li>{languageFile?.['product']?.['warning']?.['second-list-item']}</li>
 									</ul>
 								</div>
 							</CardContainer>
 							<CardContainer>
 								<div className={styles.Product__reviews}>
 									<header>
-										<h2>Отзывы</h2>
+										<h2>{languageFile?.['product']?.['reviews']?.['title']}</h2>
 										<div>
-											<span>Общая оценка</span>
+											<span>{languageFile?.['product']?.['reviews']?.['total']}</span>
 											<span className={styles.Product__rating}>
 											<svg width="61" height="12" viewBox="0 0 61 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<path d="M6.18188 0.883924C6.18188 0.724495 5.958 0.689037 5.90874 0.840662L4.7899 4.28409C4.74974 4.4077 4.63455 4.49139 4.50458 4.49139H0.92332C0.632703 4.49139 0.511871 4.86327 0.746985 5.03409L3.64429 7.13911C3.74943 7.2155 3.79343 7.35091 3.75327 7.47452L2.6466 10.8805C2.55679 11.1569 2.87314 11.3867 3.10825 11.2159L6.05822 9.07263C6.13591 9.01618 6.18188 8.92595 6.18188 8.82992V0.883924Z" fill={rating[0] ? '#f0515d' : '#e0deda'}/>
@@ -526,7 +548,10 @@ const Product = () => {
 									</header>
 									{reviewsList}
 									{reviews.length > 3 && !isOpenedReviews && (
-										<button onClick={() => setIsOpenedReviews(true)}>Смотреть все {reviews.length} отзыва</button>)}
+										<button onClick={() => setIsOpenedReviews(true)}>
+											{languageFile?.['product']?.['reviews']?.['before-show-all']} {reviews.length} {router.locale === 'ru' ? getNoun(reviews.length, 'отзыв', 'отзыва', 'отзывов') : 'reviews'}
+										</button>
+									)}
 								</div>
 							</CardContainer>
 						</div>
@@ -536,7 +561,7 @@ const Product = () => {
 					<div className={styles.Product__price}>
 						<div className={styles.Product__card}>
 							<header>
-								<span>Стоимость билетов</span>
+								<span>{languageFile?.['product']?.['price']?.['title']}</span>
 							</header>
 							<div className={styles.Product__prices}>
 								{tickets.map((ticket, index) => (
@@ -550,7 +575,7 @@ const Product = () => {
 								))}
 							</div>
 							<footer>
-								<Button.Primary>Приобрести билет</Button.Primary>
+								<Button.Primary>{languageFile?.['product']?.['price']?.['buy-ticket']}</Button.Primary>
 							</footer>
 						</div>
 						<div>
@@ -564,7 +589,7 @@ const Product = () => {
 				className={`${styles.Product__button_fixed} ${isIntersecting ? styles.Product__button_hidden : ''}`}
 			>
 				<Button.Primary>
-					Купить билет
+					{languageFile?.['product']?.['buy-ticket']}
 				</Button.Primary>
 			</div>
 		</div>

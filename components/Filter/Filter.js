@@ -2,7 +2,7 @@ import {format} from 'date-fns';
 import {useRouter} from 'next/router';
 import {useState, Fragment, useEffect, createRef} from 'react';
 import Calendar from 'react-calendar';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setIsActiveFilter} from '../../store/slices';
 import Form from '../../ui/Form/Form';
 import {useOutsideClickHandler} from '../../utils/hooks';
@@ -10,25 +10,39 @@ import Button from '../Button/Button';
 import Container from '../Container/Container';
 import styles from './Filter.module.scss';
 
-const Filter = ({headerHeight, isActiveFilter}) => {
+const Filter = ({headerHeight, isActiveFilter, optionsSelectList, sortBy, setSortBy}) => {
 	const router = useRouter();
-	const [category, setCategory] = useState();
 	const [city, setCity] = useState();
 	const [dateValue, setDateValue] = useState(new Date());
-	const [date, setDate] = useState(format(new Date(Date.parse(dateValue.toString())), 'dd.MM-=.yyyy'));
+	const [date, setDate] = useState(format(new Date(Date.parse(dateValue.toString())), 'dd.MM-yyyy'));
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	const [lowerPrice, setLowerPrice] = useState();
 	const [higherPrice, setHigherPrice] = useState();
-	const [duration, setDuration] = useState('до 60 мин');
-	const [type, setType] = useState('Двухпалубные теплоходы');
-	const dispatch = useDispatch();
 	const [languageFile, setLanguageFile] = useState();
+	const [duration, setDuration] = useState(languageFile?.['filter']?.['durations']?.['under-60-min']);
+	const [type, setType] = useState(languageFile?.['filter']?.['types']?.['double-deck']);
+	const dispatch = useDispatch();
+	const cities = useSelector((state) => state['geolocationSlice']['cities']);
+	const citiesTranslates = useSelector((state) => state['geolocationSlice']['citiesTranslates']);
+	
+	const citiesList = Array.from(cities)?.map((city, index) => (
+		<Form.Option
+			value={router.locale === 'ru' ? citiesTranslates[city['internationalName'].toLowerCase()] : city['internationalName']}
+			key={index}
+		>
+			{router.locale === 'ru' ? citiesTranslates[city['internationalName'].toLowerCase()] : city['internationalName']}
+		</Form.Option>
+	));
 	
 	useEffect(() => {
 		if (router.locale) {
 			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
+	
+	useEffect(() => {
+		setCity(router.locale === 'ru' ? citiesTranslates[Array.from(cities)[0]?.['internationalName'].toLowerCase()] : Array.from(cities)[0]?.['internationalName']);
+	}, [setCity, cities, router.locale]);
 	
 	useEffect(() => {
 		setDate(format(new Date(Date.parse(dateValue.toString())), 'dd.MM.yyyy'));
@@ -59,23 +73,29 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 				</header>
 				<div className={styles.Filter__grid}>
 					<div className={styles.Filter__group}>
-						<Form.Select value={category} callback={setCategory} title="Категория" filter={true}>
+						<Form.Select
+							value={sortBy}
+							callback={setSortBy}
+							title={languageFile?.['filter']?.['sort-title']}
+							filter={true}
+						>
 							<Fragment>
-								<Form.Option value="По рейтингу">По рейтингу</Form.Option>
-								<Form.Option value="По популярности">По популярности</Form.Option>
-								<Form.Option value="По цене">По цене</Form.Option>
+								{optionsSelectList}
 							</Fragment>
 						</Form.Select>
-						<Form.Select value={city} callback={setCity} title="Город" filter={true}>
+						<Form.Select
+							value={city}
+							callback={setCity}
+							title={languageFile?.['filter']?.['city-title']}
+							filter={true}
+						>
 							<Fragment>
-								<Form.Option value="Москва">Москва</Form.Option>
-								<Form.Option value="Санкт-Петербург">Санкт-Петербург</Form.Option>
-								<Form.Option value="Мурманск">Мурманск</Form.Option>
+								{citiesList}
 							</Fragment>
 						</Form.Select>
 						<div className={styles.Filter__date} ref={calendarRef}>
 							<Form.Input
-								title="Дата"
+								title={languageFile?.['filter']?.['date-title']}
 								type="date"
 								value={date}
 								onInput={handleChangeDateInput}
@@ -103,64 +123,64 @@ const Filter = ({headerHeight, isActiveFilter}) => {
 					</div>
 					<div className={styles.Filter__group}>
 						<div className={styles.Filter__item}>
-							<span>Продолжительность</span>
+							<span>{languageFile?.['filter']?.['duration-title']}</span>
 							<div>
 								<Form.Radio
-									value="до 60 мин"
+									value={languageFile?.['filter']?.['durations']?.['under-60-min']}
 									onChange={(event) => setDuration(event.target.value)}
-									checked={duration === 'до 60 мин'}
+									checked={duration === languageFile?.['filter']?.['durations']?.['under-60-min']}
 								/>
 								<Form.Radio
-									value="от 1 до 2 часов"
+									value={languageFile?.['filter']?.['durations']?.['under-2-hours']}
 									onChange={(event) => setDuration(event.target.value)}
-									checked={duration === 'от 1 до 2 часов'}
+									checked={duration === languageFile?.['filter']?.['durations']?.['under-2-hours']}
 								/>
 								<Form.Radio
-									value="от 2 до 3 часов"
+									value={languageFile?.['filter']?.['durations']?.['under-3-hours']}
 									onChange={(event) => setDuration(event.target.value)}
-									checked={duration === 'от 2 до 3 часов'}
+									checked={duration === languageFile?.['filter']?.['durations']?.['under-3-hours']}
 								/>
 								<Form.Radio
-									value="от 4 до 5 часов"
+									value={languageFile?.['filter']?.['durations']?.['under-5-hours']}
 									onChange={(event) => setDuration(event.target.value)}
-									checked={duration === 'от 4 до 5 часов'}
+									checked={duration === languageFile?.['filter']?.['durations']?.['under-5-hours']}
 								/>
 							</div>
 						</div>
 						<div className={styles.Filter__item}>
-							<span>Тип судна</span>
+							<span>{languageFile?.['filter']?.['type-title']}</span>
 							<div>
 								<Form.Radio
-									value="Двухпалубные теплоходы"
+									value={languageFile?.['filter']?.['types']?.['double-deck']}
 									onChange={(event) => setType(event.target.value)}
-									checked={type === 'Двухпалубные теплоходы'}
+									checked={type === languageFile?.['filter']?.['types']?.['double-deck']}
 								/>
 								<Form.Radio
-									value="Катера"
+									value={languageFile?.['filter']?.['types']?.['boats']}
 									onChange={(event) => setType(event.target.value)}
-									checked={type === 'Катера'}
+									checked={type === languageFile?.['filter']?.['types']?.['boats']}
 								/>
 								<Form.Radio
-									value="Метеоры"
+									value={languageFile?.['filter']?.['types']?.['meteor']}
 									onChange={(event) => setType(event.target.value)}
-									checked={type === 'Метеоры'}
+									checked={type === languageFile?.['filter']?.['types']?.['meteor']}
 								/>
 								<Form.Radio
-									value="Однопалубные теплоходы"
+									value={languageFile?.['filter']?.['types']?.['single-deck']}
 									onChange={(event) => setType(event.target.value)}
-									checked={type === 'Однопалубные теплоходы'}
+									checked={type === languageFile?.['filter']?.['types']?.['single-deck']}
 								/>
 							</div>
 						</div>
 						<div className={styles.Filter__item}>
-							<span>Удобства на борту</span>
+							<span>{languageFile?.['filter']?.['facilities-title']}</span>
 							<div>
-								<Form.Checkbox label="Туалет"/>
-								<Form.Checkbox label="Экскурсовод"/>
-								<Form.Checkbox label="Пледы"/>
-								<Form.Checkbox label="Закрытая палуба"/>
-								<Form.Checkbox label="Музыка на борту"/>
-								<Form.Checkbox label="Бар"/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['toilet']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['guide']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['plaids']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['closed-deck']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['music']}/>
+								<Form.Checkbox label={languageFile?.['filter']?.['facilities']?.['bar']}/>
 							</div>
 						</div>
 					</div>
