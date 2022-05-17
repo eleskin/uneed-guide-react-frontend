@@ -20,7 +20,6 @@ const Catalog = ({headerHeight}) => {
 		'price': 'цене',
 		'discount amount': 'размеру скидки',
 	};
-	const [selectValue, setSelectValue] = useState('');
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
 	const dispatch = useDispatch();
@@ -32,6 +31,8 @@ const Catalog = ({headerHeight}) => {
 		languageFile?.['sorting']?.['discount'],
 	]);
 	const isActiveFilter = useSelector((state) => state['indexSlice']['isActiveFilter']);
+	const [visibleCardsCount, setVisibleCardsCount] = useState(16);
+	const [currentVisibleCardsCount, setCurrentVisibleCardsCount] = useState(16);
 	
 	useEffect(() => {
 		setOptions([
@@ -72,7 +73,7 @@ const Catalog = ({headerHeight}) => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
-	const [cards] = useState([
+	const [cards, setCards] = useState([
 		{
 			popularity: 3,
 			city: 'moscow',
@@ -195,6 +196,163 @@ const Catalog = ({headerHeight}) => {
 		},
 	]);
 	
+	useEffect(() => {
+		setCards([
+			{
+				popularity: 3,
+				city: 'moscow',
+				title: 'Экскурсия по Москва-реке',
+				image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
+				description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+				duration: 90,
+				jetty: 'Причал “Мост Ломоносова”',
+				interval: 30,
+				rating: 4.5,
+				discountValue: 10,
+				tickets: [
+					{
+						title: 'Взрослый',
+						price: 550,
+						amountPrice: 450,
+					},
+					{
+						title: 'Детский',
+						price: 450,
+						amountPrice: 350,
+					},
+					{
+						title: 'Взрослый (с ланчем)',
+						price: 580,
+						amountPrice: 480,
+					},
+				],
+				id: 0,
+			},
+			{
+				popularity: 2,
+				city: 'moscow',
+				title: 'Экскурсия по Москва-реке',
+				image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
+				description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+				duration: 90,
+				jetty: 'Причал “Мост Ломоносова”',
+				interval: 30,
+				rating: 4.8,
+				discountValue: 10,
+				tickets: [
+					{
+						title: 'Взрослый',
+						price: 550,
+						amountPrice: 450,
+					},
+					{
+						title: 'Детский',
+						price: 450,
+						amountPrice: 350,
+					},
+					{
+						title: 'Взрослый (с ланчем)',
+						price: 580,
+						amountPrice: 480,
+					},
+				],
+				id: 1,
+			},
+			{
+				popularity: 1,
+				city: 'moscow',
+				title: 'Экскурсия по Москва-реке',
+				image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
+				description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+				duration: 90,
+				jetty: 'Причал “Мост Ломоносова”',
+				interval: 30,
+				rating: 4.6,
+				discountValue: 10,
+				tickets: [
+					{
+						title: 'Взрослый',
+						price: 450,
+						amountPrice: 350,
+					},
+					{
+						title: 'Детский',
+						price: 350,
+						amountPrice: 250,
+					},
+					{
+						title: 'Взрослый (с ланчем)',
+						price: 480,
+						amountPrice: 380,
+					},
+				],
+				id: 2,
+			},
+			{
+				popularity: 0,
+				city: 'moscow',
+				title: 'Экскурсия по Москва-реке',
+				image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
+				description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+				duration: 90,
+				jetty: 'Причал “Мост Ломоносова”',
+				interval: 30,
+				rating: 4.5,
+				discountValue: 15,
+				tickets: [
+					{
+						title: 'Взрослый',
+						price: 550,
+						amountPrice: 450,
+					},
+					{
+						title: 'Детский',
+						price: 450,
+						amountPrice: 350,
+					},
+					{
+						title: 'Взрослый (с ланчем)',
+						price: 580,
+						amountPrice: 480,
+					},
+				],
+				id: 3,
+			},
+		]);
+		for (let i = 4; i < 60; i++) {
+			setCards((prevState) => [...prevState, {
+				popularity: 0,
+				city: 'moscow',
+				title: 'Экскурсия по Москва-реке',
+				image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
+				description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+				duration: 90,
+				jetty: 'Причал “Мост Ломоносова”',
+				interval: 30,
+				rating: 4.5,
+				discountValue: 15,
+				tickets: [
+					{
+						title: 'Взрослый',
+						price: 550,
+						amountPrice: 450,
+					},
+					{
+						title: 'Детский',
+						price: 450,
+						amountPrice: 350,
+					},
+					{
+						title: 'Взрослый (с ланчем)',
+						price: 580,
+						amountPrice: 480,
+					},
+				],
+				id: i,
+			}]);
+		}
+	}, []);
+	
 	const sortFunction = (a, b) => {
 		const compareValues = (valueA, valueB, reverse = false) => {
 			if (reverse) {
@@ -245,7 +403,7 @@ const Catalog = ({headerHeight}) => {
 		}));
 	}, [cards, setSortedCards]);
 	
-	const cardsList = sortedCards.map((card) => (
+	const cardsList = sortedCards.slice(0, currentVisibleCardsCount).map((card) => (
 		<ExcursionsCard
 			cardCity={card.city}
 			cardTitle={card.title}
@@ -300,11 +458,11 @@ const Catalog = ({headerHeight}) => {
 				<footer className={styles.Catalog__footer}>
 					<div>
 						<span>
-							16 {languageFile?.['catalog-page']?.['pagination']?.['first-part']} 56 {languageFile?.['catalog-page']?.['pagination']?.['second-part']}
+							{currentVisibleCardsCount} {languageFile?.['catalog-page']?.['pagination']?.['first-part']} {cards.length} {languageFile?.['catalog-page']?.['pagination']?.['second-part']}
 						</span>
 						<div className={styles.Catalog__counts}>
 							{languageFile?.['catalog-page']?.['text-counts']}
-							<CustomSelect value={selectValue} callback={setSelectValue} small={true}>
+							<CustomSelect value={visibleCardsCount} callback={setVisibleCardsCount} small={true}>
 								<Fragment>
 									<Option value={16}>16</Option>
 									<Option value={24}>24</Option>
@@ -313,7 +471,19 @@ const Catalog = ({headerHeight}) => {
 							</CustomSelect>
 						</div>
 					</div>
-					<Button.Primary>{languageFile?.['catalog-page']?.['text-button']}</Button.Primary>
+					{currentVisibleCardsCount < cards.length && (
+						<Button.Primary
+							onClick={() => setCurrentVisibleCardsCount((prevState) => {
+								if (prevState + visibleCardsCount <= cards.length) {
+									return prevState + visibleCardsCount;
+								} else {
+									return cards.length;
+								}
+							})}
+						>
+							{languageFile?.['catalog-page']?.['text-button']}
+						</Button.Primary>
+					)}
 				</footer>
 			</Container>
 			<div className={styles.Catalog__viewed}>
