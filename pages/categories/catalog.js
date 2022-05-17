@@ -34,7 +34,7 @@ const Catalog = ({headerHeight}) => {
 			languageFile?.['sorting']?.['popularity'],
 			languageFile?.['sorting']?.['price'],
 			languageFile?.['sorting']?.['discount'],
-		])
+		]);
 	}, [languageFile, setOptions]);
 	
 	useEffect(() => {
@@ -69,6 +69,53 @@ const Catalog = ({headerHeight}) => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
+	const [cards] = useState([
+		{
+			city: 'moscow',
+			title: 'Экскурсия по Москва-реке',
+			description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			duration: 90,
+			jetty: 'Причал “Мост Ломоносова”',
+			interval: 30,
+			rating: 4.5,
+			discountValue: 10,
+			tickets: [
+				{
+					title: 'Взрослый',
+					price: 550,
+					amountPrice: 450,
+				},
+				{
+					title: 'Детский',
+					price: 450,
+					amountPrice: 350,
+				},
+				{
+					title: 'Взрослый (с ланчем)',
+					price: 580,
+					amountPrice: 480,
+				},
+			],
+		},
+	]);
+	
+	const cardsList = cards.map((card, index) => (
+		<ExcursionsCard
+			cardCity={card.city}
+			cardTitle={card.title}
+			cardDescription={card.description}
+			cardDuration={card.duration}
+			cardJetty={card.jetty}
+			cardInterval={card.interval}
+			cardRating={card.rating}
+			cardDiscountValue={card.discountValue}
+			cardTickets={card.tickets}
+			small={true}
+			catalog={true}
+			key={index}
+		/>
+	));
+	
 	return (
 		<div className={styles.Catalog}>
 			<Container>
@@ -102,12 +149,7 @@ const Catalog = ({headerHeight}) => {
 						</svg>
 					</button>
 				</div>
-				<div className={styles.Catalog__list}>
-					<ExcursionsCard small={true} catalog={true}/>
-					<ExcursionsCard small={true} catalog={true}/>
-					<ExcursionsCard small={true} catalog={true}/>
-					<ExcursionsCard small={true} catalog={true}/>
-				</div>
+				<div className={styles.Catalog__list}>{cardsList}</div>
 				<footer className={styles.Catalog__footer}>
 					<div>
 						<span>
