@@ -15,6 +15,12 @@ import {Fragment, useState, useEffect} from 'react';
 import Form from '../../ui/Form/Form';
 
 const Catalog = ({headerHeight}) => {
+	const sorts = {
+		'rating': 'рейтингу',
+		'popularity': 'популярности',
+		'price': 'цене',
+		'discount amount': 'размеру скидки',
+	};
 	const [selectValue, setSelectValue] = useState('');
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
@@ -73,6 +79,7 @@ const Catalog = ({headerHeight}) => {
 		{
 			city: 'moscow',
 			title: 'Экскурсия по Москва-реке',
+			image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
 			description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
 			duration: 90,
 			jetty: 'Причал “Мост Ломоносова”',
@@ -96,13 +103,144 @@ const Catalog = ({headerHeight}) => {
 					amountPrice: 480,
 				},
 			],
+			id: 0,
+		},
+		{
+			city: 'moscow',
+			title: 'Экскурсия по Москва-реке',
+			image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
+			description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			duration: 90,
+			jetty: 'Причал “Мост Ломоносова”',
+			interval: 30,
+			rating: 4.8,
+			discountValue: 10,
+			tickets: [
+				{
+					title: 'Взрослый',
+					price: 550,
+					amountPrice: 450,
+				},
+				{
+					title: 'Детский',
+					price: 450,
+					amountPrice: 350,
+				},
+				{
+					title: 'Взрослый (с ланчем)',
+					price: 580,
+					amountPrice: 480,
+				},
+			],
+			id: 1,
+		},
+		{
+			city: 'moscow',
+			title: 'Экскурсия по Москва-реке',
+			image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
+			description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			duration: 90,
+			jetty: 'Причал “Мост Ломоносова”',
+			interval: 30,
+			rating: 4.6,
+			discountValue: 10,
+			tickets: [
+				{
+					title: 'Взрослый',
+					price: 450,
+					amountPrice: 350,
+				},
+				{
+					title: 'Детский',
+					price: 350,
+					amountPrice: 250,
+				},
+				{
+					title: 'Взрослый (с ланчем)',
+					price: 480,
+					amountPrice: 380,
+				},
+			],
+			id: 2,
+		},
+		{
+			city: 'moscow',
+			title: 'Экскурсия по Москва-реке',
+			image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
+			description: 'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.',
+			duration: 90,
+			jetty: 'Причал “Мост Ломоносова”',
+			interval: 30,
+			rating: 4.5,
+			discountValue: 15,
+			tickets: [
+				{
+					title: 'Взрослый',
+					price: 550,
+					amountPrice: 450,
+				},
+				{
+					title: 'Детский',
+					price: 450,
+					amountPrice: 350,
+				},
+				{
+					title: 'Взрослый (с ланчем)',
+					price: 580,
+					amountPrice: 480,
+				},
+			],
+			id: 3,
 		},
 	]);
 	
-	const cardsList = cards.map((card, index) => (
+	const sortFunction = (a, b) => {
+		const compareValues = (valueA, valueB, reverse = false) => {
+			if (reverse) {
+				if (valueA(a) > valueB(b)) return 1;
+				if (valueA(a) === valueB(b)) return 0;
+				if (valueA(a) < valueB(b)) return -1;
+			} else {
+				if (valueA(a) < valueB(b)) return 1;
+				if (valueA(a) === valueB(b)) return 0;
+				if (valueA(a) > valueB(b)) return -1;
+			}
+		};
+		
+		const sort = Object.entries(sorts).filter((sort) => {
+			if (sort[0] === sortBy || sort[1] === sortBy) {
+				return sort[0];
+			}
+		})[0];
+		
+		if (sort?.[0] === 'rating') {
+			return compareValues(
+				(a) => a.rating,
+				(b) => b.rating,
+			);
+		}
+		if (sort?.[0] === 'price') return compareValues(
+			(a) => a.tickets?.map((ticket) => ticket.amountPrice),
+			(b) => b.tickets?.map((ticket) => ticket.amountPrice),
+			true,
+		);
+	};
+	
+	const [sortedCards, setSortedCards] = useState(cards.sort((a, b) => {
+		return sortFunction(a, b);
+	}));
+	
+	useEffect(() => {
+		setSortedCards(cards.sort((a, b) => {
+			return sortFunction(a, b);
+		}));
+	}, [cards, setSortedCards]);
+	
+	const cardsList = sortedCards.map((card) => (
 		<ExcursionsCard
 			cardCity={card.city}
 			cardTitle={card.title}
+			cardImage={card.image}
 			cardDescription={card.description}
 			cardDuration={card.duration}
 			cardJetty={card.jetty}
@@ -112,7 +250,7 @@ const Catalog = ({headerHeight}) => {
 			cardTickets={card.tickets}
 			small={true}
 			catalog={true}
-			key={index}
+			key={card.id}
 		/>
 	));
 	
