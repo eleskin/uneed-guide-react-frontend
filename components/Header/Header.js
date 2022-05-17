@@ -144,7 +144,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 						</div>
 						<div className={styles.Header__right}>
 							<div className={styles.Header__links}>
-								<Link href="#">
+								<Link href="/order">
 									<a>
 										<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M6.68182 14.9998C7.05838 14.9998 7.36364 14.7014 7.36364 14.3332C7.36364 13.965 7.05838 13.6665 6.68182 13.6665C6.30526 13.6665 6 13.965 6 14.3332C6 14.7014 6.30526 14.9998 6.68182 14.9998Z" stroke="#D3D3D3" strokeLinecap="round" strokeLinejoin="round"/>
