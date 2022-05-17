@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '../../components/Button/Button';
@@ -59,13 +58,11 @@ const Catalog = ({headerHeight}) => {
 	
 	const optionsList = options.map((option, index) => (
 		<li key={index}>
-			<Link href="#">
-				<a
-					className={`${styles.Catalog__option} ${sortBy === options[index] ? styles.Catalog__option_active : ''}`}
-					onClick={() => setSortBy(option)}
-				>{option}
-				</a>
-			</Link>
+			<a
+				className={`${styles.Catalog__option} ${sortBy === options[index] ? styles.Catalog__option_active : ''}`}
+				onClick={() => setSortBy(option)}
+			>{option}
+			</a>
 		</li>
 	));
 	
@@ -77,6 +74,7 @@ const Catalog = ({headerHeight}) => {
 	
 	const [cards] = useState([
 		{
+			popularity: 3,
 			city: 'moscow',
 			title: 'Экскурсия по Москва-реке',
 			image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
@@ -106,6 +104,7 @@ const Catalog = ({headerHeight}) => {
 			id: 0,
 		},
 		{
+			popularity: 2,
 			city: 'moscow',
 			title: 'Экскурсия по Москва-реке',
 			image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
@@ -135,6 +134,7 @@ const Catalog = ({headerHeight}) => {
 			id: 1,
 		},
 		{
+			popularity: 1,
 			city: 'moscow',
 			title: 'Экскурсия по Москва-реке',
 			image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
@@ -164,6 +164,7 @@ const Catalog = ({headerHeight}) => {
 			id: 2,
 		},
 		{
+			popularity: 0,
 			city: 'moscow',
 			title: 'Экскурсия по Москва-реке',
 			image: '/assets/images/upcoming-excursions/upcoming-excursions-image-1.png',
@@ -223,6 +224,14 @@ const Catalog = ({headerHeight}) => {
 			(a) => a.tickets?.map((ticket) => ticket.amountPrice),
 			(b) => b.tickets?.map((ticket) => ticket.amountPrice),
 			true,
+		);
+		if (sort?.[0] === 'discount amount') return compareValues(
+			(a) => a.discountValue,
+			(b) => b.discountValue,
+		);
+		if (sort?.[0] === 'popularity') return compareValues(
+			(a) => a.popularity,
+			(b) => b.popularity,
 		);
 	};
 	
