@@ -2,4 +2,12 @@
 
 .Order {
 	padding-top: rem(24px);
+	
+	.Order__container {
+		& > div {
+			display: flex;
+			flex-direction: column;
+			grid-row-gap: rem(16px);
+		}
+	}
 }
