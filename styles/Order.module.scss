@@ -4,10 +4,73 @@
 	padding-top: rem(24px);
 	
 	.Order__container {
+		display: flex;
+		flex-direction: column;
+		grid-row-gap: rem(16px);
+		
 		& > div {
 			display: flex;
 			flex-direction: column;
 			grid-row-gap: rem(16px);
+		}
+		
+		.Order__sidebar {
+			display: flex;
+			flex-direction: column;
+			
+			.Order__total {
+				display: flex;
+				flex-direction: column;
+				
+				header {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+					margin-bottom: rem(4px);
+					
+					h3, span {
+						font-weight: 700;
+						font-size: rem(16px);
+						line-height: rem(24px);
+						color: #181d22;
+						margin: 0;
+						padding: 0;
+					}
+				}
+				
+				& > div {
+					margin-top: rem(12px);
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					
+					span {
+						font-weight: 500;
+						font-size: rem(14px);
+						line-height: rem(21px);
+						color: #181D22;
+					}
+				}
+				
+				& > button {
+					margin-top: rem(24px);
+				}
+				
+				& > p {
+					margin: rem(12px) 0 0 0;
+					font-weight: 500;
+					font-size: rem(11px);
+					line-height: rem(16px);
+					text-align: center;
+					color: #221818;
+					
+					a {
+						color: #f0515d;
+						text-decoration: none;
+					}
+				}
+			}
 		}
 	}
 }
