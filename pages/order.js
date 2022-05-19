@@ -28,7 +28,12 @@ const Order = () => {
 			<Container isMainPage={true}>
 				<div className={styles.Order__container}>
 					<div>
-						<Alert title="Предупреждение!" backgroundColor="#E4C830">
+						<Alert
+							title="Предупреждение!"
+							backgroundColor="#E4C830"
+							buttonColor="#ddc12e"
+							borderColor="#D1B62B"
+						>
 							При покупке билета на ночную экскурсию Вам нужно выбрать текущую дату. Например если вы хотите купить
 							билет на экскурсию 07.04.2022 в 00:35 вы должны выбрать дату - 06.04.2022.
 						</Alert>
@@ -56,7 +61,12 @@ const Order = () => {
 								<Form.Input type="text" placeholder="Ваша электронная почта" style={{padding: '0.5rem 0.25rem'}} htmlType="email"/>
 							</div>
 						</CardContainer>
-						<Alert title="Автоматическая регистрация" backgroundColor="#212632">
+						<Alert
+							title="Автоматическая регистрация"
+							backgroundColor="#212632"
+							buttonColor="#1b202a"
+							borderColor="#11141B"
+						>
 							При покупки билета онлайн вы будете автоматически зарегистрированы на сайте. Это позволит вам управлять
 							купленными билетами. Если у вас уже есть аккаунт - <Link href="#"><a style={{
 							fontWeight: 700,
