@@ -80,7 +80,10 @@ const Cart = ({order, setTotalSumWithoutDiscount, setTotalSumWithDiscount}) => {
 	
 	const tickets = order[0].tickets;
 	const ticketsList = tickets.map((ticket, index) => (
-		<div className={styles.Cart__ticket}>
+		<div
+			className={styles.Cart__ticket}
+			key={index}
+		>
 			<div>
 				<em>{ticket.title}</em>
 				<div>
