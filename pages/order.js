@@ -19,8 +19,8 @@ const Order = () => {
 				{title: 'Взрослый билет', price: 800, priceAmount: 700},
 				{title: 'Детский билет', price: 550, priceAmount: 450},
 				{title: 'Взрослый билет (с ланчем)', price: 980, priceAmount: 880},
-			]
-		}
+			],
+		},
 	]);
 	
 	return (
@@ -28,10 +28,10 @@ const Order = () => {
 			<Container isMainPage={true}>
 				<div className={styles.Order__container}>
 					<div>
-						<Alert
-							title="Предупреждение!"
-							text="При покупке билета на ночную экскурсию Вам нужно выбрать текущую дату. Например если вы хотите купить билет на экскурсию 07.04.2022 в 00:35 вы должны выбрать дату - 06.04.2022."
-						/>
+						<Alert title="Предупреждение!" backgroundColor="#E4C830">
+							При покупке билета на ночную экскурсию Вам нужно выбрать текущую дату. Например если вы хотите купить
+							билет на экскурсию 07.04.2022 в 00:35 вы должны выбрать дату - 06.04.2022.
+						</Alert>
 						<CardContainer padding={16}>
 							<Cart
 								order={order}
@@ -56,6 +56,14 @@ const Order = () => {
 								<Form.Input type="text" placeholder="Ваша электронная почта" style={{padding: '0.5rem 0.25rem'}} htmlType="email"/>
 							</div>
 						</CardContainer>
+						<Alert title="Автоматическая регистрация" backgroundColor="#212632">
+							При покупки билета онлайн вы будете автоматически зарегистрированы на сайте. Это позволит вам управлять
+							купленными билетами. Если у вас уже есть аккаунт - <Link href="#"><a style={{
+							fontWeight: 700,
+							color: '#f0515d',
+							textDecoration: 'none',
+						}}>войдите</a></Link>
+						</Alert>
 					</div>
 					<div className={styles.Order__sidebar}>
 						<CardContainer padding={16}>
@@ -74,7 +82,8 @@ const Order = () => {
 								</div>
 								<Button.Primary>Оформить заказ</Button.Primary>
 								<p>
-									Согласен с условиями <Link href="#"><a>пользования торговой площадкой</a></Link> и <Link href="#"><a>условия возврата</a></Link>
+									Согласен с условиями <Link href="#"><a>пользования торговой площадкой</a></Link> и <Link href="#"><a>условия
+									                                                                                                     возврата</a></Link>
 								</p>
 							</div>
 						</CardContainer>
