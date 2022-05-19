@@ -58,7 +58,7 @@
 						font-weight: 500;
 						font-size: rem(14px);
 						line-height: rem(21px);
-						color: #181D22;
+						color: #181d22;
 					}
 				}
 				
@@ -77,6 +77,40 @@
 					a {
 						color: #f0515d;
 						text-decoration: none;
+					}
+				}
+			}
+			
+			.Order__advantages {
+				padding: 0 0 rem(24px) 0;
+				margin: 0 0 rem(8px) 0;
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				grid-row-gap: rem(16px);
+				border-bottom: 1px solid #c4c4c4;
+				
+				li {
+					display: flex;
+					flex-direction: row;
+					justify-content: flex-start;
+					align-items: center;
+					grid-column-gap: rem(12px);
+					
+					svg {
+						height: 20px;
+						width: 20px;
+						min-height: 20px;
+						min-width: 20px;
+						max-height: 20px;
+						max-width: 20px;
+					}
+					
+					span {
+						font-weight: 500;
+						font-size: rem(12px);
+						line-height: rem(18px);
+						color: #221818;
 					}
 				}
 			}
