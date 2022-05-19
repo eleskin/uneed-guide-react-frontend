@@ -160,9 +160,11 @@ const Input = ({
 	               help,
 	               inputValue,
 	               currentLocale = 'ru',
+	               padding,
 	               htmlType = 'text',
 	               error = '',
 	               filter = false,
+	               icons = true,
 	               ...props
                }) => {
 	
@@ -241,7 +243,9 @@ const Input = ({
 							/>
 						</div>
 					</label>
-					<em>{languageFile?.['form']?.['input']?.['range']?.['min-price-text']} - 250 {languageFile?.['form']?.['input']?.['range']?.['currency']}, {languageFile?.['form']?.['input']?.['range']?.['max-price-text']} - 6750</em>
+					<em>{languageFile?.['form']?.['input']?.['range']?.['min-price-text']} -
+					                                                                       250 {languageFile?.['form']?.['input']?.['range']?.['currency']}, {languageFile?.['form']?.['input']?.['range']?.['max-price-text']} -
+					                                                                       6750</em>
 				</div>
 			);
 		
@@ -250,19 +254,22 @@ const Input = ({
 				<Fragment>
 					<label
 						className={`${styles.Input} ${styles.Input_tel} ${error ? styles.Input__error : ''}`}
+						style={{padding: padding}}
 					>
-						<div className={styles.Input__select}>
-							<div className={styles.Input__country}>
-								<svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect y="-6.10352e-05" width="14" height="3.66667" fill="#FFFFFF"/>
-									<rect y="3.66644" width="14" height="3.66667" fill="#0131A7"/>
-									<rect y="7.33344" width="14" height="3.66667" fill="#D6261A"/>
-								</svg>
-								<svg width="5" height="2" viewBox="0 0 5 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M0.222609 0.178026C0.148795 0.118975 0.19055 -6.10352e-05 0.285078 -6.10352e-05H4.71492C4.80945 -6.10352e-05 4.8512 0.118975 4.77739 0.178026L2.56247 1.94996C2.52595 1.97918 2.47405 1.97918 2.43753 1.94996L0.222609 0.178026Z" fill="#C4C4C4" fillOpacity="0.5"/>
-								</svg>
+						{icons && (
+							<div className={styles.Input__select}>
+								<div className={styles.Input__country}>
+									<svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<rect y="-6.10352e-05" width="14" height="3.66667" fill="#FFFFFF"/>
+										<rect y="3.66644" width="14" height="3.66667" fill="#0131A7"/>
+										<rect y="7.33344" width="14" height="3.66667" fill="#D6261A"/>
+									</svg>
+									<svg width="5" height="2" viewBox="0 0 5 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M0.222609 0.178026C0.148795 0.118975 0.19055 -6.10352e-05 0.285078 -6.10352e-05H4.71492C4.80945 -6.10352e-05 4.8512 0.118975 4.77739 0.178026L2.56247 1.94996C2.52595 1.97918 2.47405 1.97918 2.43753 1.94996L0.222609 0.178026Z" fill="#C4C4C4" fillOpacity="0.5"/>
+									</svg>
+								</div>
 							</div>
-						</div>
+						)}
 						<div>
 							<i>{title}</i>
 							<InputMask
@@ -270,17 +277,21 @@ const Input = ({
 								mask="+7 999 999 9999"
 								maskChar=""
 								type="tel"
-								alwaysShowMask={false}
+								alwaysShowMask={true}
 							/>
 						</div>
-						<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="7" cy="6.99994" r="7" fill="#212121"/>
-							<circle cx="7" cy="3.99994" r="1" fill="white"/>
-							<path d="M6 5.99994H8V11.9999H6V7.99994L4 5.99994H6Z" fill="white"/>
-						</svg>
-						<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро
-						   заполнить
-						   макеты.</p>
+						{icons && (
+							<>
+								<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="7" cy="6.99994" r="7" fill="#212121"/>
+									<circle cx="7" cy="3.99994" r="1" fill="white"/>
+									<path d="M6 5.99994H8V11.9999H6V7.99994L4 5.99994H6Z" fill="white"/>
+								</svg>
+								<p>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро
+								   заполнить
+								   макеты.</p>
+							</>
+						)}
 					</label>
 					{error && <em className={styles.Form__error}>{error}</em>}
 				</Fragment>

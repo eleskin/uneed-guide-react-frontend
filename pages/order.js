@@ -6,6 +6,7 @@ import CardContainer from '../components/CardContainer/CardContainer';
 import Cart from '../components/Cart/Cart';
 import Container from '../components/Container/Container';
 import styles from '../styles/Order.module.scss';
+import Form from '../ui/Form/Form';
 
 
 const Order = () => {
@@ -22,7 +23,6 @@ const Order = () => {
 		}
 	]);
 	
-	
 	return (
 		<div className={styles.Order}>
 			<Container isMainPage={true}>
@@ -38,6 +38,23 @@ const Order = () => {
 								setTotalSumWithoutDiscount={setTotalSumWithoutDiscount}
 								setTotalSumWithDiscount={setTotalSumWithDiscount}
 							/>
+						</CardContainer>
+						<CardContainer padding={16}>
+							<div className={styles.Order__form}>
+								<header>
+									<h2>Ваши данные</h2>
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<circle cx="7" cy="7" r="7" fill="#212632"/>
+										<circle cx="7" cy="4" r="1" fill="white"/>
+										<path d="M6 6H8V12H6V8L4 6H6Z" fill="white"/>
+									</svg>
+								</header>
+								<Button.Outlined small={true}>Вход или регистрация</Button.Outlined>
+								<Form.Input type="text" placeholder="Ваше имя" style={{padding: '0.5rem 0.25rem'}}/>
+								<Form.Input type="tel" title="Ваш телефон" icons={false} padding="0.5rem 1rem"/>
+								<Form.Input type="text" placeholder="Ваша фамилия" style={{padding: '0.5rem 0.25rem'}}/>
+								<Form.Input type="text" placeholder="Ваша электронная почта" style={{padding: '0.5rem 0.25rem'}} htmlType="email"/>
+							</div>
 						</CardContainer>
 					</div>
 					<div className={styles.Order__sidebar}>
