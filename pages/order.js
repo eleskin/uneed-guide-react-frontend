@@ -7,19 +7,19 @@ import Cart from '../components/Cart/Cart';
 import Container from '../components/Container/Container';
 import styles from '../styles/Order.module.scss';
 
-
 const Order = () => {
 	const [totalSumWithoutDiscount, setTotalSumWithoutDiscount] = useState(0);
 	const [totalSumWithDiscount, setTotalSumWithDiscount] = useState(0);
+	const [totalTickets, setTotalTickets] = useState(0);
 	
 	const [order] = useState([
 		{
 			tickets: [
 				{title: 'Взрослый билет', price: 800, priceAmount: 700},
 				{title: 'Детский билет', price: 550, priceAmount: 450},
-				{title: 'Взрослый билет (с ланчем)', price: 980, priceAmount: 880},
-			]
-		}
+				{title: 'Льготный билет', price: 350, priceAmount: 250},
+			],
+		},
 	]);
 	
 	
@@ -37,30 +37,34 @@ const Order = () => {
 								order={order}
 								setTotalSumWithoutDiscount={setTotalSumWithoutDiscount}
 								setTotalSumWithDiscount={setTotalSumWithDiscount}
+								setTotalTickets={setTotalTickets}
 							/>
 						</CardContainer>
 					</div>
 					<div className={styles.Order__sidebar}>
-						<CardContainer padding={16}>
-							<div className={styles.Order__total}>
-								<header>
-									<h3>Итого</h3>
-									<strong>{totalSumWithDiscount} ₽</strong>
-								</header>
-								<div>
-									<span>Билетов, 4 шт.</span>
-									<span>{totalSumWithoutDiscount} ₽</span>
+						<div className={styles.Order__result}>
+							<CardContainer padding={16}>
+								<div className={styles.Order__total}>
+									<header>
+										<h3>Итого</h3>
+										<strong>{totalSumWithDiscount} ₽</strong>
+									</header>
+									<div>
+										<span>Билетов, {totalTickets} шт.</span>
+										<span>{totalSumWithoutDiscount} ₽</span>
+									</div>
+									<div>
+										<span>Скидка</span>
+										<span>{totalSumWithoutDiscount - totalSumWithDiscount} ₽</span>
+									</div>
+									<Button.Primary>Оформить заказ</Button.Primary>
+									<p>
+										Согласен с условиями <Link href="#"><a>пользования торговой
+										                                       площадкой</a></Link> и <Link href="#"><a>условия возврата</a></Link>
+									</p>
 								</div>
-								<div>
-									<span>Скидка</span>
-									<span>{totalSumWithoutDiscount - totalSumWithDiscount} ₽</span>
-								</div>
-								<Button.Primary>Оформить заказ</Button.Primary>
-								<p>
-									Согласен с условиями <Link href="#"><a>пользования торговой площадкой</a></Link> и <Link href="#"><a>условия возврата</a></Link>
-								</p>
-							</div>
-						</CardContainer>
+							</CardContainer>
+						</div>
 					</div>
 				</div>
 			</Container>
