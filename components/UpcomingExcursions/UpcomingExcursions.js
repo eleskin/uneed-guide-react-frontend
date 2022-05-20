@@ -22,13 +22,6 @@ const UpcomingExcursions = () => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
-//	const slides = [
-//		{},
-//		{},
-//		{},
-//		{},
-//	];
-	
 	useEffect(() => {
 		const interval = setInterval(() => {
 			if (isChangedSlide) {
@@ -91,7 +84,12 @@ const UpcomingExcursions = () => {
 	});
 	
 	useEffect(() => {
-		dispatch(getUpcoming());
+		dispatch(getUpcoming({
+			limit: 6,
+			offset: 0,
+			locale: router.locale,
+			timeStart: new Date()
+		}));
 	}, [dispatch]);
 	
 	return (
