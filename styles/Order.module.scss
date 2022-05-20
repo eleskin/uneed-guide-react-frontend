@@ -131,3 +131,48 @@
 		}
 	}
 }
+
+@media (min-width: 720px) {
+	.Order {
+		padding-top: rem(52px);
+
+		.Order__container {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			grid-row-gap: rem(16px);
+			grid-gap: rem(16px);
+
+			.Order__sidebar {
+				.Order__result {
+					position: sticky;
+					top: 140px;
+					
+					.Order__total {
+						header {
+							h3, span {
+								font-size: rem(22px);
+								line-height: rem(33px);
+							}
+						}
+						
+						& > div {
+							span {
+								font-size: rem(16px);
+								line-height: rem(24px);
+							}
+						}
+						
+						& > button {
+							margin-top: rem(40px);
+						}
+						
+						& > p {
+							font-size: rem(14px);
+							line-height: rem(21px);
+						}
+					}
+				}
+			}
+		}
+	}
+}

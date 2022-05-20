@@ -10,7 +10,7 @@ import Form from '../../ui/Form/Form';
 
 const ticketsCountInitial = [];
 
-const Cart = ({order, setTotalSumWithoutDiscount, setTotalSumWithDiscount}) => {
+const Cart = ({order, setTotalSumWithoutDiscount, setTotalSumWithDiscount, setTotalTickets}) => {
 	const router = useRouter();
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	const [dateValue, setDateValue] = useState();
@@ -63,16 +63,14 @@ const Cart = ({order, setTotalSumWithoutDiscount, setTotalSumWithDiscount}) => {
 		'13:15',
 		'13:30',
 	]);
+	const [backTimes] = useState([
+		'16:45',
+		'17:00',
+		'17:15',
+		'17:30',
+	]);
 	const [activeTime, setActiveTime] = useState(times[0]);
-	const timesList = times.map((time, index) => (
-		<button
-			className={`${styles.Cart__time} ${activeTime === time ? styles.Cart__time_active : ''}`}
-			onClick={() => setActiveTime(time)}
-			key={index}
-		>
-			{time}
-		</button>
-	));
+	const [activeBackTime, setActiveBackTime] = useState(backTimes[0]);
 	
 	const datesRef = createRef();
 	
@@ -92,39 +90,46 @@ const Cart = ({order, setTotalSumWithoutDiscount, setTotalSumWithDiscount}) => {
 				</div>
 			</div>
 			<div>
-				<button
-					onClick={() => {
-						ticketsCountInitial[index] = ticketsCountInitial[index] - 1;
-						setTicketsCount([...ticketsCountInitial]);
-						
-						setTotalSumWithoutDiscount(getTotal(total, ticketsCountInitial, tickets, 'price'));
-						setTotalSumWithDiscount(getTotal(total, ticketsCountInitial, tickets, 'priceAmount'));
-					}}
-					disabled={ticketsCount[index] <= 0}
-				>
-					<svg width="11" height="1" viewBox="0 0 11 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect y="1" width="1" height="11" rx="0.5" transform="rotate(-90 0 1)" fill="#221818"/>
-					</svg>
-				</button>
-				<output>{ticketsCount[index] || 0}</output>
-				<button
-					onClick={() => {
-						if (!ticketsCountInitial[index]) {
-							ticketsCountInitial[index] = 0;
-						}
-						
-						ticketsCountInitial[index] = ticketsCountInitial[index] + 1;
-						setTicketsCount([...ticketsCountInitial]);
-						
-						setTotalSumWithoutDiscount(getTotal(total, ticketsCountInitial, tickets, 'price'));
-						setTotalSumWithDiscount(getTotal(total, ticketsCountInitial, tickets, 'priceAmount'));
-					}}
-				>
-					<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect x="5" width="1" height="11" rx="0.5" fill="#221818"/>
-						<rect y="6" width="1" height="11" rx="0.5" transform="rotate(-90 0 6)" fill="#221818"/>
-					</svg>
-				</button>
+				<div className={styles.Cart__select}>
+					<button
+						onClick={() => {
+							setTotalTickets((prevState) => prevState - 1);
+							ticketsCountInitial[index] = ticketsCountInitial[index] - 1;
+							setTicketsCount([...ticketsCountInitial]);
+							
+							setTotalSumWithoutDiscount(getTotal(total, ticketsCountInitial, tickets, 'price'));
+							setTotalSumWithDiscount(getTotal(total, ticketsCountInitial, tickets, 'priceAmount'));
+						}}
+						disabled={ticketsCount[index] <= 0}
+					>
+						<svg width="11" height="1" viewBox="0 0 11 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect y="1" width="1" height="11" rx="0.5" transform="rotate(-90 0 1)" fill="#221818"/>
+						</svg>
+					</button>
+					<output>{ticketsCount[index] || 0}</output>
+					<button
+						onClick={() => {
+							setTotalTickets((prevState) => prevState + 1);
+							if (!ticketsCountInitial[index]) {
+								ticketsCountInitial[index] = 0;
+							}
+							
+							ticketsCountInitial[index] = ticketsCountInitial[index] + 1;
+							setTicketsCount([...ticketsCountInitial]);
+							
+							setTotalSumWithoutDiscount(getTotal(total, ticketsCountInitial, tickets, 'price'));
+							setTotalSumWithDiscount(getTotal(total, ticketsCountInitial, tickets, 'priceAmount'));
+						}}
+					>
+						<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect x="5" width="1" height="11" rx="0.5" fill="#221818"/>
+							<rect y="6" width="1" height="11" rx="0.5" transform="rotate(-90 0 6)" fill="#221818"/>
+						</svg>
+					</button>
+				</div>
+				<div className={styles.Cart__total} style={{color: (ticketsCount[index] === 0 || ticketsCount[index] === undefined) ? 'rgba(34 ,24 , 24, 0.6)' : ''}}>
+					{(ticketsCount[index] || 0) * ticket.priceAmount} ₽
+				</div>
 			</div>
 		</div>
 	));
@@ -191,7 +196,27 @@ const Cart = ({order, setTotalSumWithoutDiscount, setTotalSumWithDiscount}) => {
 				</div>
 				<h3>Время отправления</h3>
 				<div className={styles.Cart__times}>
-					{timesList}
+					{times.map((time, index) => (
+						<button
+							className={`${styles.Cart__time} ${activeTime === time ? styles.Cart__time_active : ''}`}
+							onClick={() => setActiveTime(time)}
+							key={index}
+						>
+							{time}
+						</button>
+					))}
+				</div>
+				<h3>Время обратного отправления</h3>
+				<div className={styles.Cart__times}>
+					{backTimes.map((time, index) => (
+						<button
+							className={`${styles.Cart__time} ${activeBackTime === time ? styles.Cart__time_active : ''}`}
+							onClick={() => setActiveBackTime(time)}
+							key={index}
+						>
+							{time}
+						</button>
+					))}
 				</div>
 				<h3>Выберите билеты</h3>
 				<div className={styles.Cart__tickets}>
