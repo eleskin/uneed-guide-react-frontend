@@ -450,3 +450,16 @@
 	}
 	
 }
+
+@media (min-width: 1024px) {
+	.Cart {
+		.Cart__form {
+			.Cart__tickets {
+				.Cart__ticket {
+					display: flex;
+					flex-direction: row;
+				}
+			}
+		}
+	}
+}
