@@ -61,6 +61,26 @@ export const getPopulars = createAsyncThunk(
 	{},
 );
 
+export const getSpecials = createAsyncThunk(
+	'mainPage/specials',
+	async (payload) => {
+		try {
+			const response = await axios.get('https://test-api.uneedguide.com/v1/tour/find-all', {
+				params: payload
+			});
+			
+			if (response.status === 200) {
+				return response.data;
+			}
+			
+			return undefined;
+		} catch (error) {
+			throw new Error(error);
+		}
+	},
+	{},
+);
+
 const initialState = {
 	upcoming: []
 };

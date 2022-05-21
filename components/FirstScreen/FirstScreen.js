@@ -12,10 +12,9 @@ import styles from './FirstScreen.module.scss';
 import Link from 'next/link';
 import Calendar from 'react-calendar';
 
-const FirstScreen = () => {
+const FirstScreen = ({value, onChange}) => {
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const [value, onChange] = useState(new Date());
 	const [currentLocale, setCurrentLocale] = useState('ru');
 	const {asPath} = router;
 	const [currentDate, setCurrentDate] = useState(format(new Date(Date.parse(value.toString())), 'dd-MM-yyyy'));
