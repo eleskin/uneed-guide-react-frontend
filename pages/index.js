@@ -16,7 +16,7 @@ const Home = () => {
 			<FirstScreen value={value} onChange={onChange}/>
 			<PopularCategories/>
 			<SpecialOffers value={value}/>
-			<LimitedOpportunities/>
+			<LimitedOpportunities value={value}/>
 			<Advantages/>
 			<Viewed isMainPage={true}/>
 			<CatalogLink/>

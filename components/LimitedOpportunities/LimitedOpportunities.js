@@ -1,13 +1,16 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {getPreferential} from '../../store/slices/mainPage';
 import CardSlider from '../CardSlider/CardSlider';
 import Container from '../Container/Container';
 import ExcursionsCard from '../ExcursionsCard/ExcursionsCard';
 import Title from '../Title/Title';
 import styles from './LimitedOpportunities.module.scss';
 
-const LimitedOpportunities = () => {
+const LimitedOpportunities = ({value}) => {
+	const dispatch = useDispatch();
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [isDisabledNextButton, setIsDisabledNextButton] = useState(false);
 	const router = useRouter();
@@ -18,6 +21,17 @@ const LimitedOpportunities = () => {
 			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
+	
+	useEffect(() => {
+		dispatch(getPreferential({
+			limit: 6,
+			offset: 0,
+//			city: 0,
+			locale: router.locale,
+			forPreferential: 1,
+			timeStart: value.toISOString()
+		}));
+	}, [dispatch]);
 	
 	const slides = [
 		{},
