@@ -59,9 +59,15 @@ const FirstScreen = () => {
 		setActiveCity(getCityName(selectedCity, router, 'dative'));
 	}, [router, selectedCity]);
 	
-	useEffect(() => {
-		dispatch(getAll());
-	}, []);
+	const handleSearchClick = () => {
+		dispatch(getAll({
+			limit: 6,
+			offset: 0,
+//			city: 0,
+			locale: router.locale,
+			timeStart: value.toISOString()
+		}));
+	};
 	
 	return (
 		<div className={styles.FirstScreen}>
@@ -93,7 +99,14 @@ const FirstScreen = () => {
 							<Calendar
 								locale={currentLocale}
 								value={value}
-								onChange={onChange}
+								onChange={(event) => {
+									const date = new Date();
+									if (date.setHours(0, 0, 0, 0) === event.getTime()) {
+										onChange(date);
+									} else {
+										onChange(event);
+									}
+								}}
 								onClickDay={() => setIsVisibleCalendar(false)}
 							/>
 						</div>
@@ -110,11 +123,16 @@ const FirstScreen = () => {
 								<rect x="4.61133" width="0.888889" height="3.55556" rx="0.444444" fill="#F0515D"/>
 								<rect x="13.5" width="0.888889" height="3.55556" rx="0.444444" fill="#F0515D"/>
 							</svg>
-							<Button.Primary small={true}>{languageFile?.['first-screen']?.['search-button']}</Button.Primary>
+							<Button.Primary
+								small={true}
+								onClick={handleSearchClick}
+							>
+								{languageFile?.['first-screen']?.['search-button']}
+							</Button.Primary>
 						</label>
 					</div>
 				</div>
-				<UpcomingExcursions/>
+				<UpcomingExcursions timeStart={value.toISOString()}/>
 			</div>
 		</div>
 	);

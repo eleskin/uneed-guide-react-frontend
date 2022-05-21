@@ -7,7 +7,7 @@ import {useOutsideClickHandler} from '../../utils/hooks';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
 import styles from './UpcomingExcursions.module.scss';
 
-const UpcomingExcursions = () => {
+const UpcomingExcursions = ({timeStart}) => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const [dateValue, setDateValue] = useState(new Date());
@@ -87,8 +87,10 @@ const UpcomingExcursions = () => {
 		dispatch(getUpcoming({
 			limit: 6,
 			offset: 0,
+//			city: 0,
+//			categories: 0,
 			locale: router.locale,
-			timeStart: new Date()
+			timeStart: timeStart
 		}));
 	}, [dispatch]);
 	
