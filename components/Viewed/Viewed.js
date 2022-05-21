@@ -51,6 +51,7 @@ const Viewed = ({isMainPage = false}) => {
 	const slidesList = slides.map((slide, index) => (
 		<ExcursionsCard
 			viewed={true}
+			link="#"
 			key={index}
 		/>
 	));

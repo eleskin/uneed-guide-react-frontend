@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useEffect, useMemo, useState} from 'react';
 import Calendar from 'react-calendar';
@@ -6,15 +7,16 @@ import Button from '../Button/Button';
 import styles from './ExcursionsCard.module.scss';
 
 const ExcursionsCard = ({
-	                       handleCalendarButtonClick,
-	                       dateValue,
-	                       setDateValue,
-	                       isVisibleCalendar,
-	                       setIsVisibleCalendar,
-	                       small = false,
-	                       limitedOpportunities = false,
-	                       viewed = false
-                       }) => {
+	                        handleCalendarButtonClick,
+	                        dateValue,
+	                        setDateValue,
+	                        isVisibleCalendar,
+	                        setIsVisibleCalendar,
+	                        link,
+	                        small = false,
+	                        limitedOpportunities = false,
+	                        viewed = false,
+                        }) => {
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
 	const [currentLocale, setCurrentLocale] = useState('ru');
@@ -93,15 +95,17 @@ const ExcursionsCard = ({
 			`}
 		>
 			<div className={styles.ExcursionsCard__image}>
-				<Image
-					src="/assets/images/upcoming-excursions/upcoming-excursions-image-1.png"
-					width={300}
-					height={200}
-					layout="responsive"
-					objectFit="cover"
-					alt=""
-				/>
-				{small|| viewed && <i>-10%</i>}
+				<Link href={link}>
+					<Image
+						src="/assets/images/upcoming-excursions/upcoming-excursions-image-1.png"
+						width={300}
+						height={200}
+						layout="responsive"
+						objectFit="cover"
+						alt=""
+					/>
+				</Link>
+				{small || viewed && <i>-10%</i>}
 				{limitedOpportunities && (
 					<b>
 						<svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +118,9 @@ const ExcursionsCard = ({
 			<header className={styles.ExcursionsCard__header}>
 				{viewed && <b>Neva Trevel</b>}
 				{small && <i>Москва</i>}
-				<h3>Экскурсия по Москва-реке</h3>
+				<Link href={link}>
+					<h3>Экскурсия по Москва-реке</h3>
+				</Link>
 				{small && <p>
 					Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты.
 				</p>}
@@ -248,12 +254,14 @@ const ExcursionsCard = ({
 				>
 					{languageFile?.['upcoming-excursions']?.['buy-button']}
 				</Button.Primary>
-				<Button.Outlined
-					small={true}
-					style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
-				>
-					{languageFile?.['upcoming-excursions']?.['more-button']}
-				</Button.Outlined>
+				<Link href={link}>
+					<Button.Outlined
+						small={true}
+						style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
+					>
+						{languageFile?.['upcoming-excursions']?.['more-button']}
+					</Button.Outlined>
+				</Link>
 				<Button.Outlined
 					small={true}
 					style={{paddingLeft: '0.5rem', paddingRight: '0.5rem'}}

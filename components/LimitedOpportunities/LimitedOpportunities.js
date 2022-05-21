@@ -43,6 +43,7 @@ const LimitedOpportunities = () => {
 	const slidesList = slides.map((slide, index) => (
 		<ExcursionsCard
 			limitedOpportunities={true}
+			link="#"
 			key={index}
 		/>
 	));

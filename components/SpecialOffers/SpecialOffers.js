@@ -57,6 +57,7 @@ const SpecialOffers = () => {
 	const slidesList = slides.map((slide, index) => (
 		<ExcursionsCard
 			small={true}
+			link="#"
 			key={index}
 		/>
 	));
