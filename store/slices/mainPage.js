@@ -3,9 +3,11 @@ import axios from 'axios';
 
 export const getUpcoming = createAsyncThunk(
 	'mainPage/upcoming',
-	async () => {
+	async (payload) => {
 		try {
-			const response = await axios.get('https://test-api.uneedguide.com/v1/tour/upcoming');
+			const response = await axios.get('https://test-api.uneedguide.com/v1/tour/upcoming', {
+				params: payload
+			});
 			
 			if (response.status === 200) {
 				return response.data;
@@ -21,9 +23,11 @@ export const getUpcoming = createAsyncThunk(
 
 export const getAll = createAsyncThunk(
 	'mainPage/all',
-	async () => {
+	async (payload) => {
 		try {
-			const response = await axios.get('https://test-api.uneedguide.com/v1/tour/find-all');
+			const response = await axios.get('https://test-api.uneedguide.com/v1/tour/find-all', {
+				params: payload
+			});
 			
 			if (response.status === 200) {
 				return response.data;
