@@ -1,4 +1,5 @@
 import styles from '/styles/Home.module.scss';
+import {useState} from 'react';
 import Advantages from '../components/Advantages/Advantages';
 import CatalogLink from '../components/CatalogLink/CatalogLink';
 import FirstScreen from '../components/FirstScreen/FirstScreen';
@@ -8,12 +9,14 @@ import SpecialOffers from '../components/SpecialOffers/SpecialOffers';
 import Viewed from '../components/Viewed/Viewed';
 
 const Home = () => {
+	const [value, onChange] = useState(new Date());
+	
 	return (
 		<div className={styles.Home}>
-			<FirstScreen/>
+			<FirstScreen value={value} onChange={onChange}/>
 			<PopularCategories/>
-			<SpecialOffers/>
-			<LimitedOpportunities/>
+			<SpecialOffers value={value}/>
+			<LimitedOpportunities value={value}/>
 			<Advantages/>
 			<Viewed isMainPage={true}/>
 			<CatalogLink/>
