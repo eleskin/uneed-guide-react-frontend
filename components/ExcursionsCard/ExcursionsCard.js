@@ -9,11 +9,8 @@ import Button from '../Button/Button';
 import styles from './ExcursionsCard.module.scss';
 
 const ExcursionCard = ({
-	                       handleCalendarButtonClick,
 	                       dateValue,
 	                       setDateValue,
-	                       isVisibleCalendar,
-	                       setIsVisibleCalendar,
 	                       cardCity,
 	                       cardTitle,
 	                       cardImage,
