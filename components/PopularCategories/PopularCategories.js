@@ -1,5 +1,7 @@
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {getPopulars} from '../../store/slices/mainPage';
 import Container from '../Container/Container';
 import PopularCategoriesCard from '../PopularCategoriesCard/PopularCategoriesCard';
 import Title from '../Title/Title';
@@ -8,6 +10,7 @@ import Link from 'next/link';
 
 const PopularCategories = () => {
 	const router = useRouter();
+	const dispatch = useDispatch();
 	const [languageFile, setLanguageFile] = useState();
 	
 	useEffect(() => {
@@ -15,6 +18,16 @@ const PopularCategories = () => {
 			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
+	
+	useEffect(() => {
+		dispatch(getPopulars({
+			limit: 10,
+			offset: 0,
+//			city: 0,
+			locale: router.locale,
+			popular: 1,
+		})).then(console.log);
+	}, [dispatch]);
 	
 	return (
 		<div className={styles.PopularCategories}>

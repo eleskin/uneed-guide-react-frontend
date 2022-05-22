@@ -1,14 +1,17 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {useMediaQuery} from 'react-responsive';
+import {getSpecials} from '../../store/slices/mainPage';
 import CardSlider from '../CardSlider/CardSlider';
 import Container from '../Container/Container';
 import ExcursionsCard from '../ExcursionsCard/ExcursionsCard';
 import Title from '../Title/Title';
 import styles from './SpecialOffers.module.scss';
 
-const SpecialOffers = () => {
+const SpecialOffers = ({value}) => {
+	const dispatch = useDispatch();
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [isDisabledNextButton, setIsDisabledNextButton] = useState(false);
 	const router = useRouter();
@@ -19,6 +22,17 @@ const SpecialOffers = () => {
 			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
+	
+	useEffect(() => {
+		dispatch(getSpecials({
+			limit: 6,
+			offset: 0,
+//			city: 0,
+			locale: router.locale,
+			special: 1,
+			timeStart: value.toISOString()
+		}));
+	}, [dispatch]);
 	
 	const slides = [
 		{},
@@ -57,6 +71,7 @@ const SpecialOffers = () => {
 	const slidesList = slides.map((slide, index) => (
 		<ExcursionsCard
 			small={true}
+			link="#"
 			key={index}
 		/>
 	));
