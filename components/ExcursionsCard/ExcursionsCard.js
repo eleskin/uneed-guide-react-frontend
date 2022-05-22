@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-import {useEffect, useMemo, useState} from 'react';
+import {createRef, useEffect, useMemo, useState} from 'react';
 import Calendar from 'react-calendar';
 import {useSelector} from 'react-redux';
+import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
 import styles from './ExcursionsCard.module.scss';
 
@@ -33,6 +34,7 @@ const ExcursionCard = ({
 	const [languageFile, setLanguageFile] = useState();
 	const [currentLocale, setCurrentLocale] = useState('ru');
 	const citiesTranslates = useSelector((state) => state['geolocationSlice']['citiesTranslates']);
+	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -46,6 +48,10 @@ const ExcursionCard = ({
 		}
 	}, [router.locale]);
 	
+	const calendarRef = createRef();
+	
+	useOutsideClickHandler(calendarRef, isVisibleCalendar, setIsVisibleCalendar);
+	
 	const ExcursionCardDepartures = useMemo(() => (
 		<div className={styles.ExcursionsCard__departures}>
 			<span>{languageFile?.['upcoming-excursions']?.['nearest-departures']}:</span>
@@ -53,7 +59,7 @@ const ExcursionCard = ({
 				<button>12:45</button>
 				<button>14:25</button>
 				<button>16:25</button>
-				<button onClick={handleCalendarButtonClick}>
+				<button onClick={() => setTimeout(() => setIsVisibleCalendar(true), 0)}>
 					<svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M15.8334 1.77783H16.9446C17.4968 1.77783 17.9446 2.22555 17.9446 2.77783V15.0001C17.9446 15.5523 17.4968 16.0001 16.9446 16.0001H2.05566C1.50338 16.0001 1.05566 15.5523 1.05566 15.0001V2.77783C1.05566 2.22555 1.50338 1.77783 2.05566 1.77783H3.16678M11.6112 1.77783H9.50011H7.389" stroke="#F0515D" strokeWidth="0.5"/>
 						<rect x="4.61133" width="0.888889" height="3.55556" rx="0.444444" fill="#F0515D"/>
@@ -63,6 +69,7 @@ const ExcursionCard = ({
 			</div>
 			<div
 				className={`${styles.ExcursionsCard__calendar} ${isVisibleCalendar ? styles.ExcursionsCard__calendar_active : ''}`}
+				ref={calendarRef}
 			>
 				<Calendar
 					locale={currentLocale}
@@ -72,7 +79,7 @@ const ExcursionCard = ({
 				/>
 			</div>
 		</div>
-	), [languageFile, handleCalendarButtonClick, currentLocale, dateValue, setDateValue, isVisibleCalendar, setIsVisibleCalendar]);
+	), [languageFile, currentLocale, dateValue, setDateValue, isVisibleCalendar, setIsVisibleCalendar]);
 	
 	const rating = useMemo(() => {
 		const rating = [];
