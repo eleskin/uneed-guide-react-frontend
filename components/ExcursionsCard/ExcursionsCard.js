@@ -1,17 +1,16 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {useRouter} from 'next/router';
-import {useEffect, useMemo, useState} from 'react';
+import {createRef, useEffect, useMemo, useState} from 'react';
 import Calendar from 'react-calendar';
 import {useSelector} from 'react-redux';
+import {useOutsideClickHandler} from '../../utils/hooks';
 import Button from '../Button/Button';
 import styles from './ExcursionsCard.module.scss';
 
-const ExcursionsCard = ({
-	                       handleCalendarButtonClick,
+const ExcursionCard = ({
 	                       dateValue,
 	                       setDateValue,
-	                       isVisibleCalendar,
-	                       setIsVisibleCalendar,
 	                       cardCity,
 	                       cardTitle,
 	                       cardImage,
@@ -22,6 +21,7 @@ const ExcursionsCard = ({
 	                       cardRating,
 	                       cardDiscountValue,
 	                       cardTickets,
+	                       link,
 	                       small = false,
 	                       limitedOpportunities = false,
 	                       viewed = false,
@@ -31,6 +31,7 @@ const ExcursionsCard = ({
 	const [languageFile, setLanguageFile] = useState();
 	const [currentLocale, setCurrentLocale] = useState('ru');
 	const citiesTranslates = useSelector((state) => state['geolocationSlice']['citiesTranslates']);
+	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -44,6 +45,10 @@ const ExcursionsCard = ({
 		}
 	}, [router.locale]);
 	
+	const calendarRef = createRef();
+	
+	useOutsideClickHandler(calendarRef, isVisibleCalendar, setIsVisibleCalendar);
+	
 	const ExcursionCardDepartures = useMemo(() => (
 		<div className={styles.ExcursionsCard__departures}>
 			<span>{languageFile?.['upcoming-excursions']?.['nearest-departures']}:</span>
@@ -51,7 +56,7 @@ const ExcursionsCard = ({
 				<button>12:45</button>
 				<button>14:25</button>
 				<button>16:25</button>
-				<button onClick={handleCalendarButtonClick}>
+				<button onClick={() => setTimeout(() => setIsVisibleCalendar(true), 0)}>
 					<svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M15.8334 1.77783H16.9446C17.4968 1.77783 17.9446 2.22555 17.9446 2.77783V15.0001C17.9446 15.5523 17.4968 16.0001 16.9446 16.0001H2.05566C1.50338 16.0001 1.05566 15.5523 1.05566 15.0001V2.77783C1.05566 2.22555 1.50338 1.77783 2.05566 1.77783H3.16678M11.6112 1.77783H9.50011H7.389" stroke="#F0515D" strokeWidth="0.5"/>
 						<rect x="4.61133" width="0.888889" height="3.55556" rx="0.444444" fill="#F0515D"/>
@@ -61,6 +66,7 @@ const ExcursionsCard = ({
 			</div>
 			<div
 				className={`${styles.ExcursionsCard__calendar} ${isVisibleCalendar ? styles.ExcursionsCard__calendar_active : ''}`}
+				ref={calendarRef}
 			>
 				<Calendar
 					locale={currentLocale}
@@ -70,7 +76,7 @@ const ExcursionsCard = ({
 				/>
 			</div>
 		</div>
-	), [languageFile, handleCalendarButtonClick, currentLocale, dateValue, setDateValue, isVisibleCalendar, setIsVisibleCalendar]);
+	), [languageFile, currentLocale, dateValue, setDateValue, isVisibleCalendar, setIsVisibleCalendar]);
 	
 	const rating = useMemo(() => {
 		const rating = [];
@@ -168,14 +174,16 @@ const ExcursionsCard = ({
 		>
 			<div className={styles.ExcursionsCard__image}>
 				{cardImage && (
-					<Image
-						src={cardImage}
-						width={300}
-						height={200}
-						layout="responsive"
-						objectFit="cover"
-						alt=""
-					/>
+					<Link href={link}>
+						<Image
+							src={cardImage}
+							width={300}
+							height={200}
+							layout="responsive"
+							objectFit="cover"
+							alt=""
+						/>
+					</Link>
 				)}
 				{(small || viewed) && <i>-{cardDiscountValue}%</i>}
 				{limitedOpportunities && (
@@ -190,7 +198,9 @@ const ExcursionsCard = ({
 			<header className={styles.ExcursionsCard__header}>
 				{viewed && <b>Neva Travel</b>}
 				{small && <i>{citiesTranslates[cardCity]}</i>}
-				<h3>{cardTitle}</h3>
+				<Link href={link}>
+					<h3>{cardTitle}</h3>
+				</Link>
 				{small && <p>{cardDescription}</p>}
 				<span>
 					<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -249,12 +259,14 @@ const ExcursionsCard = ({
 				>
 					{languageFile?.['upcoming-excursions']?.['buy-button']}
 				</Button.Primary>
-				<Button.Outlined
-					small={true}
-					style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
-				>
-					{languageFile?.['upcoming-excursions']?.['more-button']}
-				</Button.Outlined>
+				<Link href={link}>
+					<Button.Outlined
+						small={true}
+						style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
+					>
+						{languageFile?.['upcoming-excursions']?.['more-button']}
+					</Button.Outlined>
+				</Link>
 				<Button.Outlined
 					small={true}
 					style={{paddingLeft: '0.5rem', paddingRight: '0.5rem'}}
@@ -273,4 +285,4 @@ const ExcursionsCard = ({
 	);
 };
 
-export default ExcursionsCard;
+export default ExcursionCard;
