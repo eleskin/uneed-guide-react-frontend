@@ -7,7 +7,7 @@ import {useOutsideClickHandler} from '../../utils/hooks';
 import ExcursionCard from '../ExcursionCard/ExcursionCard';
 import styles from './UpcomingExcursions.module.scss';
 
-const UpcomingExcursions = () => {
+const UpcomingExcursions = ({timeStart}) => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const [dateValue, setDateValue] = useState(new Date());
@@ -21,13 +21,6 @@ const UpcomingExcursions = () => {
 			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
-	
-//	const slides = [
-//		{},
-//		{},
-//		{},
-//		{},
-//	];
 	
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -91,7 +84,14 @@ const UpcomingExcursions = () => {
 	});
 	
 	useEffect(() => {
-		dispatch(getUpcoming());
+		dispatch(getUpcoming({
+			limit: 6,
+			offset: 0,
+//			city: 0,
+//			categories: 0,
+			locale: router.locale,
+			timeStart: timeStart
+		}));
 	}, [dispatch]);
 	
 	return (

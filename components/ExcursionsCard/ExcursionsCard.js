@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useEffect, useMemo, useState} from 'react';
 import Calendar from 'react-calendar';
@@ -22,6 +23,7 @@ const ExcursionCard = ({
 	                       cardRating,
 	                       cardDiscountValue,
 	                       cardTickets,
+	                       link,
 	                       small = false,
 	                       limitedOpportunities = false,
 	                       viewed = false,
@@ -168,14 +170,16 @@ const ExcursionCard = ({
 		>
 			<div className={styles.ExcursionsCard__image}>
 				{cardImage && (
-					<Image
-						src={cardImage}
-						width={300}
-						height={200}
-						layout="responsive"
-						objectFit="cover"
-						alt=""
-					/>
+					<Link href={link}>
+						<Image
+							src={cardImage}
+							width={300}
+							height={200}
+							layout="responsive"
+							objectFit="cover"
+							alt=""
+						/>
+					</Link>
 				)}
 				{(small || viewed) && <i>-{cardDiscountValue}%</i>}
 				{limitedOpportunities && (
@@ -190,7 +194,9 @@ const ExcursionCard = ({
 			<header className={styles.ExcursionsCard__header}>
 				{viewed && <b>Neva Travel</b>}
 				{small && <i>{citiesTranslates[cardCity]}</i>}
-				<h3>{cardTitle}</h3>
+				<Link href={link}>
+					<h3>{cardTitle}</h3>
+				</Link>
 				{small && <p>{cardDescription}</p>}
 				<span>
 					<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -249,12 +255,14 @@ const ExcursionCard = ({
 				>
 					{languageFile?.['upcoming-excursions']?.['buy-button']}
 				</Button.Primary>
-				<Button.Outlined
-					small={true}
-					style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
-				>
-					{languageFile?.['upcoming-excursions']?.['more-button']}
-				</Button.Outlined>
+				<Link href={link}>
+					<Button.Outlined
+						small={true}
+						style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
+					>
+						{languageFile?.['upcoming-excursions']?.['more-button']}
+					</Button.Outlined>
+				</Link>
 				<Button.Outlined
 					small={true}
 					style={{paddingLeft: '0.5rem', paddingRight: '0.5rem'}}
