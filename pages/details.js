@@ -12,14 +12,15 @@ const Details = () => {
 		return (
 			<ExcursionCard
 				slide={slide}
-//				dateValue={dateValue}
-//				setDateValue={setDateValue}
-//				handleCalendarButtonClick={handleCalendarButtonClick}
-//				isVisibleCalendar={isVisibleCalendar}
-//				setIsVisibleCalendar={setIsVisibleCalendar}
+				//				dateValue={dateValue}
+				//				setDateValue={setDateValue}
+				//				handleCalendarButtonClick={handleCalendarButtonClick}
+				//				isVisibleCalendar={isVisibleCalendar}
+				//				setIsVisibleCalendar={setIsVisibleCalendar}
 				key={index}
 			/>
-		)});
+		);
+	});
 	
 	return (
 		<div className={styles.Details}>
@@ -30,30 +31,44 @@ const Details = () => {
 							<div className={styles.Details__info}>
 								<h2>Билет приобретен</h2>
 								<span className={styles.Details__text}>Спасибо за покупку!<br/>Приятной и комфортной вам экскурсии</span>
-								<h3>Место отправления</h3>
-								<span className={styles.Details__text}>
-									Москва, Лиговский проезд, д.3, причал №3
-								</span>
-								<h3>Дата экскурсии</h3>
-								<span className={styles.Details__text}>
-									Ожидаемая дата экскурсии: 03 апреля 2022 г.
-								</span>
-								<h3>Время отправления</h3>
-								<span className={styles.Details__text}>
-									12:45
-								</span>
-								<h3>Время прибытия</h3>
-								<span className={styles.Details__text}>
-									14:45
-								</span>
-								<h3>Время обратного отправления</h3>
-								<span className={styles.Details__text}>
-									17:45
-								</span>
-								<h3>Время обратного прибытия</h3>
-								<span className={styles.Details__text}>
-									19:45
-								</span>
+								<div>
+									<div>
+										<h3>Место отправления</h3>
+										<span className={styles.Details__text}>
+											Москва, Лиговский проезд, д.3, причал №3
+										</span>
+									</div>
+									<div>
+										<h3>Дата экскурсии</h3>
+										<span className={styles.Details__text}>
+											Ожидаемая дата экскурсии: 03 апреля 2022 г.
+										</span>
+									</div>
+									<div>
+										<h3>Время отправления</h3>
+										<span className={styles.Details__text}>
+											12:45
+										</span>
+									</div>
+									<div>
+										<h3>Время прибытия</h3>
+										<span className={styles.Details__text}>
+											14:45
+										</span>
+									</div>
+									<div>
+										<h3>Время обратного отправления</h3>
+										<span className={styles.Details__text}>
+											17:45
+										</span>
+									</div>
+									<div>
+										<h3>Время обратного прибытия</h3>
+										<span className={styles.Details__text}>
+											19:45
+										</span>
+									</div>
+								</div>
 								<footer>
 									<h3>Ваш номер бронирования</h3>
 									<span className={styles.Details__text}>№342525634-445-6642</span>
@@ -134,10 +149,14 @@ const Details = () => {
 									</div>
 								</div>
 								<footer>
-									<h3>Способ оплаты</h3>
-									<span className={styles.Details__text}>Банковской картой</span>
-									<h3>Состояние оплаты</h3>
-									<span className={`${styles.Details__text} ${styles.Details__text_successful}`}>Оплачено</span>
+									<div>
+										<h3>Способ оплаты</h3>
+										<span className={styles.Details__text}>Банковской картой</span>
+									</div>
+									<div>
+										<h3>Состояние оплаты</h3>
+										<span className={`${styles.Details__text} ${styles.Details__text_successful}`}>Оплачено</span>
+									</div>
 								</footer>
 							</div>
 						</CardContainer>
