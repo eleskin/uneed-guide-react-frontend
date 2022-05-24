@@ -40,25 +40,25 @@ const PopularCategories = () => {
 						image="/assets/images/popular-categories/popular-categories-img-1.png"
 						title="Водные экскурсии"
 						count={13}
-						link={`/${selectedCity}/categories/catalog`}
+						link={`/${selectedCity?.['internationalName'].toLowerCase()}/categories/catalog`}
 					/>
 					<PopularCategoriesCard
 						price={550}
 						image="/assets/images/popular-categories/popular-categories-img-2.png"
 						title="Дневные экскурсии"
 						count={32}
-						link={`/${selectedCity}/categories/catalog`}
+						link={`/${selectedCity?.['internationalName'].toLowerCase()}/categories/catalog`}
 					/>
 					<PopularCategoriesCard
 						price={350}
 						image="/assets/images/popular-categories/popular-categories-img-3.png"
 						title="Пешеходные экскурсии"
 						count={32}
-						link={`/${selectedCity}/categories/catalog`}
+						link={`/${selectedCity?.['internationalName'].toLowerCase()}/categories/catalog`}
 					/>
 				</div>
 				<footer className={styles.PopularCategories__footer}>
-					<Link href={`/${selectedCity}/categories/catalog`}>
+					<Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/categories/catalog`}>
 						<a>
 							{languageFile?.['popular-categories']?.['catalog-link']}
 							<svg width="18" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg">

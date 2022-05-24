@@ -66,7 +66,7 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, setActiveSlide
 				</div>
 			</div>
 			{!isLimitedOpportunities && (
-				<Link href={`/${selectedCity}/categories/catalog`}>
+				<Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/categories/catalog`}>
 					<a className={styles.SpecialOffers__link}>
 						{languageFile?.['card-slider']?.['link']}
 					</a>

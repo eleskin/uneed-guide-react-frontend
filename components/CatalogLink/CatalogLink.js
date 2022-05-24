@@ -22,7 +22,7 @@ const CatalogLink = () => {
 			<span className={styles.CatalogLink__text}>
 				{languageFile?.['catalog-link']?.['title']}
 			</span>
-				<Link href={`/${selectedCity}/categories/catalog`}>
+				<Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/categories/catalog`}>
 					<a className={styles.CatalogLink__link}>
 						{languageFile?.['catalog-link']?.['text-button']}
 						<svg width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">

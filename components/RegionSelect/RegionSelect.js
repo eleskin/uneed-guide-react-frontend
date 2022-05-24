@@ -36,7 +36,7 @@ const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates, isVisible
 	}, [cities, citiesTranslates, dispatch, router, router.query, selectedCity]);
 	
 	useEffect(() => {
-		if (router.pathname === '/' || router.pathname === `/${selectedCity}`) {
+		if (router.pathname === '/' || router.pathname === `/${selectedCity?.['internationalName'].toLowerCase()}`) {
 			if (!router.query['city']) dispatch(setIsVisibleRegionSelector(true));
 		}
 		

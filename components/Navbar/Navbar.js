@@ -48,8 +48,8 @@ const Navbar = () => {
 						<span>Избранное</span>
 					</a>
 				</Link>
-				<Link href={`/${selectedCity}/profile`}>
-					<a className={`${styles.Navbar__link} ${router.pathname === `/${selectedCity}/profile` ? styles.Navbar__link_active : ''}`}>
+				<Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/profile`}>
+					<a className={`${styles.Navbar__link} ${router.pathname === `/${selectedCity?.['internationalName'].toLowerCase()}/profile` ? styles.Navbar__link_active : ''}`}>
 						<svg width="18" height="17" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M1.7998 17V14.9804C1.7998 14.0535 2.1791 13.1644 2.85422 12.509C3.52936 11.8536 4.44502 11.4854 5.39981 11.4854H8.9998H12.5998C13.5546 11.4854 14.4702 11.8536 15.1454 12.509C15.8205 13.1644 16.1998 14.0535 16.1998 14.9804V17" stroke="#D3D3D3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 							<path d="M8.9999 7.99013C10.9881 7.99013 12.5999 6.42552 12.5999 4.49507C12.5999 2.56461 10.9881 1 8.9999 1C7.01168 1 5.3999 2.56461 5.3999 4.49507C5.3999 6.42552 7.01168 7.99013 8.9999 7.99013Z" stroke="#D3D3D3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

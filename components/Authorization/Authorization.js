@@ -41,7 +41,7 @@ const Authorization = ({headerHeight}) => {
 	
 	const handleClickBack = () => {
 		if (!isDesktop) {
-			const isExistPreviousPage = !localStorage.getItem('previous_page') || localStorage.getItem('previous_page') === `/${selectedCity}/profile`;
+			const isExistPreviousPage = !localStorage.getItem('previous_page') || localStorage.getItem('previous_page') === `/${selectedCity?.['internationalName'].toLowerCase()}/profile`;
 			router.push(isExistPreviousPage ? '/' : localStorage.getItem('previous_page'));
 		}
 		dispatch(setIsActiveAuthorizationModal(false));

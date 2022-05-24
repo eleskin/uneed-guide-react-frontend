@@ -73,7 +73,7 @@ const Order = () => {
 							borderColor="#11141B"
 						>
 							При покупки билета онлайн вы будете автоматически зарегистрированы на сайте. Это позволит вам управлять
-							купленными билетами. Если у вас уже есть аккаунт - <Link href={`/${selectedCity}/order`}><a style={{
+							купленными билетами. Если у вас уже есть аккаунт - <Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/order`}><a style={{
 							fontWeight: 700,
 							color: '#f0515d',
 							textDecoration: 'none',
@@ -98,8 +98,8 @@ const Order = () => {
 									</div>
 									<Button.Primary>Оформить заказ</Button.Primary>
 									<p>
-										Согласен с условиями <Link href={`/${selectedCity}/order`}><a>пользования торговой
-										                                                         площадкой</a></Link> и <Link href={`/${selectedCity}/order`}><a>условия возврата</a></Link>
+										Согласен с условиями <Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/order`}><a>пользования торговой
+										                                                         площадкой</a></Link> и <Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/order`}><a>условия возврата</a></Link>
 									</p>
 								</div>
 							</CardContainer>

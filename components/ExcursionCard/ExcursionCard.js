@@ -192,7 +192,7 @@ const ExcursionCard = ({
 				>
 					{languageFile?.['upcoming-excursions']?.['buy-button']}
 				</Button.Primary>
-				<Link href={`/${selectedCity}/categories/catalog/${slide['alias']}`}>
+				<Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/categories/catalog/${slide['alias']}`}>
 					<a style={({textDecoration: 'none'})}>
 						<Button.Outlined
 							small={true}
