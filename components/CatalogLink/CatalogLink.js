@@ -1,5 +1,6 @@
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 import Container from '../Container/Container';
 import styles from './CatalogLink.module.scss';
 import Link from 'next/link';
@@ -7,6 +8,7 @@ import Link from 'next/link';
 const CatalogLink = () => {
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -20,7 +22,7 @@ const CatalogLink = () => {
 			<span className={styles.CatalogLink__text}>
 				{languageFile?.['catalog-link']?.['title']}
 			</span>
-				<Link href="/categories/catalog">
+				<Link href={`/${selectedCity}/categories/catalog`}>
 					<a className={styles.CatalogLink__link}>
 						{languageFile?.['catalog-link']?.['text-button']}
 						<svg width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">

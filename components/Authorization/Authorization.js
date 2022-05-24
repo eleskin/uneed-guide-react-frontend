@@ -23,6 +23,7 @@ const Authorization = ({headerHeight}) => {
 	const [codeTimeValue, setCodeTimeValue] = useState(10);
 	const [confirmationCode] = useState('1111');
 	const [selectedPhotoURL, setSelectedPhotoURL] = useState('');
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	const [phoneNumberValue, setPhoneNumberValue] = useState('');
 	const [confirmationCodeValue, setConfirmationCodeValue] = useState('');
@@ -40,7 +41,7 @@ const Authorization = ({headerHeight}) => {
 	
 	const handleClickBack = () => {
 		if (!isDesktop) {
-			const isExistPreviousPage = !localStorage.getItem('previous_page') || localStorage.getItem('previous_page') === '/profile';
+			const isExistPreviousPage = !localStorage.getItem('previous_page') || localStorage.getItem('previous_page') === `/${selectedCity}/profile`;
 			router.push(isExistPreviousPage ? '/' : localStorage.getItem('previous_page'));
 		}
 		dispatch(setIsActiveAuthorizationModal(false));

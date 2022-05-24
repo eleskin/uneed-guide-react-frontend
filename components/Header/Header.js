@@ -144,7 +144,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 						</div>
 						<div className={styles.Header__right}>
 							<div className={styles.Header__links}>
-								<Link href="/order">
+								<Link href={`/${selectedCity}/order`}>
 									<a>
 										<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M6.68182 14.9998C7.05838 14.9998 7.36364 14.7014 7.36364 14.3332C7.36364 13.965 7.05838 13.6665 6.68182 13.6665C6.30526 13.6665 6 13.965 6 14.3332C6 14.7014 6.30526 14.9998 6.68182 14.9998Z" stroke="#D3D3D3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -163,7 +163,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 									</a>
 								</Link>
 								{isAuth ? (
-									<Link href="/profile">
+									<Link href={`/${selectedCity}/profile`}>
 										<a>
 											<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<path d="M1.7998 17V14.9804C1.7998 14.0535 2.1791 13.1644 2.85422 12.509C3.52936 11.8536 4.44502 11.4854 5.39981 11.4854H8.9998H12.5998C13.5546 11.4854 14.4702 11.8536 15.1454 12.509C15.8205 13.1644 16.1998 14.0535 16.1998 14.9804V17" stroke="#D3D3D3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

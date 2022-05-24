@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import {createRef, useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 import {useSwipeable} from 'react-swipeable';
 import styles from './CardSlider.module.scss';
 import {useMediaQuery} from 'react-responsive';
@@ -12,6 +13,7 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, setActiveSlide
 	});
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -64,7 +66,7 @@ const CardSlider = ({children, nextSlide, prevSlide, activeSlide, setActiveSlide
 				</div>
 			</div>
 			{!isLimitedOpportunities && (
-				<Link href="/categories/catalog">
+				<Link href={`/${selectedCity}/categories/catalog`}>
 					<a className={styles.SpecialOffers__link}>
 						{languageFile?.['card-slider']?.['link']}
 					</a>

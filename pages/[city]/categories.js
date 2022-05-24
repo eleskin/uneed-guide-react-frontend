@@ -1,15 +1,17 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {Fragment, useEffect, useState} from 'react';
-import CategoryCard from '../components/CategoryCard/CategoryCard';
-import Container from '../components/Container/Container';
-import styles from '../styles/Categories.module.scss';
-import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
-import PageTitle from '../components/PageTitle/PageTitle';
+import {useSelector} from 'react-redux';
+import CategoryCard from '../../components/CategoryCard/CategoryCard';
+import Container from '../../components/Container/Container';
+import styles from '../../styles/Categories.module.scss';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import PageTitle from '../../components/PageTitle/PageTitle';
 
 const Categories = () => {
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -23,7 +25,7 @@ const Categories = () => {
 			title: 'Водные экскурсии',
 			count: 26,
 			image: '/assets/images/categories/categories-image-1.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: [],
 		},
 		{
@@ -31,7 +33,7 @@ const Categories = () => {
 			title: 'Дневные экскурсии',
 			count: 26,
 			image: '/assets/images/categories/categories-image-2.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: [],
 		},
 		{
@@ -39,7 +41,7 @@ const Categories = () => {
 			title: 'Автотуры',
 			count: 23,
 			image: '/assets/images/categories/categories-image-3.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: ['together'],
 		},
 		{
@@ -47,7 +49,7 @@ const Categories = () => {
 			title: 'Дневные экскурсии',
 			count: 26,
 			image: '/assets/images/categories/categories-image-4.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: [],
 		},
 		{
@@ -55,7 +57,7 @@ const Categories = () => {
 			title: 'Москва-сити',
 			count: 3,
 			image: '/assets/images/categories/categories-image-5.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: ['popular'],
 		},
 		{
@@ -63,7 +65,7 @@ const Categories = () => {
 			title: 'Ночные прогулки',
 			count: 5,
 			image: '/assets/images/categories/categories-image-6.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: [],
 		},
 		{
@@ -71,7 +73,7 @@ const Categories = () => {
 			title: 'Водные экскурсии',
 			count: 44,
 			image: '/assets/images/categories/categories-image-7.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: [],
 		},
 		{
@@ -79,7 +81,7 @@ const Categories = () => {
 			title: 'Праздники',
 			count: 32,
 			image: '/assets/images/categories/categories-image-8.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: [],
 		},
 		{
@@ -87,14 +89,14 @@ const Categories = () => {
 			title: 'По бункерам',
 			count: 12,
 			image: '/assets/images/categories/categories-image-9.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: [],
 		},{
 			price: 350,
 			title: 'По бункерам',
 			count: 12,
 			image: '/assets/images/categories/categories-image-9.png',
-			link: '/categories/product',
+			link: `/${selectedCity}/categories/product`,
 			labels: [],
 		},
 	];
@@ -129,7 +131,7 @@ const Categories = () => {
 				return (
 					<div className={styles.Categories__grid} key={index}>
 						{elements}
-						<Link href="/categories/catalog">
+						<Link href={`/${selectedCity}/categories/catalog`}>
 							<div className={styles.Categories__link}>
 								<div>
 									<svg width="76" height="84" viewBox="0 0 76 84" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,7 +153,7 @@ const Categories = () => {
 						<div className={styles.Categories__grid}>
 							{elements}
 						</div>
-						<Link href="/categories/catalog">
+						<Link href={`/${selectedCity}/categories/catalog`}>
 							<div className={styles.Categories__link}>
 								<div>
 									<svg width="76" height="84" viewBox="0 0 76 84" fill="none" xmlns="http://www.w3.org/2000/svg">

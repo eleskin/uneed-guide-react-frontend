@@ -1,5 +1,6 @@
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 import Button from '../Button/Button';
 import Navigation from '../Navigation/Navigation';
 import styles from './Footer.module.scss';
@@ -9,6 +10,7 @@ import Link from 'next/link';
 const Footer = () => {
 	const router = useRouter();
 	const [languageFile, setLanguageFile] = useState();
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -16,7 +18,7 @@ const Footer = () => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
-	const isWideFooter = router.asPath === '/' || router.asPath === '/order/' || router.asPath === '/details/' || router.asPath === '/error/';
+	const isWideFooter = router.asPath === '/' || router.asPath === `/${selectedCity}/order/` || router.asPath === `/${selectedCity}/details/` || router.asPath === `/${selectedCity}/error/`;
 	
 	return (
 		<footer className={`${styles.Footer} ${isWideFooter ? styles.Footer__main : ''}`}>

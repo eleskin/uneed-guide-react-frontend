@@ -8,7 +8,7 @@ import styles from './RegionSelect.module.scss';
 
 const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates, isVisibleRegionSelector}) => {
 	const dispatch = useDispatch();
-	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	const router = useRouter();
 	const cities = useSelector((state) => state['geolocationSlice'].cities);
 	const [languageFile, setLanguageFile] = useState();
@@ -36,7 +36,7 @@ const RegionSelect = ({mode = 'header', nearestCity, citiesTranslates, isVisible
 	}, [cities, citiesTranslates, dispatch, router, router.query, selectedCity]);
 	
 	useEffect(() => {
-		if (router.pathname === '/' || router.pathname === '/[city]') {
+		if (router.pathname === '/' || router.pathname === `/${selectedCity}`) {
 			if (!router.query['city']) dispatch(setIsVisibleRegionSelector(true));
 		}
 		

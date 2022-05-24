@@ -1,17 +1,17 @@
 import {useRouter} from 'next/router';
 import {useDispatch, useSelector} from 'react-redux';
-import Button from '../../components/Button/Button';
-import Container from '../../components/Container/Container';
-import {CustomSelect, Option} from '../../components/CustomSelect/CustomSelect';
-import ExcursionsCard from '../../components/ExcursionsCard/ExcursionsCard';
-import Filter from '../../components/Filter/Filter';
-import Viewed from '../../components/Viewed/Viewed';
-import {setIsActiveFilter} from '../../store/slices';
-import styles from '../../styles/Catalog.module.scss';
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import PageTitle from '../../components/PageTitle/PageTitle';
+import Button from '../../../components/Button/Button';
+import Container from '../../../components/Container/Container';
+import {CustomSelect, Option} from '../../../components/CustomSelect/CustomSelect';
+import ExcursionsCard from '../../../components/ExcursionsCard/ExcursionsCard';
+import Filter from '../../../components/Filter/Filter';
+import Viewed from '../../../components/Viewed/Viewed';
+import {setIsActiveFilter} from '../../../store/slices';
+import styles from '../../../styles/Catalog.module.scss';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs';
+import PageTitle from '../../../components/PageTitle/PageTitle';
 import {Fragment, useState, useEffect} from 'react';
-import Form from '../../ui/Form/Form';
+import Form from '../../../ui/Form/Form';
 
 const Catalog = ({headerHeight}) => {
 	const sorts = {

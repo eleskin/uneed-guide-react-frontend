@@ -1,9 +1,9 @@
 import styles from '/styles/Details.module.scss';
 import {useSelector} from 'react-redux';
-import CardContainer from '../components/CardContainer/CardContainer';
-import Container from '../components/Container/Container';
-import ExcursionCard from '../components/ExcursionCard/ExcursionCard';
-import Help from '../components/Help/Help';
+import CardContainer from '../../components/CardContainer/CardContainer';
+import Container from '../../components/Container/Container';
+import ExcursionCard from '../../components/ExcursionCard/ExcursionCard';
+import Help from '../../components/Help/Help';
 
 const Details = () => {
 	const slides = useSelector((state) => state['mainPageSlice']['upcoming']);

@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import {useState} from 'react';
-import Alert from '../components/Alert/Alert';
-import Button from '../components/Button/Button';
-import CardContainer from '../components/CardContainer/CardContainer';
-import Cart from '../components/Cart/Cart';
-import Container from '../components/Container/Container';
-import Help from '../components/Help/Help';
-import styles from '../styles/Order.module.scss';
-import Form from '../ui/Form/Form';
+import {useSelector} from 'react-redux';
+import Alert from '../../components/Alert/Alert';
+import Button from '../../components/Button/Button';
+import CardContainer from '../../components/CardContainer/CardContainer';
+import Cart from '../../components/Cart/Cart';
+import Container from '../../components/Container/Container';
+import Help from '../../components/Help/Help';
+import styles from '../../styles/Order.module.scss';
+import Form from '../../ui/Form/Form';
 
 const Order = () => {
 	const [totalSumWithoutDiscount, setTotalSumWithoutDiscount] = useState(0);
 	const [totalSumWithDiscount, setTotalSumWithDiscount] = useState(0);
 	const [totalTickets, setTotalTickets] = useState(0);
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	const [order] = useState([
 		{
@@ -71,7 +73,7 @@ const Order = () => {
 							borderColor="#11141B"
 						>
 							При покупки билета онлайн вы будете автоматически зарегистрированы на сайте. Это позволит вам управлять
-							купленными билетами. Если у вас уже есть аккаунт - <Link href="#"><a style={{
+							купленными билетами. Если у вас уже есть аккаунт - <Link href={`/${selectedCity}/order`}><a style={{
 							fontWeight: 700,
 							color: '#f0515d',
 							textDecoration: 'none',
@@ -96,8 +98,8 @@ const Order = () => {
 									</div>
 									<Button.Primary>Оформить заказ</Button.Primary>
 									<p>
-										Согласен с условиями <Link href="#"><a>пользования торговой
-										                                       площадкой</a></Link> и <Link href="#"><a>условия возврата</a></Link>
+										Согласен с условиями <Link href={`/${selectedCity}/order`}><a>пользования торговой
+										                                                         площадкой</a></Link> и <Link href={`/${selectedCity}/order`}><a>условия возврата</a></Link>
 									</p>
 								</div>
 							</CardContainer>

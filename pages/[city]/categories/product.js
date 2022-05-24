@@ -3,16 +3,16 @@ import Image from 'next/image';
 import {useRouter} from 'next/router';
 import {Fragment, useEffect, useMemo, useRef, useState} from 'react';
 import {useSwipeable} from 'react-swipeable';
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import Button from '../../components/Button/Button';
-import BuyTicket from '../../components/BuyTicket/BuyTicket';
-import CardContainer from '../../components/CardContainer/CardContainer';
-import Container from '../../components/Container/Container';
-import ProductSlider from '../../components/ProductSlider/ProductSlider';
-import styles from '../../styles/Product.module.scss';
-import Viewed from '../../components/Viewed/Viewed';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs';
+import Button from '../../../components/Button/Button';
+import BuyTicket from '../../../components/BuyTicket/BuyTicket';
+import CardContainer from '../../../components/CardContainer/CardContainer';
+import Container from '../../../components/Container/Container';
+import ProductSlider from '../../../components/ProductSlider/ProductSlider';
+import styles from '../../../styles/Product.module.scss';
+import Viewed from '../../../components/Viewed/Viewed';
 import {ru as ruLocale, enUS as enLocale} from 'date-fns/locale';
-import {getNoun} from '../../utils/functions';
+import {getNoun} from '../../../utils/functions';
 
 const Product = () => {
 	const router = useRouter();

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useCallback, useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
+import {useSelector} from 'react-redux';
 import Button from '../Button/Button';
 import styles from './ExcursionCard.module.scss';
 
@@ -27,6 +28,7 @@ const ExcursionCard = ({
 	}).flat());
 	const [activeDate, setActiveDate] = useState(new Date());
 	const [minPrice, setMinPrice] = useState([]);
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
 		if (router.locale) {
@@ -190,7 +192,7 @@ const ExcursionCard = ({
 				>
 					{languageFile?.['upcoming-excursions']?.['buy-button']}
 				</Button.Primary>
-				<Link href={`/categories/catalog/${slide['alias']}`}>
+				<Link href={`/${selectedCity}/categories/catalog/${slide['alias']}`}>
 					<a style={({textDecoration: 'none'})}>
 						<Button.Outlined
 							small={true}
