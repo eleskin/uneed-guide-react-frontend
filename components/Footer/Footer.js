@@ -16,7 +16,7 @@ const Footer = () => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
-	const isWideFooter = router.asPath === '/' || router.asPath === '/order/';
+	const isWideFooter = router.asPath === '/' || router.asPath === '/order/' || router.asPath === '/details/';
 	
 	return (
 		<footer className={`${styles.Footer} ${isWideFooter ? styles.Footer__main : ''}`}>
