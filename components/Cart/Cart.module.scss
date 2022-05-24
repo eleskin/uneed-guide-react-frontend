@@ -178,6 +178,7 @@
 		.Cart__times {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
+			overflow: auto;
 			
 			.Cart__time {
 				flex-shrink: 0;
@@ -306,7 +307,9 @@
 	.Cart {
 		.Cart__form {
 			.Cart__dates {
+				
 				& > div:first-child {
+					overflow: auto;
 					display: grid;
 					grid-template-columns: repeat(4, 1fr);
 					
@@ -374,7 +377,6 @@
 				& > div:first-child {
 					display: flex;
 					flex-wrap: wrap;
-					overflow: scroll;
 					
 					.Cart__date {
 						width: fit-content;
