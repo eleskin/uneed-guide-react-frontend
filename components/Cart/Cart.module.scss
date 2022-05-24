@@ -124,6 +124,7 @@
 				transform-origin: 50% 0;
 				z-index: -1;
 				transition: all var(--transition-primary), z-index 0s linear 0.5s;
+				overflow: auto;
 			}
 			
 			.Cart__calendar_active {
