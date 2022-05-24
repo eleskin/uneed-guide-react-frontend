@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Button from '../components/Button/Button';
+import Difficulty from '../components/Difficulty/Difficulty';
 import styles from '../styles/NotFound.module.scss';
 import Container from '../components/Container/Container';
 
@@ -16,14 +16,7 @@ const NotFound = () => {
 					<li><Link href="/"><a>Условия оплаты и возврата</a></Link></li>
 					<li><Link href="/"><a>Контакты</a></Link></li>
 				</ul>
-				<div className={styles.NotFound__banner}>
-					<h3>Не нашли то что искали?</h3>
-					<p>Если у Вас возникли вопросы или трудности с поиском информации или экскурсии, задайте нам вопрос</p>
-					<div>
-						<Button.Outlined>Задать вопрос</Button.Outlined>
-						<Link href="#"><a>Раздел вопросов</a></Link>
-					</div>
-				</div>
+				<Difficulty/>
 			</Container>
 		</div>
 	);
