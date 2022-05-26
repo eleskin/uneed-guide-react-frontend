@@ -18,7 +18,7 @@ const Footer = () => {
 		}
 	}, [setLanguageFile, router.locale]);
 	
-	const isWideFooter = router.asPath === '/' || router.asPath === `/${selectedCity?.['internationalName'].toLowerCase()}/order/` || router.asPath === `/${selectedCity?.['internationalName'].toLowerCase()}/details/` || router.asPath === `/${selectedCity}/error/`;
+	const isWideFooter = router.asPath === '/' || router.asPath === `/${selectedCity?.['internationalName'].toLowerCase()}/` || router.asPath === `/${selectedCity?.['internationalName'].toLowerCase()}/order/` || router.asPath === `/${selectedCity?.['internationalName'].toLowerCase()}/details/` || router.asPath === `/${selectedCity?.['internationalName'].toLowerCase()}/error/` || `/${selectedCity?.['internationalName'].toLowerCase()}/contacts/`;
 	
 	return (
 		<footer className={`${styles.Footer} ${isWideFooter ? styles.Footer__main : ''}`}>
