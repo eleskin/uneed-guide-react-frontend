@@ -302,6 +302,7 @@ const Input = ({
 				<Fragment>
 					<label
 						className={`${styles.Input} ${styles.Input_text} ${filter ? styles.Input_filter : ''} ${error ? styles.Input__error : ''}`}
+						style={{padding: padding}}
 					>
 						<div>
 							<i>{title}</i>
@@ -319,6 +320,22 @@ const Input = ({
 				<input type="text"/>
 			);
 	}
+};
+
+const Textarea = ({title, error, ...props}) => {
+	return (
+		<Fragment>
+			<label
+				className={`${styles.Input} ${styles.Input_text} ${error ? styles.Input__error : ''}`}
+			>
+				<div>
+					<i>{title}</i>
+					<textarea {...props}/>
+				</div>
+			</label>
+			{error && <em className={styles.Form__error}>{error}</em>}
+		</Fragment>
+	);
 };
 
 const Checkbox = ({label, alt = false, ...props}) => {
@@ -355,6 +372,7 @@ const Form = {
 	Checkbox,
 	Radio,
 	File,
+	Textarea,
 };
 
 export default Form;
