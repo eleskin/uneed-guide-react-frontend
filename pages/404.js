@@ -6,7 +6,7 @@ import Container from '../components/Container/Container';
 const NotFound = () => {
 	return (
 		<div className={styles.NotFound}>
-			<Container isMainPage={true}>
+			<Container>
 				<span className={styles.NotFound__code}>404</span>
 				<h1 className={styles.NotFound__title}>Страница не найдена</h1>
 				<span className={styles.NotFound__subtitle}>Но есть много других полезных страниц</span>
