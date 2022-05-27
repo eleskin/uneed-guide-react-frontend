@@ -1,0 +1,73 @@
+@import '/styles/functions';
+
+.FAQ {
+	margin-top: rem(24px);
+	
+	.FAQ__sidebar {
+		display: flex;
+		flex-direction: column;
+		grid-row-gap: rem(16px);
+		
+		.FAQ__title {
+			font-weight: 600;
+			font-size: rem(24px);
+			line-height: 145%;
+			color: #000000;
+			margin: 0 0 rem(8px) 0;
+		}
+	}
+	
+	.FAQ__main {
+		margin-top: rem(28px);
+		
+		details {
+			padding: 0;
+			
+			summary {
+				border-bottom: 1px solid #c4c4c4;
+				padding: rem(16px) 0;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
+			
+			summary::after {
+				content: '';
+				background-image: url('data:image/svg+xml,%3Csvg width=\'23\' height=\'23\' viewBox=\'0 0 23 23\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'5.4801\' y=\'5.83362\' width=\'1\' height=\'16\' rx=\'0.5\' transform=\'rotate(-45 5.4801 5.83362)\' fill=\'%23C4C4C4\'/%3E%3Crect x=\'5.83362\' y=\'17.1473\' width=\'1\' height=\'16\' rx=\'0.5\' transform=\'rotate(-135 5.83362 17.1473)\' fill=\'%23C4C4C4\'/%3E%3C/svg%3E');
+				height: 16px;
+				width: 16px;
+				display: block;
+				background-size: contain;
+				background-repeat: no-repeat;
+			}
+			
+			ol {
+				padding-left: 1rem;
+			}
+		}
+		
+		details[open] {
+			border-bottom: 1px solid #c4c4c4;
+		}
+		
+		details > summary {
+			list-style: none;
+		}
+		
+		details > summary::-webkit-details-marker {
+			display: none;
+		}
+		
+		button {
+			margin: rem(32px) auto 0 auto;
+			display: block;
+			font-weight: 400;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: #f0515d;
+			background-color: transparent;
+			border: none;
+		}
+	}
+}

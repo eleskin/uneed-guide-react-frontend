@@ -1,0 +1,37 @@
+@import '/styles/functions';
+
+.QuestionsMenu {
+	border: 1px solid rgba(196, 196, 196, 0.25);
+	border-radius: 12px;
+	
+	header {
+		background: rgba(196, 196, 196, 0.1);
+		border-radius: 12px;
+		padding: rem(12px) rem(16px);
+		margin-top: -1px;
+		
+		strong {
+			font-weight: 700;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: #221818;
+		}
+	}
+	
+	ul {
+		margin: 0;
+		padding: rem(16px) rem(16px) rem(24px) rem(16px);
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		grid-row-gap: rem(8px);
+		
+		a {
+			font-weight: 400;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: #221818;
+			text-decoration: none;
+		}
+	}
+}
