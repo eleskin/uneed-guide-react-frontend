@@ -3,17 +3,19 @@
 .FAQ {
 	margin-top: rem(24px);
 	
+	.FAQ__title {
+		font-weight: 600;
+		font-size: rem(24px);
+		line-height: 145%;
+		color: #000000;
+		margin: 0 0 rem(8px) 0;
+	}
+	
 	.FAQ__sidebar {
-		display: flex;
-		flex-direction: column;
-		grid-row-gap: rem(16px);
-		
-		.FAQ__title {
-			font-weight: 600;
-			font-size: rem(24px);
-			line-height: 145%;
-			color: #000000;
-			margin: 0 0 rem(8px) 0;
+		& > div {
+			display: flex;
+			flex-direction: column;
+			grid-row-gap: rem(16px);
 		}
 	}
 	
@@ -22,6 +24,10 @@
 		
 		details {
 			padding: 0;
+			font-weight: 400;
+			font-size: rem(12px);
+			line-height: rem(18px);
+			color: rgba(#221818, 0.8);
 			
 			summary {
 				border-bottom: 1px solid #c4c4c4;
@@ -30,6 +36,10 @@
 				flex-direction: row;
 				justify-content: space-between;
 				align-items: center;
+				font-weight: 400;
+				font-size: rem(12px);
+				line-height: rem(18px);
+				color: #221818;
 			}
 			
 			summary::after {
@@ -68,6 +78,55 @@
 			color: #f0515d;
 			background-color: transparent;
 			border: none;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.FAQ {
+		margin-top: rem(48px);
+		
+		.FAQ__title {
+			font-size: rem(28px);
+			margin-bottom: rem(24px);
+		}
+		
+		.FAQ__grid {
+			display: grid;
+			grid-template-columns: minmax(auto, 305px) 5fr;
+			grid-column-gap: rem(24px);
+			
+			.FAQ__sidebar {
+				& > div {
+					display: flex;
+					flex-direction: column;
+					grid-row-gap: rem(16px);
+					padding: rem(24px) rem(16px);
+					background: #ffffff;
+					box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+					border-radius: 12px;
+				}
+			}
+			
+			.FAQ__main {
+				margin-top: 0;
+				
+				details {
+					font-size: rem(16px);
+					line-height: rem(24px);
+					
+					summary {
+						font-size: rem(20px);
+						line-height: rem(30px);
+					}
+				}
+				
+				button {
+					margin: rem(32px) auto 0 auto;
+					font-size: rem(16px);
+					line-height: rem(24px);
+				}
+			}
 		}
 	}
 }

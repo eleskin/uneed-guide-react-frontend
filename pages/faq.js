@@ -149,46 +149,50 @@ const FAQ = () => {
 	return (
 		<div className={styles.FAQ}>
 			<Container>
-				<div className={styles.FAQ__sidebar}>
-					<h1 className={styles.FAQ__title}>Частозадаваемые вопросы</h1>
-					<QuestionsMenu
-						title="Работа с сайтом"
-						links={[
-							{text: 'Регистрация', href: '#'},
-							{text: 'Оформление заказа', href: '#'},
-							{text: 'Личный кабинет', href: '#'},
-							{text: 'Выбор товара', href: '#'},
-							{text: 'Раздел истории заказов', href: '#'},
-							{text: 'Избранное', href: '#'},
-						]}
-					/>
-					<QuestionsMenu
-						title="Работа с заказом"
-						links={[
-							{text: 'Скидки и промокоды', href: '#'},
-							{text: 'Условия оплаты', href: '#'},
-							{text: 'Отказ от заказа', href: '#'},
-							{text: 'Получение билета', href: '#'},
-						]}
-					/>
-					<QuestionsMenu
-						title="Оплата и возврат"
-						links={[
-							{text: 'Способы оплаты', href: '#'},
-							{text: 'Возврат денег', href: '#'},
-							{text: 'Отказ от заказа', href: '#'},
-							{text: 'Получение билета', href: '#'},
-						]}
-					/>
-				</div>
-				<div className={styles.FAQ__main}>
-					{questionsList.slice(0, visibleQuestions)}
-					{isVisibleButton && (
-						<button onClick={() => {
-							setVisibleQuestions(questions.length);
-							setIsVisibleButton(false);
-						}}>Загрузить еще</button>
-					)}
+				<h1 className={styles.FAQ__title}>Частозадаваемые вопросы</h1>
+				<div className={styles.FAQ__grid}>
+					<div className={styles.FAQ__sidebar}>
+						<div>
+							<QuestionsMenu
+								title="Работа с сайтом"
+								links={[
+									{text: 'Регистрация', href: '#'},
+									{text: 'Оформление заказа', href: '#'},
+									{text: 'Личный кабинет', href: '#'},
+									{text: 'Выбор товара', href: '#'},
+									{text: 'Раздел истории заказов', href: '#'},
+									{text: 'Избранное', href: '#'},
+								]}
+							/>
+							<QuestionsMenu
+								title="Работа с заказом"
+								links={[
+									{text: 'Скидки и промокоды', href: '#'},
+									{text: 'Условия оплаты', href: '#'},
+									{text: 'Отказ от заказа', href: '#'},
+									{text: 'Получение билета', href: '#'},
+								]}
+							/>
+							<QuestionsMenu
+								title="Оплата и возврат"
+								links={[
+									{text: 'Способы оплаты', href: '#'},
+									{text: 'Возврат денег', href: '#'},
+									{text: 'Отказ от заказа', href: '#'},
+									{text: 'Получение билета', href: '#'},
+								]}
+							/>
+						</div>
+					</div>
+					<div className={styles.FAQ__main}>
+						{questionsList.slice(0, visibleQuestions)}
+						{isVisibleButton && (
+							<button onClick={() => {
+								setVisibleQuestions(questions.length);
+								setIsVisibleButton(false);
+							}}>Загрузить еще</button>
+						)}
+					</div>
 				</div>
 			</Container>
 		</div>
