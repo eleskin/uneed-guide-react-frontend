@@ -415,6 +415,7 @@ const Catalog = ({headerHeight}) => {
 			cardRating={card.rating}
 			cardDiscountValue={card.discountValue}
 			cardTickets={card.tickets}
+			link="#"
 			small={true}
 			catalog={true}
 			key={card.id}
