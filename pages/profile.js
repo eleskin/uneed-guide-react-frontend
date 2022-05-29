@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Authorization from '../../components/Authorization/Authorization';
-import UserProfile from '../../components/UserProfile/UserProfile';
-import {setIsActiveAuthorizationModal} from '../../store/slices';
+import Authorization from '../components/Authorization/Authorization';
+import UserProfile from '../components/UserProfile/UserProfile';
+import {setIsActiveAuthorizationModal} from '../store/slices';
 
 const Profile = () => {
 	const dispatch = useDispatch();

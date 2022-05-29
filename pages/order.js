@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import {useState} from 'react';
 import {useSelector} from 'react-redux';
-import Alert from '../../components/Alert/Alert';
-import Button from '../../components/Button/Button';
-import CardContainer from '../../components/CardContainer/CardContainer';
-import Cart from '../../components/Cart/Cart';
-import Container from '../../components/Container/Container';
-import Help from '../../components/Help/Help';
-import styles from '../../styles/Order.module.scss';
-import Form from '../../ui/Form/Form';
+import Alert from '../components/Alert/Alert';
+import Button from '../components/Button/Button';
+import CardContainer from '../components/CardContainer/CardContainer';
+import Cart from '../components/Cart/Cart';
+import Container from '../components/Container/Container';
+import Help from '../components/Help/Help';
+import styles from '../styles/Order.module.scss';
+import Form from '../ui/Form/Form';
 
 const Order = () => {
 	const [totalSumWithoutDiscount, setTotalSumWithoutDiscount] = useState(0);

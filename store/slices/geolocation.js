@@ -60,9 +60,9 @@ const initialState = {
 	nearestCity: null,
 	selectedCity: null,
 	citiesTranslates: {
-		'moscow': 'Москва',
+//		'moscow': 'Москва',
 		'st.petersburg': 'Санкт-Петербург',
-		'murmansk': 'Мурманск',
+//		'murmansk': 'Мурманск',
 	},
 	cities: {},
 };

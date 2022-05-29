@@ -15,7 +15,7 @@ const Categories = () => {
 	
 	useEffect(() => {
 		if (router.locale) {
-			import(`../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
+			import(`../../languages/${router.locale}.json`).then((language) => setLanguageFile(language.default));
 		}
 	}, [setLanguageFile, router.locale]);
 	

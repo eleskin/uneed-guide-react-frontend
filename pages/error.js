@@ -1,6 +1,6 @@
-import Button from '../../components/Button/Button';
-import Container from '../../components/Container/Container';
-import styles from '../../styles/Error.module.scss';
+import Button from '../components/Button/Button';
+import Container from '../components/Container/Container';
+import styles from '../styles/Error.module.scss';
 
 const Error = () => {
 	return (
