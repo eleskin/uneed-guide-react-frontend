@@ -229,6 +229,7 @@
 
 .Input_date {
 	position: relative;
+	transition: all var(--transition-primary) linear 0s, overflow 0s linear 0s;
 	
 	input {
 		pointer-events: none;
@@ -256,7 +257,7 @@
 	.Input__calendar_active {
 		opacity: 1;
 		transform: scale(1) translateY(35px);
-		z-index: 1;
+		z-index: 6;
 		transition: all var(--transition-primary), z-index 0s linear 0s;
 	}
 }

@@ -1,7 +1,6 @@
 import {format} from 'date-fns';
 import {useRouter} from 'next/router';
 import {useState, Fragment, useEffect, createRef} from 'react';
-import Calendar from 'react-calendar';
 import {useDispatch, useSelector} from 'react-redux';
 import {setIsActiveFilter} from '../../store/slices';
 import Form from '../../ui/Form/Form';
@@ -14,7 +13,7 @@ const Filter = ({headerHeight, isActiveFilter, optionsSelectList, sortBy, setSor
 	const router = useRouter();
 	const [city, setCity] = useState();
 	const [dateValue, setDateValue] = useState(new Date());
-	const [date, setDate] = useState(format(new Date(Date.parse(dateValue.toString())), 'dd.MM-yyyy'));
+	const [date, setDate] = useState(format(new Date(Date.parse(dateValue.toString())), 'dd.MM.yyyy'));
 	const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
 	const [lowerPrice, setLowerPrice] = useState();
 	const [higherPrice, setHigherPrice] = useState();
@@ -49,7 +48,7 @@ const Filter = ({headerHeight, isActiveFilter, optionsSelectList, sortBy, setSor
 	}, [dateValue]);
 	
 	const handleChangeDateInput = (event) => {
-		event.preventDefault();
+		setDateValue(event);
 	};
 	
 	const handleFocusDateInput = (event) => {
@@ -97,20 +96,13 @@ const Filter = ({headerHeight, isActiveFilter, optionsSelectList, sortBy, setSor
 							<Form.Input
 								title={languageFile?.['filter']?.['date-title']}
 								type="date"
-								value={date}
+								value={dateValue}
+								inputValue={date}
 								onInput={handleChangeDateInput}
 								onChange={handleChangeDateInput}
 								onFocus={handleFocusDateInput}
 								filter={true}
 							/>
-							<div className={`${styles.Filter__calendar} ${isVisibleCalendar ? styles.Filter__calendar_active : ''}`}>
-								<Calendar
-									locale={router.locale}
-									value={dateValue}
-									onChange={setDateValue}
-									onClickDay={() => setIsVisibleCalendar(false)}
-								/>
-							</div>
 						</div>
 						<Form.Input
 							type="range"
