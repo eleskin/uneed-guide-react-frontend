@@ -7,7 +7,7 @@ const Categories = () => {
 	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
-		router.push(`/${selectedCity}/categories`);
+		router.push(`/${selectedCity?.['internationalName'].toLowerCase()}/categories`);
 	});
 };
 

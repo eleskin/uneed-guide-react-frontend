@@ -7,7 +7,7 @@ const Product = () => {
 	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
-		router.push(`/${selectedCity}/categories/product`);
+		router.push(`/${selectedCity?.['internationalName'].toLowerCase()}/categories/product`);
 	});
 };
 

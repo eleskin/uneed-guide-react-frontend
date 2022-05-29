@@ -12,7 +12,6 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 	const isAuth = useSelector((state) => state['userSlice']['isAuth']);
 	const router = useRouter();
 	const dispatch = useDispatch();
-	const {asPath} = router;
 	const [languageFile, setLanguageFile] = useState();
 	const selectedCity = useSelector((state) => state['geolocationSlice'].selectedCity);
 	
@@ -64,16 +63,16 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 					<div className={styles.Header__menu}>
 						<ul>
 							<li>
-								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-help-link']}</a></Link>
+								<Link href="/faq"><a>{languageFile?.['header']?.['header-top']?.['header-help-link']}</a></Link>
 							</li>
 							<li>
 								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-terms-link']}</a></Link>
 							</li>
 							<li>
-								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-cooperation-link']}</a></Link>
+								<Link href="/cooperation"><a>{languageFile?.['header']?.['header-top']?.['header-cooperation-link']}</a></Link>
 							</li>
 							<li>
-								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-contacts-link']}</a></Link>
+								<Link href="/contacts"><a>{languageFile?.['header']?.['header-top']?.['header-contacts-link']}</a></Link>
 							</li>
 						</ul>
 						{/* <div className={styles.Header__languages}> */}
@@ -97,7 +96,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 			</div>
 			<div className={styles.Header__main}>
 				<div className={styles.Header__container}>
-					<Link href="/">
+					<Link href={`/${selectedCity?.['internationalName'].toLowerCase()}`}>
 						<a>
 						<span className={styles.Header__logo}>
 							<svg width="31" height="36" viewBox="0 0 31 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -144,7 +143,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 						</div>
 						<div className={styles.Header__right}>
 							<div className={styles.Header__links}>
-								<Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/order`}>
+								<Link href="/order">
 									<a>
 										<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M6.68182 14.9998C7.05838 14.9998 7.36364 14.7014 7.36364 14.3332C7.36364 13.965 7.05838 13.6665 6.68182 13.6665C6.30526 13.6665 6 13.965 6 14.3332C6 14.7014 6.30526 14.9998 6.68182 14.9998Z" stroke="#D3D3D3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -163,7 +162,7 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 									</a>
 								</Link>
 								{isAuth ? (
-									<Link href={`/${selectedCity?.['internationalName'].toLowerCase()}/profile`}>
+									<Link href="/profile">
 										<a>
 											<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<path d="M1.7998 17V14.9804C1.7998 14.0535 2.1791 13.1644 2.85422 12.509C3.52936 11.8536 4.44502 11.4854 5.39981 11.4854H8.9998H12.5998C13.5546 11.4854 14.4702 11.8536 15.1454 12.509C15.8205 13.1644 16.1998 14.0535 16.1998 14.9804V17" stroke="#D3D3D3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

@@ -33,6 +33,7 @@ const Catalog = ({headerHeight}) => {
 	const isActiveFilter = useSelector((state) => state['indexSlice']['isActiveFilter']);
 	const [visibleCardsCount, setVisibleCardsCount] = useState(16);
 	const [currentVisibleCardsCount, setCurrentVisibleCardsCount] = useState(16);
+	const selectedCity = useSelector((state) => state['geolocationSlice']['selectedCity']);
 	
 	useEffect(() => {
 		setOptions([
@@ -415,7 +416,7 @@ const Catalog = ({headerHeight}) => {
 			cardRating={card.rating}
 			cardDiscountValue={card.discountValue}
 			cardTickets={card.tickets}
-			link="/categories/product/"
+			link={`/${selectedCity?.['internationalName'].toLowerCase()}/categories/product/`}
 			small={true}
 			catalog={true}
 			key={card.id}
