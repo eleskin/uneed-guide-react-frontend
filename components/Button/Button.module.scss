@@ -10,6 +10,10 @@
 	padding: rem(12px) rem(24px);
 	cursor: pointer;
 	transition: var(--transition-primary);
+	
+	* {
+		transition: var(--transition-primary);
+	}
 }
 
 .Button_small {
@@ -20,6 +24,10 @@
 	border: none;
 	cursor: pointer;
 	transition: var(--transition-primary);
+	
+	* {
+		transition: var(--transition-primary);
+	}
 }
 
 .Button_primary {
@@ -34,11 +42,20 @@
 	background: transparent;
 	border-radius: 6px;
 	border: 1px solid #f0515d;
+	
+	* {
+		color: #f0515d;
+		text-decoration: none;
+	}
 }
 
 .Button_outlined:hover {
 	background-color: #f0515d;
 	color: #ffffff;
+	
+	* {
+		color: #ffffff;
+	}
 }
 
 .Button_secondary {

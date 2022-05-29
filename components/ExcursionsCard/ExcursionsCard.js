@@ -259,14 +259,14 @@ const ExcursionCard = ({
 				>
 					{languageFile?.['upcoming-excursions']?.['buy-button']}
 				</Button.Primary>
-				<Link href={link}>
-					<Button.Outlined
-						small={true}
-						style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
-					>
-						{languageFile?.['upcoming-excursions']?.['more-button']}
-					</Button.Outlined>
-				</Link>
+				<Button.Outlined
+					small={true}
+					style={{paddingLeft: '1.3rem', paddingRight: '1.3rem'}}
+				>
+					<Link href={link}>
+						<a>{languageFile?.['upcoming-excursions']?.['more-button']}</a>
+					</Link>
+				</Button.Outlined>
 				<Button.Outlined
 					small={true}
 					style={{paddingLeft: '0.5rem', paddingRight: '0.5rem'}}
