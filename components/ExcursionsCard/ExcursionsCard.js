@@ -175,14 +175,16 @@ const ExcursionCard = ({
 			<div className={styles.ExcursionsCard__image}>
 				{cardImage && (
 					<Link href={link}>
-						<Image
-							src={cardImage}
-							width={300}
-							height={200}
-							layout="responsive"
-							objectFit="cover"
-							alt=""
-						/>
+						<a>
+							<Image
+								src={cardImage}
+								width={300}
+								height={200}
+								layout="responsive"
+								objectFit="cover"
+								alt=""
+							/>
+						</a>
 					</Link>
 				)}
 				{(small || viewed) && <i>-{cardDiscountValue}%</i>}
