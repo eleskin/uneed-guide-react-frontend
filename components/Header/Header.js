@@ -76,22 +76,22 @@ const Header = ({isActiveMenu, setIsActiveMenu, headerHeight, setHeaderHeight, .
 								<Link href="#"><a>{languageFile?.['header']?.['header-top']?.['header-contacts-link']}</a></Link>
 							</li>
 						</ul>
-						<div className={styles.Header__languages}>
-							<Link href={asPath} locale="ru">
-								<a
-									className={`${styles.Header__language} ${router.locale === 'ru' ? styles.Header__language_active : ''}`}
-								>
-									RU
-								</a>
-							</Link>
-							<Link href={asPath} locale="en">
-								<a
-									className={`${styles.Header__language} ${router.locale === 'en' ? styles.Header__language_active : ''}`}
-								>
-									EN
-								</a>
-							</Link>
-						</div>
+						{/* <div className={styles.Header__languages}> */}
+						{/* 	<Link href={asPath} locale="ru"> */}
+						{/* 		<a */}
+						{/* 			className={`${styles.Header__language} ${router.locale === 'ru' ? styles.Header__language_active : ''}`} */}
+						{/* 		> */}
+						{/* 			RU */}
+						{/* 		</a> */}
+						{/* 	</Link> */}
+						{/* 	<Link href={asPath} locale="en"> */}
+						{/* 		<a */}
+						{/* 			className={`${styles.Header__language} ${router.locale === 'en' ? styles.Header__language_active : ''}`} */}
+						{/* 		> */}
+						{/* 			EN */}
+						{/* 		</a> */}
+						{/* 	</Link> */}
+						{/* </div> */}
 					</div>
 				</div>
 			</div>

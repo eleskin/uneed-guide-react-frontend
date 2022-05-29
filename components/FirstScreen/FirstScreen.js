@@ -72,22 +72,22 @@ const FirstScreen = ({value, onChange}) => {
 		<div className={styles.FirstScreen}>
 			<div className={styles.FirstScreen__container}>
 				<header className={styles.FirstScreen__header}>
-					<div className={styles.FirstScreen__languages}>
-						<Link href={asPath} locale="ru">
-							<a
-								className={`${styles.FirstScreen__language} ${router.locale === 'ru' ? styles.FirstScreen__language_active : ''}`}
-							>
-								RU
-							</a>
-						</Link>
-						<Link href={asPath} locale="en">
-							<a
-								className={`${styles.FirstScreen__language} ${router.locale === 'en' ? styles.FirstScreen__language_active : ''}`}
-							>
-								EN
-							</a>
-						</Link>
-					</div>
+					{/* <div className={styles.FirstScreen__languages}> */}
+					{/* 	<Link href={asPath} locale="ru"> */}
+					{/* 		<a */}
+					{/* 			className={`${styles.FirstScreen__language} ${router.locale === 'ru' ? styles.FirstScreen__language_active : ''}`} */}
+					{/* 		> */}
+					{/* 			RU */}
+					{/* 		</a> */}
+					{/* 	</Link> */}
+					{/* 	<Link href={asPath} locale="en"> */}
+					{/* 		<a */}
+					{/* 			className={`${styles.FirstScreen__language} ${router.locale === 'en' ? styles.FirstScreen__language_active : ''}`} */}
+					{/* 		> */}
+					{/* 			EN */}
+					{/* 		</a> */}
+					{/* 	</Link> */}
+					{/* </div> */}
 					<RegionSelect mode="first-screen"/>
 				</header>
 				<div className={styles.FirstScreen__title}>
