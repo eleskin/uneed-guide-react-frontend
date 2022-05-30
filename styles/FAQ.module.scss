@@ -40,6 +40,7 @@
 				font-size: rem(12px);
 				line-height: rem(18px);
 				color: #221818;
+				cursor: pointer;
 			}
 			
 			summary::after {
@@ -52,8 +53,23 @@
 				background-repeat: no-repeat;
 			}
 			
-			ol {
-				padding-left: 1rem;
+			div {
+				display: table;
+				
+				* {
+					display: table;
+					flex-direction: column;
+				}
+				
+				ol {
+					padding: 0;
+					counter-reset: section 0;
+					
+					li::before {
+						counter-increment: section;
+						content: counter(section) ". ";
+					}
+				}
 			}
 		}
 		
@@ -78,6 +94,7 @@
 			color: #f0515d;
 			background-color: transparent;
 			border: none;
+			cursor: pointer;
 		}
 	}
 }
